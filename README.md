@@ -1,8 +1,6 @@
 # M2 WEUX — Projet UX / Développement
 
-Application de parrainage destinée aux étudiants étrangers arrivant en France.
-
-Le projet vise à faciliter leur intégration sociale, universitaire et quotidienne en proposant une mise en relation avec des étudiants parrains selon leurs profils, besoins et centres d'intérêt.
+Application web de parrainage destinée à faciliter l'intégration des étudiants étrangers grâce à une mise en relation avec des étudiants parrains.
 
 ## Équipe
 
@@ -10,8 +8,24 @@ Le projet vise à faciliter leur intégration sociale, universitaire et quotidie
 - Ange
 - Steve
 
+## Stack
+
+- HTML
+- CSS
+- JavaScript
+- PHP
+- SQL / MySQL
+
 ## État du projet
 
-Phase actuelle : conception fonctionnelle et début du développement.
+Le scaffold frontend statique est en place.
 
-La documentation technique et les premières maquettes fonctionnelles sont disponibles dans le dépôt.
+Les premières pages de l'application ont été créées dans `public/` et seront progressivement développées à partir des wireframes.
+
+Le backend PHP et la base de données ne sont pas encore implémentés.
+
+## Documentation
+
+- `docs/documentation_technique.md` : fonctionnement et périmètre du projet
+- `docs/dev_log.md` : suivi chronologique du développement
+- `docs/wireframes/` : wireframes fonctionnels
