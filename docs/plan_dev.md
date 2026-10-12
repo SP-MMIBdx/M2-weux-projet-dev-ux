@@ -94,18 +94,6 @@ dev
 
 Branche de développement commune à l'équipe.
 
-Alexandre et Ange travaillent principalement dans leurs dossiers de prototypes :
-
-```text
-prototypes/
-├── alexandre/
-└── ange/
-```
-
-Steve prend en charge la structure principale de l'application, l'intégration, le backend et la base de données.
-
-Les prototypes permettent à Alexandre et Ange de travailler sur les interfaces HTML/CSS issues des wireframes sans perturber directement l'application principale.
-
 ---
 
 ## 5. Structure actuelle du dépôt
