@@ -1,1 +1,62 @@
 /* Styles principaux de l'application */
+
+/* Valeurs provisoires de la maquette */
+:root {
+  --font-body: Arial, Helvetica, sans-serif;
+  --color-text: #222;
+  --color-background: #f5f5f5;
+  --content-max-width: 60rem;
+}
+
+/* Inclure padding et bordures dans la largeur des éléments */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Typographie et couleurs communes */
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--color-text);
+  background-color: var(--color-background);
+}
+
+/* Harmoniser la typographie des contrôles */
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+/* Largeur et espacement du contenu principal */
+main {
+  max-width: var(--content-max-width);
+  margin-inline: auto;
+  padding: 2rem 1rem;
+}
+
+/* Espacement des titres et paragraphes */
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+h1 {
+  margin-bottom: 2rem;
+}
+
+h2 {
+  margin-bottom: 1rem;
+}
+
+/* Espacement entre les sections du contenu principal */
+main > section + section {
+  margin-top: 3rem;
+}

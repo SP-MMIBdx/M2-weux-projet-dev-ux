@@ -85,3 +85,27 @@ Relecture des documents et du scaffold, vérification des chemins et proposition
 - IA utilisée pour expliquer les éléments HTML, proposer les extraits et relire les modifications réalisées par Steve.
 
 **Prochaine étape :** appliquer les premiers styles CSS à cette structure.
+
+13/10/2026 — Base CSS commune et approche mobile-first
+
+Ajout de variables CSS dans :root pour centraliser la police, les couleurs provisoires et la largeur maximale du contenu.
+
+Application de box-sizing: border-box pour inclure les espacements internes et les bordures dans les dimensions déclarées.
+
+Définition de la typographie générale, de l’interligne et du fond de page ; héritage explicite de la police pour les boutons et champs de formulaire.
+
+Mise en place d’un contenu principal fluide, avec marges latérales automatiques, espacements internes et largeur maximale de 60rem.
+
+Suppression des marges par défaut des titres et paragraphes, puis définition d’espacements communs sous les titres et entre les sections.
+
+Adoption d’une approche mobile-first : flux normal du document, aucune position absolue ni hauteur fixe de contenu. Les adaptations aux écrans plus larges seront ajoutées selon les besoins.
+
+Conservation d’une feuille CSS courte et commune. Les choix graphiques restent provisoires et modifiables via les variables.
+
+Aucun fichier de police ajouté : utilisation de polices système à cette étape.
+
+Vérifications : affichage confirmé par Steve dans l’inspecteur au format iPhone SE, 375 × 667. Relecture du CSS et contrôle Git des espaces effectués par l’IA ; les autres dimensions restent à vérifier.
+
+Rôle de l’IA : explication des règles, proposition des extraits et relecture du code saisi par Steve.
+
+Prochaine étape : styliser la carte de demande, les tags et les boutons. Mise à jour du plan de développement prévue en fin de journée.
