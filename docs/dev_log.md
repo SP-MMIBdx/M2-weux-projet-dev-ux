@@ -126,3 +126,20 @@ Prochaine étape : styliser la carte de demande, les tags et les boutons. Mise �
 **Rôle de l’IA :** proposition et explication du code, puis relecture des modifications réalisées manuellement par Steve.
 
 **Prochaine étape :** construire l’en-tête et le pied de page communs, puis expliquer leur intégration.
+
+### 13/10/2026 — Chargement de l’en-tête partagé
+
+- Transformation de `includes/header.html` en fragment HTML contenant le lien d’accueil et le nom provisoire du projet.
+- Ajout de la classe `site-header` et de l’identifiant `site-header` au conteneur de `fluxparrain.html`.
+- Conservation d’un lien de secours dans la page, utilisable sans JavaScript ou si le chargement échoue.
+- Ajout de la fonction asynchrone `loadHeader()` dans `main.js` : recherche du conteneur, arrêt s’il est absent, requête du fragment avec `fetch`, contrôle du statut HTTP, lecture du contenu et insertion dans l’en-tête.
+- Gestion des erreurs avec `try/catch` et message dans la console.
+- Chargement limité pour le moment à la page parrain ; les autres pages ne possèdent pas encore le conteneur ciblé.
+- Reformatage du bouton « Refuser » sans modification fonctionnelle.
+- Aucun style d’en-tête ajouté à cette étape.
+
+**Vérifications :** utilisation de Live Server par Steve et requête `header.html` observée dans le panneau Réseau avec un statut 304 correspondant à la validation du cache. Relecture du code, contrôle de syntaxe JavaScript et contrôle Git des espaces réussis. Les cas d’échec restent à tester dans le navigateur.
+
+**Rôle de l’IA :** proposition du code, explication détaillée du JavaScript et revue des modifications saisies par Steve.
+
+**À la reprise :** relire et discuter l’explication JavaScript avant de poursuivre : déclaration et appel de fonction, `const`, `!`, `return`, `async/await`, `fetch`, `response.ok`, `innerHTML` et `try/catch`. Ensuite, styliser l’en-tête, puis construire le pied de page partagé.
