@@ -182,3 +182,14 @@ Prochaine étape : styliser la carte de demande, les tags et les boutons. Mise �
 - Apparente disparition du pied de page résolue avec « Fit to window » dans DevTools : aperçu tronqué, aucune correction du code nécessaire.
 
 **Prochaine étape :** styliser le pied de page et documenter le bilan de son intégration avant commit.
+
+### 13/10/2026 — Styles du pied de page partagé
+
+- Mutualisation de la largeur maximale, du centrage et des espacements internes des conteneurs header/footer avec un sélecteur commun.
+- Ajout du fond et de la bordure supérieure via les variables CSS existantes.
+- Organisation du contenu du footer en colonne avec un espacement régulier.
+- Présentation des liens avec Flexbox et retour à la ligne lorsque la largeur disponible diminue ; suppression des puces et marges de liste.
+- Définition d’une hauteur minimale des zones cliquables, du décalage du soulignement et des styles de survol et de focus clavier.
+- Correction d’une virgule manquante entre les sélecteurs partagés, qui empêchait l’application des espacements à l’en-tête.
+
+**Décision de mise en page :** le footer reste dans le flux normal, immédiatement après le contenu. Un espace libre peut apparaître en dessous sur les écrans hauts. Le placement en bas du viewport sera réévalué lors de l’intégration des pages courtes, notamment la connexion et l’inscription. Aucune règle de hauteur de page ni position fixe ajoutée
