@@ -1,0 +1,214 @@
+/* Styles principaux de l'application */
+
+/* Valeurs provisoires de la maquette */
+:root {
+  --font-body: Arial, Helvetica, sans-serif;
+  --color-text: #222;
+  --color-background: #f5f5f5;
+  --content-max-width: 60rem;
+  --color-surface: #D9D9D9;
+  --color-border: #000000;
+  --radius-card: 0.75rem;
+  --color-action: #222;
+  --color-on-action: #fff;
+  --radius-control: 0.5rem;
+}
+
+/* Inclure padding et bordures dans la largeur des éléments */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Typographie et couleurs communes */
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--color-text);
+  background-color: var(--color-background);
+}
+
+/* Harmoniser la typographie des contrôles */
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+/* Largeur et espacement du contenu principal */
+main {
+  max-width: var(--content-max-width);
+  margin-inline: auto;
+  padding: 2rem 1rem;
+}
+
+/* Espacement des titres et paragraphes */
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+h1 {
+  margin-bottom: 2rem;
+}
+
+h2 {
+  margin-bottom: 1rem;
+}
+
+/* Espacement entre les sections du contenu principal */
+main > section + section {
+  margin-top: 3rem;
+}
+
+/* En-tête commun */
+.site-header {
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.site-header__inner,
+.site-footer__inner {
+  max-width: var(--content-max-width);
+  margin-inline: auto;
+  padding: 1rem;
+}
+
+/* Pied de page commun */
+.site-footer {
+  background-color: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+}
+
+.site-footer__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Navigation du pied de page */
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  color: var(--color-text);
+  text-underline-offset: 0.2em;
+}
+
+.footer-links a:hover {
+  text-decoration-thickness: 2px;
+}
+
+.footer-links a:focus-visible {
+  outline: 2px solid var(--color-action);
+  outline-offset: 3px;
+}
+
+.site-brand {
+  display: inline-block;
+  max-width: 100%;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--color-text);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.site-brand:hover {
+  text-decoration: underline;
+}
+
+.site-brand:focus-visible {
+  outline: 2px solid var(--color-action);
+  outline-offset: 3px;
+}
+
+/* Carte de demande */
+.request-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+}
+
+/* Liste des centres d’intérêt */
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tag-list > li {
+  padding: 0.25rem 0.75rem;
+  background-color: var(--color-background);
+  border-radius: 1rem;
+}
+
+/* Disposition des actions */
+.request-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.request-actions > .button {
+  flex: 1 1 8rem;
+}
+
+/* Boutons communs */
+.button {
+  min-height: 2.75rem;
+  padding: 0.625rem 1rem;
+  border: 1px solid var(--color-action);
+  border-radius: var(--radius-control);
+  font: inherit;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--color-on-action);
+  background-color: var(--color-action);
+  cursor: pointer;
+}
+
+.button--secondary {
+  color: var(--color-action);
+  background-color: var(--color-surface);
+}
+
+/* États des boutons */
+.button:enabled:hover {
+  text-decoration: underline;
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--color-action);
+  outline-offset: 3px;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

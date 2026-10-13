@@ -1,0 +1,70 @@
+<!-- Login/account access -->
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Connexion — Parrainage étudiant</title>
+
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <header class="site-header" id="site-header">
+      <div class="site-header__inner">
+        <a class="site-brand" href="index.html">Parrainage étudiant</a>
+      </div>
+    </header>
+
+    <main class="auth-page">
+      <h1>Bienvenue sur notre plateforme</h1>
+
+      <section aria-labelledby="connexion-title">
+        <h2 id="connexion-title">Connecte-toi</h2>
+        <form class="auth-form" method="post" aria-describedby="login-note">
+          <div class="form-field">
+            <label for="login-username">Nom d’utilisateur</label>
+            <input
+              type="text"
+              id="login-username"
+              name="username"
+              autocomplete="username"
+              required
+            />
+          </div>
+
+          <div class="form-field">
+            <label for="login-password">Mot de passe</label>
+            <input
+              type="password"
+              id="login-password"
+              name="password"
+              autocomplete="current-password"
+              required
+            />
+          </div>
+
+          <p id="login-note">
+            Maquette : la connexion n’est pas encore disponible.
+          </p>
+
+          <button type="submit" class="button" disabled>Se connecter</button>
+        </form>
+      </section>
+
+      <section aria-labelledby="inscription-title">
+        <h2 id="inscription-title">Pas encore de compte ?</h2>
+        <p>Rejoins la plateforme comme étudiant ou parrain.</p>
+        <!-- Choix du profil à ajouter -->
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="site-footer__inner">
+        <p>Aide / FAQ · Mentions légales — à venir</p>
+      </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
