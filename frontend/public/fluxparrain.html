@@ -1,23 +1,50 @@
 <!-- Flux parrain -->
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flux parrain</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Espace parrain — Parrainage étudiant</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
 
-    <link rel="stylesheet" href="assets/css/style.css">
-</head>
+  <body>
+    <header>
+      <!-- En-tête commun à intégrer ultérieurement -->
+    </header>
+    <main>
+      <h1>Bienvenue dans ton espace parrain</h1>
 
-<body>
-    <h1>[Bienvenue texte]</h1>
+      <section aria-labelledby="demandes-title">
+        <h2 id="demandes-title">Tes demandes de parrainage</h2>
+        <p>Exemple de demande pour la maquette.</p>
+        <article class="request-card" aria-labelledby="request-1-title">
+          <h3 id="request-1-title">Lucia</h3>
+          <p>Étudiante en L1 à Poitiers · Colombie</p>
 
-    <h2>Flux des demandes de parrainage</h2>
+          <ul class="tag-list" aria-label="Centres d’intérêt">
+            <li>Musique</li>
+            <li>Culture</li>
+          </ul>
 
-    <h2>Revenir a ...</h2>
+          <div class="request-actions">
+            <button type="button" disabled>Accepter</button>
+            <button type="button" disabled>Refuser</button>
+          </div>
+        </article>
+      </section>
 
+      <section aria-labelledby="actualites-title">
+        <h2 id="actualites-title">La vie étudiante</h2>
+        <p>Les actualités seront disponibles prochainement.</p>
+      </section>
+    </main>
+
+    <footer>
+      <!-- Pied de page commun à intégrer ultérieurement -->
+    </footer>
 
     <script src="assets/js/main.js"></script>
-</body>
+  </body>
 </html>

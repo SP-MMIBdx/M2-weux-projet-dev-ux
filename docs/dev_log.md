@@ -71,3 +71,17 @@ Relecture des documents et du scaffold, vérification des chemins et proposition
 - README conservé à la racine du dépôt pour son affichage sur la page principale GitHub ; référence aux pages corrigée vers `frontend/public/`.
 - Ancienne arborescence et ancien état de la phase 1 retirés du plan de développement et remplacés par un renvoi aux sections 5 et 8 pour éviter les informations contradictoires et les doublons à maintenir.
 - Corrections documentaires appliquées par l’IA à la demande de Steve et consignées dans ce journal ; aucun fichier applicatif modifié.
+
+### 13/10/2026 — Première structure HTML du flux parrain
+
+- Construction manuelle de la structure de `fluxparrain.html` : emplacements pour l’en-tête et le pied de page, contenu principal, section des demandes et section des actualités.
+- Conservation des métadonnées, du lien CSS et du chargement JavaScript ; mise à jour du titre de l’onglet.
+- Ajout d’une carte de demande illustrative avec un nom, une description, une liste de centres d’intérêt et deux boutons désactivés.
+- Utilisation d’une hiérarchie de titres `h1`, `h2`, `h3` et de relations `aria-labelledby` pour nommer les sections et la carte.
+- Choix de l’identifiant `request-1-title`, indépendant du prénom affiché et unique dans la page.
+- Ajout des classes `request-card`, `tag-list` et `request-actions` pour préparer le CSS.
+- Relecture du code et vérification Git des espaces effectuées ; aucun test navigateur réalisé par l’IA.
+- Aucun style ni comportement applicatif ajouté. Les inclusions header/footer et les données dynamiques restent à implémenter.
+- IA utilisée pour expliquer les éléments HTML, proposer les extraits et relire les modifications réalisées par Steve.
+
+**Prochaine étape :** appliquer les premiers styles CSS à cette structure.
