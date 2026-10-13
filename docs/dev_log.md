@@ -143,3 +143,28 @@ Prochaine étape : styliser la carte de demande, les tags et les boutons. Mise �
 **Rôle de l’IA :** proposition du code, explication détaillée du JavaScript et revue des modifications saisies par Steve.
 
 **À la reprise :** relire et discuter l’explication JavaScript avant de poursuivre : déclaration et appel de fonction, `const`, `!`, `return`, `async/await`, `fetch`, `response.ok`, `innerHTML` et `try/catch`. Ensuite, styliser l’en-tête, puis construire le pied de page partagé.
+
+### 13/10/2026 — Note pédagogique sur le chargement de l’en-tête
+
+- Ajout de [javascript_header.md](javascript_header.md) à la demande de Steve pour conserver l’explication détaillée du JavaScript et pouvoir la consulter ultérieurement.
+- Documentation des fonctions, variables, conditions, opérations asynchrones, erreurs, chemins relatifs et du remplacement du lien de secours.
+- Explication du cache HTTP et distinction entre la réussite de la requête réseau et celle de l’insertion dans la page.
+- Test visuel avec modification temporaire du texte du fragment confirmé réussi par Steve : le chargement et l’insertion fonctionnent.
+- Note rédigée par l’IA à partir du code actuel ; aucun fichier applicatif modifié pendant cette étape.
+
+**Prochaine étape :** styliser l’en-tête. La note reste disponible pour réviser le JavaScript au rythme de Steve.
+
+### 13/10/2026 — Mise en forme de l’en-tête partagé
+
+- Ajout du conteneur `site-header__inner` dans le fragment partagé et dans le contenu de secours pour conserver une structure identique avant et après le chargement JavaScript.
+- Application d’un fond et d’une bordure sur toute la largeur de l’en-tête.
+- Alignement du contenu intérieur avec le contenu principal grâce à la même largeur maximale, aux marges automatiques et aux espacements latéraux.
+- Mise en forme du lien d’accueil : taille, graisse, couleur, retour à la ligne et états de survol et de focus clavier.
+- Modification des variables communes : surface grise `#D9D9D9` et bordure noire `#000000`. Ces valeurs s’appliquent également aux composants qui les utilisent, notamment les cartes et le fond du bouton secondaire.
+- Conservation d’un en-tête dans le flux normal, sans hauteur fixe ni positionnement absolu.
+
+**Vérifications :** Steve confirme l’adaptation de l’en-tête aux dimensions du navigateur, l’application des variables et le fonctionnement du lien vers `index.html`. Relecture HTML/CSS et contrôle Git des espaces réussis. Le focus clavier reste à vérifier.
+
+**Rôle de l’IA :** proposition et explication du code, puis relecture des modifications réalisées par Steve.
+
+**Prochaine étape :** construire et intégrer le pied de page partagé.
