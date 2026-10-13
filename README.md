@@ -20,7 +20,7 @@ Application web de parrainage destinée à faciliter l'intégration des étudian
 
 Le scaffold frontend statique est en place.
 
-Les premières pages de l'application ont été créées dans `public/` et seront progressivement développées à partir des wireframes.
+Les premières pages de l'application sont regroupées dans `frontend/public/` et seront progressivement développées à partir des wireframes.
 
 Le backend PHP et la base de données ne sont pas encore implémentés.
 

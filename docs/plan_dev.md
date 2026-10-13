@@ -98,7 +98,7 @@ Branche de développement commune à l'équipe.
 
 ## 5. Structure actuelle du dépôt
 
-La structure de référence sur `main` est actuellement la suivante :
+Au 13/10/2026, la structure de travail est la suivante :
 
 ```text
 /
@@ -108,28 +108,36 @@ La structure de référence sur `main` est actuellement la suivante :
 │   ├── dev_log.md
 │   ├── documentation_technique.md
 │   └── plan_dev.md
-├── public/
-│   ├── assets/
-│   │   ├── css/
-│   │   │   └── style.css
-│   │   ├── images/
-│   │   │   └── .gitkeep
-│   │   └── js/
-│   │       └── main.js
-│   ├── createprofile.html
-│   ├── fluxetudiant.html
-│   ├── fluxparrain.html
-│   ├── index.html
-│   ├── login.html
-│   ├── profil.html
-│   └── profileconfiguration.html
+├── frontend/
+│   └── public/
+│       ├── assets/
+│       │   ├── css/
+│       │   │   └── style.css
+│       │   ├── images/
+│       │   │   └── .gitkeep
+│       │   └── js/
+│       │       └── main.js
+│       ├── includes/
+│       │   ├── header.html
+│       │   └── footer.html
+│       ├── createprofile.html
+│       ├── fluxetudiant.html
+│       ├── fluxparrain.html
+│       ├── index.html
+│       ├── login.html
+│       ├── profil.html
+│       └── profileconfiguration.html
 ├── .gitignore
 └── README.md
 ```
 
-La branche `dev` contient également les prototypes HTML/CSS d'Alexandre et Ange dans `prototypes/`.
+`frontend/public/` est destiné à servir de racine publique pour le frontend statique. Les pages HTML y sont placées directement ; les fichiers CSS, JavaScript et les images sont regroupés dans `assets/`.
 
-La structure applicative sera enrichie progressivement. Les dossiers PHP, SQL ou de configuration ne seront ajoutés que lorsqu'ils deviendront nécessaires.
+Le dossier `includes/` prépare la séparation de l’en-tête et du pied de page. Ces fichiers sont encore des placeholders : leur présence ne suffit pas à les intégrer aux pages. Le mécanisme d’inclusion reste à définir et à expliquer lors de l’implémentation.
+
+La branche `dev` contient également les prototypes d’Alexandre et Ange dans `prototypes/`.
+
+Les dossiers PHP, SQL et de configuration seront ajoutés lorsqu’ils deviendront nécessaires.
 
 ---
 
@@ -227,15 +235,25 @@ Il ne doit pas remplacer le journal de développement ni la documentation techni
 - [x] Plan de développement
 
 ### Phase 1 — Scaffold frontend statique
-- [x] Dossier `public/` créé
-- [x] Pages principales identifiées
+
+- [x] Scaffold réorganisé dans `frontend/public/`
+- [x] Sept pages principales identifiées et fichiers HTML préliminaires créés
 - [x] Structure CSS / JavaScript / images créée
-- [x] Fichiers HTML préliminaires créés
+- [x] Fichiers préparatoires header/footer créés dans `includes/`
+- [x] Chemins relatifs CSS/JavaScript vérifiés
 - [ ] Structure HTML sémantique de chaque page
-- [ ] Styles CSS communs
+- [ ] En-tête et pied de page réutilisables intégrés
+- [ ] Styles CSS communs : mise en page, titres et boutons
 - [ ] Navigation entre les pages
 - [ ] Responsive
 - [ ] Interactions JavaScript de base
+- [ ] Vérification visuelle et fonctionnelle dans le navigateur
+
+Structure actuelle : voir la section 5, « Structure actuelle du dépôt ».
+
+**État actuel :** le scaffold a été réorganisé dans `frontend/public/`. Les pages et les fichiers communs restent des placeholders. Les chemins vers les ressources ont été vérifiés ; l’intégration visuelle et les tests navigateur restent à réaliser. Aucun code PHP ou SQL n’a été introduit.
+
+**Prochaine étape :** construire et comprendre une première page complète, `fluxparrain.html`, puis réutiliser les éléments communs sur les autres pages. Chaque modification sera accompagnée d’une explication et consignée dans le journal de développement.
 
 ### Phase 2 — Intégration UX/UI depuis Figma
 Non commencée.
@@ -283,29 +301,7 @@ Travail prévu :
 - définir les éléments visuels communs ;
 - préparer les dossiers d'images et autres ressources.
 
-Structure initiale mise en place :
-
-```text
-public/
-├── assets/
-│   ├── css/
-│   │   └── style.css
-│   ├── images/
-│   │   └── .gitkeep
-│   └── js/
-│       └── main.js
-├── createprofile.html
-├── fluxetudiant.html
-├── fluxparrain.html
-├── index.html
-├── login.html
-├── profil.html
-└── profileconfiguration.html
-```
-
-Cette structure pourra évoluer pendant le projet.
-
-**État actuel :** le scaffold frontend statique a été créé et validé sur `main`, avec les pages principales identifiées, une structure commune pour les assets CSS/JavaScript/images et aucun code PHP ou SQL introduit à ce stade.
+Structure et état d’avancement actuels : voir la section 5 et la rubrique « État d’avancement actuel » de la section 8.
 
 ---
 
