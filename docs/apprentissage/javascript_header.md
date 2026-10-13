@@ -1,6 +1,6 @@
 # Comprendre le chargement des fragments HTML en JavaScript
 
-Note pédagogique — 13/10/2026. Le nom du fichier est conservé pour ne pas casser les liens existants.
+Note pédagogique — 13/10/2026. Le nom du fichier est conservé ; la note est regroupée dans `docs/apprentissage/` avec le bilan quotidien et les liens ont été actualisés.
 
 **Parcours de lecture :** les sections 1 à 12 décrivent la première version, `loadHeader()`, conservée comme exercice d’apprentissage. Les extraits HTML de cette première version précèdent également l’ajout du conteneur de mise en forme de l’en-tête. La section 13 présente le code actuel de `frontend/public/assets/js/main.js`, `loadPartial(containerId, filePath)`, et explique sa réutilisation pour le pied de page. Pour reprendre le travail UX/UI, lire d’abord cette dernière section ; les bases restent disponibles pour révision.
 
@@ -372,6 +372,6 @@ Le contrôle d’absence, `fetch`, `async/await`, le contrôle HTTP, la lecture 
 - Steve a confirmé le rechargement du pied de page après le test proposé. Les erreurs de chargement restent à tester séparément.
 - Les fragments utilisent nos propres fichiers HTML ; cette fonction n’est pas destinée à insérer des données utilisateur non vérifiées.
 - Les chemins supposent toujours que les pages se trouvent directement dans `frontend/public/`. Les revoir si des pages sont déplacées dans des sous-dossiers.
-- Le footer dispose encore de son contenu de secours dans `fluxparrain.html`. Son style sera ajouté lors de la prochaine étape UX/UI.
+- Le footer dispose de son contenu de secours dans `fluxparrain.html`. Mise à jour EOD du 13/10/2026 : ses styles communs ont été ajoutés. La connexion réutilise le chargeur pour son header, mais garde un footer public local sans ID `site-footer` ; l’appel correspondant s’arrête donc avec `return`.
 
 **À retenir pour continuer :** une seule recette, deux entrées et deux appels. Chaque appel choisit où insérer le contenu et quel fichier charger. Il n’est pas nécessaire de mémoriser tous les détails pour poursuivre le CSS ; revenir aux sections précédentes au besoin.

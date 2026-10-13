@@ -1,4 +1,4 @@
-## Utilisation de l'IA
+### Utilisation de l'IA
 
 L'intelligence artificielle est utilisée comme outil d'assistance au développement.
 
@@ -88,7 +88,7 @@ Relecture des documents et du scaffold, vérification des chemins et proposition
 
 **Prochaine étape :** appliquer les premiers styles CSS à cette structure.
 
-13/10/2026 — Base CSS commune et approche mobile-first
+### 13/10/2026 — Base CSS commune et approche mobile-first
 
 Ajout de variables CSS dans :root pour centraliser la police, les couleurs provisoires et la largeur maximale du contenu.
 
@@ -148,7 +148,7 @@ Prochaine étape : styliser la carte de demande, les tags et les boutons. Mise �
 
 ### 13/10/2026 — Note pédagogique sur le chargement de l’en-tête
 
-- Ajout de [javascript_header.md](javascript_header.md) à la demande de Steve pour conserver l’explication détaillée du JavaScript et pouvoir la consulter ultérieurement.
+- Ajout de [javascript_header.md](apprentissage/javascript_header.md) à la demande de Steve pour conserver l’explication détaillée du JavaScript et pouvoir la consulter ultérieurement.
 - Documentation des fonctions, variables, conditions, opérations asynchrones, erreurs, chemins relatifs et du remplacement du lien de secours.
 - Explication du cache HTTP et distinction entre la réussite de la requête réseau et celle de l’insertion dans la page.
 - Test visuel avec modification temporaire du texte du fragment confirmé réussi par Steve : le chargement et l’insertion fonctionnent.
@@ -171,9 +171,9 @@ Prochaine étape : styliser la carte de demande, les tags et les boutons. Mise �
 
 **Prochaine étape :** construire et intégrer le pied de page partagé.
 
-### 13/10/2026 — Documentation du chargeur de fragments réutilisable
+### 13/10/2026 — Intégration du pied de page et chargeur de fragments réutilisable
 
-- Mise à jour de [javascript_header.md](javascript_header.md) : ancienne fonction `loadHeader()` explicitement identifiée comme historique, ajout du code actuel `loadPartial(containerId, filePath)` et d’une explication pas à pas des paramètres et arguments.
+- Mise à jour de [javascript_header.md](apprentissage/javascript_header.md) : ancienne fonction `loadHeader()` explicitement identifiée comme historique, ajout du code actuel `loadPartial(containerId, filePath)` et d’une explication pas à pas des paramètres et arguments.
 - Documentation des renommages, des deux appels indépendants, du message d’erreur incluant le chemin et des limites liées aux chemins relatifs.
 - Requêtes de l’en-tête et du pied de page observées dans les résultats réseau partagés par Steve ; rechargement du pied de page confirmé par Steve.
 - Documentation rédigée par l’IA à la demande de Steve pour permettre une révision différée du JavaScript pendant la poursuite du travail UX/UI. Aucun fichier applicatif modifié par l’IA lors de cette mise à jour.
@@ -194,4 +194,37 @@ Prochaine étape : styliser la carte de demande, les tags et les boutons. Mise �
 - Définition d’une hauteur minimale des zones cliquables, du décalage du soulignement et des styles de survol et de focus clavier.
 - Correction d’une virgule manquante entre les sélecteurs partagés, qui empêchait l’application des espacements à l’en-tête.
 
-**Décision de mise en page :** le footer reste dans le flux normal, immédiatement après le contenu. Un espace libre peut apparaître en dessous sur les écrans hauts. Le placement en bas du viewport sera réévalué lors de l’intégration des pages courtes, notamment la connexion et l’inscription. Aucune règle de hauteur de page ni position fixe ajoutée
+**Décision de mise en page :** le footer reste dans le flux normal, immédiatement après le contenu. Un espace libre peut apparaître en dessous sur les écrans hauts. Le placement en bas du viewport sera réévalué lors de l’intégration des pages courtes, notamment la connexion et l’inscription. Aucune règle de hauteur de page ni position fixe ajoutée.
+
+**Vérifications :** rendu de base confirmé par Steve ; relecture CSS et contrôle Git des espaces réussis. Le parcours clavier des liens et les cas d’échec restent à vérifier explicitement.
+
+**Rôle de l’IA :** explication des styles, diagnostic du comportement sur les écrans hauts et relecture des modifications manuelles.
+
+### 13/10/2026 — Première structure de la page de connexion
+
+- Remplacement des titres placeholders par un document structuré avec titre d’onglet « Connexion — Parrainage étudiant », en-tête partagé, contenu principal et deux sections nommées.
+- Ajout des classes `auth-page`, `auth-form` et `form-field` pour préparer les styles spécifiques, non implémentés à cette étape.
+- Création des champs nom d’utilisateur et mot de passe avec labels reliés par `for`/`id`, noms de données, types adaptés, attributs `autocomplete` et `required`.
+- Formulaire déclaré en POST, décrit par un message de maquette avec `aria-describedby`. Aucune destination d’authentification configurée ; bouton de soumission désactivé. Aucun compte vérifié ni aucune donnée enregistrée.
+- Section d’inscription préparée ; les deux choix étudiant/parrain restent à ajouter.
+- Pied de page public simplifié conservé directement dans la page, sans `id="site-footer"` : le chargeur le laisse intact et n’insère pas le lien « Mon profil ». Duplication temporaire assumée en attendant les choix de navigation.
+- En-tête doté de son identifiant, donc chargé par la fonction commune. Liens CSS/JS et métadonnées conservés ; mise en forme du HTML harmonisée par Steve.
+
+**Vérifications :** Steve confirme l’affichage responsive, le focus obtenu en cliquant sur les labels, le masquage visuel du mot de passe et le bouton désactivé. Ces vérifications ne valident pas une authentification : le backend n’existe pas encore.
+
+**Rôle de l’IA :** proposition et explication des extraits, relecture du code saisi par Steve, puis rédaction de cette synthèse à partir des fichiers et des échanges.
+
+### 13/10/2026 — Bilan documentaire de fin de journée
+
+- README actualisé : état réel des pages, démarrage avec le serveur local existant et liens vers les documents.
+- Plan actualisé : intégration partielle des wireframes, base commune et début de connexion terminés, tâches restantes et décisions reportées explicites.
+- Documentation technique fonctionnelle relue et conservée : aucune modification du périmètre produit nécessaire aujourd’hui.
+- Journal complété pour la connexion et les vérifications du footer ; titre de la base CSS harmonisé et titre de l’intégration footer précisé. Les entrées historiques sont conservées comme états datés.
+- Création de [la synthèse pédagogique du jour](apprentissage/2026-10-13.md), avec interactions entre fichiers, explications et instantanés commentés du code. Ce bilan est préparé lors de la revue EOD, sans automatisation planifiée.
+- Note JavaScript actualisée pour mentionner les styles du footer désormais présents et le footer public local de la connexion.
+- Contrôles EOD réussis : syntaxe JavaScript, chemins locaux des liens et ressources des sept pages, unicité des IDs, cibles des labels et références ARIA, liens documentaires, clôture des blocs de code et correspondance des six instantanés avec les fichiers. Ces contrôles structurels ne remplacent pas un validateur HTML complet ni les tests navigateur.
+- Revue et documentation effectuées par l’IA dans les limites de l’accès accordé au dépôt ; aucun fichier applicatif modifié par l’IA pendant cette clôture. Relecture et commit laissés à Steve.
+
+- Regroupement de la note JavaScript dans `docs/apprentissage/` par Steve ; références du README, du plan, du journal et du bilan pédagogique corrigées par l’IA après vérification du déplacement.
+
+**Reprise :** styles des champs et du formulaire de connexion, puis choix d’inscription. Garder les actions désactivées tant que leur traitement n’est pas implémenté.

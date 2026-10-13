@@ -107,6 +107,9 @@ Au 13/10/2026, la structure de travail est la suivante :
 │   │   └── WIREFRAME_V1.pdf
 │   ├── dev_log.md
 │   ├── documentation_technique.md
+│   ├── apprentissage/
+│   │   ├── javascript_header.md
+│   │   └── 2026-10-13.md
 │   └── plan_dev.md
 ├── frontend/
 │   └── public/
@@ -133,7 +136,7 @@ Au 13/10/2026, la structure de travail est la suivante :
 
 `frontend/public/` est destiné à servir de racine publique pour le frontend statique. Les pages HTML y sont placées directement ; les fichiers CSS, JavaScript et les images sont regroupés dans `assets/`.
 
-Le dossier `includes/` prépare la séparation de l’en-tête et du pied de page. Ces fichiers sont encore des placeholders : leur présence ne suffit pas à les intégrer aux pages. Le mécanisme d’inclusion reste à définir et à expliquer lors de l’implémentation.
+Le dossier `includes/` contient les fragments HTML partagés. La fonction `loadPartial(containerId, filePath)` dans `assets/js/main.js` les charge avec `fetch`, puis remplace le contenu de secours du conteneur ciblé. Le flux parrain utilise les deux fragments ; la page de connexion utilise l’en-tête partagé et conserve un pied de page public local sans identifiant `site-footer`. Les autres pages n’intègrent pas encore ces conteneurs. Un serveur HTTP local est nécessaire pour tester ce mécanisme.
 
 La branche `dev` contient également les prototypes d’Alexandre et Ange dans `prototypes/`.
 
@@ -219,6 +222,12 @@ Il évoluera au fur et à mesure du développement et présentera notamment :
 
 Il ne doit pas remplacer le journal de développement ni la documentation technique.
 
+### Notes pédagogiques
+
+`docs/apprentissage/javascript_header.md` explique les versions initiale et actuelle du chargeur de fragments. Les fichiers `docs/apprentissage/YYYY-MM-DD.md` conservent une synthèse pédagogique par journée de travail : état atteint, fichiers concernés, interactions, explications du code, vérifications et questions reportées. Ils sont préparés lors du bilan EOD avec Steve, sans génération planifiée automatiquement. Les instantanés de code sont datés ; ils ne remplacent pas les fichiers applicatifs actuels.
+
+Rythme retenu : journal mis à jour à chaque étape ; README et plan actualisés en fin de journée. Le périmètre fonctionnel est modifié uniquement si les décisions produit évoluent.
+
 ---
 
 # 8. Phases de développement
@@ -239,24 +248,30 @@ Il ne doit pas remplacer le journal de développement ni la documentation techni
 - [x] Scaffold réorganisé dans `frontend/public/`
 - [x] Sept pages principales identifiées et fichiers HTML préliminaires créés
 - [x] Structure CSS / JavaScript / images créée
-- [x] Fichiers préparatoires header/footer créés dans `includes/`
+- [x] Fragments header/footer créés dans `includes/`
 - [x] Chemins relatifs CSS/JavaScript vérifiés
+- [x] Première structure HTML du flux parrain et carte illustrative
+- [x] Base CSS commune : typographie, variables, carte, tags, boutons et header/footer
+- [x] Chargement JavaScript réutilisable des fragments avec contenu de secours
+- [x] Structure HTML de connexion et champs étiquetés, soumission désactivée
 - [ ] Structure HTML sémantique de chaque page
-- [ ] En-tête et pied de page réutilisables intégrés
-- [ ] Styles CSS communs : mise en page, titres et boutons
-- [ ] Navigation entre les pages
-- [ ] Responsive
-- [ ] Interactions JavaScript de base
-- [ ] Vérification visuelle et fonctionnelle dans le navigateur
+- [ ] Styles spécifiques du formulaire et choix d’inscription
+- [ ] Éléments communs intégrés aux autres pages selon la navigation publique/connectée retenue
+- [ ] Navigation complète entre les pages
+- [ ] Responsive vérifié sur toutes les pages
+- [ ] Interactions métier JavaScript de base selon les besoins
+- [ ] Vérifications navigateur complètes, clavier et cas d’échec du chargement
 
 Structure actuelle : voir la section 5, « Structure actuelle du dépôt ».
 
-**État actuel :** le scaffold a été réorganisé dans `frontend/public/`. Les pages et les fichiers communs restent des placeholders. Les chemins vers les ressources ont été vérifiés ; l’intégration visuelle et les tests navigateur restent à réaliser. Aucun code PHP ou SQL n’a été introduit.
+**État actuel au 13/10/2026 :** le flux parrain dispose d’une première présentation responsive avec données illustratives et actions désactivées. La connexion possède ses champs HTML mais pas encore de styles spécifiques ni les deux choix d’inscription du wireframe. Cinq autres pages restent des placeholders. Les tests visuels rapportés par Steve ne constituent pas encore une validation exhaustive du responsive ou de l’accessibilité. Aucun code PHP ou SQL n’a été introduit.
 
-**Prochaine étape :** construire et comprendre une première page complète, `fluxparrain.html`, puis réutiliser les éléments communs sur les autres pages. Chaque modification sera accompagnée d’une explication et consignée dans le journal de développement.
+**Prochaine étape :** créer les styles réutilisables des champs et du formulaire de connexion, puis ajouter les choix d’inscription étudiant/parrain. Continuer ensuite les autres écrans avec la même méthode expliquée et documentée.
+
+**Décisions reportées :** direction artistique finale, navigation selon connexion/rôle, destinations FAQ/démarches/mentions légales, placement du footer en bas des pages courtes. Le footer reste dans le flux normal. L’absence de lien vers un profil sur la connexion est une décision d’interface, pas un contrôle d’accès : les protections réelles seront implémentées côté PHP.
 
 ### Phase 2 — Intégration UX/UI depuis Figma
-Non commencée.
+Commencée partiellement en parallèle de la phase 1 : première intégration depuis le wireframe V1 sur le flux parrain et la connexion. Direction artistique provisoire ; autres écrans et détails du wireframe à compléter. Les actualités restent une réservation visuelle d’une fonctionnalité ultérieure.
 
 ### Phase 3+ — PHP / SQL / authentification / données dynamiques
 Non commencées.
