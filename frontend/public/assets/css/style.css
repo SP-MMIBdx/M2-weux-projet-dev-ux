@@ -6,6 +6,12 @@
   --color-text: #222;
   --color-background: #f5f5f5;
   --content-max-width: 60rem;
+  --color-surface: #fff;
+  --color-border: #ccc;
+  --radius-card: 0.75rem;
+  --color-action: #222;
+  --color-on-action: #fff;
+  --radius-control: 0.5rem;
 }
 
 /* Inclure padding et bordures dans la largeur des éléments */
@@ -59,4 +65,78 @@ h2 {
 /* Espacement entre les sections du contenu principal */
 main > section + section {
   margin-top: 3rem;
+}
+
+/* Carte de demande */
+.request-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+}
+
+/* Liste des centres d’intérêt */
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tag-list > li {
+  padding: 0.25rem 0.75rem;
+  background-color: var(--color-background);
+  border-radius: 1rem;
+}
+
+/* Disposition des actions */
+.request-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.request-actions > .button {
+  flex: 1 1 8rem;
+}
+
+/* Boutons communs */
+.button {
+  min-height: 2.75rem;
+  padding: 0.625rem 1rem;
+  border: 1px solid var(--color-action);
+  border-radius: var(--radius-control);
+  font: inherit;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--color-on-action);
+  background-color: var(--color-action);
+  cursor: pointer;
+}
+
+.button--secondary {
+  color: var(--color-action);
+  background-color: var(--color-surface);
+}
+
+/* États des boutons */
+.button:enabled:hover {
+  text-decoration: underline;
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--color-action);
+  outline-offset: 3px;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }

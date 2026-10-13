@@ -109,3 +109,20 @@ Vérifications : affichage confirmé par Steve dans l’inspecteur au format iPh
 Rôle de l’IA : explication des règles, proposition des extraits et relecture du code saisi par Steve.
 
 Prochaine étape : styliser la carte de demande, les tags et les boutons. Mise à jour du plan de développement prévue en fin de journée.
+
+### 13/10/2026 — Styles de la carte, des tags et des boutons
+
+- Ajout de variables pour les couleurs des surfaces, bordures et actions, ainsi que les arrondis des cartes et contrôles.
+- Mise en page de la carte de demande avec Flexbox en colonne, espacements internes et séparation régulière de ses éléments.
+- Présentation des centres d’intérêt sous forme de tags pouvant passer à la ligne selon la largeur disponible.
+- Ajout des classes réutilisables `button` et `button--secondary` aux actions HTML.
+- Disposition flexible des actions : partage de l’espace disponible et retour à la ligne sur les petites largeurs.
+- Définition d’une hauteur minimale des boutons, sans hauteur fixe limitant leur contenu.
+- Préparation des styles de survol, de focus clavier et d’état désactivé. Les boutons restent désactivés en attendant leur implémentation fonctionnelle.
+- Conservation du flux normal, sans positionnement absolu ni media query nécessaire à cette étape.
+
+**Vérifications :** affichage responsive confirmé par Steve dans le navigateur. Cohérence HTML/CSS relue par l’IA et contrôle Git des espaces réussi. Les états de survol et de focus des boutons activés restent à tester.
+
+**Rôle de l’IA :** proposition et explication du code, puis relecture des modifications réalisées manuellement par Steve.
+
+**Prochaine étape :** construire l’en-tête et le pied de page communs, puis expliquer leur intégration.
