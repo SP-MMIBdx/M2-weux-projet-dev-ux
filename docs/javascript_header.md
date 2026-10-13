@@ -1,6 +1,8 @@
-# Comprendre le chargement de l’en-tête en JavaScript
+# Comprendre le chargement des fragments HTML en JavaScript
 
-Note pédagogique — 13/10/2026. Cette explication correspond à la fonction actuelle de `frontend/public/assets/js/main.js`.
+Note pédagogique — 13/10/2026. Le nom du fichier est conservé pour ne pas casser les liens existants.
+
+**Parcours de lecture :** les sections 1 à 12 décrivent la première version, `loadHeader()`, conservée comme exercice d’apprentissage. Les extraits HTML de cette première version précèdent également l’ajout du conteneur de mise en forme de l’en-tête. La section 13 présente le code actuel de `frontend/public/assets/js/main.js`, `loadPartial(containerId, filePath)`, et explique sa réutilisation pour le pied de page. Pour reprendre le travail UX/UI, lire d’abord cette dernière section ; les bases restent disponibles pour révision.
 
 ## 1. Les trois fichiers impliqués
 
@@ -12,7 +14,7 @@ Note pédagogique — 13/10/2026. Cette explication correspond à la fonction ac
 
 Le navigateur exécute JavaScript. Live Server fournit les fichiers via HTTP : il n’exécute pas le JavaScript à la place du navigateur. Pour ce fonctionnement, ouvrir la page avec Live Server plutôt qu’avec une adresse `file://`.
 
-## 2. Le code complet
+## 2. Le code complet de la première version (historique)
 
 ```javascript
 async function loadHeader() {
@@ -238,4 +240,138 @@ Question de révision : si l’identifiant HTML devient `page-header` mais que J
 
 Réponse : la recherche renvoie `null`, `!header` vaut `true` et `return` arrête la fonction avant la requête. Le lien de secours reste visible.
 
-Cette note explique l’implémentation actuelle. Si le mécanisme change, mettre à jour les exemples pour qu’ils restent cohérents avec le code.
+Ce premier parcours explique la version initiale. La version utilisée maintenant est décrite ci-dessous.
+
+## 13. Version actuelle : une fonction pour l’en-tête et le pied de page
+
+### Pourquoi modifier la fonction ?
+
+Le pied de page nécessite les mêmes opérations que l’en-tête : trouver un conteneur, demander un fichier, vérifier la réponse et insérer le HTML. Copier toute la fonction créerait deux blocs presque identiques à maintenir.
+
+Nous avons donc rendu variables les deux informations qui changent : l’identifiant du conteneur et le chemin du fichier. Ce changement de structure, appelé refactorisation, conserve le mécanisme de chargement tout en permettant sa réutilisation.
+
+### Code actuel
+
+```javascript
+async function loadPartial(containerId, filePath) {
+  const container = document.getElementById(containerId);
+
+  if (!container) {
+    return;
+  }
+
+  try {
+    const response = await fetch(filePath);
+
+    if (!response.ok) {
+      throw new Error(`Erreur HTTP : ${response.status}`);
+    }
+
+    const html = await response.text();
+    container.innerHTML = html;
+  } catch (error) {
+    console.error(
+      `Impossible de charger le fragment : ${filePath}`,
+      error
+    );
+  }
+}
+
+loadPartial("site-header", "includes/header.html");
+loadPartial("site-footer", "includes/footer.html");
+```
+
+### Étape 1 — Déclarer deux paramètres
+
+```javascript
+async function loadPartial(containerId, filePath) {
+```
+
+`loadPartial` est le nom choisi pour « charger un fragment ». Ce n’est pas une fonction fournie automatiquement par JavaScript : nous la déclarons nous-mêmes.
+
+`containerId` et `filePath` sont des **paramètres** : des noms qui recevront une valeur à chaque appel. Ils ne demandent aucune saisie à l’utilisateur.
+
+### Étape 2 — Fournir les valeurs lors de l’appel
+
+```javascript
+loadPartial("site-footer", "includes/footer.html");
+```
+
+Les valeurs fournies à un appel sont ses **arguments**. Leur ordre compte : le premier va dans `containerId`, le second dans `filePath`.
+
+| Appel | Valeur de `containerId` | Valeur de `filePath` |
+| --- | --- | --- |
+| En-tête | `"site-header"` | `"includes/header.html"` |
+| Pied de page | `"site-footer"` | `"includes/footer.html"` |
+
+Pour l’appel du pied de page, on peut lire mentalement les instructions comme ceci :
+
+```javascript
+// Illustration des valeurs utilisées, pas du code à ajouter.
+document.getElementById("site-footer");
+fetch("includes/footer.html");
+```
+
+### Étape 3 — Utiliser les paramètres à la place des textes fixes
+
+```javascript
+const container = document.getElementById(containerId);
+```
+
+Sans guillemets, `containerId` signifie « utiliser la valeur reçue ». Avec des guillemets, `"containerId"` serait le texte littéral à rechercher : ce n’est pas l’identifiant de notre pied de page.
+
+La variable locale s’appelle maintenant `container` plutôt que `header`, car l’élément trouvé peut être un en-tête ou un pied de page.
+
+```javascript
+if (!container) {
+  return;
+}
+```
+
+La protection reste identique : si l’élément est absent, cet appel s’arrête avant de demander le fichier.
+
+### Étape 4 — Charger et insérer le fichier correspondant
+
+```javascript
+const response = await fetch(filePath);
+```
+
+Cette ligne demande le fichier dont le chemin a été fourni à cet appel. Le contrôle `response.ok`, la lecture avec `response.text()` et les deux `await` fonctionnent exactement comme auparavant.
+
+```javascript
+container.innerHTML = html;
+```
+
+Le contenu du fichier remplace le contenu de secours du conteneur sélectionné. Le conteneur extérieur conserve sa classe et son identifiant. Le fragment `footer.html` ne doit donc pas contenir un second élément `<footer>` extérieur.
+
+### Étape 5 — Identifier le fichier en cas d’erreur
+
+Le message dans `catch` contient maintenant `${filePath}`. Si une requête échoue, la console indique quel fragment était concerné. Le contenu de secours reste présent si le chargement échoue avant son remplacement.
+
+### Étape 6 — Comprendre les deux appels
+
+Chaque appel possède ses propres paramètres et variables locales (`container`, `response`, `html`). Charger le pied de page ne remplace pas les variables de l’appel de l’en-tête.
+
+Le premier appel commence puis attend sa réponse réseau. Le second peut alors commencer sans attendre la fin du premier, car nous n’avons pas placé de `await` devant ces appels. L’ordre de fin des chargements n’est donc pas garanti et n’a pas d’importance : chaque fragment possède son propre conteneur. Les erreurs sont traitées séparément.
+
+### Ce qui change et ce qui reste identique
+
+| Avant | Maintenant | Raison |
+| --- | --- | --- |
+| `loadHeader()` | `loadPartial(containerId, filePath)` | Réutiliser les instructions avec deux entrées. |
+| Variable `header` | Variable `container` | Nom adapté aux deux types d’éléments. |
+| Identifiant et chemin fixes | Valeurs fournies à chaque appel | Choisir le fragment et sa destination. |
+| Un appel | Deux appels | Charger l’en-tête et le pied de page. |
+| Message d’erreur dédié à l’en-tête | Message contenant le chemin | Identifier le fragment en échec. |
+
+Le contrôle d’absence, `fetch`, `async/await`, le contrôle HTTP, la lecture du texte, `innerHTML` et `try/catch` suivent le même fonctionnement que dans les sections précédentes.
+
+### Vérifications et limites actuelles
+
+- Steve a partagé les requêtes réseau : `header.html` avec statut 304 et `footer.html` avec statut 200, initiées par la même ligne `fetch` de `main.js`. C’est attendu pour une fonction réutilisée.
+- Steve a confirmé le rechargement du pied de page après le test proposé. Les erreurs de chargement restent à tester séparément.
+- Les fragments utilisent nos propres fichiers HTML ; cette fonction n’est pas destinée à insérer des données utilisateur non vérifiées.
+- Les chemins supposent toujours que les pages se trouvent directement dans `frontend/public/`. Les revoir si des pages sont déplacées dans des sous-dossiers.
+- Le footer dispose encore de son contenu de secours dans `fluxparrain.html`. Son style sera ajouté lors de la prochaine étape UX/UI.
+
+**À retenir pour continuer :** une seule recette, deux entrées et deux appels. Chaque appel choisit où insérer le contenu et quel fichier charger. Il n’est pas nécessaire de mémoriser tous les détails pour poursuivre le CSS ; revenir aux sections précédentes au besoin.

@@ -168,3 +168,17 @@ Prochaine étape : styliser la carte de demande, les tags et les boutons. Mise �
 **Rôle de l’IA :** proposition et explication du code, puis relecture des modifications réalisées par Steve.
 
 **Prochaine étape :** construire et intégrer le pied de page partagé.
+
+### 13/10/2026 — Documentation du chargeur de fragments réutilisable
+
+- Mise à jour de [javascript_header.md](javascript_header.md) : ancienne fonction `loadHeader()` explicitement identifiée comme historique, ajout du code actuel `loadPartial(containerId, filePath)` et d’une explication pas à pas des paramètres et arguments.
+- Documentation des renommages, des deux appels indépendants, du message d’erreur incluant le chemin et des limites liées aux chemins relatifs.
+- Requêtes de l’en-tête et du pied de page observées dans les résultats réseau partagés par Steve ; rechargement du pied de page confirmé par Steve.
+- Documentation rédigée par l’IA à la demande de Steve pour permettre une révision différée du JavaScript pendant la poursuite du travail UX/UI. Aucun fichier applicatif modifié par l’IA lors de cette mise à jour.
+- Création du fragment `includes/footer.html` avec navigation vers l’accueil et le profil, et texte provisoire pour les futures rubriques.
+- Ajout du conteneur `site-footer` et de son contenu de secours dans `fluxparrain.html`.
+- Remplacement de `loadHeader()` par `loadPartial(containerId, filePath)` et ajout de deux appels pour charger séparément l’en-tête et le pied de page.
+- Pied de page conservé sans styles spécifiques pour ce checkpoint.
+- Apparente disparition du pied de page résolue avec « Fit to window » dans DevTools : aperçu tronqué, aucune correction du code nécessaire.
+
+**Prochaine étape :** styliser le pied de page et documenter le bilan de son intégration avant commit.

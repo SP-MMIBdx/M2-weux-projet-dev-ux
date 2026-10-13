@@ -1,26 +1,29 @@
 // JavaScript principal de l'application
 
-// Header commun à toutes les pages
+// Chargement des fragments HTML communs
+async function loadPartial(containerId, filePath) {
+  const container = document.getElementById(containerId);
 
-async function loadHeader() {
-  const header = document.getElementById("site-header");
-
-  if (!header) {
+  if (!container) {
     return;
   }
 
   try {
-    const response = await fetch("includes/header.html");
+    const response = await fetch(filePath);
 
     if (!response.ok) {
       throw new Error(`Erreur HTTP : ${response.status}`);
     }
 
     const html = await response.text();
-    header.innerHTML = html;
+    container.innerHTML = html;
   } catch (error) {
-    console.error("Impossible de charger l’en-tête commun.", error);
+    console.error(
+      `Impossible de charger le fragment : ${filePath}`,
+      error
+    );
   }
 }
 
-loadHeader();
+loadPartial("site-header", "includes/header.html");
+loadPartial("site-footer", "includes/footer.html");
