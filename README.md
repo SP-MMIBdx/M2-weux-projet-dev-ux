@@ -39,6 +39,4 @@ Le serveur fournit les fichiers ; le navigateur exécute JavaScript. Aucun build
 - [Documentation technique](docs/documentation_technique.md) : fonctionnement et périmètre du projet
 - [Plan de développement](docs/plan_dev.md) : feuille de route et bilan quotidien
 - [Journal de développement](docs/dev_log.md) : suivi chronologique des changements
-- [Explication JavaScript](docs/apprentissage/javascript_header.md) : apprentissage du chargement des fragments
-- [Bilan pédagogique du 13/10/2026](docs/apprentissage/2026-10-13.md) : synthèse quotidienne et lecture du code
 - [Wireframes](docs/wireframes/WIREFRAME_V1.pdf) : référence fonctionnelle

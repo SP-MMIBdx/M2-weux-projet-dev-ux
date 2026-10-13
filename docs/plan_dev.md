@@ -107,9 +107,6 @@ Au 13/10/2026, la structure de travail est la suivante :
 │   │   └── WIREFRAME_V1.pdf
 │   ├── dev_log.md
 │   ├── documentation_technique.md
-│   ├── apprentissage/
-│   │   ├── javascript_header.md
-│   │   └── 2026-10-13.md
 │   └── plan_dev.md
 ├── frontend/
 │   └── public/
@@ -169,6 +166,20 @@ Commit Git
 ```
 
 Chaque étape importante sera documentée.
+x
+### Travail accompagné par l’IA et critères de validation
+
+Référence pédagogique : Yannis Delmas, *Méthode de développement d’applications*, septembre 2026, fournie par Steve. Les pratiques suivantes traduisent ses principes pour ce projet ; elles ne constituent pas une attestation de conformité ni une validation par l’enseignant.
+
+- Avant une modification, relire le code concerné, expliquer son fonctionnement, puis définir un objectif limité et des critères observables à partir du wireframe et des scénarios.
+- Conserver le rôle de formateur de l’IA : proposer de petites étapes, expliquer les choix et les compromis, puis laisser Steve mettre en œuvre le code applicatif sauf demande explicite contraire. Une note à relire ne remplace pas la compréhension ; revenir sur les mécanismes incertains avant de les étendre.
+- Garder la stack simple, la mise en page mobile-first et le HTML sémantique. Utiliser les principes WCAG/RGAA comme références de vérification, sans déclarer une conformité à partir de quelques attributs ARIA.
+- Après chaque étape, distinguer relecture du code, contrôles automatiques et essais navigateur. Indiquer ce qui a été vérifié, par qui, et ce qui reste à tester. L’accord de l’IA n’est pas une recette fonctionnelle ou utilisateur.
+- Ne pas inclure de secrets ni de données personnelles réelles dans les exemples, échanges ou documents partagés. Les responsabilités, choix et validations restent humains ; les contributions IA sont déclarées.
+
+Pour chaque page ou comportement, préparer une courte liste de critères : contenu attendu, actions et destinations, état de maquette ou fonctionnel, petites/grandes largeurs, navigation clavier et labels, états d’erreur pertinents. Les critères non vérifiés restent ouverts. Une revue avec l’équipe et des utilisateurs représentatifs complétera les contrôles de développement.
+
+Le travail initial directement sur `main` diffère de la recommandation avancée GitHub Flow du support (issue → branche dédiée → pull request → revue → fusion). Le workflow d’équipe sera réexaminé avant les prochaines intégrations communes ; aucune migration de branches n’est réalisée par cette décision documentaire.
 
 ---
 
@@ -222,11 +233,15 @@ Il évoluera au fur et à mesure du développement et présentera notamment :
 
 Il ne doit pas remplacer le journal de développement ni la documentation technique.
 
-### Notes pédagogiques
+### Supports pédagogiques personnels (hors dépôt)
 
-`docs/apprentissage/javascript_header.md` explique les versions initiale et actuelle du chargeur de fragments. Les fichiers `docs/apprentissage/YYYY-MM-DD.md` conservent une synthèse pédagogique par journée de travail : état atteint, fichiers concernés, interactions, explications du code, vérifications et questions reportées. Ils sont préparés lors du bilan EOD avec Steve, sans génération planifiée automatiquement. Les instantanés de code sont datés ; ils ne remplacent pas les fichiers applicatifs actuels.
+Les explications approfondies sur les points ayant nécessité des clarifications et une synthèse quotidienne d’apprentissage continuent d’être préparées avec Steve. Ces supports Markdown sont remis séparément pour conservation personnelle hors dépôt, sans génération planifiée automatiquement. Aucun dossier local personnel n’est imposé ni référencé dans la documentation du projet.
 
 Rythme retenu : journal mis à jour à chaque étape ; README et plan actualisés en fin de journée. Le périmètre fonctionnel est modifié uniquement si les décisions produit évoluent.
+
+Pour limiter les doublons, le dépôt conserve la description du produit dans la documentation technique, l’état et les décisions de travail dans le plan, et l’historique factuel dans le journal. Les explications détaillées restent dans les supports personnels. Les synthèses quotidiennes portent surtout sur le code nouveau ou modifié, ses interactions et les notions à réviser ; elles ne recopient pas toute l’application chaque jour.
+
+L’IA peut préparer et rédiger ces documents à partir des éléments fournis et des fichiers autorisés ; Steve et l’équipe en assurent la relecture, l’exactitude et la validation. La quantité de texte ne constitue pas une preuve de qualité ou de compréhension.
 
 ---
 

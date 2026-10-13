@@ -148,7 +148,7 @@ Prochaine étape : styliser la carte de demande, les tags et les boutons. Mise �
 
 ### 13/10/2026 — Note pédagogique sur le chargement de l’en-tête
 
-- Ajout de [javascript_header.md](apprentissage/javascript_header.md) à la demande de Steve pour conserver l’explication détaillée du JavaScript et pouvoir la consulter ultérieurement.
+- Ajout initial de la note `javascript_header.md` à la demande de Steve pour conserver l’explication détaillée du JavaScript (support retiré du dépôt ensuite, voir la décision de séparation en fin de journal).
 - Documentation des fonctions, variables, conditions, opérations asynchrones, erreurs, chemins relatifs et du remplacement du lien de secours.
 - Explication du cache HTTP et distinction entre la réussite de la requête réseau et celle de l’insertion dans la page.
 - Test visuel avec modification temporaire du texte du fragment confirmé réussi par Steve : le chargement et l’insertion fonctionnent.
@@ -173,7 +173,7 @@ Prochaine étape : styliser la carte de demande, les tags et les boutons. Mise �
 
 ### 13/10/2026 — Intégration du pied de page et chargeur de fragments réutilisable
 
-- Mise à jour de [javascript_header.md](apprentissage/javascript_header.md) : ancienne fonction `loadHeader()` explicitement identifiée comme historique, ajout du code actuel `loadPartial(containerId, filePath)` et d’une explication pas à pas des paramètres et arguments.
+- Mise à jour de la note pédagogique JavaScript : ancienne fonction `loadHeader()` explicitement identifiée comme historique, ajout du code actuel `loadPartial(containerId, filePath)` et d’une explication pas à pas des paramètres et arguments.
 - Documentation des renommages, des deux appels indépendants, du message d’erreur incluant le chemin et des limites liées aux chemins relatifs.
 - Requêtes de l’en-tête et du pied de page observées dans les résultats réseau partagés par Steve ; rechargement du pied de page confirmé par Steve.
 - Documentation rédigée par l’IA à la demande de Steve pour permettre une révision différée du JavaScript pendant la poursuite du travail UX/UI. Aucun fichier applicatif modifié par l’IA lors de cette mise à jour.
@@ -220,7 +220,7 @@ Prochaine étape : styliser la carte de demande, les tags et les boutons. Mise �
 - Plan actualisé : intégration partielle des wireframes, base commune et début de connexion terminés, tâches restantes et décisions reportées explicites.
 - Documentation technique fonctionnelle relue et conservée : aucune modification du périmètre produit nécessaire aujourd’hui.
 - Journal complété pour la connexion et les vérifications du footer ; titre de la base CSS harmonisé et titre de l’intégration footer précisé. Les entrées historiques sont conservées comme états datés.
-- Création de [la synthèse pédagogique du jour](apprentissage/2026-10-13.md), avec interactions entre fichiers, explications et instantanés commentés du code. Ce bilan est préparé lors de la revue EOD, sans automatisation planifiée.
+- Création de la synthèse pédagogique du jour, avec interactions entre fichiers, explications et instantanés commentés du code. Ce bilan est préparé lors de la revue EOD, sans automatisation planifiée ; il a ensuite été retiré du dépôt pour conservation personnelle.
 - Note JavaScript actualisée pour mentionner les styles du footer désormais présents et le footer public local de la connexion.
 - Contrôles EOD réussis : syntaxe JavaScript, chemins locaux des liens et ressources des sept pages, unicité des IDs, cibles des labels et références ARIA, liens documentaires, clôture des blocs de code et correspondance des six instantanés avec les fichiers. Ces contrôles structurels ne remplacent pas un validateur HTML complet ni les tests navigateur.
 - Revue et documentation effectuées par l’IA dans les limites de l’accès accordé au dépôt ; aucun fichier applicatif modifié par l’IA pendant cette clôture. Relecture et commit laissés à Steve.
@@ -228,3 +228,18 @@ Prochaine étape : styliser la carte de demande, les tags et les boutons. Mise �
 - Regroupement de la note JavaScript dans `docs/apprentissage/` par Steve ; références du README, du plan, du journal et du bilan pédagogique corrigées par l’IA après vérification du déplacement.
 
 **Reprise :** styles des champs et du formulaire de connexion, puis choix d’inscription. Garder les actions désactivées tant que leur traitement n’est pas implémenté.
+
+### 13/10/2026 — Revue de la méthode de travail avec le support enseignant
+
+- Comparaison de notre pratique avec la méthode de Yannis Delmas (septembre 2026) fournie par Steve : documentation assistée par IA, responsabilité humaine, progression expliquée et vérifications explicites.
+- Ajout au plan de règles de travail accompagné, de critères de validation par page et d’une distinction entre revue du code et recette utilisateur. Les lacunes de vérification restent visibles ; aucune conformité globale déclarée.
+- Clarification du rôle de chaque document et limitation des futures notes aux nouveautés pour éviter la répétition quotidienne des mêmes explications.
+- Écart avec GitHub Flow consigné pour discussion en équipe, sans changement de branches.
+- Révision pédagogique demandée par Steve sur les notions ayant suscité des questions : ARIA, paramètres, conditions, chargement asynchrone, remplacement des fallbacks et comportement responsive. Compréhension à vérifier par reformulation, pas présumée acquise.
+- Synthèse et mises à jour documentaires rédigées par l’IA ; aucun fichier applicatif modifié.
+
+### 13/10/2026 — Séparation des supports d’apprentissage et de la documentation projet
+
+- Steve a retiré les deux supports pédagogiques du dépôt pour les conserver personnellement. Les explications approfondies et synthèses quotidiennes continueront d’être fournies séparément, hors du dépôt.
+- Arborescence et règles documentaires du plan actualisées ; liens vers les fichiers retirés supprimés du README et du journal. Les entrées historiques restent conservées comme trace des étapes précédentes.
+- Mise à jour documentaire réalisée par l’IA ; aucun changement applicatif ni modification de `.gitignore`. Révision de compréhension reportée à la prochaine séance avec Steve.
