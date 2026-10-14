@@ -99,7 +99,7 @@ Branche de développement commune à l'équipe.
 
 ## 5. Structure actuelle du dépôt
 
-Au 13/10/2026, la structure de travail est la suivante :
+Au 14/10/2026, la structure de travail est la suivante :
 
 ```text
 /
@@ -115,7 +115,8 @@ Au 13/10/2026, la structure de travail est la suivante :
 │       │   ├── css/
 │       │   │   └── style.css
 │       │   ├── images/
-│       │   │   └── .gitkeep
+│       │   │   ├── .gitkeep
+│       │   │   └── avatar-default.svg
 │       │   └── js/
 │       │       └── main.js
 │       ├── includes/
@@ -134,7 +135,19 @@ Au 13/10/2026, la structure de travail est la suivante :
 
 `frontend/public/` est destiné à servir de racine publique pour le frontend statique. Les pages HTML y sont placées directement ; les fichiers CSS, JavaScript et les images sont regroupés dans `assets/`.
 
-Le dossier `includes/` contient les fragments HTML partagés. La fonction `loadPartial(containerId, filePath)` dans `assets/js/main.js` les charge avec `fetch`, puis remplace le contenu de secours du conteneur ciblé. Le flux parrain utilise les deux fragments ; la page de connexion utilise l’en-tête partagé et conserve un pied de page public local sans identifiant `site-footer`. Les autres pages n’intègrent pas encore ces conteneurs. Un serveur HTTP local est nécessaire pour tester ce mécanisme.
+Le dossier `includes/` contient les fragments HTML partagés. La fonction `loadPartial(containerId, filePath)` dans `assets/js/main.js` les charge avec `fetch`, puis remplace le contenu de secours du conteneur ciblé. Le flux parrain utilise les deux fragments ; les pages de connexion, création de compte et configuration du profil utilisent l’en-tête partagé et conservent chacune un pied de page public local sans identifiant `site-footer`. Accueil, flux étudiant et profil restent des placeholders. Un serveur HTTP local est nécessaire pour tester ce mécanisme.
+
+### Dépendances du frontend statique
+
+```mermaid
+flowchart TD
+    Pages["Flux parrain et trois formulaires"] --> CSS["style.css"]
+    Pages --> JS["main.js : loadPartial"]
+    JS --> Header["header.html"]
+    JS --> Footer["footer.html : flux parrain seulement"]
+```
+
+Les fichiers CSS et JavaScript se trouvent dans `assets/css/` et `assets/js/`, et les fragments dans `includes/`. Les trois formulaires utilisent également `assets/images/avatar-default.svg`. Leurs footers publics restent dans chaque page HTML. Ce schéma décrit les fichiers utilisés, pas un parcours utilisateur ni une gestion de session ; PHP n’est pas encore intégré.
 
 La branche `dev` contient également les prototypes d’Alexandre et Ange dans `prototypes/`.
 
@@ -273,7 +286,12 @@ L’IA peut préparer et rédiger ces documents à partir des éléments fournis
 - [x] Chargement JavaScript réutilisable des fragments avec contenu de secours
 - [x] Structure HTML de connexion et champs étiquetés, soumission désactivée
 - [ ] Structure HTML sémantique de chaque page
-- [ ] Styles spécifiques du formulaire et choix d’inscription
+- [x] Styles réutilisables des formulaires et choix d’inscription depuis la connexion
+- [x] Formulaire statique de création de compte avec champs de confirmation
+- [x] Informations personnelles du profil : nom, pays, parcours et description
+- [x] Panneaux de formulaire et silhouette décorative partagés
+- [ ] Centres d’intérêt et besoins du profil
+- [ ] Présélection du rôle depuis les liens et comparaison des confirmations
 - [ ] Éléments communs intégrés aux autres pages selon la navigation publique/connectée retenue
 - [ ] Navigation complète entre les pages
 - [ ] Responsive vérifié sur toutes les pages
@@ -282,14 +300,14 @@ L’IA peut préparer et rédiger ces documents à partir des éléments fournis
 
 Structure actuelle : voir la section 5, « Structure actuelle du dépôt ».
 
-**État actuel au 13/10/2026 :** le flux parrain dispose d’une première présentation responsive avec données illustratives et actions désactivées. La connexion possède ses champs HTML mais pas encore de styles spécifiques ni les deux choix d’inscription du wireframe. Cinq autres pages restent des placeholders. Les tests visuels rapportés par Steve ne constituent pas encore une validation exhaustive du responsive ou de l’accessibilité. Aucun code PHP ou SQL n’a été introduit.
+**État actuel au 14/10/2026 :** le flux parrain dispose d’une première présentation responsive avec données illustratives et actions désactivées. Connexion et création de compte disposent de formulaires stylisés ; la configuration du profil contient les informations personnelles, sans centres d’intérêt ni besoins. Ces trois écrans utilisent des panneaux gris et une silhouette décorative commune. Accueil, flux étudiant et profil restent des placeholders. Les soumissions sont désactivées ; présélection du rôle et comparaison des confirmations restent à implémenter. Les tests visuels rapportés par Steve ne constituent pas encore une validation exhaustive du responsive ou de l’accessibilité. Aucun code PHP ou SQL n’a été introduit.
 
-**Prochaine étape :** créer les styles réutilisables des champs et du formulaire de connexion, puis ajouter les choix d’inscription étudiant/parrain. Continuer ensuite les autres écrans avec la même méthode expliquée et documentée.
+**Prochaine étape :** compléter les centres d’intérêt et besoins de la configuration du profil, puis poursuivre les écrans manquants avec la même méthode expliquée et documentée.
 
 **Décisions reportées :** direction artistique finale, navigation selon connexion/rôle, destinations FAQ/démarches/mentions légales, placement du footer en bas des pages courtes. Le footer reste dans le flux normal. L’absence de lien vers un profil sur la connexion est une décision d’interface, pas un contrôle d’accès : les protections réelles seront implémentées côté PHP.
 
 ### Phase 2 — Intégration UX/UI depuis Figma
-Commencée partiellement en parallèle de la phase 1 : première intégration depuis le wireframe V1 sur le flux parrain et la connexion. Direction artistique provisoire ; autres écrans et détails du wireframe à compléter. Les actualités restent une réservation visuelle d’une fonctionnalité ultérieure.
+Commencée partiellement en parallèle de la phase 1 : première intégration depuis le wireframe V1 sur le flux parrain, la connexion, la création de compte et la configuration du profil. Direction artistique provisoire ; autres écrans et détails du wireframe à compléter. Les actualités restent une réservation visuelle d’une fonctionnalité ultérieure.
 
 ### Phase 3+ — PHP / SQL / authentification / données dynamiques
 Non commencées.

@@ -337,3 +337,21 @@ Notes de Steve prises lors du retour enseignant, synthétisées sans ajout de re
 **Vérifications :** contrôle structurel des groupes, de l’imbrication HTML, des identifiants et références label/ARIA, de la présence de l’image et des soumissions désactivées sur les trois pages ; syntaxe XML du SVG et contrôle Git des espaces réussis. Steve confirme ensuite le bon fonctionnement lors de sa vérification navigateur avant commit.
 
 **Rôle de l’IA :** modifications applicatives et documentation réalisées à la demande de Steve. Staging et commit laissés à Steve.
+
+### 14/10/2026 — Actualisation du README
+
+- Mise à jour par l’IA, à la demande de Steve, du bilan des sept pages après le commit des panneaux et de la silhouette : quatre écrans développés partiellement, trois placeholders.
+- Distinction entre la stack utilisée et le backend prévu ; rappel des soumissions désactivées, de la présélection du rôle et des confirmations non implémentées.
+- Ajout d’un schéma Mermaid des fichiers partagés et explication de la différence entre le footer chargé par JavaScript sur le flux parrain et les footers publics locaux des formulaires.
+- Prochaine étape indiquée : centres d’intérêt et besoins du profil. Revue différée des retours enseignant maintenue.
+- Aucun fichier applicatif modifié. Plan de développement et documentation technique laissés pour le bilan de fin de journée.
+
+**Vérifications :** contenu confronté aux pages et au chargeur JavaScript existants ; contrôle Git des espaces. Rendu graphique Mermaid non vérifié dans cette passe. Commit laissé à Steve.
+
+### 14/10/2026 — Clarification du schéma et synchronisation du plan
+
+- Capture fournie par Steve : Mermaid est bien rendu, mais le schéma présente deux branches déconnectées. Simplification en un seul graphe des dépendances communes, avec des libellés courts ; image et footers publics expliqués dans le texte voisin.
+- Même schéma ajouté dans la section 5 du plan de développement, à la demande de Steve. Mise à jour de l’arborescence avec le SVG, du périmètre des inclusions et de l’état d’avancement au 14/10 pour correspondre au README.
+- Checklist actualisée : formulaires, panneaux et silhouette présents ; intérêts/besoins, présélection du rôle et confirmations restent à traiter. Aucun changement applicatif ni application des retours enseignant différés.
+
+**Vérifications :** schémas identiques dans les deux documents et contrôle Git des espaces ; nouvel aperçu graphique à confirmer. Modifications documentaires réalisées par l’IA, commit laissé à Steve.
