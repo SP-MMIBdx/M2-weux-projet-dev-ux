@@ -4,12 +4,21 @@
 
 - **Titre du projet :** À définir
 - **Membres du groupe :** Alexandre, Ange, Steve
-- **Date de mise à jour du document :** 24/09/2026
+- **Date de mise à jour du document :** 14/10/2026
 - **Adresse :** https://github.com/SP-MMIBdx/M2-weux-projet-dev-ux
 
 ### Pitch
 
 Une application de parrainage destinée aux étudiants étrangers arrivant en France, leur permettant de créer un profil et de trouver des étudiants parrains correspondant à leurs besoins, leurs centres d’intérêt et leur parcours afin de faciliter leur intégration sociale, universitaire et quotidienne.
+
+### Rôle du document et références
+
+Ce document décrit le périmètre fonctionnel visé, les scénarios d’utilisation et les lots prévus ; il ne constitue pas un inventaire des fonctionnalités déjà implémentées.
+
+- [README](../README.md) : présentation du dépôt, état synthétique et lancement local.
+- [Plan de développement](plan_dev.md) : méthode de travail, étapes, avancement et décisions à revoir.
+- [Journal de développement](dev_log.md) : changements chronologiques, vérifications et rôle de l’IA.
+- [Wireframes V1](wireframes/WIREFRAME_V1.pdf) : référence visuelle des écrans à construire.
 
 ---
 
@@ -196,7 +205,7 @@ Les profils et les centres d'intérêt permettent de favoriser les mises en rela
 
 ## 5. Maquette fonctionnelle
 
-Les maquettes fonctionnelles de l'application sont fournies dans le fichier associé au format PDF.
+Les maquettes fonctionnelles de l'application sont fournies dans les [wireframes V1](wireframes/WIREFRAME_V1.pdf).
 
 Elles présentent notamment :
 

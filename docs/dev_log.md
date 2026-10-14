@@ -372,3 +372,9 @@ Notes de Steve prises lors du retour enseignant, synthétisées sans ajout de re
 - Après la capture de Steve montrant les légendes sur la bordure native des fieldsets, déplacement de `form-panel` vers un `div` entourant chacun des deux groupes. La carte porte désormais le fond, la bordure et le padding ; `fieldset` et `legend` conservent leur rôle sémantique à l’intérieur.
 - Modification des règles CSS existantes : fieldsets sans bordure ni padding, disposition en colonne avec un écart de 1rem ; légendes sans padding avec une marge basse de 1rem. Aucune nouvelle classe, couleur ou logique JavaScript ; choix et labels inchangés.
 - Correction et entrée du journal générées et écrites par l’IA à la demande de Steve. Contrôle des deux wrappers et des espaces Git ; rendu navigateur à confirmer par Steve. Commit laissé à Steve.
+
+### 14/10/2026 — Références de la documentation technique
+
+- Relecture du document fonctionnel et ajout d’un court bloc précisant son rôle : périmètre cible, scénarios et lots prévus, distincts de l’état d’implémentation.
+- Ajout des liens relatifs vers README, plan, journal et wireframes, avec leur fonction respective ; lien PDF explicite également dans la section maquette. Date de mise à jour actualisée, sans modification des scénarios ni des lots.
+- Modification et résumé générés et écrits par l’IA à la demande de Steve, sans duplication du suivi détaillé. Cibles des liens locaux et espaces Git vérifiés. Aucun code applicatif modifié ; commit laissé à Steve.
