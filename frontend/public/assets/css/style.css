@@ -6,7 +6,7 @@
   --color-text: #222;
   --color-background: #f5f5f5;
   --content-max-width: 60rem;
-  --color-surface: #d9d9d9;
+  --color-surface: #FBB609;
   --color-border: #000000;
   --radius-card: 0.75rem;
   --color-action: #222;
@@ -284,6 +284,30 @@ main > section + section {
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-card);
+}
+
+/* Groupes de cases à cocher : conserver les contrôles natifs */
+.auth-form fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.auth-form legend {
+  padding: 0;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.auth-form fieldset label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
 }
 
 /* Choix du type de compte */

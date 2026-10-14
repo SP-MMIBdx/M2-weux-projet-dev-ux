@@ -355,3 +355,20 @@ Notes de Steve prises lors du retour enseignant, synthétisées sans ajout de re
 - Checklist actualisée : formulaires, panneaux et silhouette présents ; intérêts/besoins, présélection du rôle et confirmations restent à traiter. Aucun changement applicatif ni application des retours enseignant différés.
 
 **Vérifications :** schémas identiques dans les deux documents et contrôle Git des espaces ; nouvel aperçu graphique à confirmer. Modifications documentaires réalisées par l’IA, commit laissé à Steve.
+
+### 14/10/2026 — Centres d’intérêt et besoins du profil
+
+- Code HTML/CSS et présente entrée du journal générés et écrits par l’IA à la demande de Steve, pour consultation et validation humaine avant commit.
+- Remplacement du commentaire d’attente dans `profileconfiguration.html` par deux groupes natifs `fieldset` / `legend` : six centres d’intérêt et sept besoins, issus des exemples de la documentation technique. Liste provisoire, sans catalogue métier définitif.
+- Cases à cocher indépendantes, chacune imbriquée dans son `label` pour rendre le texte cliquable sans ajouter d’identifiant ni d’ARIA redondant. Noms `interests[]` et `needs[]` prévus pour transmettre plusieurs valeurs à PHP ultérieurement ; aucun traitement serveur ajouté.
+- Réutilisation de `form-panel` et des variables existantes, sans nouvelle classe CSS. Trois règles ciblées ajoutées : neutralisation de la marge et de la largeur minimale des fieldsets, légende en gras, labels alignés avec espacement et hauteur minimale de 2.75rem. Les cases conservent leur apparence et leur focus natifs, hors des règles de saisie pleine largeur de `form-field`.
+- Couleur provisoire `--color-surface: #FBB609` modifiée par Steve avant cette intervention et conservée ; elle s’applique aussi au header/footer et aux autres composants qui utilisent cette variable.
+- Aucune option imposée ou présélectionnée. Le groupe des besoins décrit actuellement l’étudiant accompagné ; adaptation aux domaines d’aide du parrain différée avec la gestion du rôle. Soumission toujours désactivée, aucune sauvegarde ni nouvelle logique JavaScript.
+
+**Vérifications :** imbrication HTML, labels des treize cases, unicité des identifiants et valeurs par groupe, et bouton de soumission désactivé contrôlés ; contrôle Git des espaces réussi. Rendu mobile et navigation clavier à vérifier par Steve, sans validation navigateur revendiquée par l’IA. README et plan à synchroniser lors du prochain bilan après validation. Commit laissé à Steve.
+
+### 14/10/2026 — Titres des groupes à l’intérieur des cartes
+
+- Après la capture de Steve montrant les légendes sur la bordure native des fieldsets, déplacement de `form-panel` vers un `div` entourant chacun des deux groupes. La carte porte désormais le fond, la bordure et le padding ; `fieldset` et `legend` conservent leur rôle sémantique à l’intérieur.
+- Modification des règles CSS existantes : fieldsets sans bordure ni padding, disposition en colonne avec un écart de 1rem ; légendes sans padding avec une marge basse de 1rem. Aucune nouvelle classe, couleur ou logique JavaScript ; choix et labels inchangés.
+- Correction et entrée du journal générées et écrites par l’IA à la demande de Steve. Contrôle des deux wrappers et des espaces Git ; rendu navigateur à confirmer par Steve. Commit laissé à Steve.
