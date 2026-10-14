@@ -19,13 +19,6 @@ Lorsque l'IA intervient de manière importante dans une phase, son rôle est pr�
 
 L’IA est également utilisée pour générer et rédiger les synthèses de ce journal à partir de la lecture du code, de la documentation et des différences Git du dépôt local, dans les limites des permissions d’accès accordées aux dossiers du projet. Les synthèses sont proposées pour ajout manuel ou écrites directement dans le fichier à la demande de Steve. Elles s’appuient aussi sur les échanges de la séance et distinguent les vérifications effectuées par l’IA des tests navigateur rapportés par Steve. Leur relecture et leur validation avant commit restent sous la responsabilité de l’équipe.
 
-07/10/2026
-- Static frontend scaffold created.
-- Seven preliminary pages added.
-- Shared CSS/JS/assets structure established.
-- No PHP or database implementation yet.
-- AI used to assist with architecture planning and documentation.
-
 ### Organisation Git actuelle
 
 Pendant la construction de la première base frontend, Steve travaille directement sur `main`.
