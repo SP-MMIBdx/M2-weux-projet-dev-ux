@@ -273,3 +273,11 @@ Prochaine étape : styliser la carte de demande, les tags et les boutons. Mise �
 **Rôle de l’IA :** proposition et explication du code, revue, correction ciblée autorisée et rédaction du journal. Staging et commit laissés à Steve ; README et plan seront actualisés à EOD.
 
 **Prochaine étape :** poursuivre les écrans du wireframe ; conserver la présélection du rôle et la validation des confirmations comme tâches explicites à traiter ultérieurement.
+
+### 14/10/2026 — Écart visuel identifié sur les formulaires
+
+- Relecture visuelle du wireframe V1 à la demande de Steve : la connexion présente deux conteneurs gris arrondis séparés, autour de l’identifiant et du mot de passe. La création de compte présente un conteneur identifiant, un groupe e-mail/confirmation et un groupe mot de passe/confirmation.
+- Les formulaires actuels disposent des champs et de leurs styles, mais pas encore de ces surfaces de regroupement. Leur structure visuelle reste donc partielle ; les checkpoints précédents ne constituent pas une validation de fidélité complète au wireframe.
+- À prévoir lors de la prochaine passe des formulaires : une classe de panneau réutilisable, utilisant les variables de surface, bordure et arrondi existantes ; regrouper chaque paire de confirmation au lieu d’ajouter une seule carte autour de tout le formulaire. Conserver une disposition mobile-first et les labels accessibles.
+- L’icône de profil au-dessus des champs est également absente et reste à intégrer ou à arbitrer. Le placement des labels et les proportions seront revus avec la maquette ; aucune couleur ou dimension finale n’est figée.
+- Constat et note rédigés par l’IA après comparaison visuelle ; aucun fichier applicatif modifié. La construction des autres écrans peut continuer en conservant ces écarts ouverts.
