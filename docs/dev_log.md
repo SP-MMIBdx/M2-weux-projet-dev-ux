@@ -378,3 +378,10 @@ Notes de Steve prises lors du retour enseignant, synthétisées sans ajout de re
 - Relecture du document fonctionnel et ajout d’un court bloc précisant son rôle : périmètre cible, scénarios et lots prévus, distincts de l’état d’implémentation.
 - Ajout des liens relatifs vers README, plan, journal et wireframes, avec leur fonction respective ; lien PDF explicite également dans la section maquette. Date de mise à jour actualisée, sans modification des scénarios ni des lots.
 - Modification et résumé générés et écrits par l’IA à la demande de Steve, sans duplication du suivi détaillé. Cibles des liens locaux et espaces Git vérifiés. Aucun code applicatif modifié ; commit laissé à Steve.
+
+### 14/10/2026 — Mini-cartes de sélection des tags
+
+- À la demande de Steve, remplacement de la présentation en listes par des mini-cartes sélectionnables pour les intérêts et besoins. Clarification retenue : fond jaune via `--color-surface` sur chaque option, sans grande carte derrière le groupe ; titres et instructions sur le fond de page.
+- Suppression des deux wrappers `form-panel` autour des fieldsets et ajout d’un conteneur `tag-options` autour des choix de chaque groupe. Une seule nouvelle classe, réutilisée pour les deux groupes ; fieldsets, légendes, labels et treize cases natives conservés.
+- Disposition Flexbox avec retour à la ligne ; styles des labels adaptés en réutilisant les variables de surface, bordure et arrondi. Sélection signalée par la coche native et un contour intérieur CSS (`:has(input:checked)`), sans changement de dimensions. Focus du groupe label signalé par un contour extérieur (`:focus-within`). Aucun JavaScript ni traitement PHP ajouté.
+- Code et présente entrée générés et écrits par l’IA à la demande de Steve. Contrôle Git des espaces réussi ; présentation mobile, sélection multiple et navigation clavier à confirmer dans le navigateur par Steve. Commit laissé à Steve.
