@@ -242,7 +242,8 @@ main > section + section {
 }
 
 /* Champs de saisie */
-.form-field input {
+.form-field input,
+.form-field select {
   width: 100%;
   min-width: 0;
   min-height: 2.75rem;
@@ -253,7 +254,8 @@ main > section + section {
   background-color: var(--color-input-background);
 }
 
-.form-field input:focus-visible {
+.form-field input:focus-visible,
+.form-field select:focus-visible {
   outline: 2px solid var(--color-action);
   outline-offset: 3px;
 }

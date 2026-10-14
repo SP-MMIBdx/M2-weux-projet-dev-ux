@@ -258,3 +258,18 @@ Prochaine étape : styliser la carte de demande, les tags et les boutons. Mise �
 **Rôle de l’IA :** proposition et explication du code saisi par Steve, revue, suppression du commentaire vide et rédaction du journal. Commit demandé par Steve. README et plan restent réservés au bilan EOD.
 
 **Prochaine étape :** construire la page de création de compte en réutilisant les styles de formulaire, puis traiter explicitement le choix du rôle. Révision JavaScript reportée après la progression UI à la demande de Steve.
+
+### 14/10/2026 — Formulaire statique de création de compte
+
+- Remplacement des placeholders de `createprofile.html` par le formulaire de création de compte : nom d’utilisateur, e-mail et confirmation, mot de passe et confirmation, labels associés et attributs d’autocomplétion adaptés.
+- Réutilisation du header partagé, du footer public local et des classes de formulaire. Titre de page actualisé et lien de retour vers la connexion ajouté.
+- Ajout d’un sélecteur obligatoire de type de compte, utilisable également lors d’un accès direct à la page. Les valeurs `etudiant` et `parrain` correspondent aux paramètres des liens de connexion, mais aucune présélection depuis l’URL n’est encore implémentée.
+- Extension des styles et du focus des champs aux éléments `select` via les sélecteurs partagés.
+- Soumission conservée désactivée : aucune création de compte, vérification de concordance des confirmations ni attribution de droits implémentée.
+- Correction par l’IA, à la demande de Steve, de l’imbrication du champ rôle : rôle et nom d’utilisateur sont désormais deux groupes frères directement dans le formulaire, avec l’espacement prévu entre les champs.
+
+**Vérifications :** Steve confirme le rendu et les interactions proposés lors des étapes précédentes. Relecture HTML/CSS et contrôle des espaces effectués par l’IA ; le rendu après correction de l’imbrication reste à confirmer par Steve.
+
+**Rôle de l’IA :** proposition et explication du code, revue, correction ciblée autorisée et rédaction du journal. Staging et commit laissés à Steve ; README et plan seront actualisés à EOD.
+
+**Prochaine étape :** poursuivre les écrans du wireframe ; conserver la présélection du rôle et la validation des confirmations comme tâches explicites à traiter ultérieurement.
