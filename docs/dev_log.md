@@ -243,3 +243,18 @@ Prochaine étape : styliser la carte de demande, les tags et les boutons. Mise �
 - Steve a retiré les deux supports pédagogiques du dépôt pour les conserver personnellement. Les explications approfondies et synthèses quotidiennes continueront d’être fournies séparément, hors du dépôt.
 - Arborescence et règles documentaires du plan actualisées ; liens vers les fichiers retirés supprimés du README et du journal. Les entrées historiques restent conservées comme trace des étapes précédentes.
 - Mise à jour documentaire réalisée par l’IA ; aucun changement applicatif ni modification de `.gitignore`. Révision de compréhension reportée à la prochaine séance avec Steve.
+
+### 14/10/2026 — Styles du formulaire de connexion et choix d’inscription
+
+- Ajout des variables de largeur maximale du formulaire (`32rem`) et de fond des champs, distinct du gris des surfaces communes.
+- Mise en page du formulaire et des groupes label/champ en colonnes Flexbox, avec espacements, champs fluides, hauteur minimale et focus visible.
+- Ajout des liens d’inscription étudiant et parrain vers `createprofile.html`, avec les paramètres `role=etudiant` et `role=parrain`. La page cible reste un placeholder et ne lit pas encore ces valeurs ; aucune attribution de droits ni création de compte n’est implémentée.
+- Réutilisation de `.button` sur les liens : centrage avec `inline-flex`, suppression du soulignement par défaut et sélecteur de survol `:not(:disabled)` compatible avec liens et boutons actifs.
+- Choix d’inscription empilés pour le mobile ; soumission de connexion conservée désactivée.
+- Normalisation de la casse de la couleur `#d9d9d9`, sans changement de rendu. Commentaire CSS vide retiré du sélecteur de focus lors de la revue.
+
+**Vérifications :** Steve confirme les contrôles proposés : affichage aux petites largeurs et sur desktop, focus clavier, labels cliquables, liens vers la page de création avec le paramètre attendu et bouton de connexion inactif. Revue des différences et contrôle Git des espaces effectués par l’IA. L’authentification et la prise en compte du rôle restent à implémenter.
+
+**Rôle de l’IA :** proposition et explication du code saisi par Steve, revue, suppression du commentaire vide et rédaction du journal. Commit demandé par Steve. README et plan restent réservés au bilan EOD.
+
+**Prochaine étape :** construire la page de création de compte en réutilisant les styles de formulaire, puis traiter explicitement le choix du rôle. Révision JavaScript reportée après la progression UI à la demande de Steve.

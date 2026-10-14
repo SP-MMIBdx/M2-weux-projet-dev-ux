@@ -6,12 +6,14 @@
   --color-text: #222;
   --color-background: #f5f5f5;
   --content-max-width: 60rem;
-  --color-surface: #D9D9D9;
+  --color-surface: #d9d9d9;
   --color-border: #000000;
   --radius-card: 0.75rem;
   --color-action: #222;
   --color-on-action: #fff;
   --radius-control: 0.5rem;
+  --form-max-width: 32rem;
+  --color-input-background: #fff;
 }
 
 /* Inclure padding et bordures dans la largeur des éléments */
@@ -191,6 +193,10 @@ main > section + section {
   color: var(--color-on-action);
   background-color: var(--color-action);
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
 }
 
 .button--secondary {
@@ -199,7 +205,7 @@ main > section + section {
 }
 
 /* États des boutons */
-.button:enabled:hover {
+.button:not(:disabled):hover {
   text-decoration: underline;
 }
 
@@ -211,4 +217,51 @@ main > section + section {
 .button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+/* Pages de connexion et d’inscription */
+.auth-page {
+  max-width: var(--form-max-width);
+}
+
+/* Organisation du formulaire */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-field label {
+  font-weight: 600;
+}
+
+/* Champs de saisie */
+.form-field input {
+  width: 100%;
+  min-width: 0;
+  min-height: 2.75rem;
+  padding: 0.625rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  color: var(--color-text);
+  background-color: var(--color-input-background);
+}
+
+.form-field input:focus-visible {
+  outline: 2px solid var(--color-action);
+  outline-offset: 3px;
+}
+
+/* Choix du type de compte */
+.registration-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1rem;
 }
