@@ -19,45 +19,59 @@
     <main class="auth-page">
       <h1>Complète ton profil</h1>
 
+      <img
+        class="auth-avatar"
+        src="assets/images/avatar-default.svg"
+        alt=""
+        width="64"
+        height="64"
+      >
+
       <form class="auth-form" method="post" aria-describedby="profile-note">
-        <div class="form-field">
-          <label for="profile-name">Nom affiché</label>
-          <input
-            type="text"
-            id="profile-name"
-            name="display_name"
-            aria-describedby="profile-name-help"
-          />
-          <p id="profile-name-help">
-            Le nom que les autres étudiants verront sur ton profil.
-          </p>
+        <div class="form-panel">
+          <div class="form-field">
+            <label for="profile-name">Nom affiché</label>
+            <input
+              type="text"
+              id="profile-name"
+              name="display_name"
+              aria-describedby="profile-name-help"
+            />
+            <p id="profile-name-help">
+              Le nom que les autres étudiants verront sur ton profil.
+            </p>
+          </div>
         </div>
 
-        <div class="form-field">
-          <label for="profile-country">Pays d’origine</label>
-          <input type="text" id="profile-country" name="country" />
+        <div class="form-panel">
+          <div class="form-field">
+            <label for="profile-country">Pays d’origine</label>
+            <input type="text" id="profile-country" name="country" />
+          </div>
+
+          <div class="form-field">
+            <label for="profile-studies">Ton parcours d’études</label>
+            <input
+              type="text"
+              id="profile-studies"
+              name="studies"
+              aria-describedby="profile-studies-help"
+            />
+            <p id="profile-studies-help">
+              Par exemple : L1 de lettres à l’université de Poitiers.
+            </p>
+          </div>
         </div>
 
-        <div class="form-field">
-          <label for="profile-studies">Ton parcours d’études</label>
-          <input
-            type="text"
-            id="profile-studies"
-            name="studies"
-            aria-describedby="profile-studies-help"
-          />
-          <p id="profile-studies-help">
-            Par exemple : L1 de lettres à l’université de Poitiers.
-          </p>
-        </div>
-
-        <div class="form-field">
-          <label for="profile-description">Présente-toi en quelques mots</label>
-          <textarea
-            id="profile-description"
-            name="description"
-            rows="4"
-          ></textarea>
+        <div class="form-panel">
+          <div class="form-field">
+            <label for="profile-description">Présente-toi en quelques mots</label>
+            <textarea
+              id="profile-description"
+              name="description"
+              rows="4"
+            ></textarea>
+          </div>
         </div>
 
         <!-- Centres d’intérêt et besoins à ajouter -->

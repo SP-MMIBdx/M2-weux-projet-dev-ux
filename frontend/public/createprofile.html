@@ -15,85 +15,101 @@
         <a class="site-brand" href="index.html">Parrainage étudiant</a>
       </div>
     </header>
-<main class="auth-page">
-  <h1>Crée ton compte</h1>
+    <main class="auth-page">
+      <h1>Crée ton compte</h1>
 
-  <form class="auth-form" method="post" aria-describedby="registration-note">
-    <div class="form-field">
-      <label for="register-role">Type de compte</label>
-      <select id="register-role" name="role" required>
-        <option value="">Choisis ton type de compte</option>
-        <option value="etudiant">Étudiant accompagné</option>
-        <option value="parrain">Parrain</option>
-      </select>
-    </div>
-
-    <div class="form-field">
-      <label for="register-username">Nom d’utilisateur</label>
-      <input
-        type="text"
-        id="register-username"
-        name="username"
-        autocomplete="username"
-        required
+      <img
+        class="auth-avatar"
+        src="assets/images/avatar-default.svg"
+        alt=""
+        width="64"
+        height="64"
       >
-    </div>
 
-    <div class="form-field">
-      <label for="register-email">Adresse e-mail</label>
-      <input
-        type="email"
-        id="register-email"
-        name="email"
-        autocomplete="email"
-        required
-      >
-    </div>
+      <form class="auth-form" method="post" aria-describedby="registration-note">
+        <div class="form-panel">
+          <div class="form-field">
+            <label for="register-role">Type de compte</label>
+            <select id="register-role" name="role" required>
+              <option value="">Choisis ton type de compte</option>
+              <option value="etudiant">Étudiant accompagné</option>
+              <option value="parrain">Parrain</option>
+            </select>
+          </div>
+        </div>
 
-    <div class="form-field">
-      <label for="register-email-confirm">Confirmer ton adresse e-mail</label>
-      <input
-        type="email"
-        id="register-email-confirm"
-        name="email_confirmation"
-        autocomplete="email"
-        required
-      >
-    </div>
+        <div class="form-panel">
+          <div class="form-field">
+            <label for="register-username">Nom d’utilisateur</label>
+            <input
+              type="text"
+              id="register-username"
+              name="username"
+              autocomplete="username"
+              required
+            >
+          </div>
+        </div>
 
-    <div class="form-field">
-      <label for="register-password">Mot de passe</label>
-      <input
-        type="password"
-        id="register-password"
-        name="password"
-        autocomplete="new-password"
-        required
-      >
-    </div>
+        <div class="form-panel">
+          <div class="form-field">
+            <label for="register-email">Adresse e-mail</label>
+            <input
+              type="email"
+              id="register-email"
+              name="email"
+              autocomplete="email"
+              required
+            >
+          </div>
 
-    <div class="form-field">
-      <label for="register-password-confirm">Confirmer ton mot de passe</label>
-      <input
-        type="password"
-        id="register-password-confirm"
-        name="password_confirmation"
-        autocomplete="new-password"
-        required
-      >
-    </div>
+          <div class="form-field">
+            <label for="register-email-confirm">Confirmer ton adresse e-mail</label>
+            <input
+              type="email"
+              id="register-email-confirm"
+              name="email_confirmation"
+              autocomplete="email"
+              required
+            >
+          </div>
+        </div>
 
-    <p id="registration-note">
-      Maquette : la création de compte n’est pas encore disponible.
-    </p>
+        <div class="form-panel">
+          <div class="form-field">
+            <label for="register-password">Mot de passe</label>
+            <input
+              type="password"
+              id="register-password"
+              name="password"
+              autocomplete="new-password"
+              required
+            >
+          </div>
 
-    <button type="submit" class="button" disabled>
-      Créer mon compte
-    </button>
+          <div class="form-field">
+            <label for="register-password-confirm">Confirmer ton mot de passe</label>
+            <input
+              type="password"
+              id="register-password-confirm"
+              name="password_confirmation"
+              autocomplete="new-password"
+              required
+            >
+          </div>
+        </div>
 
-    <p>Déjà un compte ? <a href="login.html">Connecte-toi</a></p>
-  </form>
-</main>
+        <p id="registration-note">
+          Maquette : la création de compte n’est pas encore disponible.
+        </p>
+
+        <button type="submit" class="button" disabled>
+          Créer mon compte
+        </button>
+
+        <p>Déjà un compte ? <a href="login.html">Connecte-toi</a></p>
+      </form>
+    </main>
 
     <footer class="site-footer">
       <div class="site-footer__inner">

@@ -281,3 +281,59 @@ Prochaine étape : styliser la carte de demande, les tags et les boutons. Mise �
 - À prévoir lors de la prochaine passe des formulaires : une classe de panneau réutilisable, utilisant les variables de surface, bordure et arrondi existantes ; regrouper chaque paire de confirmation au lieu d’ajouter une seule carte autour de tout le formulaire. Conserver une disposition mobile-first et les labels accessibles.
 - L’icône de profil au-dessus des champs est également absente et reste à intégrer ou à arbitrer. Le placement des labels et les proportions seront revus avec la maquette ; aucune couleur ou dimension finale n’est figée.
 - Constat et note rédigés par l’IA après comparaison visuelle ; aucun fichier applicatif modifié. La construction des autres écrans peut continuer en conservant ces écarts ouverts.
+
+### 14/10/2026 — Informations personnelles du profil
+
+- Entrée rédigée après le commit `b2e23a5` pour compléter le journal sans modifier l’historique Git.
+- Remplacement des placeholders de `profileconfiguration.html` par un formulaire : nom affiché, pays d’origine, parcours d’études et description multiligne ; header partagé et footer public local réutilisés.
+- Labels reliés aux champs et aides textuelles associées avec `aria-describedby`. Champs obligatoires non définis à ce stade, en attente de décision produit.
+- Extension des styles communs et du focus aux `textarea`, avec redimensionnement vertical. Virgule manquante entre les sélecteurs `select` et `textarea` signalée en revue puis corrigée par Steve avant commit.
+- Soumission désactivée et absence d’enregistrement explicites. Centres d’intérêt, besoins et icône de profil restent à construire ; cet écran est encore partiel.
+
+**Vérifications :** Steve a confirmé le fonctionnement de la première version, puis signalé la correction CSS et son commit. Présence de la virgule vérifiée dans le fichier sauvegardé ; pas de nouveau test navigateur réalisé par l’IA.
+
+**Rôle de l’IA :** proposition et explication du code, revue ciblée et rédaction différée du journal. Code applicatif et commit réalisés par Steve.
+
+**Prochaine étape :** ajouter les panneaux gris des formulaires de connexion et de création de compte, puis poursuivre les éléments manquants des wireframes.
+
+### 14/10/2026 — Synthèse du retour de Yannis Delmas
+
+Notes de Steve prises lors du retour enseignant, synthétisées sans ajout de recommandations de l’IA :
+
+- Appréciation générale positive ; CSS jugé peu chargé.
+- `aria-labelledby` à revoir : l’utiliser seulement lorsque son utilité est justifiée. Utilité de `<nav aria-label="Navigation de pied de page">` également à revoir.
+- Utiliser des flowcharts Mermaid dans les documents Markdown.
+- Remarque sur « class button for an ID button » : jugé inutile ou trop chargé.
+- Préférer les inclusions du header/footer en PHP côté serveur ; réserve sur le référencement avec leur chargement en JavaScript.
+- Garder JavaScript pour les interactions et AJAX ; support de cours fourni à ce sujet.
+- Éviter les liens transformés visuellement en boutons, notamment la classe `button` sur les liens ; distinguer la soumission d’un formulaire.
+- Curseurs des boutons et textes à revoir (`pointer` / `inherit`, selon les notes prises).
+- Soulignement des boutons à revoir. Référence partagée : https://cssbuttons.io/.
+- Définir les espacements standards en variables avec des multiples simples : unité, demi-unité et double, pour gérer marges et paddings.
+- Simplifier `*::before` et `*::after` en `::before` et `::after`.
+
+**Modification documentaire effectuée :** conversion par l’IA des sept schémas de processus du plan en Mermaid ; arborescences conservées en texte et caractère `x` isolé retiré. Contrôle des références de nœuds et des espaces effectué ; rendu Mermaid à vérifier dans un aperçu compatible.
+
+**Décision de Steve, distincte du retour enseignant :** conserver le script JavaScript comme inclusion côté client pour cette phase et reporter PHP. Hormis Mermaid, les suggestions sont consignées pour être revisitées, sans modification applicative pour le moment. Aucun staging ni commit réalisé par l’IA.
+
+### 14/10/2026 — Panneaux du formulaire de connexion
+
+- Réutilisation de la règle `.form-panel` déjà ajoutée par Steve dans le CSS : fond gris, bordure, arrondi et espacements fondés sur les variables existantes.
+- Ajout par l’IA, à la demande de Steve, d’un panneau distinct autour de chacun des deux groupes label/champ de `login.html`, conformément au regroupement du wireframe.
+- Conservation des labels, identifiants, attributs de saisie et du bouton désactivé. Message de maquette et soumission restent hors des panneaux.
+- Vérification structurelle des deux panneaux et de leurs champs, puis contrôle Git des espaces. Rendu mobile et focus clavier après cette modification à confirmer dans le navigateur par Steve.
+- Panneaux de création de compte encore à intégrer. Aucun ajustement issu du retour enseignant appliqué lors de cette étape ; revue différée maintenue. Staging et commit laissés à Steve.
+
+### 14/10/2026 — Extension des panneaux et silhouette de profil
+
+- Rendu des panneaux de connexion confirmé par Steve avant extension.
+- Création de compte : panneaux distincts pour le rôle et le nom d’utilisateur, puis regroupement e-mail/confirmation et mot de passe/confirmation dans deux panneaux. Le panneau de rôle correspond au sélecteur ajouté au parcours, absent du dessin initial.
+- Configuration du profil : panneaux pour le nom affiché, le groupe pays/parcours et la description. Les champs restent empilés pour cette passe mobile-first ; la disposition côte à côte du wireframe n’est pas encore reproduite.
+- Réutilisation de `.form-panel`, sans duplication de ses styles. Indentation du contenu principal de la création de compte harmonisée pour rendre les groupes lisibles.
+- Ajout d’une silhouette SVG locale commune dans `assets/images/avatar-default.svg`, affichée au-dessus des formulaires de connexion, création de compte et configuration. Style `.auth-avatar` centré, largeur de 4rem, hauteur proportionnelle et largeur maximale de 100 %.
+- Image décorative avec `alt=""` : aucun compte réel ni photo utilisateur représenté, aucun téléversement implémenté. Dimensions HTML indiquées pour réserver la place de l’image.
+- Champs, labels et descriptions conservés ; soumissions toujours désactivées. Les retours enseignant restent différés, sans passage à PHP.
+
+**Vérifications :** contrôle structurel des groupes, de l’imbrication HTML, des identifiants et références label/ARIA, de la présence de l’image et des soumissions désactivées sur les trois pages ; syntaxe XML du SVG et contrôle Git des espaces réussis. Steve confirme ensuite le bon fonctionnement lors de sa vérification navigateur avant commit.
+
+**Rôle de l’IA :** modifications applicatives et documentation réalisées à la demande de Steve. Staging et commit laissés à Steve.

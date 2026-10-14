@@ -18,16 +18,17 @@ L'objectif n'est pas uniquement d'obtenir une application fonctionnelle, mais é
 
 La logique générale sera :
 
-```text
-Navigateur
-    ↓
-HTML / CSS / JavaScript
-    ↓
-PHP
-    ↓
-SQL
-    ↓
-MySQL / MariaDB
+```mermaid
+flowchart TD
+    N0["Navigateur"]
+    N1["HTML / CSS / JavaScript"]
+    N2["PHP"]
+    N3["SQL"]
+    N4["MySQL / MariaDB"]
+    N0 --> N1
+    N1 --> N2
+    N2 --> N3
+    N3 --> N4
 ```
 
 Contrairement aux projets réalisés avec des frameworks modernes, il n'y aura pas de compilation automatique du frontend ni d'ORM pour abstraire les requêtes SQL.
@@ -147,26 +148,28 @@ Le projet suivra une méthodologie progressive.
 
 Chaque phase devra idéalement respecter le cycle suivant :
 
-```text
-Objectif
-    ↓
-Explication du fonctionnement
-    ↓
-Création des fichiers nécessaires
-    ↓
-Développement
-    ↓
-Tests
-    ↓
-Correction
-    ↓
-Documentation
-    ↓
-Commit Git
+```mermaid
+flowchart TD
+    N0["Objectif"]
+    N1["Explication du fonctionnement"]
+    N2["Création des fichiers nécessaires"]
+    N3["Développement"]
+    N4["Tests"]
+    N5["Correction"]
+    N6["Documentation"]
+    N7["Commit Git"]
+    N0 --> N1
+    N1 --> N2
+    N2 --> N3
+    N3 --> N4
+    N4 --> N5
+    N5 --> N6
+    N6 --> N7
 ```
 
 Chaque étape importante sera documentée.
-x
+
+Les schémas de processus utilisent des blocs Mermaid ; les arborescences restent en texte. Référence : [syntaxe des flowcharts Mermaid](https://mermaid.js.org/syntax/flowchart.html).
 ### Travail accompagné par l’IA et critères de validation
 
 Référence pédagogique : Yannis Delmas, *Méthode de développement d’applications*, septembre 2026, fournie par Steve. Les pratiques suivantes traduisent ses principes pour ce projet ; elles ne constituent pas une attestation de conformité ni une validation par l’enseignant.
@@ -290,6 +293,15 @@ Commencée partiellement en parallèle de la phase 1 : première intégration de
 
 ### Phase 3+ — PHP / SQL / authentification / données dynamiques
 Non commencées.
+
+### Retour enseignant du 14/10/2026 — à revisiter
+
+La synthèse des suggestions de Yannis Delmas est conservée dans `docs/dev_log.md`, à la date du 14/10/2026. Seule la conversion des schémas du plan en Mermaid a été appliquée.
+
+- [ ] Reprendre explicitement cette synthèse avec Steve lors d’une prochaine revue : ARIA et nom de navigation, classes/IDs des boutons, liens présentés en boutons, curseurs et soulignements, variables d’espacement, sélecteurs de pseudo-éléments, inclusions PHP et rôle de JavaScript/AJAX. Aucun de ces ajustements issus du retour enseignant n’a été implémenté ; aucune date de revue fixée. Cette liste reste ouverte jusqu’à discussion et décision pour chaque point.
+
+**Décision de Steve :** conserver pour l’instant le chargement client du header/footer en JavaScript et l’environnement de prévisualisation actuel. Reporter l’introduction de PHP ainsi que les autres ajustements suggérés à une prochaine revue ; aucune migration ni refonte des contrôles engagée.
+
 
 ---
 
@@ -426,14 +438,15 @@ La connexion sera réalisée avec PDO.
 
 Exemple de logique :
 
-```text
-PHP
- ↓
-PDO
- ↓
-requête SQL préparée
- ↓
-MySQL
+```mermaid
+flowchart TD
+    N0["PHP"]
+    N1["PDO"]
+    N2["requête SQL préparée"]
+    N3["MySQL"]
+    N0 --> N1
+    N1 --> N2
+    N2 --> N3
 ```
 
 Les requêtes seront écrites explicitement.
@@ -522,18 +535,19 @@ Objectif : permettre à un étudiant étranger de demander une mise en relation 
 
 Cycle prévu :
 
-```text
-Étudiant
-    ↓
-consulte un parrain
-    ↓
-envoie une demande
-    ↓
-demande en attente
-    ↓
-parrain accepte ou refuse
-    ↓
-mise en relation
+```mermaid
+flowchart TD
+    N0["Étudiant"]
+    N1["consulte un parrain"]
+    N2["envoie une demande"]
+    N3["demande en attente"]
+    N4["parrain accepte ou refuse"]
+    N5["mise en relation"]
+    N0 --> N1
+    N1 --> N2
+    N2 --> N3
+    N3 --> N4
+    N4 --> N5
 ```
 
 Fonctionnalités envisagées :
@@ -592,36 +606,38 @@ Le projet sera également utilisé comme exercice d'apprentissage du développem
 
 Pour chaque nouveau mécanisme important, le développement devra permettre de comprendre :
 
-```text
-Ce que l'on veut faire
-↓
-Quel langage intervient
-↓
-Quel fichier intervient
-↓
-Comment les données circulent
-↓
-Comment vérifier le résultat
+```mermaid
+flowchart TD
+    N0["Ce que l'on veut faire"]
+    N1["Quel langage intervient"]
+    N2["Quel fichier intervient"]
+    N3["Comment les données circulent"]
+    N4["Comment vérifier le résultat"]
+    N0 --> N1
+    N1 --> N2
+    N2 --> N3
+    N3 --> N4
 ```
 
 Par exemple, pour une connexion :
 
-```text
-Formulaire HTML
-      ↓
-requête POST
-      ↓
-PHP
-      ↓
-requête SQL
-      ↓
-base de données
-      ↓
-résultat
-      ↓
-session PHP
-      ↓
-page suivante
+```mermaid
+flowchart TD
+    N0["Formulaire HTML"]
+    N1["requête POST"]
+    N2["PHP"]
+    N3["requête SQL"]
+    N4["base de données"]
+    N5["résultat"]
+    N6["session PHP"]
+    N7["page suivante"]
+    N0 --> N1
+    N1 --> N2
+    N2 --> N3
+    N3 --> N4
+    N4 --> N5
+    N5 --> N6
+    N6 --> N7
 ```
 
 L'objectif est de ne pas uniquement obtenir du code fonctionnel, mais également de pouvoir expliquer son fonctionnement.
@@ -662,16 +678,17 @@ Les agents pourront ensuite être utilisés pour accélérer les tâches répét
 
 La priorité du projet est :
 
-```text
-Comprendre
-    ↓
-Construire
-    ↓
-Tester
-    ↓
-Documenter
-    ↓
-Améliorer
+```mermaid
+flowchart TD
+    N0["Comprendre"]
+    N1["Construire"]
+    N2["Tester"]
+    N3["Documenter"]
+    N4["Améliorer"]
+    N0 --> N1
+    N1 --> N2
+    N2 --> N3
+    N3 --> N4
 ```
 
 L'application sera donc construite progressivement, sans chercher à créer dès le départ une architecture complète ou trop abstraite.

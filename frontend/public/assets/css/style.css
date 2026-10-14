@@ -224,6 +224,15 @@ main > section + section {
   max-width: var(--form-max-width);
 }
 
+/* Silhouette provisoire des écrans de compte et de profil */
+.auth-avatar {
+  display: block;
+  width: 4rem;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto 1.5rem;
+}
+
 /* Organisation du formulaire */
 .auth-form {
   display: flex;
@@ -264,6 +273,17 @@ main > section + section {
 
 .form-field textarea {
   resize: vertical;
+}
+
+/* Panneaux de regroupement des formulaires */
+.form-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
 }
 
 /* Choix du type de compte */

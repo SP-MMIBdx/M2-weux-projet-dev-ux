@@ -21,27 +21,39 @@
 
       <section aria-labelledby="connexion-title">
         <h2 id="connexion-title">Connecte-toi</h2>
+        <img
+          class="auth-avatar"
+          src="assets/images/avatar-default.svg"
+          alt=""
+          width="64"
+          height="64"
+        >
+
         <form class="auth-form" method="post" aria-describedby="login-note">
-          <div class="form-field">
-            <label for="login-username">Nom d’utilisateur</label>
-            <input
-              type="text"
-              id="login-username"
-              name="username"
-              autocomplete="username"
-              required
-            />
+          <div class="form-panel">
+            <div class="form-field">
+              <label for="login-username">Nom d’utilisateur</label>
+              <input
+                type="text"
+                id="login-username"
+                name="username"
+                autocomplete="username"
+                required
+              />
+            </div>
           </div>
 
-          <div class="form-field">
-            <label for="login-password">Mot de passe</label>
-            <input
-              type="password"
-              id="login-password"
-              name="password"
-              autocomplete="current-password"
-              required
-            />
+          <div class="form-panel">
+            <div class="form-field">
+              <label for="login-password">Mot de passe</label>
+              <input
+                type="password"
+                id="login-password"
+                name="password"
+                autocomplete="current-password"
+                required
+              />
+            </div>
           </div>
 
           <p id="login-note">
