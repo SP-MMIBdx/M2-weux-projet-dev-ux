@@ -290,7 +290,9 @@ L’IA peut préparer et rédiger ces documents à partir des éléments fournis
 - [x] Formulaire statique de création de compte avec champs de confirmation
 - [x] Informations personnelles du profil : nom, pays, parcours et description
 - [x] Panneaux de formulaire et silhouette décorative partagés
-- [ ] Centres d’intérêt et besoins du profil
+- [x] Centres d’intérêt et besoins statiques : cases natives présentées en mini-cartes
+- [ ] Adapter les domaines d’aide et leur formulation au rôle parrain
+- [ ] Confirmer le rendu mobile et la navigation clavier des mini-cartes
 - [ ] Présélection du rôle depuis les liens et comparaison des confirmations
 - [ ] Éléments communs intégrés aux autres pages selon la navigation publique/connectée retenue
 - [ ] Navigation complète entre les pages
@@ -300,9 +302,9 @@ L’IA peut préparer et rédiger ces documents à partir des éléments fournis
 
 Structure actuelle : voir la section 5, « Structure actuelle du dépôt ».
 
-**État actuel au 14/10/2026 :** le flux parrain dispose d’une première présentation responsive avec données illustratives et actions désactivées. Connexion et création de compte disposent de formulaires stylisés ; la configuration du profil contient les informations personnelles, sans centres d’intérêt ni besoins. Ces trois écrans utilisent des panneaux gris et une silhouette décorative commune. Accueil, flux étudiant et profil restent des placeholders. Les soumissions sont désactivées ; présélection du rôle et comparaison des confirmations restent à implémenter. Les tests visuels rapportés par Steve ne constituent pas encore une validation exhaustive du responsive ou de l’accessibilité. Aucun code PHP ou SQL n’a été introduit.
+**État actuel au 19/10/2026 :** le flux parrain dispose d’une première présentation responsive avec données illustratives et actions désactivées. Connexion et création de compte disposent de formulaires stylisés ; la configuration du profil contient les informations personnelles et deux groupes de choix multiples : six intérêts et sept besoins provisoires. Les options sont des mini-cartes jaunes utilisant `--color-surface`, avec cases natives visibles, état sélectionné en CSS et retour à la ligne. Titres et instructions restent hors des cartes. Les panneaux des informations personnelles et la silhouette décorative sont réutilisés sur les écrans de formulaire ; la couleur de surface reste provisoire et partagée avec le header/footer. Le groupe des besoins cible encore l’étudiant accompagné, sans adaptation au parrain. Accueil, flux étudiant et profil restent des placeholders. Les soumissions sont désactivées ; présélection du rôle et comparaison des confirmations restent à implémenter. Les tests visuels rapportés par Steve ne constituent pas encore une validation exhaustive du responsive ou de l’accessibilité. Aucun code PHP ou SQL n’a été introduit.
 
-**Prochaine étape :** compléter les centres d’intérêt et besoins de la configuration du profil, puis poursuivre les écrans manquants avec la même méthode expliquée et documentée.
+**Prochaine étape proposée :** construire le flux étudiant du wireframe en réutilisant les cartes, tags et éléments communs. Conserver la même méthode expliquée et documentée ; confirmer le rendu mobile et le clavier des mini-cartes avant de considérer cette passe vérifiée. La liste des choix et les domaines d’aide du parrain restent à arbitrer.
 
 **Décisions reportées :** direction artistique finale, navigation selon connexion/rôle, destinations FAQ/démarches/mentions légales, placement du footer en bas des pages courtes. Le footer reste dans le flux normal. L’absence de lien vers un profil sur la connexion est une décision d’interface, pas un contrôle d’accès : les protections réelles seront implémentées côté PHP.
 

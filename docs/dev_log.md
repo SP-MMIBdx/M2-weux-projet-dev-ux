@@ -378,3 +378,14 @@ Notes de Steve prises lors du retour enseignant, synthétisées sans ajout de re
 - Suppression des deux wrappers `form-panel` autour des fieldsets et ajout d’un conteneur `tag-options` autour des choix de chaque groupe. Une seule nouvelle classe, réutilisée pour les deux groupes ; fieldsets, légendes, labels et treize cases natives conservés.
 - Disposition Flexbox avec retour à la ligne ; styles des labels adaptés en réutilisant les variables de surface, bordure et arrondi. Sélection signalée par la coche native et un contour intérieur CSS (`:has(input:checked)`), sans changement de dimensions. Focus du groupe label signalé par un contour extérieur (`:focus-within`). Aucun JavaScript ni traitement PHP ajouté.
 - Code et présente entrée générés et écrits par l’IA à la demande de Steve. Contrôle Git des espaces réussi ; présentation mobile, sélection multiple et navigation clavier à confirmer dans le navigateur par Steve. Commit laissé à Steve.
+
+### 19/10/2026 — Bilan documentaire différé de la séance du 14/10
+
+- Relecture du code actuel et de l’historique : mini-cartes présentes dans le commit `74e419e`, suivi de `bf442fc` ; arbre de travail propre avant cette mise à jour. Aucun commit effectué par l’IA.
+- README et état d’avancement du plan synchronisés : intérêts et besoins statiques présents, six et sept choix respectivement ; adaptation au rôle parrain, présélection du rôle, comparaison des confirmations et soumissions restent ouverts. Remplacement de la mention périmée des panneaux gris par la surface provisoire actuelle.
+- Prochaine étape proposée : flux étudiant du wireframe, sans démarrage applicatif dans cette passe. Revues enseignant du 14/10 maintenues en attente, inclusions JavaScript conservées.
+- Journal relu comme historique : les étapes intermédiaires (listes puis wrappers puis mini-cartes) restent datées, sans réécriture rétrospective. Le bon affichage de la correction des légendes avait été confirmé par Steve ; aucun résultat de test navigateur supplémentaire des mini-cartes n’est déduit du seul commit.
+- Documentation technique relue : son rôle de spécification cible et ses liens restent adaptés ; aucune duplication du bilan d’implémentation ajoutée.
+- Résumé personnel Markdown de la séance du 14/10 généré hors dépôt, dans l’espace local de fichiers de cette conversation : composants, formulaires, accessibilité, variables, Flexbox, sélection CSS et rappel détaillé du chargeur JavaScript, avec questions de compréhension. Aucun lien personnel ajouté au dépôt.
+
+**Rôle de l’IA :** revue et rédaction documentaire réalisées à la demande de Steve le 19/10. Vérification des liens Markdown locaux et contrôle Git des espaces ; aucun test navigateur effectué pendant cette passe. Aucun code applicatif modifié ; commit laissé à Steve.
