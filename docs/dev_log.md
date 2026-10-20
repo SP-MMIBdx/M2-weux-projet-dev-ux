@@ -389,3 +389,19 @@ Notes de Steve prises lors du retour enseignant, synthétisées sans ajout de re
 - Résumé personnel Markdown de la séance du 14/10 généré hors dépôt, dans l’espace local de fichiers de cette conversation : composants, formulaires, accessibilité, variables, Flexbox, sélection CSS et rappel détaillé du chargeur JavaScript, avec questions de compréhension. Aucun lien personnel ajouté au dépôt.
 
 **Rôle de l’IA :** revue et rédaction documentaire réalisées à la demande de Steve le 19/10. Vérification des liens Markdown locaux et contrôle Git des espaces ; aucun test navigateur effectué pendant cette passe. Aucun code applicatif modifié ; commit laissé à Steve.
+
+### 20/10/2026 — Première structure du flux étudiant
+
+- Remplacement du placeholder de `fluxetudiant.html` par un écran statique après relecture visuelle du wireframe V1 : titre d’accueil, trois suggestions de parrains, possibilité de demander d’autres profils et réservation des actualités.
+- Profils explicitement fictifs (Vincent, Sarah, Amine), parcours et tags illustratifs. Chaque profil est un `article` avec titre, silhouette décorative commune et liste de tags. Les données ne proviennent pas d’un moteur de suggestion.
+- Réutilisation de `request-card`, `tag-list`, `request-actions` et des boutons existants, sans nouvelle classe ni modification CSS. Première présentation empilée ; proportions et disposition finale du wireframe à revoir après consultation navigateur.
+- Actions explicites « Demander un parrainage », « Écarter ce profil » et « Voir d’autres profils », toutes désactivées et de type `button` ; aucune interaction, recherche ou demande réelle implémentée.
+- Ajout du header/footer partagés avec leur contenu de secours, en conservant le chargeur JavaScript existant et le même footer que le flux parrain. Cela ne constitue pas un contrôle de session ou de rôle. Titre du document et indentation harmonisés.
+- Code HTML et présente entrée générés et écrits par l’IA au démarrage de l’étape autorisée par Steve. README et plan à synchroniser au prochain bilan après validation.
+
+**Vérifications :** imbrication HTML, chemins locaux, unicité des identifiants, trois articles, sept boutons désactivés et conteneurs des fragments contrôlés ; espaces Git vérifiés. Rendu mobile, clavier et chargement effectif des fragments à vérifier dans le navigateur par Steve. Aucun test navigateur effectué par l’IA ; staging et commit laissés à Steve.
+
+### 20/10/2026 — Silhouette commune sur le flux parrain
+
+- Ajout de `avatar-default.svg` avant le nom dans la carte de demande de `fluxparrain.html`, avec les mêmes dimensions 64 × 64 et `alt=""` décoratif que sur le flux étudiant, pour harmoniser les deux écrans.
+- Modification HTML et présente entrée générées et écrites par l’IA à la demande de Steve. Aucune nouvelle classe ni modification CSS ou JavaScript. Chemin de l’image et espaces Git vérifiés ; rendu navigateur à confirmer par Steve. Commit laissé à Steve.
