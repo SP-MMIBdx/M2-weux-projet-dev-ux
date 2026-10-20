@@ -405,3 +405,23 @@ Notes de Steve prises lors du retour enseignant, synthétisées sans ajout de re
 
 - Ajout de `avatar-default.svg` avant le nom dans la carte de demande de `fluxparrain.html`, avec les mêmes dimensions 64 × 64 et `alt=""` décoratif que sur le flux étudiant, pour harmoniser les deux écrans.
 - Modification HTML et présente entrée générées et écrites par l’IA à la demande de Steve. Aucune nouvelle classe ni modification CSS ou JavaScript. Chemin de l’image et espaces Git vérifiés ; rendu navigateur à confirmer par Steve. Commit laissé à Steve.
+
+### 20/10/2026 — Premières pages accueil et profil
+
+- Remplacement des deux derniers placeholders à la demande de Steve. Aucun écran dédié à l’accueil ou au profil dans le wireframe V1 : structures proposées à partir du périmètre fonctionnel, à valider ; aucune fidélité à une maquette inexistante revendiquée.
+- Accueil : présentation du service, liens de connexion/création de compte, étapes du parcours prévu et accès explicitement présentés comme démonstrations aux deux flux. Distinction visible entre le fonctionnement cible et les capacités statiques actuelles.
+- Profil : exemple fictif de Lucia, rôle étudiant accompagné, pays, parcours, présentation, silhouette décorative, intérêts et besoins. Aucun contact personnel affiché. Lien vers le formulaire existant, avec précision qu’il n’est pas prérempli et n’enregistre rien ; aucune liaison de données implémentée.
+- Header partagé avec contenu de secours sur les deux pages ; footer public local à l’accueil et footer commun chargé sur le profil. Aucune gestion de session ou de rôle introduite.
+- Réutilisation de `form-panel`, `tag-list` et des styles communs ; liens de navigation textuels. Aucun ajout de classe, de CSS, de JavaScript ou de dépendance. Titres des documents, contenu principal et hiérarchie des titres définis pour les deux pages.
+- README et plan synchronisés avec le flux étudiant déjà construit et les deux nouvelles pages : sept structures initiales présentes, diagrammes et périmètre des footers actualisés. Revue des écrans/navigation proposée ensuite ; choix produit, retours enseignant et validation navigateur restent ouverts. Spécification technique inchangée.
+
+**Vérifications :** imbrication HTML, titre principal unique, identifiants, références, chemins locaux et conteneurs des fragments contrôlés sur les deux pages ; liens documentaires, concordance des diagrammes et espaces Git vérifiés. Aucun test navigateur effectué par l’IA ; responsive, navigation clavier et chargement des fragments à confirmer par Steve.
+
+**Rôle de l’IA :** rédaction des pages et des mises à jour documentaires à la demande de Steve. Staging et commit laissés à Steve.
+
+### 20/10/2026 — Actions et cartes de tags accueil/profil
+
+- À la demande de Steve après consultation, présentation des liens principaux de l’accueil et du profil avec les classes existantes `button`, `button--secondary` et `request-actions`. Les éléments restent des liens `a` avec destination, regroupés en lignes flexibles avec retour à la ligne. Libellé du lien de configuration raccourci en « Configurer mon profil » ; avertissement de formulaire non prérempli conservé.
+- Ajout d’un wrapper `form-panel` autour de chacune des listes d’intérêts et de besoins du profil : fond jaune partagé derrière les pastilles `tag-list`, dont le fond était identique à celui de la page et donc peu distinct. Titres de section conservés hors des cartes.
+- Choix explicite de Steve d’utiliser ici les liens visuellement présentés en boutons ; la remarque enseignant sur ce sujet reste consignée et à revoir. Aucune nouvelle classe, variable ou modification CSS/JavaScript.
+- Correction HTML et présente entrée générées et écrites par l’IA à la demande de Steve. Espaces Git et destinations locales vérifiés ; rendu mobile à confirmer par Steve. Commit laissé à Steve.

@@ -135,19 +135,19 @@ Au 14/10/2026, la structure de travail est la suivante :
 
 `frontend/public/` est destiné à servir de racine publique pour le frontend statique. Les pages HTML y sont placées directement ; les fichiers CSS, JavaScript et les images sont regroupés dans `assets/`.
 
-Le dossier `includes/` contient les fragments HTML partagés. La fonction `loadPartial(containerId, filePath)` dans `assets/js/main.js` les charge avec `fetch`, puis remplace le contenu de secours du conteneur ciblé. Le flux parrain utilise les deux fragments ; les pages de connexion, création de compte et configuration du profil utilisent l’en-tête partagé et conservent chacune un pied de page public local sans identifiant `site-footer`. Accueil, flux étudiant et profil restent des placeholders. Un serveur HTTP local est nécessaire pour tester ce mécanisme.
+Le dossier `includes/` contient les fragments HTML partagés. La fonction `loadPartial(containerId, filePath)` dans `assets/js/main.js` les charge avec `fetch`, puis remplace le contenu de secours du conteneur ciblé. Les deux flux et le profil utilisent les deux fragments ; l’accueil et les pages de formulaire utilisent l’en-tête partagé et conservent chacun un pied de page public local sans identifiant `site-footer`. Les sept pages disposent d’un premier contenu statique. Un serveur HTTP local est nécessaire pour tester ce mécanisme.
 
 ### Dépendances du frontend statique
 
 ```mermaid
 flowchart TD
-    Pages["Flux parrain et trois formulaires"] --> CSS["style.css"]
+    Pages["Sept pages HTML"] --> CSS["style.css"]
     Pages --> JS["main.js : loadPartial"]
     JS --> Header["header.html"]
-    JS --> Footer["footer.html : flux parrain seulement"]
+    JS --> Footer["footer.html : deux flux et profil"]
 ```
 
-Les fichiers CSS et JavaScript se trouvent dans `assets/css/` et `assets/js/`, et les fragments dans `includes/`. Les trois formulaires utilisent également `assets/images/avatar-default.svg`. Leurs footers publics restent dans chaque page HTML. Ce schéma décrit les fichiers utilisés, pas un parcours utilisateur ni une gestion de session ; PHP n’est pas encore intégré.
+Les fichiers CSS et JavaScript se trouvent dans `assets/css/` et `assets/js/`, et les fragments dans `includes/`. Les formulaires, les deux flux et le profil utilisent `assets/images/avatar-default.svg`. L’accueil et les formulaires conservent un footer public local ; les deux flux et le profil chargent le footer commun. Ce schéma décrit les fichiers utilisés, pas un parcours utilisateur ni une gestion de session ; PHP n’est pas encore intégré.
 
 La branche `dev` contient également les prototypes d’Alexandre et Ange dans `prototypes/`.
 
@@ -285,7 +285,8 @@ L’IA peut préparer et rédiger ces documents à partir des éléments fournis
 - [x] Base CSS commune : typographie, variables, carte, tags, boutons et header/footer
 - [x] Chargement JavaScript réutilisable des fragments avec contenu de secours
 - [x] Structure HTML de connexion et champs étiquetés, soumission désactivée
-- [ ] Structure HTML sémantique de chaque page
+- [x] Première structure HTML sémantique des sept pages
+- [ ] Valider les propositions accueil/profil, sans wireframe dédié
 - [x] Styles réutilisables des formulaires et choix d’inscription depuis la connexion
 - [x] Formulaire statique de création de compte avec champs de confirmation
 - [x] Informations personnelles du profil : nom, pays, parcours et description
@@ -302,9 +303,9 @@ L’IA peut préparer et rédiger ces documents à partir des éléments fournis
 
 Structure actuelle : voir la section 5, « Structure actuelle du dépôt ».
 
-**État actuel au 19/10/2026 :** le flux parrain dispose d’une première présentation responsive avec données illustratives et actions désactivées. Connexion et création de compte disposent de formulaires stylisés ; la configuration du profil contient les informations personnelles et deux groupes de choix multiples : six intérêts et sept besoins provisoires. Les options sont des mini-cartes jaunes utilisant `--color-surface`, avec cases natives visibles, état sélectionné en CSS et retour à la ligne. Titres et instructions restent hors des cartes. Les panneaux des informations personnelles et la silhouette décorative sont réutilisés sur les écrans de formulaire ; la couleur de surface reste provisoire et partagée avec le header/footer. Le groupe des besoins cible encore l’étudiant accompagné, sans adaptation au parrain. Accueil, flux étudiant et profil restent des placeholders. Les soumissions sont désactivées ; présélection du rôle et comparaison des confirmations restent à implémenter. Les tests visuels rapportés par Steve ne constituent pas encore une validation exhaustive du responsive ou de l’accessibilité. Aucun code PHP ou SQL n’a été introduit.
+**État actuel au 20/10/2026 :** le flux parrain dispose d’une première présentation responsive avec données illustratives et actions désactivées. Connexion et création de compte disposent de formulaires stylisés ; la configuration du profil contient les informations personnelles et deux groupes de choix multiples : six intérêts et sept besoins provisoires. Les options sont des mini-cartes jaunes utilisant `--color-surface`, avec cases natives visibles, état sélectionné en CSS et retour à la ligne. Titres et instructions restent hors des cartes. Les panneaux des informations personnelles et la silhouette décorative sont réutilisés sur les écrans de formulaire ; la couleur de surface reste provisoire et partagée avec le header/footer. Le groupe des besoins cible encore l’étudiant accompagné, sans adaptation au parrain. Le flux étudiant présente trois profils fictifs et des actions désactivées. L’accueil présente le service et les liens de démonstration ; le profil affiche un exemple statique de Lucia, sans préremplissage ni enregistrement. Ces deux derniers écrans ne disposent pas de wireframes dédiés et restent à valider. Les soumissions sont désactivées ; présélection du rôle et comparaison des confirmations restent à implémenter. Les tests visuels rapportés par Steve ne constituent pas encore une validation exhaustive du responsive ou de l’accessibilité. Aucun code PHP ou SQL n’a été introduit.
 
-**Prochaine étape proposée :** construire le flux étudiant du wireframe en réutilisant les cartes, tags et éléments communs. Conserver la même méthode expliquée et documentée ; confirmer le rendu mobile et le clavier des mini-cartes avant de considérer cette passe vérifiée. La liste des choix et les domaines d’aide du parrain restent à arbitrer.
+**Prochaine étape proposée :** revoir les sept pages sur mobile et ordinateur, vérifier navigation et clavier, puis ajuster les dispositions selon les wireframes et valider les propositions accueil/profil. Confirmer également les mini-cartes. Navigation selon connexion/rôle, liste des choix et domaines d’aide du parrain restent à arbitrer ; l’affichage du profil n’est pas encore relié au formulaire de configuration.
 
 **Décisions reportées :** direction artistique finale, navigation selon connexion/rôle, destinations FAQ/démarches/mentions légales, placement du footer en bas des pages courtes. Le footer reste dans le flux normal. L’absence de lien vers un profil sur la connexion est une décision d’interface, pas un contrôle d’accès : les protections réelles seront implémentées côté PHP.
 

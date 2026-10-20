@@ -1,18 +1,76 @@
-<!-- Creation of profile -->
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parrainage étudiant</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mon profil — Parrainage étudiant</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <header class="site-header" id="site-header">
+      <div class="site-header__inner">
+        <a class="site-brand" href="index.html">Parrainage étudiant</a>
+      </div>
+    </header>
 
-    <link rel="stylesheet" href="assets/css/style.css">
-</head>
+    <main>
+      <h1>Mon profil</h1>
 
-<body>
-    <h1>Application de parrainage</h1>
+      <section>
+        <h2>Présentation</h2>
+        <div class="form-panel">
+          <p>Profil fictif pour la maquette : ces informations ne proviennent pas d’un compte connecté.</p>
+          <img src="assets/images/avatar-default.svg" alt="" width="64" height="64" />
+          <h3>Lucia</h3>
+          <p>Étudiante accompagnée · Colombie</p>
+          <p>L1 de lettres à l’université de Poitiers</p>
+          <p>Je viens d’arriver à Poitiers et j’aimerais rencontrer d’autres étudiants, découvrir la ville et partager des activités culturelles.</p>
+        </div>
+      </section>
 
+      <section>
+        <h2>Mes centres d’intérêt</h2>
+        <div class="form-panel">
+          <ul class="tag-list">
+            <li>Musique</li>
+            <li>Culture</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2>Mes besoins d’accompagnement</h2>
+        <div class="form-panel">
+          <ul class="tag-list">
+            <li>Vie sociale et rencontres</li>
+            <li>Démarches administratives</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2>Compléter mes informations</h2>
+        <div class="form-panel">
+          <p>Le formulaire n’est pas encore prérempli avec ce profil et ne permet pas d’enregistrer de modifications.</p>
+          <div class="request-actions">
+            <a class="button" href="profileconfiguration.html">Configurer mon profil</a>
+            <a class="button button--secondary" href="fluxetudiant.html">Voir l’exemple d’espace étudiant</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer" id="site-footer">
+      <div class="site-footer__inner">
+        <nav aria-label="Navigation de pied de page">
+          <ul class="footer-links">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="profil.html">Mon profil</a></li>
+          </ul>
+        </nav>
+        <p>Aide / FAQ · Démarches · Mentions légales — à venir</p>
+      </div>
+    </footer>
     <script src="assets/js/main.js"></script>
-</body>
+  </body>
 </html>

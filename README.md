@@ -15,13 +15,15 @@ Application web de parrainage destinée à faciliter l'intégration des étudian
 
 ## État du projet
 
-Au 19/10/2026, les sept pages du scaffold sont regroupées dans `frontend/public/`. Le projet reste une maquette statique en cours de construction.
+Au 20/10/2026, les sept pages du scaffold sont regroupées dans `frontend/public/`. Le projet reste une maquette statique en cours de construction.
 
 - Flux parrain : structure sémantique, carte de demande illustrative, tags, boutons désactivés et en-tête/pied de page partagés et stylisés.
-- Connexion : formulaire stylisé, panneaux gris, silhouette de profil et liens vers la création de compte selon le rôle choisi.
+- Connexion : formulaire stylisé, panneaux de surface provisoire, silhouette de profil et liens vers la création de compte selon le rôle choisi.
 - Création de compte : sélection du rôle, identifiant, e-mail et mot de passe avec champs de confirmation, regroupés en panneaux.
 - Configuration du profil : nom affiché, pays, parcours et description, plus six centres d’intérêt et sept besoins sélectionnables sous forme de mini-cartes. Choix provisoires, sans enregistrement.
-- Accueil, flux étudiant et profil : placeholders à développer.
+- Flux étudiant : trois profils fictifs, tags, avatars, actions désactivées et actualités à venir.
+- Accueil : présentation du service, étapes du parcours prévu et liens vers les formulaires et les deux espaces de démonstration.
+- Profil : exemple statique de Lucia, présentation, intérêts, besoins et lien vers la configuration non préremplie. Accueil et profil restent des propositions à valider, sans écran dédié dans le wireframe V1.
 
 Les trois pages de formulaire utilisent la même silhouette décorative et un pied de page public simplifié. Leurs soumissions restent désactivées : aucune connexion, création de compte ou sauvegarde de profil n’est disponible. La présélection du rôle depuis les liens et la comparaison des champs de confirmation restent à implémenter.
 
@@ -35,17 +37,17 @@ Les pages HTML restent à la racine de `frontend/public/` ; les styles, scripts 
 
 ```mermaid
 flowchart TD
-    Pages["Flux parrain et trois formulaires"] --> CSS["style.css"]
+    Pages["Sept pages HTML"] --> CSS["style.css"]
     Pages --> JS["main.js : loadPartial"]
     JS --> Header["header.html"]
-    JS --> Footer["footer.html : flux parrain seulement"]
+    JS --> Footer["footer.html : deux flux et profil"]
 ```
 
-Les trois formulaires partagent aussi l’image `assets/images/avatar-default.svg`. Le schéma représente les dépendances de fichiers, pas le parcours utilisateur.
+Les formulaires, les deux flux et le profil partagent l’image `assets/images/avatar-default.svg`. Le schéma représente les dépendances de fichiers, pas le parcours utilisateur.
 
-Le script remplace le contenu de secours des conteneurs identifiés par `site-header` et `site-footer`, lorsqu’ils existent. Les pages de formulaire n’ont pas de conteneur `site-footer` : leur pied de page public reste local. Il ne s’agit pas encore d’un affichage conditionné par une session utilisateur.
+Le script remplace le contenu de secours des conteneurs identifiés par `site-header` et `site-footer`, lorsqu’ils existent. L’accueil et les pages de formulaire n’ont pas de conteneur `site-footer` : leur pied de page public reste local. Il ne s’agit pas encore d’un affichage conditionné par une session utilisateur.
 
-Prochaine étape proposée : construire le flux étudiant à partir du wireframe, en réutilisant les composants existants. La configuration du profil reste à adapter au rôle parrain ; la validation visuelle complète des mini-cartes et du clavier reste à confirmer. Les retours enseignant du 14/10 sont consignés dans le journal et à revoir dans le plan ; seule leur suggestion documentaire Mermaid a été appliquée à ce stade.
+Les sept pages disposent désormais d’une première structure de contenu. Prochaine étape proposée : revue des écrans et de la navigation sur mobile et ordinateur, puis ajustements visuels selon les wireframes et les décisions produit. La configuration du profil reste à adapter au rôle parrain ; la validation visuelle complète des mini-cartes et du clavier reste à confirmer. Les retours enseignant du 14/10 sont consignés dans le journal et à revoir dans le plan ; seule leur suggestion documentaire Mermaid a été appliquée à ce stade.
 
 ## Lancement local
 
