@@ -432,3 +432,26 @@ Notes de Steve prises lors du retour enseignant, synthétisées sans ajout de re
 - Focus clavier, styles désactivés et liens ordinaires conservés. Les éléments qui naviguent restent des liens `a`, les actions des boutons `button` ; aucune interaction JavaScript ajoutée.
 - Plan actualisé pour distinguer ce point désormais traité des autres suggestions enseignant différées. Code et résumé générés et écrits par l’IA à la demande de Steve ; espaces Git vérifiés. Rendu du survol à confirmer par Steve.
 - Les modifications accueil/profil étaient encore non commitées au contrôle de départ ; aucun staging ni commit effectué par l’IA.
+
+### 20/10/2026 — Retour visuel à la pression des boutons
+
+- À la demande de Steve, ajout d’une seule règle partagée `.button:not(:disabled):active` avec `filter: brightness(0.85)` : assombrissement temporaire pendant la pression, sans soulignement ni déplacement. Les couleurs restent issues des variables existantes ; aucune nouvelle classe, variable, transition ou logique JavaScript.
+- `:active` représente l’état pressé, pas une sélection persistante après clic ; les boutons désactivés sont exclus et le focus clavier existant est conservé.
+- CSS et présente entrée générés et écrits par l’IA à la demande de Steve. Contrôle Git des espaces réussi ; effet visuel à vérifier dans le navigateur par Steve. Commit laissé à Steve.
+
+### 20/10/2026 — Répartition PHP/JavaScript et transfert de contexte
+
+- Steve réaffirme la priorité au serveur PHP pour les traitements qui lui reviennent ; JavaScript vanilla réservé aux interactions client et éventuels appels AJAX. Plan complété pour rendre la décision explicite, y compris rendu/inclusions, rôle, validation serveur, sessions, accès et données. CSS conserve la présentation et ses états.
+- Le chargeur JavaScript des fragments reste temporaire pendant la phase statique ; aucune migration PHP engagée. La proposition antérieure de commencer par une présélection du rôle en JavaScript est à revoir selon cette décision.
+- Handoff Markdown généré hors dépôt pour la prochaine conversation : état des pages, méthode pédagogique, responsabilités techniques, retours enseignant, vérifications restantes et changements non commitées au contrôle de départ. Aucun nouveau document de contexte ajouté au dépôt.
+- Documentation et fichier de transfert générés et écrits par l’IA à la demande de Steve ; espaces Git vérifiés. Aucun changement applicatif lors de cette étape, commit laissé à Steve.
+
+### 20/10/2026 — Revue globale avant changement de conversation
+
+- Relecture des sept pages, fragments communs, CSS, JavaScript, SVG et documents du dépôt. Aucun problème bloquant relevé pour le scaffold statique dans les contrôles effectués ; aucune validation fonctionnelle PHP ou conformité globale d’accessibilité déclarée.
+- Contrôles des sept pages : imbrication, unicité des identifiants, titre principal et structure principale, labels associés aux contrôles, références ARIA, attributs alt, chemins des liens/ressources et présence des conteneurs attendus. Liens Markdown locaux et clôture des blocs de code contrôlés ; XML du SVG valide.
+- Syntaxe JavaScript contrôlée avec Node ; simulation isolée du chargeur couvrant absence de conteneur, remplacement réussi, erreur HTTP et échec réseau. Contenu de secours conservé dans les deux cas d’erreur simulés. Ces contrôles ne sont pas des essais navigateur.
+- CSS relu : variables utilisées toutes définies et accolades équilibrées. Aucun parseur CSS complet disponible dans cette passe ; pas de nouvelle dépendance installée. Styles de pression/focus et retours à la ligne restent à confirmer visuellement.
+- Ajustements documentaires limités : date de l’arborescence, intégration provisoire des éléments communs et bilan de la phase UI dans le plan ; rappel de la répartition PHP/JavaScript dans le README. Historique du journal et périmètre fonctionnel conservés.
+- Restent ouverts : revue mobile/clavier et échec réel des fragments, choix de navigation/rôle, configuration parrain, présélection du rôle et confirmations, environnement PHP puis données/sessions. Aucun nouveau code applicatif ajouté lors de cette revue. `.gitignore` inchangé : aucun nouveau fichier à exclure identifié.
+- Revue, corrections documentaires et actualisation du fichier de transfert hors dépôt générées par l’IA à la demande de Steve ; espaces Git vérifiés. Aucun staging ni commit réalisé par l’IA.

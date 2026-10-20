@@ -49,6 +49,12 @@ Les différentes étapes seront donc construites progressivement afin de compren
 
 - PHP
 
+### Répartition des responsabilités — décision de Steve du 20/10/2026
+
+Privilégier PHP pour les traitements réalisables côté serveur : rendu et inclusions HTML, lecture du rôle demandé, validation des formulaires, sessions, contrôles d’accès et accès aux données via PDO/SQL. Réserver JavaScript vanilla aux interactions côté navigateur et aux éventuels appels AJAX, avec validation serveur conservée. Styles, états visuels et animations restent en CSS. Aucun framework prévu.
+
+Le chargement actuel du header/footer par JavaScript reste une solution provisoire de la maquette statique. Sa migration vers des inclusions PHP sera réalisée lors de la mise en place explicite de l’environnement PHP. La présélection du rôle par JavaScript proposée précédemment n’est pas une prochaine étape actée : elle sera revue selon cette répartition.
+
 ### Base de données
 
 - MySQL ou MariaDB
@@ -99,7 +105,7 @@ Branche de développement commune à l'équipe.
 
 ## 5. Structure actuelle du dépôt
 
-Au 14/10/2026, la structure de travail est la suivante :
+Au 20/10/2026, la structure de travail est la suivante :
 
 ```text
 /
@@ -295,7 +301,8 @@ L’IA peut préparer et rédiger ces documents à partir des éléments fournis
 - [ ] Adapter les domaines d’aide et leur formulation au rôle parrain
 - [ ] Confirmer le rendu mobile et la navigation clavier des mini-cartes
 - [ ] Présélection du rôle depuis les liens et comparaison des confirmations
-- [ ] Éléments communs intégrés aux autres pages selon la navigation publique/connectée retenue
+- [x] Header partagé sur sept pages et footers intégrés selon le découpage provisoire
+- [ ] Valider la navigation et le footer selon connexion/rôle
 - [ ] Navigation complète entre les pages
 - [ ] Responsive vérifié sur toutes les pages
 - [ ] Interactions métier JavaScript de base selon les besoins
@@ -310,7 +317,7 @@ Structure actuelle : voir la section 5, « Structure actuelle du dépôt ».
 **Décisions reportées :** direction artistique finale, navigation selon connexion/rôle, destinations FAQ/démarches/mentions légales, placement du footer en bas des pages courtes. Le footer reste dans le flux normal. L’absence de lien vers un profil sur la connexion est une décision d’interface, pas un contrôle d’accès : les protections réelles seront implémentées côté PHP.
 
 ### Phase 2 — Intégration UX/UI depuis Figma
-Commencée partiellement en parallèle de la phase 1 : première intégration depuis le wireframe V1 sur le flux parrain, la connexion, la création de compte et la configuration du profil. Direction artistique provisoire ; autres écrans et détails du wireframe à compléter. Les actualités restent une réservation visuelle d’une fonctionnalité ultérieure.
+Commencée partiellement en parallèle de la phase 1 : première intégration depuis le wireframe V1 sur les deux flux, la connexion, la création de compte et la configuration du profil ; accueil et profil proposés sans écran dédié. Les sept pages ont du contenu initial. Direction artistique, proportions et détails du wireframe restent à valider. Les actualités restent une réservation visuelle d’une fonctionnalité ultérieure.
 
 ### Phase 3+ — PHP / SQL / authentification / données dynamiques
 Non commencées.

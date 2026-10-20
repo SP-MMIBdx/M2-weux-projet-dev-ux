@@ -205,6 +205,10 @@ main > section + section {
 }
 
 /* États des boutons */
+.button:not(:disabled):active {
+  filter: brightness(0.85);
+}
+
 .button:focus-visible {
   outline: 2px solid var(--color-action);
   outline-offset: 3px;

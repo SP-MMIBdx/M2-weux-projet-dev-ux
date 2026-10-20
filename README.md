@@ -29,7 +29,7 @@ Les trois pages de formulaire utilisent la même silhouette décorative et un pi
 
 Le CSS commun suit une approche mobile-first avec des variables de présentation provisoires. Le JavaScript charge les fragments HTML communs ; il ne gère pas encore de logique métier.
 
-Le backend PHP et la base de données ne sont pas encore implémentés.
+Le backend PHP et la base de données ne sont pas encore implémentés. La suite privilégie PHP pour les traitements serveur et JavaScript vanilla pour les interactions client ; la répartition est précisée dans le [plan](docs/plan_dev.md).
 
 ## Organisation du frontend
 
