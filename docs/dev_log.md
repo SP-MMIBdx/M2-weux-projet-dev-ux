@@ -425,3 +425,10 @@ Notes de Steve prises lors du retour enseignant, synthétisées sans ajout de re
 - Ajout d’un wrapper `form-panel` autour de chacune des listes d’intérêts et de besoins du profil : fond jaune partagé derrière les pastilles `tag-list`, dont le fond était identique à celui de la page et donc peu distinct. Titres de section conservés hors des cartes.
 - Choix explicite de Steve d’utiliser ici les liens visuellement présentés en boutons ; la remarque enseignant sur ce sujet reste consignée et à revoir. Aucune nouvelle classe, variable ou modification CSS/JavaScript.
 - Correction HTML et présente entrée générées et écrites par l’IA à la demande de Steve. Espaces Git et destinations locales vérifiés ; rendu mobile à confirmer par Steve. Commit laissé à Steve.
+
+### 20/10/2026 — Suppression du soulignement des boutons
+
+- Après validation de l’accueil/profil par Steve, suppression de la règle `.button:not(:disabled):hover` qui ajoutait `text-decoration: underline`. La règle commune `.button` contient déjà `text-decoration: none` : aucune surcharge, classe ou variable ajoutée. Le soulignement observé pendant le clic venait de l’état de survol maintenu par le pointeur.
+- Focus clavier, styles désactivés et liens ordinaires conservés. Les éléments qui naviguent restent des liens `a`, les actions des boutons `button` ; aucune interaction JavaScript ajoutée.
+- Plan actualisé pour distinguer ce point désormais traité des autres suggestions enseignant différées. Code et résumé générés et écrits par l’IA à la demande de Steve ; espaces Git vérifiés. Rendu du survol à confirmer par Steve.
+- Les modifications accueil/profil étaient encore non commitées au contrôle de départ ; aucun staging ni commit effectué par l’IA.

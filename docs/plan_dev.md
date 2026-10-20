@@ -317,9 +317,10 @@ Non commencées.
 
 ### Retour enseignant du 14/10/2026 — à revisiter
 
-La synthèse des suggestions de Yannis Delmas est conservée dans `docs/dev_log.md`, à la date du 14/10/2026. Seule la conversion des schémas du plan en Mermaid a été appliquée.
+La synthèse des suggestions de Yannis Delmas est conservée dans `docs/dev_log.md`, à la date du 14/10/2026. Les schémas Mermaid ont été appliqués ; le 20/10, Steve a également demandé la suppression du soulignement au survol des éléments `.button`, en conservant les liens de navigation présentés en boutons et leur focus clavier.
 
-- [ ] Reprendre explicitement cette synthèse avec Steve lors d’une prochaine revue : ARIA et nom de navigation, classes/IDs des boutons, liens présentés en boutons, curseurs et soulignements, variables d’espacement, sélecteurs de pseudo-éléments, inclusions PHP et rôle de JavaScript/AJAX. Aucun de ces ajustements issus du retour enseignant n’a été implémenté ; aucune date de revue fixée. Cette liste reste ouverte jusqu’à discussion et décision pour chaque point.
+- [x] Retirer le soulignement au survol des boutons et liens `.button`, sans supprimer le focus clavier (20/10).
+- [ ] Reprendre les autres points de cette synthèse avec Steve : ARIA et nom de navigation, classes/IDs des boutons, présentation des liens, curseurs, variables d’espacement, sélecteurs de pseudo-éléments, inclusions PHP et rôle de JavaScript/AJAX. Ces autres ajustements restent à revoir ; aucune date fixée.
 
 **Décision de Steve :** conserver pour l’instant le chargement client du header/footer en JavaScript et l’environnement de prévisualisation actuel. Reporter l’introduction de PHP ainsi que les autres ajustements suggérés à une prochaine revue ; aucune migration ni refonte des contrôles engagée.
 

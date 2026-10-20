@@ -47,7 +47,7 @@ Les formulaires, les deux flux et le profil partagent l’image `assets/images/a
 
 Le script remplace le contenu de secours des conteneurs identifiés par `site-header` et `site-footer`, lorsqu’ils existent. L’accueil et les pages de formulaire n’ont pas de conteneur `site-footer` : leur pied de page public reste local. Il ne s’agit pas encore d’un affichage conditionné par une session utilisateur.
 
-Les sept pages disposent désormais d’une première structure de contenu. Prochaine étape proposée : revue des écrans et de la navigation sur mobile et ordinateur, puis ajustements visuels selon les wireframes et les décisions produit. La configuration du profil reste à adapter au rôle parrain ; la validation visuelle complète des mini-cartes et du clavier reste à confirmer. Les retours enseignant du 14/10 sont consignés dans le journal et à revoir dans le plan ; seule leur suggestion documentaire Mermaid a été appliquée à ce stade.
+Les sept pages disposent désormais d’une première structure de contenu. Prochaine étape proposée : revue des écrans et de la navigation sur mobile et ordinateur, puis ajustements visuels selon les wireframes et les décisions produit. La configuration du profil reste à adapter au rôle parrain ; la validation visuelle complète des mini-cartes et du clavier reste à confirmer. Les retours enseignant du 14/10 sont consignés dans le journal et à revoir dans le plan ; les schémas Mermaid et la suppression du soulignement au survol des boutons ont été appliqués ; les autres points restent à revoir.
 
 ## Lancement local
 
