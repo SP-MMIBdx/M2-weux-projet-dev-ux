@@ -55,6 +55,8 @@ Privilégier PHP pour les traitements réalisables côté serveur : rendu et inc
 
 Le chargement actuel du header/footer par JavaScript reste une solution provisoire de la maquette statique. Sa migration vers des inclusions PHP sera réalisée lors de la mise en place explicite de l’environnement PHP. La présélection du rôle par JavaScript proposée précédemment n’est pas une prochaine étape actée : elle sera revue selon cette répartition.
 
+**Ordre d’apprentissage précisé le 26/10/2026 :** Steve rapporte que l’enseignant souhaite une implémentation JavaScript avant PHP. Poursuivre de petites interactions client utiles, sans changer les responsabilités serveur prévues. Affichage/masquage des mots de passe implémenté ; retour sur la correspondance des confirmations proposé ensuite comme aide immédiate, avec validation PHP nécessaire lors de l’implémentation serveur. Les soumissions restent désactivées.
+
 ### Base de données
 
 - MySQL ou MariaDB
@@ -148,9 +150,10 @@ Le dossier `includes/` contient les fragments HTML partagés. La fonction `loadP
 ```mermaid
 flowchart TD
     Pages["Sept pages HTML"] --> CSS["style.css"]
-    Pages --> JS["main.js : loadPartial"]
+    Pages --> JS["main.js"]
     JS --> Header["header.html"]
     JS --> Footer["footer.html : deux flux et profil"]
+    JS --> Passwords["Afficher/masquer : connexion et inscription"]
 ```
 
 Les fichiers CSS et JavaScript se trouvent dans `assets/css/` et `assets/js/`, et les fragments dans `includes/`. Les formulaires, les deux flux et le profil utilisent `assets/images/avatar-default.svg`. L’accueil et les formulaires conservent un footer public local ; les deux flux et le profil chargent le footer commun. Ce schéma décrit les fichiers utilisés, pas un parcours utilisateur ni une gestion de session ; PHP n’est pas encore intégré.
@@ -259,6 +262,8 @@ Il ne doit pas remplacer le journal de développement ni la documentation techni
 
 Les explications approfondies sur les points ayant nécessité des clarifications et une synthèse quotidienne d’apprentissage continuent d’être préparées avec Steve. Ces supports Markdown sont remis séparément pour conservation personnelle hors dépôt, sans génération planifiée automatiquement. Aucun dossier local personnel n’est imposé ni référencé dans la documentation du projet.
 
+Pour la phase JavaScript, Steve saisit les premiers mécanismes après explication ligne par ligne ; l’IA intervient directement sur demande pour les corrections ou répétitions. La fiche de fin de journée détaille les liens HTML/JavaScript/CSS, paramètres et arguments, événements et callbacks, conditions et état du DOM, portée des variables, vérifications et questions de révision. Elle porte sur le code effectivement étudié, hors dépôt.
+
 Rythme retenu : journal mis à jour à chaque étape ; README et plan actualisés en fin de journée. Le périmètre fonctionnel est modifié uniquement si les décisions produit évoluent.
 
 Pour limiter les doublons, le dépôt conserve la description du produit dans la documentation technique, l’état et les décisions de travail dans le plan, et l’historique factuel dans le journal. Les explications détaillées restent dans les supports personnels. Les synthèses quotidiennes portent surtout sur le code nouveau ou modifié, ses interactions et les notions à réviser ; elles ne recopient pas toute l’application chaque jour.
@@ -299,20 +304,23 @@ L’IA peut préparer et rédiger ces documents à partir des éléments fournis
 - [x] Panneaux de formulaire et silhouette décorative partagés
 - [x] Centres d’intérêt et besoins statiques : cases natives présentées en mini-cartes
 - [ ] Adapter les domaines d’aide et leur formulation au rôle parrain
-- [ ] Confirmer le rendu mobile et la navigation clavier des mini-cartes
+- [x] Confirmer le rendu mobile et la navigation clavier des mini-cartes (confirmation de Steve)
 - [ ] Présélection du rôle depuis les liens et comparaison des confirmations
 - [x] Header partagé sur sept pages et footers intégrés selon le découpage provisoire
 - [ ] Valider la navigation et le footer selon connexion/rôle
 - [ ] Navigation complète entre les pages
 - [ ] Responsive vérifié sur toutes les pages
 - [ ] Interactions métier JavaScript de base selon les besoins
+- [x] Afficher/masquer indépendamment les mots de passe de connexion et d’inscription avec une fonction réutilisable
 - [ ] Vérifications navigateur complètes, clavier et cas d’échec du chargement
 
 Structure actuelle : voir la section 5, « Structure actuelle du dépôt ».
 
 **État actuel au 20/10/2026 :** le flux parrain dispose d’une première présentation responsive avec données illustratives et actions désactivées. Connexion et création de compte disposent de formulaires stylisés ; la configuration du profil contient les informations personnelles et deux groupes de choix multiples : six intérêts et sept besoins provisoires. Les options sont des mini-cartes jaunes utilisant `--color-surface`, avec cases natives visibles, état sélectionné en CSS et retour à la ligne. Titres et instructions restent hors des cartes. Les panneaux des informations personnelles et la silhouette décorative sont réutilisés sur les écrans de formulaire ; la couleur de surface reste provisoire et partagée avec le header/footer. Le groupe des besoins cible encore l’étudiant accompagné, sans adaptation au parrain. Le flux étudiant présente trois profils fictifs et des actions désactivées. L’accueil présente le service et les liens de démonstration ; le profil affiche un exemple statique de Lucia, sans préremplissage ni enregistrement. Ces deux derniers écrans ne disposent pas de wireframes dédiés et restent à valider. Les soumissions sont désactivées ; présélection du rôle et comparaison des confirmations restent à implémenter. Les tests visuels rapportés par Steve ne constituent pas encore une validation exhaustive du responsive ou de l’accessibilité. Aucun code PHP ou SQL n’a été introduit.
 
-**Prochaine étape proposée :** revoir les sept pages sur mobile et ordinateur, vérifier navigation et clavier, puis ajuster les dispositions selon les wireframes et valider les propositions accueil/profil. Confirmer également les mini-cartes. Navigation selon connexion/rôle, liste des choix et domaines d’aide du parrain restent à arbitrer ; l’affichage du profil n’est pas encore relié au formulaire de configuration.
+**Complément au 26/10/2026 :** Steve a confirmé les contrôles mobile/clavier des mini-cartes et le fonctionnement de la révélation du mot de passe de connexion, puis de sa fonction paramétrée. Deux boutons indépendants sont maintenant intégrés à l’inscription ; simulations IA réussies, essai navigateur de cette dernière correction encore à confirmer explicitement. Cela ne vaut pas validation exhaustive des sept écrans. Aucun PHP ni SQL introduit.
+
+**Prochaine étape proposée :** poursuivre l’apprentissage JavaScript avec un retour immédiat sur la correspondance des champs de confirmation, d’abord une paire puis réutilisation. Soumissions désactivées et validation serveur future conservées. Navigation selon connexion/rôle, liste des choix et domaines d’aide du parrain restent à arbitrer ; l’affichage du profil n’est pas encore relié au formulaire de configuration. Revue navigateur globale toujours ouverte, sans répéter les contrôles des mini-cartes déjà confirmés par Steve.
 
 **Décisions reportées :** direction artistique finale, navigation selon connexion/rôle, destinations FAQ/démarches/mentions légales, placement du footer en bas des pages courtes. Le footer reste dans le flux normal. L’absence de lien vers un profil sur la connexion est une décision d’interface, pas un contrôle d’accès : les protections réelles seront implémentées côté PHP.
 

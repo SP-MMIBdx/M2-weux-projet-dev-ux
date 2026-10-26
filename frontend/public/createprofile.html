@@ -24,9 +24,13 @@
         alt=""
         width="64"
         height="64"
-      >
+      />
 
-      <form class="auth-form" method="post" aria-describedby="registration-note">
+      <form
+        class="auth-form"
+        method="post"
+        aria-describedby="registration-note"
+      >
         <div class="form-panel">
           <div class="form-field">
             <label for="register-role">Type de compte</label>
@@ -47,7 +51,7 @@
               name="username"
               autocomplete="username"
               required
-            >
+            />
           </div>
         </div>
 
@@ -60,18 +64,20 @@
               name="email"
               autocomplete="email"
               required
-            >
+            />
           </div>
 
           <div class="form-field">
-            <label for="register-email-confirm">Confirmer ton adresse e-mail</label>
+            <label for="register-email-confirm"
+              >Confirmer ton adresse e-mail</label
+            >
             <input
               type="email"
               id="register-email-confirm"
               name="email_confirmation"
               autocomplete="email"
               required
-            >
+            />
           </div>
         </div>
 
@@ -84,18 +90,36 @@
               name="password"
               autocomplete="new-password"
               required
+            />
+            <button
+              type="button"
+              id="toggle-register-password"
+              class="button button--secondary"
+              aria-controls="register-password"
             >
+              Afficher le mot de passe
+            </button>
           </div>
 
           <div class="form-field">
-            <label for="register-password-confirm">Confirmer ton mot de passe</label>
+            <label for="register-password-confirm"
+              >Confirmer ton mot de passe</label
+            >
             <input
               type="password"
               id="register-password-confirm"
               name="password_confirmation"
               autocomplete="new-password"
               required
+            />
+            <button
+              type="button"
+              id="toggle-register-password-confirm"
+              class="button button--secondary"
+              aria-controls="register-password-confirm"
             >
+              Afficher la confirmation du mot de passe
+            </button>
           </div>
         </div>
 
@@ -103,9 +127,7 @@
           Maquette : la création de compte n’est pas encore disponible.
         </p>
 
-        <button type="submit" class="button" disabled>
-          Créer mon compte
-        </button>
+        <button type="submit" class="button" disabled>Créer mon compte</button>
 
         <p>Déjà un compte ? <a href="login.html">Connecte-toi</a></p>
       </form>

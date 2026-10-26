@@ -18,12 +18,43 @@ async function loadPartial(containerId, filePath) {
     const html = await response.text();
     container.innerHTML = html;
   } catch (error) {
-    console.error(
-      `Impossible de charger le fragment : ${filePath}`,
-      error
-    );
+    console.error(`Impossible de charger le fragment : ${filePath}`, error);
   }
 }
 
 loadPartial("site-header", "includes/header.html");
 loadPartial("site-footer", "includes/footer.html");
+
+// Affichage indépendant des champs de mot de passe
+function setupPasswordToggle(
+  inputId,
+  buttonId,
+  showLabel = "Afficher le mot de passe",
+  hideLabel = "Masquer le mot de passe"
+) {
+  const passwordInput = document.getElementById(inputId);
+  const toggleButton = document.getElementById(buttonId);
+
+  if (!passwordInput || !toggleButton) {
+    return;
+  }
+
+  toggleButton.addEventListener("click", function () {
+    if (passwordInput.type === "password") {
+      passwordInput.type = "text";
+      toggleButton.textContent = hideLabel;
+    } else {
+      passwordInput.type = "password";
+      toggleButton.textContent = showLabel;
+    }
+  });
+}
+
+setupPasswordToggle("login-password", "toggle-login-password");
+setupPasswordToggle("register-password", "toggle-register-password");
+setupPasswordToggle(
+  "register-password-confirm",
+  "toggle-register-password-confirm",
+  "Afficher la confirmation du mot de passe",
+  "Masquer la confirmation du mot de passe"
+);

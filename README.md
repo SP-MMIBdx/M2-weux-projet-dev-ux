@@ -15,7 +15,7 @@ Application web de parrainage destinée à faciliter l'intégration des étudian
 
 ## État du projet
 
-Au 20/10/2026, les sept pages du scaffold sont regroupées dans `frontend/public/`. Le projet reste une maquette statique en cours de construction.
+Au 26/10/2026, les sept pages du scaffold sont regroupées dans `frontend/public/`. Le projet reste une maquette statique en cours de construction, avec de premières interactions client.
 
 - Flux parrain : structure sémantique, carte de demande illustrative, tags, boutons désactivés et en-tête/pied de page partagés et stylisés.
 - Connexion : formulaire stylisé, panneaux de surface provisoire, silhouette de profil et liens vers la création de compte selon le rôle choisi.
@@ -27,9 +27,9 @@ Au 20/10/2026, les sept pages du scaffold sont regroupées dans `frontend/public
 
 Les trois pages de formulaire utilisent la même silhouette décorative et un pied de page public simplifié. Leurs soumissions restent désactivées : aucune connexion, création de compte ou sauvegarde de profil n’est disponible. La présélection du rôle depuis les liens et la comparaison des champs de confirmation restent à implémenter.
 
-Le CSS commun suit une approche mobile-first avec des variables de présentation provisoires. Le JavaScript charge les fragments HTML communs ; il ne gère pas encore de logique métier.
+Le CSS commun suit une approche mobile-first avec des variables de présentation provisoires. Le JavaScript charge les fragments HTML communs et permet d’afficher/masquer indépendamment les mots de passe de connexion et d’inscription, y compris la confirmation, avec une fonction réutilisable. Il ne gère pas de comptes ni de données enregistrées.
 
-Le backend PHP et la base de données ne sont pas encore implémentés. La suite privilégie PHP pour les traitements serveur et JavaScript vanilla pour les interactions client ; la répartition est précisée dans le [plan](docs/plan_dev.md).
+Le backend PHP et la base de données ne sont pas encore implémentés. Une phase d’apprentissage JavaScript vanilla précède l’introduction de PHP, conformément à la demande enseignant rapportée par Steve. PHP reste prévu pour les traitements serveur ; la répartition est précisée dans le [plan](docs/plan_dev.md).
 
 ## Organisation du frontend
 
@@ -38,16 +38,17 @@ Les pages HTML restent à la racine de `frontend/public/` ; les styles, scripts 
 ```mermaid
 flowchart TD
     Pages["Sept pages HTML"] --> CSS["style.css"]
-    Pages --> JS["main.js : loadPartial"]
+    Pages --> JS["main.js"]
     JS --> Header["header.html"]
     JS --> Footer["footer.html : deux flux et profil"]
+    JS --> Passwords["Afficher/masquer : connexion et inscription"]
 ```
 
 Les formulaires, les deux flux et le profil partagent l’image `assets/images/avatar-default.svg`. Le schéma représente les dépendances de fichiers, pas le parcours utilisateur.
 
 Le script remplace le contenu de secours des conteneurs identifiés par `site-header` et `site-footer`, lorsqu’ils existent. L’accueil et les pages de formulaire n’ont pas de conteneur `site-footer` : leur pied de page public reste local. Il ne s’agit pas encore d’un affichage conditionné par une session utilisateur.
 
-Les sept pages disposent désormais d’une première structure de contenu. Prochaine étape proposée : revue des écrans et de la navigation sur mobile et ordinateur, puis ajustements visuels selon les wireframes et les décisions produit. La configuration du profil reste à adapter au rôle parrain ; la validation visuelle complète des mini-cartes et du clavier reste à confirmer. Les retours enseignant du 14/10 sont consignés dans le journal et à revoir dans le plan ; les schémas Mermaid et la suppression du soulignement au survol des boutons ont été appliqués ; les autres points restent à revoir.
+Les sept pages disposent d’une première structure de contenu. Steve a confirmé les vérifications mobile et clavier des mini-cartes de configuration ; cela ne constitue pas une validation exhaustive des sept pages. Prochaine étape proposée : retour immédiat sur la correspondance des champs de confirmation, comme aide côté navigateur, avant la future validation serveur. La configuration reste à adapter au rôle parrain ; navigation selon rôle et vérifications navigateur globales restent ouvertes. Les retours enseignant du 14/10 sont consignés dans le journal et à revoir dans le plan ; les schémas Mermaid et la suppression du soulignement au survol des boutons ont été appliqués ; les autres points restent à revoir.
 
 ## Lancement local
 
