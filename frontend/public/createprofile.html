@@ -89,8 +89,10 @@
               id="register-password"
               name="password"
               autocomplete="new-password"
+              aria-describedby="register-password-strength"
               required
             />
+            <p id="register-password-strength"></p>
             <button
               type="button"
               id="toggle-register-password"
@@ -110,7 +112,7 @@
               id="register-password-confirm"
               name="password_confirmation"
               autocomplete="new-password"
-                aria-describedby="register-password-feedback"
+              aria-describedby="register-password-feedback"
               required
             />
             <p id="register-password-feedback"></p>

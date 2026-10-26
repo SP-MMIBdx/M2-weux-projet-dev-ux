@@ -85,3 +85,43 @@ function setupPasswordConfirmation() {
 }
 
 setupPasswordConfirmation();
+
+// Repères pédagogiques : ce contrôle simple n’est pas un score de sécurité.
+function getPasswordGuidance(password) {
+  if (password === "") {
+    return "";
+  }
+
+  const commonPatterns = ["123456", "abcdef", "azerty", "qwerty", "password", "motdepasse"];
+  const hasCommonPattern = commonPatterns.some(function (pattern) {
+    return password.toLowerCase().includes(pattern);
+  });
+
+  if (hasCommonPattern || /^(.)\1+$/u.test(password)) {
+    return "Motif prévisible : évite les suites courantes et les caractères répétés.";
+  }
+
+  if (Array.from(password).length < 15) {
+    return "Mot de passe court : vise au moins 15 caractères.";
+  }
+
+  return "Longueur suffisante pour ce repère. Privilégie une phrase de passe unique.";
+}
+
+function setupPasswordGuidance() {
+  const passwordInput = document.getElementById("register-password");
+  const feedback = document.getElementById("register-password-strength");
+
+  if (!passwordInput || !feedback) {
+    return;
+  }
+
+  function updateGuidance() {
+    feedback.textContent = getPasswordGuidance(passwordInput.value);
+  }
+
+  passwordInput.addEventListener("input", updateGuidance);
+  updateGuidance();
+}
+
+setupPasswordGuidance();
