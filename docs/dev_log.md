@@ -558,3 +558,36 @@ Notes de Steve prises lors du retour enseignant, synthétisées sans ajout de re
 - Deux variables ajoutées pour les éléments communs : `--color-header-footer`, initialement liée à `--color-action`, et `--color-on-header-footer`. Les couleurs du header/footer peuvent désormais évoluer indépendamment des surfaces des cartes.
 - Marque et liens du footer héritent de la couleur de leur conteneur. Contours de focus correspondants en `currentColor` pour rester visibles sur le fond sombre. Aucune modification HTML/JavaScript ou de disposition.
 - CSS et présente entrée générés et écrits par l’IA à la demande de Steve. Différence et espaces Git contrôlés ; rendu à consulter par Steve avant validation. Palette toujours provisoire ; commit laissé à Steve.
+
+### 26/10/2026 — Statut provisoire de la direction visuelle
+
+- Steve précise que la palette jaune/bleu actuelle reste un essai, sans validation définitive : l’intention est une interface moderne, accueillante, tournée vers les interactions sociales entre jeunes étudiants, avec de futurs visuels cartoon dans un esprit Discord.
+- Le jaune reste la couleur principale souhaitée. Le bleu marine testé et sa répartition sont à réévaluer ; aucune nouvelle couleur ou illustration ajoutée lors de cette clarification.
+- Changements CSS limités à la palette et à son application : valeurs centralisées dans `:root`, deux variables dédiées au header/footer, héritage de leur texte et contours de focus adaptés. Aucun changement de disposition ou de JavaScript dans cet essai visuel.
+- Steve travaille également sur PHP en parallèle. Cette entrée concerne uniquement la direction visuelle ; elle ne décrit ni ne valide l’avancement PHP. Aucun fichier PHP ni autre travail parallèle modifié pendant cette mise à jour.
+- Entrée générée et écrite par l’IA à la demande de Steve. Contrôle Git des espaces effectué ; commit laissé à Steve.
+
+### 26/10/2026 — Essai visuel plus ludique bleu vif / jaune doux
+
+- Steve autorise une direction plus expressive, y compris la révision du jaune. Remplacement des seules valeurs existantes dans `:root` : texte bleu nuit `#25264B`, fond légèrement lavande `#F5F4FF`, surfaces jaune doux `#FFE179`, bordures bleu violacé `#454783`, actions `#454BCE`, header/footer bleu vif `#5056DF` avec texte blanc. Le header/footer utilise désormais une valeur distincte de celle des actions.
+- Aucune classe, variable ou règle supplémentaire ; mise en page, typographie, états et logique conservés. Essai de palette pour consultation, sans nouvelle illustration ni décision de direction artistique définitive.
+- Calcul des contrastes des couleurs opaques : texte/fond 13.22:1, texte/carte 11.18:1, blanc/action 6.67:1, blanc/header-footer 5.62:1 et texte secondaire/jaune 5.17:1. Ces cinq couples dépassent 4.5:1 ; cela ne constitue pas une validation globale d’accessibilité, des états filtrés ou des boutons désactivés.
+- CSS et présente entrée générés et écrits par l’IA à la demande de Steve. Espaces Git vérifiés ; rendu navigateur à consulter par Steve. Travail PHP parallèle laissé séparé et inchangé ; commit laissé à Steve.
+
+### 26/10/2026 — Retour à la palette précédente
+
+- Steve ne retient pas l’essai bleu vif / jaune doux et demande son retrait. Restauration des seules valeurs de couleur antérieures : jaune `#FBB609`, bleu marine `#203653`, fond blanc chaud `#FAF9F6`, texte `#252A34`, bordures `#736344` ; header/footer à nouveau liés à la couleur d’action avec texte blanc chaud.
+- L’essai précédent reste dans le journal comme historique, sans constituer une direction validée. Couleur du fond et équilibre général de la palette à reconsidérer avant un prochain essai.
+- Restauration CSS et présente entrée générées et écrites par l’IA à la demande de Steve. Espaces Git vérifiés. Aucun changement de disposition, de JavaScript ni du travail PHP parallèle ; commit laissé à Steve.
+
+### 26/10/2026 — Bleu vif rétabli avec le jaune original
+
+- Après clarification, Steve choisit de restaurer les couleurs de l’essai bleu vif tout en conservant le jaune original `#FBB609` pour les surfaces.
+- Valeurs existantes actualisées : texte `#25264B`, fond lavande très pâle `#F5F4FF`, bordures `#454783`, actions `#454BCE`, header/footer `#5056DF` et texte blanc. Aucun ajout de règle, variable ou classe ; travail PHP parallèle inchangé.
+- Modification CSS et présente entrée générées et écrites par l’IA à la demande de Steve. Espaces Git vérifiés ; combinaison à consulter dans le navigateur. Les mesures de contraste de l’essai précédent sur le jaune doux ne décrivent pas ce jaune rétabli. Commit laissé à Steve.
+
+### 26/10/2026 — Texte sombre sur les surfaces jaunes
+
+- Steve conserve la combinaison bleu vif / fond lavande pâle / jaune original, mais demande un texte noir plutôt que bleu sur le jaune. Variable `--color-text` ramenée au quasi-noir `#222222` et texte de `.button--secondary` relié à cette variable plutôt qu’à la couleur d’action.
+- Texte courant, champs et tags suivent ainsi la même couleur sombre. Texte blanc sur les actions bleues et le header/footer conservé ; bordures et focus bleus inchangés. Aucune nouvelle variable, classe ou règle.
+- CSS et présente entrée générés et écrits par l’IA à la demande de Steve. Espaces Git vérifiés ; travail PHP parallèle inchangé et commit laissé à Steve.

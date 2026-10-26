@@ -3,16 +3,16 @@
 /* Valeurs provisoires de la maquette */
 :root {
   --font-body: Arial, Helvetica, sans-serif;
-  --color-text: #252A34;
-  --color-background: #FAF9F6;
+  --color-text: #222222;
+  --color-background: #F5F4FF;
   --content-max-width: 60rem;
   --color-surface: #FBB609;
-  --color-border: #736344;
+  --color-border: #454783;
   --radius-card: 0.75rem;
-  --color-action: #203653;
+  --color-action: #454BCE;
   --color-on-action: #FFFFFF;
-  --color-header-footer: var(--color-action);
-  --color-on-header-footer: #FAF9F6;
+  --color-header-footer: #5056DF;
+  --color-on-header-footer: #FFFFFF;
   --radius-control: 0.5rem;
   --form-max-width: 32rem;
   --color-input-background: #FFFFFF;
@@ -204,7 +204,7 @@ main > section + section {
 }
 
 .button--secondary {
-  color: var(--color-action);
+  color: var(--color-text);
   background-color: var(--color-surface);
 }
 
