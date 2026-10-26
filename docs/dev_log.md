@@ -605,3 +605,12 @@ Notes de Steve prises lors du retour enseignant, synthétisées sans ajout de re
 - Avant commit, Steve précise que le charbon reste à reconsidérer : cette teinte n’est pas validée définitivement. Note ajoutée par l’IA à sa demande.
 - Les liens et contours de focus du header/footer suivent déjà leur couleur de texte par héritage et `currentColor`. Aucun autre style, HTML, JavaScript ou travail PHP modifié.
 - CSS et présente entrée générés et écrits par l’IA à la demande de Steve. Espaces Git vérifiés ; rendu à consulter par Steve. Commit laissé à Steve.
+
+### 26/10/2026 — Revue de cohérence frontend avant poursuite PHP
+
+- Après le commit palette `843666b`, contrôle des sept pages : structure, titres principaux, labels, identifiants et références ARIA (dont contrôles des mots de passe), chemins locaux, classes présentes dans la feuille commune et soumissions désactivées. Aucun écart bloquant relevé dans ces contrôles sources.
+- Contenus de secours header/footer comparés aux fragments partagés : cohérents sur toutes les pages qui les chargent. Palette commune crème/jaune/vert/charbon et texte sombre appliqués via variables ; charbon toujours à reconsidérer. États de focus et de sélection distincts des couleurs de remplissage.
+- Syntaxe du JavaScript actuel vérifiée, y compris les interactions de mots de passe ajoutées dans le travail parallèle. Variables CSS définies, accolades équilibrées, SVG XML, liens documentaires et clôture des blocs Markdown contrôlés. Aucun nouveau test navigateur ni validation CSS complète pendant cette revue.
+- Écarts de périmètre conservés : pas de navigation conditionnée par session/rôle ; profil fictif non relié au formulaire ; configuration encore orientée étudiant ; e-mails non comparés. Le bloc daté du 20/10 du plan reste un instantané antérieur et ne décrit pas les nouvelles interactions du 26/10 ; sa mention de surface partagée avec le header/footer a été dépassée par les essais de palette consignés ci-dessus.
+- Fichiers préparatoires PHP/SQL désormais visibles dans `backend/` : existence constatée seulement, sans lecture des configurations privées ni revue ou modification de ce travail parallèle. L’état PHP et les prochains changements de routes/inclusions sont à documenter dans cette étape séparée ; cette revue ne les valide pas.
+- Revue et présente entrée générées et écrites par l’IA à la demande de Steve. Aucun changement applicatif réalisé ; espaces Git vérifiés, commit laissé à Steve.
