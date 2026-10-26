@@ -591,3 +591,17 @@ Notes de Steve prises lors du retour enseignant, synthétisées sans ajout de re
 - Steve conserve la combinaison bleu vif / fond lavande pâle / jaune original, mais demande un texte noir plutôt que bleu sur le jaune. Variable `--color-text` ramenée au quasi-noir `#222222` et texte de `.button--secondary` relié à cette variable plutôt qu’à la couleur d’action.
 - Texte courant, champs et tags suivent ainsi la même couleur sombre. Texte blanc sur les actions bleues et le header/footer conservé ; bordures et focus bleus inchangés. Aucune nouvelle variable, classe ou règle.
 - CSS et présente entrée générés et écrits par l’IA à la demande de Steve. Espaces Git vérifiés ; travail PHP parallèle inchangé et commit laissé à Steve.
+
+### 26/10/2026 — Essai de la palette de référence cartoon
+
+- À la demande de Steve après partage de sa palette précédente, essai des couleurs proposées : fond crème `#E9E6DD`, cartes jaunes `#E4CF72`, actions vertes `#64CE80`, header/footer saumon `#CB5A52`, texte et bordures quasi-noirs `#111113`. Champs blancs conservés ; rose et bleu de la référence non ajoutés.
+- Modification des valeurs de couleur existantes. Bordure des boutons, contours de focus des contrôles et contour des tags sélectionnés reliés à `--color-border` plutôt qu’au vert d’action pour conserver des repères sombres sur les fonds clairs. Aucun ajout de classe, variable ou règle, aucune modification des épaisseurs, arrondis, disposition, HTML ou JavaScript.
+- Contrastes calculés des couples opaques : texte/fond 15.11:1, texte/jaune 12.10:1, texte/vert 9.59:1, texte/saumon 4.60:1 et texte/champ blanc 18.86:1. Ces cinq couples dépassent 4.5:1 ; états désactivés et filtrés non couverts par ces mesures, sans déclaration de conformité globale.
+- CSS et présente entrée générés et écrits par l’IA à la demande de Steve. Différence et espaces Git contrôlés ; rendu navigateur à consulter avant validation. Travail PHP parallèle inchangé ; commit laissé à Steve.
+
+### 26/10/2026 — Header/footer charbon pour équilibrer la palette
+
+- Steve conserve le fond crème, les cartes jaunes et les actions vertes, mais ne retient pas le saumon. Modification des deux seules variables header/footer : fond charbon `#242426` et texte crème `#E9E6DD`.
+- Avant commit, Steve précise que le charbon reste à reconsidérer : cette teinte n’est pas validée définitivement. Note ajoutée par l’IA à sa demande.
+- Les liens et contours de focus du header/footer suivent déjà leur couleur de texte par héritage et `currentColor`. Aucun autre style, HTML, JavaScript ou travail PHP modifié.
+- CSS et présente entrée générés et écrits par l’IA à la demande de Steve. Espaces Git vérifiés ; rendu à consulter par Steve. Commit laissé à Steve.
