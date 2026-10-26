@@ -305,7 +305,9 @@ L’IA peut préparer et rédiger ces documents à partir des éléments fournis
 - [x] Centres d’intérêt et besoins statiques : cases natives présentées en mini-cartes
 - [ ] Adapter les domaines d’aide et leur formulation au rôle parrain
 - [x] Confirmer le rendu mobile et la navigation clavier des mini-cartes (confirmation de Steve)
-- [ ] Présélection du rôle depuis les liens et comparaison des confirmations
+- [ ] Présélection du rôle depuis les liens
+- [x] Retour JavaScript sur la correspondance des mots de passe (simulations IA réussies, fonctionnement navigateur confirmé par Steve)
+- [ ] Comparaison des confirmations e-mail et validation serveur des formulaires
 - [x] Header partagé sur sept pages et footers intégrés selon le découpage provisoire
 - [ ] Valider la navigation et le footer selon connexion/rôle
 - [ ] Navigation complète entre les pages
@@ -320,7 +322,7 @@ Structure actuelle : voir la section 5, « Structure actuelle du dépôt ».
 
 **Complément au 26/10/2026 :** Steve a confirmé les contrôles mobile/clavier des mini-cartes et le fonctionnement de la révélation du mot de passe de connexion, puis de sa fonction paramétrée. Deux boutons indépendants sont maintenant intégrés à l’inscription ; simulations IA réussies, essai navigateur de cette dernière correction encore à confirmer explicitement. Cela ne vaut pas validation exhaustive des sept écrans. Aucun PHP ni SQL introduit.
 
-**Prochaine étape proposée :** poursuivre l’apprentissage JavaScript avec un retour immédiat sur la correspondance des champs de confirmation, d’abord une paire puis réutilisation. Soumissions désactivées et validation serveur future conservées. Navigation selon connexion/rôle, liste des choix et domaines d’aide du parrain restent à arbitrer ; l’affichage du profil n’est pas encore relié au formulaire de configuration. Revue navigateur globale toujours ouverte, sans répéter les contrôles des mini-cartes déjà confirmés par Steve.
+**Prochaine étape proposée :** après le commit de la comparaison des mots de passe par Steve, ajouter un indicateur pédagogique de robustesse sur le champ de création du mot de passe, puis réutiliser la comparaison pour les e-mails. Critères et présentation de l’indicateur à définir ; aucun niveau de sécurité garanti par une estimation client. Soumissions désactivées et validation serveur future conservées. Navigation selon connexion/rôle, liste des choix et domaines d’aide du parrain restent à arbitrer ; l’affichage du profil n’est pas encore relié au formulaire de configuration. Revue navigateur globale toujours ouverte, sans répéter les contrôles des mini-cartes déjà confirmés par Steve.
 
 **Décisions reportées :** direction artistique finale, navigation selon connexion/rôle, destinations FAQ/démarches/mentions légales, placement du footer en bas des pages courtes. Le footer reste dans le flux normal. L’absence de lien vers un profil sur la connexion est une décision d’interface, pas un contrôle d’accès : les protections réelles seront implémentées côté PHP.
 

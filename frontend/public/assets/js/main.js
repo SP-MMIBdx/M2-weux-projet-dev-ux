@@ -58,3 +58,30 @@ setupPasswordToggle(
   "Afficher la confirmation du mot de passe",
   "Masquer la confirmation du mot de passe"
 );
+
+// Retour immédiat sur la confirmation du mot de passe
+function setupPasswordConfirmation() {
+  const passwordInput = document.getElementById("register-password");
+  const confirmationInput = document.getElementById("register-password-confirm");
+  const feedback = document.getElementById("register-password-feedback");
+
+  if (!passwordInput || !confirmationInput || !feedback) {
+    return;
+  }
+
+  function updateFeedback() {
+    if (confirmationInput.value === "") {
+      feedback.textContent = "";
+    } else if (passwordInput.value === confirmationInput.value) {
+      feedback.textContent = "Les mots de passe correspondent.";
+    } else {
+      feedback.textContent = "Les mots de passe ne correspondent pas.";
+    }
+  }
+
+  passwordInput.addEventListener("input", updateFeedback);
+  confirmationInput.addEventListener("input", updateFeedback);
+  updateFeedback();
+}
+
+setupPasswordConfirmation();
