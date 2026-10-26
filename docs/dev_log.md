@@ -19,13 +19,6 @@ Lorsque l'IA intervient de manière importante dans une phase, son rôle est pr�
 
 L’IA est également utilisée pour générer et rédiger les synthèses de ce journal à partir de la lecture du code, de la documentation et des différences Git du dépôt local, dans les limites des permissions d’accès accordées aux dossiers du projet. Les synthèses sont proposées pour ajout manuel ou écrites directement dans le fichier à la demande de Steve. Elles s’appuient aussi sur les échanges de la séance et distinguent les vérifications effectuées par l’IA des tests navigateur rapportés par Steve. Leur relecture et leur validation avant commit restent sous la responsabilité de l’équipe.
 
-07/10/2026
-- Static frontend scaffold created.
-- Seven preliminary pages added.
-- Shared CSS/JS/assets structure established.
-- No PHP or database implementation yet.
-- AI used to assist with architecture planning and documentation.
-
 ### Organisation Git actuelle
 
 Pendant la construction de la première base frontend, Steve travaille directement sur `main`.
@@ -243,3 +236,222 @@ Prochaine étape : styliser la carte de demande, les tags et les boutons. Mise �
 - Steve a retiré les deux supports pédagogiques du dépôt pour les conserver personnellement. Les explications approfondies et synthèses quotidiennes continueront d’être fournies séparément, hors du dépôt.
 - Arborescence et règles documentaires du plan actualisées ; liens vers les fichiers retirés supprimés du README et du journal. Les entrées historiques restent conservées comme trace des étapes précédentes.
 - Mise à jour documentaire réalisée par l’IA ; aucun changement applicatif ni modification de `.gitignore`. Révision de compréhension reportée à la prochaine séance avec Steve.
+
+### 14/10/2026 — Styles du formulaire de connexion et choix d’inscription
+
+- Ajout des variables de largeur maximale du formulaire (`32rem`) et de fond des champs, distinct du gris des surfaces communes.
+- Mise en page du formulaire et des groupes label/champ en colonnes Flexbox, avec espacements, champs fluides, hauteur minimale et focus visible.
+- Ajout des liens d’inscription étudiant et parrain vers `createprofile.html`, avec les paramètres `role=etudiant` et `role=parrain`. La page cible reste un placeholder et ne lit pas encore ces valeurs ; aucune attribution de droits ni création de compte n’est implémentée.
+- Réutilisation de `.button` sur les liens : centrage avec `inline-flex`, suppression du soulignement par défaut et sélecteur de survol `:not(:disabled)` compatible avec liens et boutons actifs.
+- Choix d’inscription empilés pour le mobile ; soumission de connexion conservée désactivée.
+- Normalisation de la casse de la couleur `#d9d9d9`, sans changement de rendu. Commentaire CSS vide retiré du sélecteur de focus lors de la revue.
+
+**Vérifications :** Steve confirme les contrôles proposés : affichage aux petites largeurs et sur desktop, focus clavier, labels cliquables, liens vers la page de création avec le paramètre attendu et bouton de connexion inactif. Revue des différences et contrôle Git des espaces effectués par l’IA. L’authentification et la prise en compte du rôle restent à implémenter.
+
+**Rôle de l’IA :** proposition et explication du code saisi par Steve, revue, suppression du commentaire vide et rédaction du journal. Commit demandé par Steve. README et plan restent réservés au bilan EOD.
+
+**Prochaine étape :** construire la page de création de compte en réutilisant les styles de formulaire, puis traiter explicitement le choix du rôle. Révision JavaScript reportée après la progression UI à la demande de Steve.
+
+### 14/10/2026 — Formulaire statique de création de compte
+
+- Remplacement des placeholders de `createprofile.html` par le formulaire de création de compte : nom d’utilisateur, e-mail et confirmation, mot de passe et confirmation, labels associés et attributs d’autocomplétion adaptés.
+- Réutilisation du header partagé, du footer public local et des classes de formulaire. Titre de page actualisé et lien de retour vers la connexion ajouté.
+- Ajout d’un sélecteur obligatoire de type de compte, utilisable également lors d’un accès direct à la page. Les valeurs `etudiant` et `parrain` correspondent aux paramètres des liens de connexion, mais aucune présélection depuis l’URL n’est encore implémentée.
+- Extension des styles et du focus des champs aux éléments `select` via les sélecteurs partagés.
+- Soumission conservée désactivée : aucune création de compte, vérification de concordance des confirmations ni attribution de droits implémentée.
+- Correction par l’IA, à la demande de Steve, de l’imbrication du champ rôle : rôle et nom d’utilisateur sont désormais deux groupes frères directement dans le formulaire, avec l’espacement prévu entre les champs.
+
+**Vérifications :** Steve confirme le rendu et les interactions proposés lors des étapes précédentes. Relecture HTML/CSS et contrôle des espaces effectués par l’IA ; le rendu après correction de l’imbrication reste à confirmer par Steve.
+
+**Rôle de l’IA :** proposition et explication du code, revue, correction ciblée autorisée et rédaction du journal. Staging et commit laissés à Steve ; README et plan seront actualisés à EOD.
+
+**Prochaine étape :** poursuivre les écrans du wireframe ; conserver la présélection du rôle et la validation des confirmations comme tâches explicites à traiter ultérieurement.
+
+### 14/10/2026 — Écart visuel identifié sur les formulaires
+
+- Relecture visuelle du wireframe V1 à la demande de Steve : la connexion présente deux conteneurs gris arrondis séparés, autour de l’identifiant et du mot de passe. La création de compte présente un conteneur identifiant, un groupe e-mail/confirmation et un groupe mot de passe/confirmation.
+- Les formulaires actuels disposent des champs et de leurs styles, mais pas encore de ces surfaces de regroupement. Leur structure visuelle reste donc partielle ; les checkpoints précédents ne constituent pas une validation de fidélité complète au wireframe.
+- À prévoir lors de la prochaine passe des formulaires : une classe de panneau réutilisable, utilisant les variables de surface, bordure et arrondi existantes ; regrouper chaque paire de confirmation au lieu d’ajouter une seule carte autour de tout le formulaire. Conserver une disposition mobile-first et les labels accessibles.
+- L’icône de profil au-dessus des champs est également absente et reste à intégrer ou à arbitrer. Le placement des labels et les proportions seront revus avec la maquette ; aucune couleur ou dimension finale n’est figée.
+- Constat et note rédigés par l’IA après comparaison visuelle ; aucun fichier applicatif modifié. La construction des autres écrans peut continuer en conservant ces écarts ouverts.
+
+### 14/10/2026 — Informations personnelles du profil
+
+- Entrée rédigée après le commit `b2e23a5` pour compléter le journal sans modifier l’historique Git.
+- Remplacement des placeholders de `profileconfiguration.html` par un formulaire : nom affiché, pays d’origine, parcours d’études et description multiligne ; header partagé et footer public local réutilisés.
+- Labels reliés aux champs et aides textuelles associées avec `aria-describedby`. Champs obligatoires non définis à ce stade, en attente de décision produit.
+- Extension des styles communs et du focus aux `textarea`, avec redimensionnement vertical. Virgule manquante entre les sélecteurs `select` et `textarea` signalée en revue puis corrigée par Steve avant commit.
+- Soumission désactivée et absence d’enregistrement explicites. Centres d’intérêt, besoins et icône de profil restent à construire ; cet écran est encore partiel.
+
+**Vérifications :** Steve a confirmé le fonctionnement de la première version, puis signalé la correction CSS et son commit. Présence de la virgule vérifiée dans le fichier sauvegardé ; pas de nouveau test navigateur réalisé par l’IA.
+
+**Rôle de l’IA :** proposition et explication du code, revue ciblée et rédaction différée du journal. Code applicatif et commit réalisés par Steve.
+
+**Prochaine étape :** ajouter les panneaux gris des formulaires de connexion et de création de compte, puis poursuivre les éléments manquants des wireframes.
+
+### 14/10/2026 — Synthèse du retour de Yannis Delmas
+
+Notes de Steve prises lors du retour enseignant, synthétisées sans ajout de recommandations de l’IA :
+
+- Appréciation générale positive ; CSS jugé peu chargé.
+- `aria-labelledby` à revoir : l’utiliser seulement lorsque son utilité est justifiée. Utilité de `<nav aria-label="Navigation de pied de page">` également à revoir.
+- Utiliser des flowcharts Mermaid dans les documents Markdown.
+- Remarque sur « class button for an ID button » : jugé inutile ou trop chargé.
+- Préférer les inclusions du header/footer en PHP côté serveur ; réserve sur le référencement avec leur chargement en JavaScript.
+- Garder JavaScript pour les interactions et AJAX ; support de cours fourni à ce sujet.
+- Éviter les liens transformés visuellement en boutons, notamment la classe `button` sur les liens ; distinguer la soumission d’un formulaire.
+- Curseurs des boutons et textes à revoir (`pointer` / `inherit`, selon les notes prises).
+- Soulignement des boutons à revoir. Référence partagée : https://cssbuttons.io/.
+- Définir les espacements standards en variables avec des multiples simples : unité, demi-unité et double, pour gérer marges et paddings.
+- Simplifier `*::before` et `*::after` en `::before` et `::after`.
+
+**Modification documentaire effectuée :** conversion par l’IA des sept schémas de processus du plan en Mermaid ; arborescences conservées en texte et caractère `x` isolé retiré. Contrôle des références de nœuds et des espaces effectué ; rendu Mermaid à vérifier dans un aperçu compatible.
+
+**Décision de Steve, distincte du retour enseignant :** conserver le script JavaScript comme inclusion côté client pour cette phase et reporter PHP. Hormis Mermaid, les suggestions sont consignées pour être revisitées, sans modification applicative pour le moment. Aucun staging ni commit réalisé par l’IA.
+
+### 14/10/2026 — Panneaux du formulaire de connexion
+
+- Réutilisation de la règle `.form-panel` déjà ajoutée par Steve dans le CSS : fond gris, bordure, arrondi et espacements fondés sur les variables existantes.
+- Ajout par l’IA, à la demande de Steve, d’un panneau distinct autour de chacun des deux groupes label/champ de `login.html`, conformément au regroupement du wireframe.
+- Conservation des labels, identifiants, attributs de saisie et du bouton désactivé. Message de maquette et soumission restent hors des panneaux.
+- Vérification structurelle des deux panneaux et de leurs champs, puis contrôle Git des espaces. Rendu mobile et focus clavier après cette modification à confirmer dans le navigateur par Steve.
+- Panneaux de création de compte encore à intégrer. Aucun ajustement issu du retour enseignant appliqué lors de cette étape ; revue différée maintenue. Staging et commit laissés à Steve.
+
+### 14/10/2026 — Extension des panneaux et silhouette de profil
+
+- Rendu des panneaux de connexion confirmé par Steve avant extension.
+- Création de compte : panneaux distincts pour le rôle et le nom d’utilisateur, puis regroupement e-mail/confirmation et mot de passe/confirmation dans deux panneaux. Le panneau de rôle correspond au sélecteur ajouté au parcours, absent du dessin initial.
+- Configuration du profil : panneaux pour le nom affiché, le groupe pays/parcours et la description. Les champs restent empilés pour cette passe mobile-first ; la disposition côte à côte du wireframe n’est pas encore reproduite.
+- Réutilisation de `.form-panel`, sans duplication de ses styles. Indentation du contenu principal de la création de compte harmonisée pour rendre les groupes lisibles.
+- Ajout d’une silhouette SVG locale commune dans `assets/images/avatar-default.svg`, affichée au-dessus des formulaires de connexion, création de compte et configuration. Style `.auth-avatar` centré, largeur de 4rem, hauteur proportionnelle et largeur maximale de 100 %.
+- Image décorative avec `alt=""` : aucun compte réel ni photo utilisateur représenté, aucun téléversement implémenté. Dimensions HTML indiquées pour réserver la place de l’image.
+- Champs, labels et descriptions conservés ; soumissions toujours désactivées. Les retours enseignant restent différés, sans passage à PHP.
+
+**Vérifications :** contrôle structurel des groupes, de l’imbrication HTML, des identifiants et références label/ARIA, de la présence de l’image et des soumissions désactivées sur les trois pages ; syntaxe XML du SVG et contrôle Git des espaces réussis. Steve confirme ensuite le bon fonctionnement lors de sa vérification navigateur avant commit.
+
+**Rôle de l’IA :** modifications applicatives et documentation réalisées à la demande de Steve. Staging et commit laissés à Steve.
+
+### 14/10/2026 — Actualisation du README
+
+- Mise à jour par l’IA, à la demande de Steve, du bilan des sept pages après le commit des panneaux et de la silhouette : quatre écrans développés partiellement, trois placeholders.
+- Distinction entre la stack utilisée et le backend prévu ; rappel des soumissions désactivées, de la présélection du rôle et des confirmations non implémentées.
+- Ajout d’un schéma Mermaid des fichiers partagés et explication de la différence entre le footer chargé par JavaScript sur le flux parrain et les footers publics locaux des formulaires.
+- Prochaine étape indiquée : centres d’intérêt et besoins du profil. Revue différée des retours enseignant maintenue.
+- Aucun fichier applicatif modifié. Plan de développement et documentation technique laissés pour le bilan de fin de journée.
+
+**Vérifications :** contenu confronté aux pages et au chargeur JavaScript existants ; contrôle Git des espaces. Rendu graphique Mermaid non vérifié dans cette passe. Commit laissé à Steve.
+
+### 14/10/2026 — Clarification du schéma et synchronisation du plan
+
+- Capture fournie par Steve : Mermaid est bien rendu, mais le schéma présente deux branches déconnectées. Simplification en un seul graphe des dépendances communes, avec des libellés courts ; image et footers publics expliqués dans le texte voisin.
+- Même schéma ajouté dans la section 5 du plan de développement, à la demande de Steve. Mise à jour de l’arborescence avec le SVG, du périmètre des inclusions et de l’état d’avancement au 14/10 pour correspondre au README.
+- Checklist actualisée : formulaires, panneaux et silhouette présents ; intérêts/besoins, présélection du rôle et confirmations restent à traiter. Aucun changement applicatif ni application des retours enseignant différés.
+
+**Vérifications :** schémas identiques dans les deux documents et contrôle Git des espaces ; nouvel aperçu graphique à confirmer. Modifications documentaires réalisées par l’IA, commit laissé à Steve.
+
+### 14/10/2026 — Centres d’intérêt et besoins du profil
+
+- Code HTML/CSS et présente entrée du journal générés et écrits par l’IA à la demande de Steve, pour consultation et validation humaine avant commit.
+- Remplacement du commentaire d’attente dans `profileconfiguration.html` par deux groupes natifs `fieldset` / `legend` : six centres d’intérêt et sept besoins, issus des exemples de la documentation technique. Liste provisoire, sans catalogue métier définitif.
+- Cases à cocher indépendantes, chacune imbriquée dans son `label` pour rendre le texte cliquable sans ajouter d’identifiant ni d’ARIA redondant. Noms `interests[]` et `needs[]` prévus pour transmettre plusieurs valeurs à PHP ultérieurement ; aucun traitement serveur ajouté.
+- Réutilisation de `form-panel` et des variables existantes, sans nouvelle classe CSS. Trois règles ciblées ajoutées : neutralisation de la marge et de la largeur minimale des fieldsets, légende en gras, labels alignés avec espacement et hauteur minimale de 2.75rem. Les cases conservent leur apparence et leur focus natifs, hors des règles de saisie pleine largeur de `form-field`.
+- Couleur provisoire `--color-surface: #FBB609` modifiée par Steve avant cette intervention et conservée ; elle s’applique aussi au header/footer et aux autres composants qui utilisent cette variable.
+- Aucune option imposée ou présélectionnée. Le groupe des besoins décrit actuellement l’étudiant accompagné ; adaptation aux domaines d’aide du parrain différée avec la gestion du rôle. Soumission toujours désactivée, aucune sauvegarde ni nouvelle logique JavaScript.
+
+**Vérifications :** imbrication HTML, labels des treize cases, unicité des identifiants et valeurs par groupe, et bouton de soumission désactivé contrôlés ; contrôle Git des espaces réussi. Rendu mobile et navigation clavier à vérifier par Steve, sans validation navigateur revendiquée par l’IA. README et plan à synchroniser lors du prochain bilan après validation. Commit laissé à Steve.
+
+### 14/10/2026 — Titres des groupes à l’intérieur des cartes
+
+- Après la capture de Steve montrant les légendes sur la bordure native des fieldsets, déplacement de `form-panel` vers un `div` entourant chacun des deux groupes. La carte porte désormais le fond, la bordure et le padding ; `fieldset` et `legend` conservent leur rôle sémantique à l’intérieur.
+- Modification des règles CSS existantes : fieldsets sans bordure ni padding, disposition en colonne avec un écart de 1rem ; légendes sans padding avec une marge basse de 1rem. Aucune nouvelle classe, couleur ou logique JavaScript ; choix et labels inchangés.
+- Correction et entrée du journal générées et écrites par l’IA à la demande de Steve. Contrôle des deux wrappers et des espaces Git ; rendu navigateur à confirmer par Steve. Commit laissé à Steve.
+
+### 14/10/2026 — Références de la documentation technique
+
+- Relecture du document fonctionnel et ajout d’un court bloc précisant son rôle : périmètre cible, scénarios et lots prévus, distincts de l’état d’implémentation.
+- Ajout des liens relatifs vers README, plan, journal et wireframes, avec leur fonction respective ; lien PDF explicite également dans la section maquette. Date de mise à jour actualisée, sans modification des scénarios ni des lots.
+- Modification et résumé générés et écrits par l’IA à la demande de Steve, sans duplication du suivi détaillé. Cibles des liens locaux et espaces Git vérifiés. Aucun code applicatif modifié ; commit laissé à Steve.
+
+### 14/10/2026 — Mini-cartes de sélection des tags
+
+- À la demande de Steve, remplacement de la présentation en listes par des mini-cartes sélectionnables pour les intérêts et besoins. Clarification retenue : fond jaune via `--color-surface` sur chaque option, sans grande carte derrière le groupe ; titres et instructions sur le fond de page.
+- Suppression des deux wrappers `form-panel` autour des fieldsets et ajout d’un conteneur `tag-options` autour des choix de chaque groupe. Une seule nouvelle classe, réutilisée pour les deux groupes ; fieldsets, légendes, labels et treize cases natives conservés.
+- Disposition Flexbox avec retour à la ligne ; styles des labels adaptés en réutilisant les variables de surface, bordure et arrondi. Sélection signalée par la coche native et un contour intérieur CSS (`:has(input:checked)`), sans changement de dimensions. Focus du groupe label signalé par un contour extérieur (`:focus-within`). Aucun JavaScript ni traitement PHP ajouté.
+- Code et présente entrée générés et écrits par l’IA à la demande de Steve. Contrôle Git des espaces réussi ; présentation mobile, sélection multiple et navigation clavier à confirmer dans le navigateur par Steve. Commit laissé à Steve.
+
+### 19/10/2026 — Bilan documentaire différé de la séance du 14/10
+
+- Relecture du code actuel et de l’historique : mini-cartes présentes dans le commit `74e419e`, suivi de `bf442fc` ; arbre de travail propre avant cette mise à jour. Aucun commit effectué par l’IA.
+- README et état d’avancement du plan synchronisés : intérêts et besoins statiques présents, six et sept choix respectivement ; adaptation au rôle parrain, présélection du rôle, comparaison des confirmations et soumissions restent ouverts. Remplacement de la mention périmée des panneaux gris par la surface provisoire actuelle.
+- Prochaine étape proposée : flux étudiant du wireframe, sans démarrage applicatif dans cette passe. Revues enseignant du 14/10 maintenues en attente, inclusions JavaScript conservées.
+- Journal relu comme historique : les étapes intermédiaires (listes puis wrappers puis mini-cartes) restent datées, sans réécriture rétrospective. Le bon affichage de la correction des légendes avait été confirmé par Steve ; aucun résultat de test navigateur supplémentaire des mini-cartes n’est déduit du seul commit.
+- Documentation technique relue : son rôle de spécification cible et ses liens restent adaptés ; aucune duplication du bilan d’implémentation ajoutée.
+- Résumé personnel Markdown de la séance du 14/10 généré hors dépôt, dans l’espace local de fichiers de cette conversation : composants, formulaires, accessibilité, variables, Flexbox, sélection CSS et rappel détaillé du chargeur JavaScript, avec questions de compréhension. Aucun lien personnel ajouté au dépôt.
+
+**Rôle de l’IA :** revue et rédaction documentaire réalisées à la demande de Steve le 19/10. Vérification des liens Markdown locaux et contrôle Git des espaces ; aucun test navigateur effectué pendant cette passe. Aucun code applicatif modifié ; commit laissé à Steve.
+
+### 20/10/2026 — Première structure du flux étudiant
+
+- Remplacement du placeholder de `fluxetudiant.html` par un écran statique après relecture visuelle du wireframe V1 : titre d’accueil, trois suggestions de parrains, possibilité de demander d’autres profils et réservation des actualités.
+- Profils explicitement fictifs (Vincent, Sarah, Amine), parcours et tags illustratifs. Chaque profil est un `article` avec titre, silhouette décorative commune et liste de tags. Les données ne proviennent pas d’un moteur de suggestion.
+- Réutilisation de `request-card`, `tag-list`, `request-actions` et des boutons existants, sans nouvelle classe ni modification CSS. Première présentation empilée ; proportions et disposition finale du wireframe à revoir après consultation navigateur.
+- Actions explicites « Demander un parrainage », « Écarter ce profil » et « Voir d’autres profils », toutes désactivées et de type `button` ; aucune interaction, recherche ou demande réelle implémentée.
+- Ajout du header/footer partagés avec leur contenu de secours, en conservant le chargeur JavaScript existant et le même footer que le flux parrain. Cela ne constitue pas un contrôle de session ou de rôle. Titre du document et indentation harmonisés.
+- Code HTML et présente entrée générés et écrits par l’IA au démarrage de l’étape autorisée par Steve. README et plan à synchroniser au prochain bilan après validation.
+
+**Vérifications :** imbrication HTML, chemins locaux, unicité des identifiants, trois articles, sept boutons désactivés et conteneurs des fragments contrôlés ; espaces Git vérifiés. Rendu mobile, clavier et chargement effectif des fragments à vérifier dans le navigateur par Steve. Aucun test navigateur effectué par l’IA ; staging et commit laissés à Steve.
+
+### 20/10/2026 — Silhouette commune sur le flux parrain
+
+- Ajout de `avatar-default.svg` avant le nom dans la carte de demande de `fluxparrain.html`, avec les mêmes dimensions 64 × 64 et `alt=""` décoratif que sur le flux étudiant, pour harmoniser les deux écrans.
+- Modification HTML et présente entrée générées et écrites par l’IA à la demande de Steve. Aucune nouvelle classe ni modification CSS ou JavaScript. Chemin de l’image et espaces Git vérifiés ; rendu navigateur à confirmer par Steve. Commit laissé à Steve.
+
+### 20/10/2026 — Premières pages accueil et profil
+
+- Remplacement des deux derniers placeholders à la demande de Steve. Aucun écran dédié à l’accueil ou au profil dans le wireframe V1 : structures proposées à partir du périmètre fonctionnel, à valider ; aucune fidélité à une maquette inexistante revendiquée.
+- Accueil : présentation du service, liens de connexion/création de compte, étapes du parcours prévu et accès explicitement présentés comme démonstrations aux deux flux. Distinction visible entre le fonctionnement cible et les capacités statiques actuelles.
+- Profil : exemple fictif de Lucia, rôle étudiant accompagné, pays, parcours, présentation, silhouette décorative, intérêts et besoins. Aucun contact personnel affiché. Lien vers le formulaire existant, avec précision qu’il n’est pas prérempli et n’enregistre rien ; aucune liaison de données implémentée.
+- Header partagé avec contenu de secours sur les deux pages ; footer public local à l’accueil et footer commun chargé sur le profil. Aucune gestion de session ou de rôle introduite.
+- Réutilisation de `form-panel`, `tag-list` et des styles communs ; liens de navigation textuels. Aucun ajout de classe, de CSS, de JavaScript ou de dépendance. Titres des documents, contenu principal et hiérarchie des titres définis pour les deux pages.
+- README et plan synchronisés avec le flux étudiant déjà construit et les deux nouvelles pages : sept structures initiales présentes, diagrammes et périmètre des footers actualisés. Revue des écrans/navigation proposée ensuite ; choix produit, retours enseignant et validation navigateur restent ouverts. Spécification technique inchangée.
+
+**Vérifications :** imbrication HTML, titre principal unique, identifiants, références, chemins locaux et conteneurs des fragments contrôlés sur les deux pages ; liens documentaires, concordance des diagrammes et espaces Git vérifiés. Aucun test navigateur effectué par l’IA ; responsive, navigation clavier et chargement des fragments à confirmer par Steve.
+
+**Rôle de l’IA :** rédaction des pages et des mises à jour documentaires à la demande de Steve. Staging et commit laissés à Steve.
+
+### 20/10/2026 — Actions et cartes de tags accueil/profil
+
+- À la demande de Steve après consultation, présentation des liens principaux de l’accueil et du profil avec les classes existantes `button`, `button--secondary` et `request-actions`. Les éléments restent des liens `a` avec destination, regroupés en lignes flexibles avec retour à la ligne. Libellé du lien de configuration raccourci en « Configurer mon profil » ; avertissement de formulaire non prérempli conservé.
+- Ajout d’un wrapper `form-panel` autour de chacune des listes d’intérêts et de besoins du profil : fond jaune partagé derrière les pastilles `tag-list`, dont le fond était identique à celui de la page et donc peu distinct. Titres de section conservés hors des cartes.
+- Choix explicite de Steve d’utiliser ici les liens visuellement présentés en boutons ; la remarque enseignant sur ce sujet reste consignée et à revoir. Aucune nouvelle classe, variable ou modification CSS/JavaScript.
+- Correction HTML et présente entrée générées et écrites par l’IA à la demande de Steve. Espaces Git et destinations locales vérifiés ; rendu mobile à confirmer par Steve. Commit laissé à Steve.
+
+### 20/10/2026 — Suppression du soulignement des boutons
+
+- Après validation de l’accueil/profil par Steve, suppression de la règle `.button:not(:disabled):hover` qui ajoutait `text-decoration: underline`. La règle commune `.button` contient déjà `text-decoration: none` : aucune surcharge, classe ou variable ajoutée. Le soulignement observé pendant le clic venait de l’état de survol maintenu par le pointeur.
+- Focus clavier, styles désactivés et liens ordinaires conservés. Les éléments qui naviguent restent des liens `a`, les actions des boutons `button` ; aucune interaction JavaScript ajoutée.
+- Plan actualisé pour distinguer ce point désormais traité des autres suggestions enseignant différées. Code et résumé générés et écrits par l’IA à la demande de Steve ; espaces Git vérifiés. Rendu du survol à confirmer par Steve.
+- Les modifications accueil/profil étaient encore non commitées au contrôle de départ ; aucun staging ni commit effectué par l’IA.
+
+### 20/10/2026 — Retour visuel à la pression des boutons
+
+- À la demande de Steve, ajout d’une seule règle partagée `.button:not(:disabled):active` avec `filter: brightness(0.85)` : assombrissement temporaire pendant la pression, sans soulignement ni déplacement. Les couleurs restent issues des variables existantes ; aucune nouvelle classe, variable, transition ou logique JavaScript.
+- `:active` représente l’état pressé, pas une sélection persistante après clic ; les boutons désactivés sont exclus et le focus clavier existant est conservé.
+- CSS et présente entrée générés et écrits par l’IA à la demande de Steve. Contrôle Git des espaces réussi ; effet visuel à vérifier dans le navigateur par Steve. Commit laissé à Steve.
+
+### 20/10/2026 — Répartition PHP/JavaScript et transfert de contexte
+
+- Steve réaffirme la priorité au serveur PHP pour les traitements qui lui reviennent ; JavaScript vanilla réservé aux interactions client et éventuels appels AJAX. Plan complété pour rendre la décision explicite, y compris rendu/inclusions, rôle, validation serveur, sessions, accès et données. CSS conserve la présentation et ses états.
+- Le chargeur JavaScript des fragments reste temporaire pendant la phase statique ; aucune migration PHP engagée. La proposition antérieure de commencer par une présélection du rôle en JavaScript est à revoir selon cette décision.
+- Handoff Markdown généré hors dépôt pour la prochaine conversation : état des pages, méthode pédagogique, responsabilités techniques, retours enseignant, vérifications restantes et changements non commitées au contrôle de départ. Aucun nouveau document de contexte ajouté au dépôt.
+- Documentation et fichier de transfert générés et écrits par l’IA à la demande de Steve ; espaces Git vérifiés. Aucun changement applicatif lors de cette étape, commit laissé à Steve.
+
+### 20/10/2026 — Revue globale avant changement de conversation
+
+- Relecture des sept pages, fragments communs, CSS, JavaScript, SVG et documents du dépôt. Aucun problème bloquant relevé pour le scaffold statique dans les contrôles effectués ; aucune validation fonctionnelle PHP ou conformité globale d’accessibilité déclarée.
+- Contrôles des sept pages : imbrication, unicité des identifiants, titre principal et structure principale, labels associés aux contrôles, références ARIA, attributs alt, chemins des liens/ressources et présence des conteneurs attendus. Liens Markdown locaux et clôture des blocs de code contrôlés ; XML du SVG valide.
+- Syntaxe JavaScript contrôlée avec Node ; simulation isolée du chargeur couvrant absence de conteneur, remplacement réussi, erreur HTTP et échec réseau. Contenu de secours conservé dans les deux cas d’erreur simulés. Ces contrôles ne sont pas des essais navigateur.
+- CSS relu : variables utilisées toutes définies et accolades équilibrées. Aucun parseur CSS complet disponible dans cette passe ; pas de nouvelle dépendance installée. Styles de pression/focus et retours à la ligne restent à confirmer visuellement.
+- Ajustements documentaires limités : date de l’arborescence, intégration provisoire des éléments communs et bilan de la phase UI dans le plan ; rappel de la répartition PHP/JavaScript dans le README. Historique du journal et périmètre fonctionnel conservés.
+- Restent ouverts : revue mobile/clavier et échec réel des fragments, choix de navigation/rôle, configuration parrain, présélection du rôle et confirmations, environnement PHP puis données/sessions. Aucun nouveau code applicatif ajouté lors de cette revue. `.gitignore` inchangé : aucun nouveau fichier à exclure identifié.
+- Revue, corrections documentaires et actualisation du fichier de transfert hors dépôt générées par l’IA à la demande de Steve ; espaces Git vérifiés. Aucun staging ni commit réalisé par l’IA.

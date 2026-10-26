@@ -1,21 +1,160 @@
-<!-- Profile Configuration -->
+<!-- Configuration du profil -->
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Configuration du profil</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Compléter mon profil — Parrainage étudiant</title>
 
-    <link rel="stylesheet" href="assets/css/style.css">
-</head>
-
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
   <body>
-    <h1>[Créer ton compte]</h1>
+    <header class="site-header" id="site-header">
+      <div class="site-header__inner">
+        <a class="site-brand" href="index.html">Parrainage étudiant</a>
+      </div>
+    </header>
 
-    <h1>[Tes tags]</h1>
+    <main class="auth-page">
+      <h1>Complète ton profil</h1>
 
-    <h2>Qu'est-ce que tu cherches ?</h2>
+      <img
+        class="auth-avatar"
+        src="assets/images/avatar-default.svg"
+        alt=""
+        width="64"
+        height="64"
+      >
+
+      <form class="auth-form" method="post" aria-describedby="profile-note">
+        <div class="form-panel">
+          <div class="form-field">
+            <label for="profile-name">Nom affiché</label>
+            <input
+              type="text"
+              id="profile-name"
+              name="display_name"
+              aria-describedby="profile-name-help"
+            />
+            <p id="profile-name-help">
+              Le nom que les autres étudiants verront sur ton profil.
+            </p>
+          </div>
+        </div>
+
+        <div class="form-panel">
+          <div class="form-field">
+            <label for="profile-country">Pays d’origine</label>
+            <input type="text" id="profile-country" name="country" />
+          </div>
+
+          <div class="form-field">
+            <label for="profile-studies">Ton parcours d’études</label>
+            <input
+              type="text"
+              id="profile-studies"
+              name="studies"
+              aria-describedby="profile-studies-help"
+            />
+            <p id="profile-studies-help">
+              Par exemple : L1 de lettres à l’université de Poitiers.
+            </p>
+          </div>
+        </div>
+
+        <div class="form-panel">
+          <div class="form-field">
+            <label for="profile-description">Présente-toi en quelques mots</label>
+            <textarea
+              id="profile-description"
+              name="description"
+              rows="4"
+            ></textarea>
+          </div>
+        </div>
+
+        <fieldset>
+          <legend>Tes centres d’intérêt</legend>
+          <p>Tu peux sélectionner plusieurs réponses.</p>
+          <div class="tag-options">
+            <label>
+              <input type="checkbox" name="interests[]" value="sport" />
+              Sport
+            </label>
+            <label>
+              <input type="checkbox" name="interests[]" value="jeux-video" />
+              Jeux vidéo
+            </label>
+            <label>
+              <input type="checkbox" name="interests[]" value="sorties" />
+              Sorties
+            </label>
+            <label>
+              <input type="checkbox" name="interests[]" value="culture" />
+              Culture
+            </label>
+            <label>
+              <input type="checkbox" name="interests[]" value="musique" />
+              Musique
+            </label>
+            <label>
+              <input type="checkbox" name="interests[]" value="etudes" />
+              Études
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Tes besoins d’accompagnement</legend>
+          <p>Dans quels domaines souhaites-tu être accompagné ? Plusieurs réponses sont possibles.</p>
+          <div class="tag-options">
+            <label>
+              <input type="checkbox" name="needs[]" value="vie-sociale" />
+              Vie sociale et rencontres
+            </label>
+            <label>
+              <input type="checkbox" name="needs[]" value="etudes" />
+              Études et fonctionnement de l’université
+            </label>
+            <label>
+              <input type="checkbox" name="needs[]" value="demarches" />
+              Démarches administratives
+            </label>
+            <label>
+              <input type="checkbox" name="needs[]" value="transports" />
+              Transports
+            </label>
+            <label>
+              <input type="checkbox" name="needs[]" value="sorties-culturelles" />
+              Sorties et activités culturelles
+            </label>
+            <label>
+              <input type="checkbox" name="needs[]" value="bons-plans" />
+              Bons plans étudiants
+            </label>
+            <label>
+              <input type="checkbox" name="needs[]" value="aides" />
+              Aides disponibles pour les étudiants
+            </label>
+          </div>
+        </fieldset>
+
+        <p id="profile-note">
+          Maquette : les informations ne sont pas encore enregistrées.
+        </p>
+
+        <button type="submit" class="button" disabled>
+          Terminer mon profil
+        </button>
+      </form>
+    </main>
+
+    <footer class="site-footer">
+      <div class="site-footer__inner">
+        <p>Aide / FAQ · Mentions légales — à venir</p>
+      </div>
+    </footer>
 
     <script src="assets/js/main.js"></script>
   </body>

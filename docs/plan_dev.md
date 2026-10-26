@@ -18,16 +18,17 @@ L'objectif n'est pas uniquement d'obtenir une application fonctionnelle, mais é
 
 La logique générale sera :
 
-```text
-Navigateur
-    ↓
-HTML / CSS / JavaScript
-    ↓
-PHP
-    ↓
-SQL
-    ↓
-MySQL / MariaDB
+```mermaid
+flowchart TD
+    N0["Navigateur"]
+    N1["HTML / CSS / JavaScript"]
+    N2["PHP"]
+    N3["SQL"]
+    N4["MySQL / MariaDB"]
+    N0 --> N1
+    N1 --> N2
+    N2 --> N3
+    N3 --> N4
 ```
 
 Contrairement aux projets réalisés avec des frameworks modernes, il n'y aura pas de compilation automatique du frontend ni d'ORM pour abstraire les requêtes SQL.
@@ -47,6 +48,12 @@ Les différentes étapes seront donc construites progressivement afin de compren
 ### Backend
 
 - PHP
+
+### Répartition des responsabilités — décision de Steve du 20/10/2026
+
+Privilégier PHP pour les traitements réalisables côté serveur : rendu et inclusions HTML, lecture du rôle demandé, validation des formulaires, sessions, contrôles d’accès et accès aux données via PDO/SQL. Réserver JavaScript vanilla aux interactions côté navigateur et aux éventuels appels AJAX, avec validation serveur conservée. Styles, états visuels et animations restent en CSS. Aucun framework prévu.
+
+Le chargement actuel du header/footer par JavaScript reste une solution provisoire de la maquette statique. Sa migration vers des inclusions PHP sera réalisée lors de la mise en place explicite de l’environnement PHP. La présélection du rôle par JavaScript proposée précédemment n’est pas une prochaine étape actée : elle sera revue selon cette répartition.
 
 ### Base de données
 
@@ -98,7 +105,7 @@ Branche de développement commune à l'équipe.
 
 ## 5. Structure actuelle du dépôt
 
-Au 13/10/2026, la structure de travail est la suivante :
+Au 20/10/2026, la structure de travail est la suivante :
 
 ```text
 /
@@ -114,7 +121,8 @@ Au 13/10/2026, la structure de travail est la suivante :
 │       │   ├── css/
 │       │   │   └── style.css
 │       │   ├── images/
-│       │   │   └── .gitkeep
+│       │   │   ├── .gitkeep
+│       │   │   └── avatar-default.svg
 │       │   └── js/
 │       │       └── main.js
 │       ├── includes/
@@ -133,7 +141,19 @@ Au 13/10/2026, la structure de travail est la suivante :
 
 `frontend/public/` est destiné à servir de racine publique pour le frontend statique. Les pages HTML y sont placées directement ; les fichiers CSS, JavaScript et les images sont regroupés dans `assets/`.
 
-Le dossier `includes/` contient les fragments HTML partagés. La fonction `loadPartial(containerId, filePath)` dans `assets/js/main.js` les charge avec `fetch`, puis remplace le contenu de secours du conteneur ciblé. Le flux parrain utilise les deux fragments ; la page de connexion utilise l’en-tête partagé et conserve un pied de page public local sans identifiant `site-footer`. Les autres pages n’intègrent pas encore ces conteneurs. Un serveur HTTP local est nécessaire pour tester ce mécanisme.
+Le dossier `includes/` contient les fragments HTML partagés. La fonction `loadPartial(containerId, filePath)` dans `assets/js/main.js` les charge avec `fetch`, puis remplace le contenu de secours du conteneur ciblé. Les deux flux et le profil utilisent les deux fragments ; l’accueil et les pages de formulaire utilisent l’en-tête partagé et conservent chacun un pied de page public local sans identifiant `site-footer`. Les sept pages disposent d’un premier contenu statique. Un serveur HTTP local est nécessaire pour tester ce mécanisme.
+
+### Dépendances du frontend statique
+
+```mermaid
+flowchart TD
+    Pages["Sept pages HTML"] --> CSS["style.css"]
+    Pages --> JS["main.js : loadPartial"]
+    JS --> Header["header.html"]
+    JS --> Footer["footer.html : deux flux et profil"]
+```
+
+Les fichiers CSS et JavaScript se trouvent dans `assets/css/` et `assets/js/`, et les fragments dans `includes/`. Les formulaires, les deux flux et le profil utilisent `assets/images/avatar-default.svg`. L’accueil et les formulaires conservent un footer public local ; les deux flux et le profil chargent le footer commun. Ce schéma décrit les fichiers utilisés, pas un parcours utilisateur ni une gestion de session ; PHP n’est pas encore intégré.
 
 La branche `dev` contient également les prototypes d’Alexandre et Ange dans `prototypes/`.
 
@@ -147,26 +167,28 @@ Le projet suivra une méthodologie progressive.
 
 Chaque phase devra idéalement respecter le cycle suivant :
 
-```text
-Objectif
-    ↓
-Explication du fonctionnement
-    ↓
-Création des fichiers nécessaires
-    ↓
-Développement
-    ↓
-Tests
-    ↓
-Correction
-    ↓
-Documentation
-    ↓
-Commit Git
+```mermaid
+flowchart TD
+    N0["Objectif"]
+    N1["Explication du fonctionnement"]
+    N2["Création des fichiers nécessaires"]
+    N3["Développement"]
+    N4["Tests"]
+    N5["Correction"]
+    N6["Documentation"]
+    N7["Commit Git"]
+    N0 --> N1
+    N1 --> N2
+    N2 --> N3
+    N3 --> N4
+    N4 --> N5
+    N5 --> N6
+    N6 --> N7
 ```
 
 Chaque étape importante sera documentée.
-x
+
+Les schémas de processus utilisent des blocs Mermaid ; les arborescences restent en texte. Référence : [syntaxe des flowcharts Mermaid](https://mermaid.js.org/syntax/flowchart.html).
 ### Travail accompagné par l’IA et critères de validation
 
 Référence pédagogique : Yannis Delmas, *Méthode de développement d’applications*, septembre 2026, fournie par Steve. Les pratiques suivantes traduisent ses principes pour ce projet ; elles ne constituent pas une attestation de conformité ni une validation par l’enseignant.
@@ -269,9 +291,18 @@ L’IA peut préparer et rédiger ces documents à partir des éléments fournis
 - [x] Base CSS commune : typographie, variables, carte, tags, boutons et header/footer
 - [x] Chargement JavaScript réutilisable des fragments avec contenu de secours
 - [x] Structure HTML de connexion et champs étiquetés, soumission désactivée
-- [ ] Structure HTML sémantique de chaque page
-- [ ] Styles spécifiques du formulaire et choix d’inscription
-- [ ] Éléments communs intégrés aux autres pages selon la navigation publique/connectée retenue
+- [x] Première structure HTML sémantique des sept pages
+- [ ] Valider les propositions accueil/profil, sans wireframe dédié
+- [x] Styles réutilisables des formulaires et choix d’inscription depuis la connexion
+- [x] Formulaire statique de création de compte avec champs de confirmation
+- [x] Informations personnelles du profil : nom, pays, parcours et description
+- [x] Panneaux de formulaire et silhouette décorative partagés
+- [x] Centres d’intérêt et besoins statiques : cases natives présentées en mini-cartes
+- [ ] Adapter les domaines d’aide et leur formulation au rôle parrain
+- [ ] Confirmer le rendu mobile et la navigation clavier des mini-cartes
+- [ ] Présélection du rôle depuis les liens et comparaison des confirmations
+- [x] Header partagé sur sept pages et footers intégrés selon le découpage provisoire
+- [ ] Valider la navigation et le footer selon connexion/rôle
 - [ ] Navigation complète entre les pages
 - [ ] Responsive vérifié sur toutes les pages
 - [ ] Interactions métier JavaScript de base selon les besoins
@@ -279,17 +310,27 @@ L’IA peut préparer et rédiger ces documents à partir des éléments fournis
 
 Structure actuelle : voir la section 5, « Structure actuelle du dépôt ».
 
-**État actuel au 13/10/2026 :** le flux parrain dispose d’une première présentation responsive avec données illustratives et actions désactivées. La connexion possède ses champs HTML mais pas encore de styles spécifiques ni les deux choix d’inscription du wireframe. Cinq autres pages restent des placeholders. Les tests visuels rapportés par Steve ne constituent pas encore une validation exhaustive du responsive ou de l’accessibilité. Aucun code PHP ou SQL n’a été introduit.
+**État actuel au 20/10/2026 :** le flux parrain dispose d’une première présentation responsive avec données illustratives et actions désactivées. Connexion et création de compte disposent de formulaires stylisés ; la configuration du profil contient les informations personnelles et deux groupes de choix multiples : six intérêts et sept besoins provisoires. Les options sont des mini-cartes jaunes utilisant `--color-surface`, avec cases natives visibles, état sélectionné en CSS et retour à la ligne. Titres et instructions restent hors des cartes. Les panneaux des informations personnelles et la silhouette décorative sont réutilisés sur les écrans de formulaire ; la couleur de surface reste provisoire et partagée avec le header/footer. Le groupe des besoins cible encore l’étudiant accompagné, sans adaptation au parrain. Le flux étudiant présente trois profils fictifs et des actions désactivées. L’accueil présente le service et les liens de démonstration ; le profil affiche un exemple statique de Lucia, sans préremplissage ni enregistrement. Ces deux derniers écrans ne disposent pas de wireframes dédiés et restent à valider. Les soumissions sont désactivées ; présélection du rôle et comparaison des confirmations restent à implémenter. Les tests visuels rapportés par Steve ne constituent pas encore une validation exhaustive du responsive ou de l’accessibilité. Aucun code PHP ou SQL n’a été introduit.
 
-**Prochaine étape :** créer les styles réutilisables des champs et du formulaire de connexion, puis ajouter les choix d’inscription étudiant/parrain. Continuer ensuite les autres écrans avec la même méthode expliquée et documentée.
+**Prochaine étape proposée :** revoir les sept pages sur mobile et ordinateur, vérifier navigation et clavier, puis ajuster les dispositions selon les wireframes et valider les propositions accueil/profil. Confirmer également les mini-cartes. Navigation selon connexion/rôle, liste des choix et domaines d’aide du parrain restent à arbitrer ; l’affichage du profil n’est pas encore relié au formulaire de configuration.
 
 **Décisions reportées :** direction artistique finale, navigation selon connexion/rôle, destinations FAQ/démarches/mentions légales, placement du footer en bas des pages courtes. Le footer reste dans le flux normal. L’absence de lien vers un profil sur la connexion est une décision d’interface, pas un contrôle d’accès : les protections réelles seront implémentées côté PHP.
 
 ### Phase 2 — Intégration UX/UI depuis Figma
-Commencée partiellement en parallèle de la phase 1 : première intégration depuis le wireframe V1 sur le flux parrain et la connexion. Direction artistique provisoire ; autres écrans et détails du wireframe à compléter. Les actualités restent une réservation visuelle d’une fonctionnalité ultérieure.
+Commencée partiellement en parallèle de la phase 1 : première intégration depuis le wireframe V1 sur les deux flux, la connexion, la création de compte et la configuration du profil ; accueil et profil proposés sans écran dédié. Les sept pages ont du contenu initial. Direction artistique, proportions et détails du wireframe restent à valider. Les actualités restent une réservation visuelle d’une fonctionnalité ultérieure.
 
 ### Phase 3+ — PHP / SQL / authentification / données dynamiques
 Non commencées.
+
+### Retour enseignant du 14/10/2026 — à revisiter
+
+La synthèse des suggestions de Yannis Delmas est conservée dans `docs/dev_log.md`, à la date du 14/10/2026. Les schémas Mermaid ont été appliqués ; le 20/10, Steve a également demandé la suppression du soulignement au survol des éléments `.button`, en conservant les liens de navigation présentés en boutons et leur focus clavier.
+
+- [x] Retirer le soulignement au survol des boutons et liens `.button`, sans supprimer le focus clavier (20/10).
+- [ ] Reprendre les autres points de cette synthèse avec Steve : ARIA et nom de navigation, classes/IDs des boutons, présentation des liens, curseurs, variables d’espacement, sélecteurs de pseudo-éléments, inclusions PHP et rôle de JavaScript/AJAX. Ces autres ajustements restent à revoir ; aucune date fixée.
+
+**Décision de Steve :** conserver pour l’instant le chargement client du header/footer en JavaScript et l’environnement de prévisualisation actuel. Reporter l’introduction de PHP ainsi que les autres ajustements suggérés à une prochaine revue ; aucune migration ni refonte des contrôles engagée.
+
 
 ---
 
@@ -426,14 +467,15 @@ La connexion sera réalisée avec PDO.
 
 Exemple de logique :
 
-```text
-PHP
- ↓
-PDO
- ↓
-requête SQL préparée
- ↓
-MySQL
+```mermaid
+flowchart TD
+    N0["PHP"]
+    N1["PDO"]
+    N2["requête SQL préparée"]
+    N3["MySQL"]
+    N0 --> N1
+    N1 --> N2
+    N2 --> N3
 ```
 
 Les requêtes seront écrites explicitement.
@@ -522,18 +564,19 @@ Objectif : permettre à un étudiant étranger de demander une mise en relation 
 
 Cycle prévu :
 
-```text
-Étudiant
-    ↓
-consulte un parrain
-    ↓
-envoie une demande
-    ↓
-demande en attente
-    ↓
-parrain accepte ou refuse
-    ↓
-mise en relation
+```mermaid
+flowchart TD
+    N0["Étudiant"]
+    N1["consulte un parrain"]
+    N2["envoie une demande"]
+    N3["demande en attente"]
+    N4["parrain accepte ou refuse"]
+    N5["mise en relation"]
+    N0 --> N1
+    N1 --> N2
+    N2 --> N3
+    N3 --> N4
+    N4 --> N5
 ```
 
 Fonctionnalités envisagées :
@@ -592,36 +635,38 @@ Le projet sera également utilisé comme exercice d'apprentissage du développem
 
 Pour chaque nouveau mécanisme important, le développement devra permettre de comprendre :
 
-```text
-Ce que l'on veut faire
-↓
-Quel langage intervient
-↓
-Quel fichier intervient
-↓
-Comment les données circulent
-↓
-Comment vérifier le résultat
+```mermaid
+flowchart TD
+    N0["Ce que l'on veut faire"]
+    N1["Quel langage intervient"]
+    N2["Quel fichier intervient"]
+    N3["Comment les données circulent"]
+    N4["Comment vérifier le résultat"]
+    N0 --> N1
+    N1 --> N2
+    N2 --> N3
+    N3 --> N4
 ```
 
 Par exemple, pour une connexion :
 
-```text
-Formulaire HTML
-      ↓
-requête POST
-      ↓
-PHP
-      ↓
-requête SQL
-      ↓
-base de données
-      ↓
-résultat
-      ↓
-session PHP
-      ↓
-page suivante
+```mermaid
+flowchart TD
+    N0["Formulaire HTML"]
+    N1["requête POST"]
+    N2["PHP"]
+    N3["requête SQL"]
+    N4["base de données"]
+    N5["résultat"]
+    N6["session PHP"]
+    N7["page suivante"]
+    N0 --> N1
+    N1 --> N2
+    N2 --> N3
+    N3 --> N4
+    N4 --> N5
+    N5 --> N6
+    N6 --> N7
 ```
 
 L'objectif est de ne pas uniquement obtenir du code fonctionnel, mais également de pouvoir expliquer son fonctionnement.
@@ -662,16 +707,17 @@ Les agents pourront ensuite être utilisés pour accélérer les tâches répét
 
 La priorité du projet est :
 
-```text
-Comprendre
-    ↓
-Construire
-    ↓
-Tester
-    ↓
-Documenter
-    ↓
-Améliorer
+```mermaid
+flowchart TD
+    N0["Comprendre"]
+    N1["Construire"]
+    N2["Tester"]
+    N3["Documenter"]
+    N4["Améliorer"]
+    N0 --> N1
+    N1 --> N2
+    N2 --> N3
+    N3 --> N4
 ```
 
 L'application sera donc construite progressivement, sans chercher à créer dès le départ une architecture complète ou trop abstraite.
