@@ -3,17 +3,19 @@
 /* Valeurs provisoires de la maquette */
 :root {
   --font-body: Arial, Helvetica, sans-serif;
-  --color-text: #222;
-  --color-background: #f5f5f5;
+  --color-text: #252A34;
+  --color-background: #FAF9F6;
   --content-max-width: 60rem;
   --color-surface: #FBB609;
-  --color-border: #000000;
+  --color-border: #736344;
   --radius-card: 0.75rem;
-  --color-action: #222;
-  --color-on-action: #fff;
+  --color-action: #203653;
+  --color-on-action: #FFFFFF;
+  --color-header-footer: var(--color-action);
+  --color-on-header-footer: #FAF9F6;
   --radius-control: 0.5rem;
   --form-max-width: 32rem;
-  --color-input-background: #fff;
+  --color-input-background: #FFFFFF;
 }
 
 /* Inclure padding et bordures dans la largeur des éléments */
@@ -71,7 +73,8 @@ main > section + section {
 
 /* En-tête commun */
 .site-header {
-  background-color: var(--color-surface);
+  color: var(--color-on-header-footer);
+  background-color: var(--color-header-footer);
   border-bottom: 1px solid var(--color-border);
 }
 
@@ -84,7 +87,8 @@ main > section + section {
 
 /* Pied de page commun */
 .site-footer {
-  background-color: var(--color-surface);
+  color: var(--color-on-header-footer);
+  background-color: var(--color-header-footer);
   border-top: 1px solid var(--color-border);
 }
 
@@ -108,7 +112,7 @@ main > section + section {
   display: inline-flex;
   align-items: center;
   min-height: 2.75rem;
-  color: var(--color-text);
+  color: inherit;
   text-underline-offset: 0.2em;
 }
 
@@ -117,7 +121,7 @@ main > section + section {
 }
 
 .footer-links a:focus-visible {
-  outline: 2px solid var(--color-action);
+  outline: 2px solid currentColor;
   outline-offset: 3px;
 }
 
@@ -127,7 +131,7 @@ main > section + section {
   font-size: 1.25rem;
   font-weight: 700;
   line-height: 1.3;
-  color: var(--color-text);
+  color: inherit;
   text-decoration: none;
   overflow-wrap: anywhere;
 }
@@ -137,7 +141,7 @@ main > section + section {
 }
 
 .site-brand:focus-visible {
-  outline: 2px solid var(--color-action);
+  outline: 2px solid currentColor;
   outline-offset: 3px;
 }
 

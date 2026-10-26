@@ -533,3 +533,28 @@ Notes de Steve prises lors du retour enseignant, synthétisées sans ajout de re
 - Fichiers réservés aux prochaines étapes : commentaires explicatifs uniquement, sans rendu, chargement de configuration, connexion PDO ni instruction SQL exécutable. Aucun identifiant ajouté. Le modèle de configuration `.example` est versionnable ; la copie locale `backend/config/database.local.php` est exclue par une règle précise ajoutée à `.gitignore`.
 - Aucun fichier frontend modifié : pages HTML, fragments, chargement JavaScript, formulaires désactivés et prévisualisation Live Server conservés. Aucun serveur démarré ni installation effectuée. Les premiers exemples fonctionnels restent à saisir par Steve.
 - Vérifications IA : syntaxe des cinq fichiers PHP contrôlée avec `php -n -l` (configuration locale PHP non chargée pour ce contrôle), exclusion de la configuration locale confirmée par `git check-ignore`, absence de différence frontend et contrôle Git des espaces réussis. Aucun essai navigateur, connexion SQL ni exécution de schéma. Fichiers et présente entrée écrits par l’IA ; aucun staging ni commit effectué.
+
+### 26/10/2026 — Critères de sécurité intégrés au plan
+
+- Steve demande de prendre en compte la sécurité dès le début du développement. L’IA ajoute au plan une rubrique transversale associant protections et vérifications à chaque étape : racine publique/secrets, PDO et droits SQL, validation et encodage des sorties, CSRF, mots de passe et limitation des tentatives, sessions et autorisations, uploads et déploiement. La revue finale est conservée comme complément.
+- Références officielles OWASP (injection SQL, CSRF) et PHP (sessions) consultées et liées dans le plan. Critères marqués comme futurs, sans déclarer ces protections implémentées. Sécurité et performance distinguées ; aucune abstraction ni installation ajoutée.
+- Plan et présente entrée rédigés par l’IA. Différence documentaire relue et contrôle Git des espaces réussi. Aucun code applicatif modifié, test de sécurité exécuté, staging ou commit effectué ; prévisualisation actuelle conservée.
+
+### 26/10/2026 — Hébergement différé et accompagnement pédagogique
+
+- À la demande de Steve, discussion Azrael/Vercel consignée dans le plan comme point à revoir. Exigence Azrael rapportée par Steve ; caractéristiques du serveur encore inconnues. Hébergement précoce de test proposé, sans décision ni déploiement. Références Vercel consultées pendant la discussion précédente conservées dans le plan.
+- Méthode pédagogique précisée pour PHP/SQL : expliquer l’utilité et les dépendances de chaque fichier, puis chaque ligne des premiers exemples avant saisie par Steve et vérification progressive. Bilan quotidien détaillé hors dépôt, en complément des explications pendant la séance.
+- Documentation rédigée par l’IA ; différence relue et contrôle Git des espaces réussi. Aucun fichier applicatif créé ou modifié, aucun test navigateur/PHP/SQL, staging ou commit effectué lors de cette étape. L’exercice PHP proposé reste à saisir.
+
+### 26/10/2026 — Essai de palette jaune et bleu marine
+
+- À la demande de Steve, conservation de la surface jaune principale `#FBB609` et modification des variables existantes : texte `#252A34`, fond de page blanc chaud `#FAF9F6`, bordures `#736344`, actions et focus bleu marine `#203653`. Blanc des champs et du texte sur les actions conservé, notation harmonisée en `#FFFFFF`.
+- Aucun ajout de classe, variable, règle CSS ou dépendance ; répercussion sur les composants qui consomment ces valeurs, y compris header/footer, cartes et boutons. Palette provisoire à consulter dans le navigateur ; couleurs des boutons désactivés toujours atténuées par leur opacité existante.
+- CSS et présente entrée générés et écrits par l’IA à la demande de Steve. Contrôle Git des espaces effectué ; rendu et validation des contrastes restent à confirmer. Autres modifications documentaires déjà présentes conservées ; commit laissé à Steve.
+
+### 26/10/2026 — Contraste visuel renforcé du header/footer
+
+- Après le premier essai jugé trop subtil par Steve, application du bleu marine au header/footer et de texte blanc chaud, en conservant les cartes et choix jaunes et le fond de page blanc chaud.
+- Deux variables ajoutées pour les éléments communs : `--color-header-footer`, initialement liée à `--color-action`, et `--color-on-header-footer`. Les couleurs du header/footer peuvent désormais évoluer indépendamment des surfaces des cartes.
+- Marque et liens du footer héritent de la couleur de leur conteneur. Contours de focus correspondants en `currentColor` pour rester visibles sur le fond sombre. Aucune modification HTML/JavaScript ou de disposition.
+- CSS et présente entrée générés et écrits par l’IA à la demande de Steve. Différence et espaces Git contrôlés ; rendu à consulter par Steve avant validation. Palette toujours provisoire ; commit laissé à Steve.

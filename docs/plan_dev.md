@@ -208,6 +208,23 @@ Le travail initial directement sur `main` diffère de la recommandation avancée
 
 ---
 
+### Sécurité dès les premières étapes PHP/SQL — 26/10/2026
+
+Demande de Steve : intégrer la sécurité à chaque fonctionnalité dès sa construction. La revue finale de sécurité reste nécessaire, mais ne remplace pas ces contrôles progressifs. Cette liste fixe des critères à implémenter et vérifier ; elle ne décrit pas des protections déjà fonctionnelles.
+
+| Étape | Protections à construire | Vérification attendue avant activation |
+| --- | --- | --- |
+| Premier serveur PHP | Racine HTTP limitée à `frontend/public/`, inclusions avec chemins locaux fixes, configuration et SQL hors racine publique ; secrets exclus de Git. | Vérifier les règles d’exclusion et l’impossibilité de télécharger les fichiers privés par HTTP, en inspectant aussi le contenu de la réponse. |
+| Première connexion SQL | PDO et paramètres liés pour les valeurs ; listes de choix autorisés pour tout identifiant SQL dynamique ; compte SQL applicatif avec droits limités, distinct du compte de création du schéma. | Une valeur contenant une apostrophe reste une donnée ; les opérations SQL non autorisées au compte applicatif échouent. |
+| Premier formulaire actif | Validation PHP des types, longueurs et valeurs autorisées ; encodage adapté au contexte de sortie, notamment `htmlspecialchars` pour le texte/attribut HTML ; protection CSRF vérifiée côté serveur pour les actions modifiant l’état, via POST. | Tester valeurs absentes, tableaux inattendus, texte trop long, contenu HTML et jeton CSRF absent/invalide ; aucune modification persistée en cas de rejet. JavaScript reste une aide de saisie. |
+| Inscription et connexion | `password_hash` / `password_verify`, jamais de mot de passe en clair stocké ou journalisé ; politique de mot de passe serveur explicite ; limitation des tentatives et erreurs de connexion ne révélant pas l’existence d’un compte. | Vérifier empreinte stockée, refus d’identifiants incorrects et limitation effective des tentatives. Le conseil JavaScript actuel ne remplace pas ces contrôles. |
+| Sessions et accès aux données | Sessions en mode strict et cookies seulement, renouvellement de l’identifiant après authentification, expiration et déconnexion ; cookies HttpOnly et SameSite, Secure en HTTPS. Autorisation vérifiée côté PHP pour chaque requête selon rôle, propriétaire et état de demande. | Tester visite anonyme, accès au profil d’un autre utilisateur, acceptation d’une demande adressée à un autre parrain, contact avant acceptation et accès après déconnexion. Ne pas se fier aux boutons masqués ni aux IDs reçus du navigateur. |
+| Photo facultative et déploiement | Avant activation de l’upload : limites de taille, types réellement vérifiés, noms générés et stockage empêchant l’exécution. Avant exposition : HTTPS, versions maintenues, erreurs détaillées réservées aux journaux privés, absence de secrets dans les logs, sauvegarde et restauration testées. | Vérifier fichiers refusés, absence d’exécution des fichiers déposés, configuration HTTPS/cookies, réponse d’erreur sans détails internes et restauration d’une sauvegarde. |
+
+Les contraintes SQL (clés étrangères, unicité, valeurs autorisées) complètent la validation PHP. Les opérations liées nécessitant une cohérence commune seront regroupées dans une transaction. Les premiers exemples restent simples et expliqués ; aucun framework ou couche de sécurité abstraite ajouté par anticipation. Distinguer protection prévue, code relu et essai réellement effectué dans le journal. La sécurité facilite l’évolution du projet ; la montée en charge demandera aussi des mesures de performances, des index et des requêtes adaptés.
+
+Références : [OWASP — requêtes paramétrées](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html), [OWASP — protection CSRF](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html), [PHP — sécurité des sessions](https://www.php.net/manual/en/features.session.security.management.php).
+
 ## 7. Documentation du développement
 
 Plusieurs documents seront maintenus.
@@ -265,6 +282,8 @@ Les explications approfondies sur les points ayant nécessité des clarification
 Pour la phase JavaScript, Steve saisit les premiers mécanismes après explication ligne par ligne ; l’IA intervient directement sur demande pour les corrections ou répétitions. La fiche de fin de journée détaille les liens HTML/JavaScript/CSS, paramètres et arguments, événements et callbacks, conditions et état du DOM, portée des variables, vérifications et questions de révision. Elle porte sur le code effectivement étudié, hors dépôt.
 
 Rythme retenu : journal mis à jour à chaque étape ; README et plan actualisés en fin de journée. Le périmètre fonctionnel est modifié uniquement si les décisions produit évoluent.
+
+Précision de Steve du 26/10/2026 pour PHP/SQL : avant chaque création ou modification, expliquer brièvement pourquoi ce fichier est nécessaire, qui l’appelle et à quels autres fichiers il se relie. Présenter le premier code par petits blocs avec explication de chaque ligne, puis laisser Steve le saisir et vérifier le résultat avant de poursuivre. Ces explications alimentent le bilan pédagogique quotidien hors dépôt ; ce bilan ne remplace pas l’accompagnement pendant l’exercice.
 
 Pour limiter les doublons, le dépôt conserve la description du produit dans la documentation technique, l’état et les décisions de travail dans le plan, et l’historique factuel dans le journal. Les explications détaillées restent dans les supports personnels. Les synthèses quotidiennes portent surtout sur le code nouveau ou modifié, ses interactions et les notions à réviser ; elles ne recopient pas toute l’application chaque jour.
 
@@ -624,6 +643,13 @@ Cette phase permettra également de corriger les problèmes détectés au fil du
 ---
 
 ## Phase 11 — Finalisation et déploiement
+
+### Hébergement à revoir — point du 26/10/2026
+
+- Selon Steve, l’enseignant demande un hébergement sur Azrael, serveur de l’école. Obtenir les consignes avant de fixer la procédure : version PHP, disponibilité MySQL/MariaDB et accès, transfert des fichiers, HTTPS, racine publique et possibilité de conserver le backend hors de cette racine.
+- Steve envisage un hébergement précoce pour partager les essais. Proposition à examiner : déployer d’abord la maquette statique dans un espace de test Azrael, puis introduire progressivement PHP avec des données fictives et une base de développement séparée. Ce contrôle d’environnement peut intervenir avant la finalisation.
+- Vercel reste une option temporaire pour la maquette statique si l’accès Azrael tarde ; aucun choix effectué. Son runtime PHP communautaire et son fonctionnement en fonctions demanderaient une adaptation à évaluer pour le backend. Références consultées : [déploiements Vercel](https://vercel.com/docs/deployments/overview), [runtimes Vercel](https://vercel.com/docs/functions/runtimes).
+- Discussion mise en attente à la demande de Steve : aucun compte créé, déploiement, configuration d’hébergement ou installation effectué. Conserver le workflow local actuel et reprendre ce point lorsque les informations Azrael seront disponibles.
 
 Objectif : préparer une version finale démontrable.
 
