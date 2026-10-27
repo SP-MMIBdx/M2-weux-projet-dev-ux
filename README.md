@@ -15,7 +15,7 @@ Application web de parrainage destinée à faciliter l'intégration des étudian
 
 ## État du projet
 
-Au 26/10/2026, les sept pages du scaffold sont regroupées dans `frontend/public/`. Le projet reste une maquette statique en cours de construction, avec de premières interactions client.
+Au 27/10/2026, les sept pages du scaffold sont regroupées dans `frontend/public/`. Le projet reste une maquette statique en cours de construction, avec de premières interactions client.
 
 - Flux parrain : structure sémantique, carte de demande illustrative, tags, boutons désactivés et en-tête/pied de page partagés et stylisés.
 - Connexion : formulaire stylisé, panneaux de surface provisoire, silhouette de profil et liens vers la création de compte selon le rôle choisi.
@@ -25,7 +25,7 @@ Au 26/10/2026, les sept pages du scaffold sont regroupées dans `frontend/public
 - Accueil : présentation du service, étapes du parcours prévu et liens vers les formulaires et les deux espaces de démonstration.
 - Profil : exemple statique de Lucia, présentation, intérêts, besoins et lien vers la configuration non préremplie. Accueil et profil restent des propositions à valider, sans écran dédié dans le wireframe V1.
 
-Les trois pages de formulaire utilisent la même silhouette décorative et un pied de page public simplifié. Leurs soumissions restent désactivées : aucune connexion, création de compte ou sauvegarde de profil n’est disponible. Un message compare les mots de passe pendant la saisie ; Steve a confirmé son fonctionnement dans le navigateur. La présélection du rôle, la comparaison des e-mails et la validation serveur restent à implémenter.
+Les trois pages de formulaire utilisent la même silhouette décorative et un pied de page public simplifié. Leurs soumissions restent désactivées : aucune connexion, création de compte ou sauvegarde de profil n’est disponible. Une fonction partagée compare les mots de passe et les e-mails pendant la saisie ; Steve a confirmé son fonctionnement dans le navigateur. La présélection du rôle et la validation serveur restent à implémenter.
 
 Le CSS commun suit une approche mobile-first avec des variables de présentation provisoires. Le JavaScript charge les fragments HTML communs et permet d’afficher/masquer indépendamment les mots de passe de connexion et d’inscription, y compris la confirmation, avec une fonction réutilisable. Il ne gère pas de comptes ni de données enregistrées.
 
@@ -50,7 +50,7 @@ Les formulaires, les deux flux et le profil partagent l’image `assets/images/a
 
 Le script remplace le contenu de secours des conteneurs identifiés par `site-header` et `site-footer`, lorsqu’ils existent. L’accueil et les pages de formulaire n’ont pas de conteneur `site-footer` : leur pied de page public reste local. Il ne s’agit pas encore d’un affichage conditionné par une session utilisateur.
 
-Les sept pages disposent d’une première structure de contenu. Steve a confirmé les vérifications mobile et clavier des mini-cartes de configuration ; cela ne constitue pas une validation exhaustive des sept pages. Prochaine étape proposée : cadrer la structure PHP/SQL avant implémentation ; comparaison des e-mails et autres exercices JavaScript différés. La configuration reste à adapter au rôle parrain ; navigation selon rôle et vérifications navigateur globales restent ouvertes. Les retours enseignant du 14/10 sont consignés dans le journal et à revoir dans le plan ; les schémas Mermaid et la suppression du soulignement au survol des boutons ont été appliqués ; les autres points restent à revoir.
+Les sept pages disposent d’une première structure de contenu. Steve a confirmé les vérifications mobile et clavier des mini-cartes de configuration ; cela ne constitue pas une validation exhaustive des sept pages. Suite frontend proposée : vérifier les confirmations partagées dans le navigateur, puis compteur de description et filtrage des profils fictifs. La préparation PHP/SQL progresse séparément. La configuration reste à adapter au rôle parrain ; navigation selon rôle et vérifications navigateur globales restent ouvertes. Les retours enseignant du 14/10 sont consignés dans le journal et à revoir dans le plan ; les schémas Mermaid et la suppression du soulignement au survol des boutons ont été appliqués ; les autres points restent à revoir.
 
 ## Lancement local
 

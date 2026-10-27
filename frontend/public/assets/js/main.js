@@ -59,32 +59,46 @@ setupPasswordToggle(
   "Masquer la confirmation du mot de passe"
 );
 
-// Retour immédiat sur la confirmation du mot de passe
-function setupPasswordConfirmation() {
-  const passwordInput = document.getElementById("register-password");
-  const confirmationInput = document.getElementById("register-password-confirm");
-  const feedback = document.getElementById("register-password-feedback");
+// Retour immédiat sur deux champs à comparer
+function setupFieldConfirmation(inputId, confirmationId, feedbackId, matchMessage, mismatchMessage) {
+  const input = document.getElementById(inputId);
+  const confirmationInput = document.getElementById(confirmationId);
+  const feedback = document.getElementById(feedbackId);
 
-  if (!passwordInput || !confirmationInput || !feedback) {
+  if (!input || !confirmationInput || !feedback) {
     return;
   }
 
   function updateFeedback() {
     if (confirmationInput.value === "") {
       feedback.textContent = "";
-    } else if (passwordInput.value === confirmationInput.value) {
-      feedback.textContent = "Les mots de passe correspondent.";
+    } else if (input.value === confirmationInput.value) {
+      feedback.textContent = matchMessage;
     } else {
-      feedback.textContent = "Les mots de passe ne correspondent pas.";
+      feedback.textContent = mismatchMessage;
     }
   }
 
-  passwordInput.addEventListener("input", updateFeedback);
+  input.addEventListener("input", updateFeedback);
   confirmationInput.addEventListener("input", updateFeedback);
   updateFeedback();
 }
 
-setupPasswordConfirmation();
+setupFieldConfirmation(
+  "register-password",
+  "register-password-confirm",
+  "register-password-feedback",
+  "Les mots de passe correspondent.",
+  "Les mots de passe ne correspondent pas."
+);
+
+setupFieldConfirmation(
+  "register-email",
+  "register-email-confirm",
+  "register-email-feedback",
+  "Les adresses e-mail correspondent.",
+  "Les adresses e-mail ne correspondent pas."
+);
 
 // Repères pédagogiques : ce contrôle simple n’est pas un score de sécurité.
 function getPasswordGuidance(password) {
