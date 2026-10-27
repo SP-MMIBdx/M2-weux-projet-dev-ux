@@ -658,3 +658,24 @@ Notes de Steve prises lors du retour enseignant, synthétisées sans ajout de re
 - Ajout d’une marge au paragraphe qui suit directement une `request-card`, pour séparer la dernière suggestion du message « Aucun de ces profils… ». Aucune classe supplémentaire, aucun changement de palette, HTML, JavaScript ou travail PHP.
 - Point du plan sur les variables d’espacement marqué traité pour la mise en page ; autres retours enseignant conservés ouverts. Le header/footer consomme la même unité pour ses espacements existants, sans refonte de son contenu ni de sa disposition.
 - CSS et documentation générés et écrits par l’IA à la demande de Steve. Références de variables, accolades et espaces Git contrôlés. Bornes de tailles vérifiées par calcul à 375, 768 et 1440px avec racine 16px ; ce calcul ne remplace pas une vérification navigateur. Rendu mobile/desktop et zoom à consulter par Steve avant validation ; commit laissé à Steve.
+
+### 27/10/2026 — Alignement responsive du header/footer
+
+- Avant intervention, arbre Git propre et commit `ac9cfc3` constatés. Les entrées « Limite de 500 pour la description » et « Hiérarchie typographique et unité d’espacement » décrivent séparément les changements JavaScript/HTML et CSS ; aucun chevauchement de responsabilité relevé dans leur contenu.
+- À la demande de Steve de poursuivre sur le header/footer, modification CSS seulement : `.site-brand` passe en `inline-flex` avec centrage vertical et hauteur minimale de 2.75rem pour agrandir la cible du lien d’accueil sans imposer une hauteur fixe au texte.
+- Footer : remplacement de la colonne forcée par une ligne flexible avec retour à la ligne, centrage vertical et répartition de l’espace. Navigation et texte peuvent partager une ligne si la place suffit, sinon reviennent à la ligne naturellement. Gap existant fondé sur `--space` conservé, sans media query ni classe supplémentaire ; footer toujours dans le flux normal.
+- Conservation des classes et du découpage HTML actuel : la mise en page s’applique aussi aux futurs fragments inclus par PHP. Aucun changement au chargeur JavaScript, aux formulaires, aux liens ni au travail PHP parallèle ; migration des inclusions toujours à réaliser dans cette étape séparée.
+- CSS et présente entrée générés et écrits par l’IA à la demande de Steve. Différence, références de variables, accolades et espaces Git contrôlés ; affichage sur petites/grandes largeurs et clic/focus du lien à confirmer dans le navigateur par Steve. Commit laissé à Steve.
+
+### 27/10/2026 — Ombre franche des boutons
+
+- À la demande de Steve après partage d’une référence visuelle, ajout de `box-shadow: 3px 3px 0 var(--color-border)` dans la règle commune `.button`. Décalage de 3px vers la droite et le bas, sans flou, pour un relief graphique similaire à la référence.
+- Une seule déclaration ajoutée, couleur de bordure existante réutilisée ; aucune nouvelle classe ou variable. Bordure, arrondi et disposition conservés. Effet commun aux boutons et liens `.button`, y compris la variante secondaire ; l’opacité des contrôles désactivés atténue aussi leur ombre.
+- Aucune nouvelle animation de clic : effet de pression existant conservé, raffinement interactif reporté à la demande de Steve. Aucun HTML, JavaScript ou fichier PHP modifié.
+- CSS et présente entrée générés et écrits par l’IA à la demande de Steve. Différence et espaces Git contrôlés ; rendu et absence de débordement à vérifier dans le navigateur par Steve. Commit laissé à Steve.
+
+### 27/10/2026 — Relief commun des cartes et boutons
+
+- À la demande de Steve, extension de l’ombre franche aux cartes de profils/demandes (`request-card`), panneaux (`form-panel`) et mini-cartes de sélection (`tag-options label`), via une règle groupée sans nouvelle classe. Pastilles de lecture `tag-list` conservées sans relief supplémentaire.
+- Ajout d’une variable partagée `--shadow-raised: 3px 3px 0 var(--color-border)` et réutilisation sur les boutons : modification du relief désormais centralisée. État sélectionné des mini-cartes adapté pour cumuler le contour intérieur existant et l’ombre extérieure, sans effacer cette dernière.
+- CSS et présente entrée générés et écrits par l’IA à la demande de Steve. Différence et espaces Git contrôlés ; rendu mobile et état sélectionné à vérifier dans le navigateur. Aucun HTML, JavaScript ou travail PHP parallèle modifié ; commit laissé à Steve.
