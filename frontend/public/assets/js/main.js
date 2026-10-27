@@ -140,7 +140,7 @@ function setupPasswordGuidance() {
 
 setupPasswordGuidance();
 
-// Compteur de saisie, sans limite de longueur imposée
+// Compteur aligné sur la limite native du champ
 function setupCharacterCounter(inputId, counterId) {
   const input = document.getElementById(inputId);
   const counter = document.getElementById(counterId);
@@ -150,9 +150,8 @@ function setupCharacterCounter(inputId, counterId) {
   }
 
   function updateCount() {
-    const count = Array.from(input.value).length;
-    const label = count > 1 ? "caractères saisis" : "caractère saisi";
-    counter.textContent = `${count} ${label}`;
+    const count = input.value.length;
+    counter.textContent = `${count} / ${input.maxLength} caractères`;
   }
 
   input.addEventListener("input", updateCount);

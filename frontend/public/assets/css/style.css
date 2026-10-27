@@ -3,6 +3,7 @@
 /* Valeurs provisoires de la maquette */
 :root {
   --font-body: Arial, Helvetica, sans-serif;
+  --space: 1rem;
   --color-text: #111113;
   --color-background: #E9E6DD;
   --content-max-width: 60rem;
@@ -30,7 +31,7 @@ body {
   margin: 0;
   font-family: var(--font-body);
   font-size: 1rem;
-  line-height: 1.5;
+  line-height: 1.6;
   color: var(--color-text);
   background-color: var(--color-background);
 }
@@ -47,7 +48,7 @@ textarea {
 main {
   max-width: var(--content-max-width);
   margin-inline: auto;
-  padding: 2rem 1rem;
+  padding: calc(var(--space) * 2) var(--space);
 }
 
 /* Espacement des titres et paragraphes */
@@ -59,16 +60,28 @@ p {
 }
 
 h1 {
-  margin-bottom: 2rem;
+  font-size: clamp(1.75rem, 1.25rem + 2vw, 2.5rem);
+  margin-bottom: calc(var(--space) * 2);
 }
 
 h2 {
-  margin-bottom: 1rem;
+  font-size: clamp(1.25rem, 1rem + 1vw, 1.5rem);
+  margin-bottom: var(--space);
+}
+
+h3 {
+  font-size: 1.125rem;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.2;
 }
 
 /* Espacement entre les sections du contenu principal */
 main > section + section {
-  margin-top: 3rem;
+  margin-top: calc(var(--space) * 3);
 }
 
 /* En-tête commun */
@@ -82,7 +95,7 @@ main > section + section {
 .site-footer__inner {
   max-width: var(--content-max-width);
   margin-inline: auto;
-  padding: 1rem;
+  padding: var(--space);
 }
 
 /* Pied de page commun */
@@ -95,14 +108,14 @@ main > section + section {
 .site-footer__inner {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: var(--space);
 }
 
 /* Navigation du pied de page */
 .footer-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem 1rem;
+  gap: calc(var(--space) / 2) var(--space);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -149,26 +162,30 @@ main > section + section {
 .request-card {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  margin-top: 1rem;
-  padding: 1rem;
+  gap: var(--space);
+  margin-top: var(--space);
+  padding: var(--space);
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-card);
+}
+
+.request-card + p {
+  margin-top: var(--space);
 }
 
 /* Liste des centres d’intérêt */
 .tag-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: calc(var(--space) / 2);
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
 .tag-list > li {
-  padding: 0.25rem 0.75rem;
+  padding: calc(var(--space) / 4) calc(var(--space) * 0.75);
   background-color: var(--color-background);
   border-radius: 1rem;
 }
@@ -177,7 +194,7 @@ main > section + section {
 .request-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
+  gap: calc(var(--space) * 0.75);
 }
 
 .request-actions > .button {
@@ -187,7 +204,7 @@ main > section + section {
 /* Boutons communs */
 .button {
   min-height: 2.75rem;
-  padding: 0.625rem 1rem;
+  padding: 0.625rem var(--space);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-control);
   font: inherit;
@@ -234,20 +251,20 @@ main > section + section {
   width: 4rem;
   max-width: 100%;
   height: auto;
-  margin: 0 auto 1.5rem;
+  margin: 0 auto calc(var(--space) * 1.5);
 }
 
 /* Organisation du formulaire */
 .auth-form {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: calc(var(--space) * 1.25);
 }
 
 .form-field {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: calc(var(--space) / 2);
 }
 
 .form-field label {
@@ -261,7 +278,7 @@ main > section + section {
   width: 100%;
   min-width: 0;
   min-height: 2.75rem;
-  padding: 0.625rem 0.75rem;
+  padding: 0.625rem calc(var(--space) * 0.75);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-control);
   color: var(--color-text);
@@ -283,8 +300,8 @@ main > section + section {
 .form-panel {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  padding: 1rem;
+  gap: var(--space);
+  padding: var(--space);
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-card);
@@ -294,7 +311,7 @@ main > section + section {
 .auth-form fieldset {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: var(--space);
   min-width: 0;
   margin: 0;
   padding: 0;
@@ -303,7 +320,7 @@ main > section + section {
 
 .auth-form legend {
   padding: 0;
-  margin-bottom: 1rem;
+  margin-bottom: var(--space);
   font-weight: 600;
 }
 
@@ -311,16 +328,16 @@ main > section + section {
 .tag-options {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: calc(var(--space) / 2);
 }
 
 .tag-options label {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: calc(var(--space) / 2);
   min-height: 2.75rem;
   max-width: 100%;
-  padding: 0.625rem 0.75rem;
+  padding: 0.625rem calc(var(--space) * 0.75);
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-card);
@@ -339,6 +356,6 @@ main > section + section {
 .registration-options {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  margin-top: 1rem;
+  gap: calc(var(--space) * 0.75);
+  margin-top: var(--space);
 }

@@ -20,7 +20,7 @@ Au 27/10/2026, les sept pages du scaffold sont regroupées dans `frontend/public
 - Flux parrain : structure sémantique, carte de demande illustrative, tags, boutons désactivés et en-tête/pied de page partagés et stylisés.
 - Connexion : formulaire stylisé, panneaux de surface provisoire, silhouette de profil et liens vers la création de compte selon le rôle choisi.
 - Création de compte : sélection du rôle, identifiant, e-mail et mot de passe avec champs de confirmation, regroupés en panneaux.
-- Configuration du profil : nom affiché, pays, parcours et description avec compteur de saisie, plus six centres d’intérêt et sept besoins sélectionnables sous forme de mini-cartes. Compteur sans limite imposée, essais navigateur à confirmer. Choix provisoires, sans enregistrement.
+- Configuration du profil : nom affiché, pays, parcours et description avec compteur et limite native de 500 caractères, plus six centres d’intérêt et sept besoins sélectionnables sous forme de mini-cartes. Essais navigateur de la limite à confirmer. Choix provisoires, sans enregistrement.
 - Flux étudiant : trois profils fictifs, tags, avatars, actions désactivées et actualités à venir.
 - Accueil : présentation du service, étapes du parcours prévu et liens vers les formulaires et les deux espaces de démonstration.
 - Profil : exemple statique de Lucia, présentation, intérêts, besoins et lien vers la configuration non préremplie. Accueil et profil restent des propositions à valider, sans écran dédié dans le wireframe V1.

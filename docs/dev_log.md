@@ -641,3 +641,20 @@ Notes de Steve prises lors du retour enseignant, synthétisées sans ajout de re
 
 - À la demande de Steve, saumon du header/footer légèrement foncé : `--color-header-footer` passe de `#F2D6D0` à `#EBC3BA`. Texte et reste de la palette conservés.
 - Modification de cette seule valeur CSS et note générées par l’IA ; espaces Git vérifiés, autres travaux parallèles inchangés. Rendu à consulter par Steve ; commit laissé à Steve.
+
+### 27/10/2026 — Limite de 500 pour la description
+
+- Steve confirme avoir commité le compteur avec ses changements de palette ; arbre propre constaté au départ. L’entrée du compteur était déjà présente dans le journal. Il choisit explicitement une limite de 500.
+- L’IA ajoute `maxlength="500"` au textarea et adapte le compteur en `nombre / limite caractères`. JavaScript lit `input.maxLength`, ce qui garde la valeur HTML comme référence pour la limite. Le HTML initial affiche `0 / 500 caractères`.
+- `input.value.length` remplace `Array.from(input.value).length` pour compter les mêmes unités UTF-16 que le `maxlength` natif ; un emoji simple tel que 🙂 compte désormais pour deux unités. Le navigateur gère la limite de saisie, JavaScript affiche le compte sans tronquer la valeur ni masquer un dépassement provenant d’un autre script. Validation serveur future nécessaire ; soumission toujours désactivée. Aucun CSS ni backend modifié.
+- Référence consultée : [MDN — maxlength](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/maxlength). Simulations IA réussies : initialisation, vide, un caractère, 499/500, dépassement assigné par script, Unicode, changement de limite et absence des éléments ; syntaxe et espaces Git contrôlés. Saisie et collage au-delà de la limite restent à tester dans le navigateur par Steve ; aucun essai navigateur effectué par l’IA.
+- Code et documentation actualisés par l’IA, fiche personnelle complétée hors dépôt. Aucun staging ni commit effectué par l’IA.
+
+### 27/10/2026 — Hiérarchie typographique et unité d’espacement
+
+- À la demande de Steve, première passe de typographie/espacement avant une prochaine revue du header/footer. Police système existante conservée, sans téléchargement de fonte ni ajout de dépendance.
+- Tailles explicites : h1 fluide via `clamp` de 1.75rem à 2.5rem, h2 de 1.25rem à 1.5rem, h3 à 1.125rem. Interligne des titres à 1.2, texte courant de 1.5 à 1.6 ; ligne des boutons inchangée à 1.5. Les titres peuvent revenir à la ligne et ne reçoivent pas de hauteur fixe.
+- Ajout d’une seule variable `--space: 1rem`, réutilisée dans marges, paddings et gaps existants avec `var` et `calc`. Valeurs numériques des espacements existants conservées, y compris fractions 0.25/0.5/0.75/1.25/1.5 ; padding fin de 0.625rem des contrôles laissé en place. Tailles de police, rayons, dimensions d’avatar et hauteurs minimales ne dépendent pas de cette unité.
+- Ajout d’une marge au paragraphe qui suit directement une `request-card`, pour séparer la dernière suggestion du message « Aucun de ces profils… ». Aucune classe supplémentaire, aucun changement de palette, HTML, JavaScript ou travail PHP.
+- Point du plan sur les variables d’espacement marqué traité pour la mise en page ; autres retours enseignant conservés ouverts. Le header/footer consomme la même unité pour ses espacements existants, sans refonte de son contenu ni de sa disposition.
+- CSS et documentation générés et écrits par l’IA à la demande de Steve. Références de variables, accolades et espaces Git contrôlés. Bornes de tailles vérifiées par calcul à 375, 768 et 1440px avec racine 16px ; ce calcul ne remplace pas une vérification navigateur. Rendu mobile/desktop et zoom à consulter par Steve avant validation ; commit laissé à Steve.

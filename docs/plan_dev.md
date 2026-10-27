@@ -327,7 +327,7 @@ L’IA peut préparer et rédiger ces documents à partir des éléments fournis
 - [ ] Présélection du rôle depuis les liens
 - [x] Retour JavaScript sur la correspondance des mots de passe (simulations IA réussies, fonctionnement navigateur confirmé par Steve)
 - [x] Comparaison client des e-mails par réutilisation de la fonction de confirmation (27/10 ; simulations IA réussies, fonctionnement navigateur confirmé par Steve)
-- [x] Compteur de description sans limite imposée (27/10 ; simulations IA réussies, navigateur à confirmer)
+- [x] Compteur de description et limite native de 500 caractères choisie par Steve (27/10 ; simulations IA réussies, limite à confirmer dans le navigateur)
 - [ ] Validation serveur des formulaires
 - [x] Header partagé sur sept pages et footers intégrés selon le découpage provisoire
 - [ ] Valider la navigation et le footer selon connexion/rôle
@@ -346,7 +346,7 @@ Structure actuelle : voir la section 5, « Structure actuelle du dépôt ».
 
 **Prochaine étape proposée :** cadrer la structure PHP/SQL avant implémentation : inventaire de l’environnement local, racine publique et fichiers privés, modèle de données minimal et première étape PHP à expliquer à Steve. Transfert préparé hors dépôt ; aucun agent backend lancé ni migration engagée. Comparaison e-mail et compteur de description différés. Le conseil de mot de passe est un repère pédagogique, sans mesure complète de robustesse. Navigation selon connexion/rôle, domaines d’aide du parrain et revue navigateur globale restent ouverts ; soumissions désactivées et validation serveur future conservées.
 
-**Reprise frontend au 27/10/2026 :** Steve souhaite poursuivre quelques exercices JavaScript en parallèle de la préparation backend désormais visible dans `backend/`. La comparaison des e-mails partage la même fonction que les mots de passe, avec fonctionnement navigateur confirmé par Steve. Un compteur de description est ajouté, sans limite de longueur ni CSS supplémentaire. Prochaine étape frontend : essai navigateur du compteur, puis filtrage des profils fictifs. Ce complément actualise la proposition précédente ; aucun changement ni revue du backend dans cette étape.
+**Reprise frontend au 27/10/2026 :** Steve souhaite poursuivre quelques exercices JavaScript en parallèle de la préparation backend désormais visible dans `backend/`. La comparaison des e-mails partage la même fonction que les mots de passe, avec fonctionnement navigateur confirmé par Steve. Le compteur de description affiche la longueur sur une limite native de 500 choisie par Steve, sans CSS supplémentaire. Prochaine étape frontend : essai navigateur de la limite, puis filtrage des profils fictifs. Ce complément actualise la proposition précédente ; aucun changement ni revue du backend dans cette étape.
 
 **Décisions reportées :** direction artistique finale, navigation selon connexion/rôle, destinations FAQ/démarches/mentions légales, placement du footer en bas des pages courtes. Le footer reste dans le flux normal. L’absence de lien vers un profil sur la connexion est une décision d’interface, pas un contrôle d’accès : les protections réelles seront implémentées côté PHP.
 
@@ -361,7 +361,8 @@ Non commencées.
 La synthèse des suggestions de Yannis Delmas est conservée dans `docs/dev_log.md`, à la date du 14/10/2026. Les schémas Mermaid ont été appliqués ; le 20/10, Steve a également demandé la suppression du soulignement au survol des éléments `.button`, en conservant les liens de navigation présentés en boutons et leur focus clavier.
 
 - [x] Retirer le soulignement au survol des boutons et liens `.button`, sans supprimer le focus clavier (20/10).
-- [ ] Reprendre les autres points de cette synthèse avec Steve : ARIA et nom de navigation, classes/IDs des boutons, présentation des liens, curseurs, variables d’espacement, sélecteurs de pseudo-éléments, inclusions PHP et rôle de JavaScript/AJAX. Ces autres ajustements restent à revoir ; aucune date fixée.
+- [x] Centraliser les espacements de mise en page avec une unité `--space` et ses multiples/fractions (27/10) ; détails de padding des contrôles conservés pour cette passe.
+- [ ] Reprendre les autres points de cette synthèse avec Steve : ARIA et nom de navigation, classes/IDs des boutons, présentation des liens, curseurs, sélecteurs de pseudo-éléments, inclusions PHP et rôle de JavaScript/AJAX. Ces autres ajustements restent à revoir ; aucune date fixée.
 
 **Décision de Steve :** conserver pour l’instant le chargement client du header/footer en JavaScript et l’environnement de prévisualisation actuel. Reporter l’introduction de PHP ainsi que les autres ajustements suggérés à une prochaine revue ; aucune migration ni refonte des contrôles engagée.
 
