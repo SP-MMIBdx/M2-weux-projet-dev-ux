@@ -79,7 +79,7 @@
           </div>
         </div>
 
-        <fieldset>
+        <fieldset id="profile-interests">
           <legend>Tes centres d’intérêt</legend>
           <p>Tu peux sélectionner plusieurs réponses.</p>
           <div class="tag-options">
@@ -108,9 +108,18 @@
               Études
             </label>
           </div>
+          <p data-selection-count role="status">0 option sélectionnée</p>
+          <div class="request-actions">
+            <button type="button" class="button button--secondary" data-select-all>
+              Tout sélectionner
+            </button>
+            <button type="button" class="button button--secondary" data-clear-selection disabled>
+              Tout désélectionner
+            </button>
+          </div>
         </fieldset>
 
-        <fieldset>
+        <fieldset id="profile-needs">
           <legend>Tes besoins d’accompagnement</legend>
           <p>
             Dans quels domaines souhaites-tu être accompagné ? Plusieurs
@@ -149,6 +158,15 @@
               <input type="checkbox" name="needs[]" value="aides" />
               Aides disponibles pour les étudiants
             </label>
+          </div>
+          <p data-selection-count role="status">0 option sélectionnée</p>
+          <div class="request-actions">
+            <button type="button" class="button button--secondary" data-select-all>
+              Tout sélectionner
+            </button>
+            <button type="button" class="button button--secondary" data-clear-selection disabled>
+              Tout désélectionner
+            </button>
           </div>
         </fieldset>
 

@@ -679,3 +679,28 @@ Notes de Steve prises lors du retour enseignant, synthétisées sans ajout de re
 - À la demande de Steve, extension de l’ombre franche aux cartes de profils/demandes (`request-card`), panneaux (`form-panel`) et mini-cartes de sélection (`tag-options label`), via une règle groupée sans nouvelle classe. Pastilles de lecture `tag-list` conservées sans relief supplémentaire.
 - Ajout d’une variable partagée `--shadow-raised: 3px 3px 0 var(--color-border)` et réutilisation sur les boutons : modification du relief désormais centralisée. État sélectionné des mini-cartes adapté pour cumuler le contour intérieur existant et l’ombre extérieure, sans effacer cette dernière.
 - CSS et présente entrée générés et écrits par l’IA à la demande de Steve. Différence et espaces Git contrôlés ; rendu mobile et état sélectionné à vérifier dans le navigateur. Aucun HTML, JavaScript ou travail PHP parallèle modifié ; commit laissé à Steve.
+
+### 27/10/2026 — Navigation principale conservée dans le footer
+
+- Steve confirme que la navigation principale reste dans le footer pour le moment. Header limité à l’identité du projet et au lien d’accueil ; variantes selon connexion/rôle et destinations détaillées encore à définir, avec rendu prévu côté PHP.
+- Décision ajoutée au plan et présente synthèse rédigées par l’IA. Aucun changement applicatif ou de positionnement du footer ; espaces Git vérifiés. Commit laissé à Steve.
+
+### 27/10/2026 — Navigation persistante mobile différée
+
+- Après discussion d’une barre de navigation toujours visible en bas sur mobile, Steve demande de mettre l’idée en attente et d’y revenir ultérieurement. Point de suivi ajouté au plan ; footer conservé dans le flux normal, sans modification CSS/HTML/JavaScript ou PHP.
+- Note et mise à jour documentaire rédigées par l’IA à la demande de Steve ; espaces Git vérifiés. Commit laissé à Steve.
+
+### 27/10/2026 — Sélections des intérêts et besoins : compteur et désélection
+
+- À la demande de Steve, ajout de `profile-interests` et `profile-needs` sur les deux fieldsets, d’un paragraphe de statut et d’un bouton natif « Tout désélectionner » dans chacun. Fieldsets, légendes et treize cases natives avec leurs noms/valeurs sont conservés ; la formulation du deuxième groupe reste orientée étudiant, sans nouvelle gestion du rôle.
+- `setupTagSelection(groupId)` prépare une interaction indépendante par groupe : sélection DOM limitée au fieldset, compteur des cases `:checked`, singulier/pluriel et bouton désactivé lorsque rien n’est coché. Un écouteur `change` sur le groupe reçoit les changements remontés depuis les cases. Le bouton parcourt les cases avec `forEach`, affecte `checked = false`, replace le focus sur la première case puis recalcule le statut. L’appel initial prend aussi en compte d’éventuelles cases précochées.
+- La modification de `.checked` par script ne déclenche pas automatiquement `change` : l’actualisation est appelée explicitement après la boucle. Pas de limite de sélection, de sauvegarde, de requête réseau ou de CSS supplémentaire. Apparence existante réutilisée ; validation et enregistrement futurs restent côté PHP. Filtrage des profils réservé à PHP/SQL après clarification de Steve, proposition JavaScript antérieure abandonnée.
+- Vérifications IA : syntaxe et simulations Node réussies pour zéro/une/plusieurs sélections, préselection, groupes indépendants, désélection, toutes les options, décochage manuel, cible du focus et éléments manquants. Treize noms/valeurs de cases comparés à la version Git, boutons de type `button`, statuts et soumission toujours désactivée contrôlés. La remontée réelle des événements, le focus clavier et le rendu restent à vérifier dans le navigateur par Steve ; aucun essai navigateur réalisé par l’IA.
+- JavaScript, HTML, mises à jour README/plan et nouvelle fiche pédagogique Markdown hors dépôt rédigés par l’IA. Explications et checklist fournies à Steve ; message de commit proposé, aucun staging ni commit effectué. Les modifications documentaires de navigation déjà présentes au départ sont conservées.
+
+### 27/10/2026 — Sélection de toutes les options par groupe
+
+- À la demande de Steve, ajout d’un bouton natif « Tout sélectionner » avant « Tout désélectionner » dans chacun des deux groupes. Conteneur `request-actions` existant réutilisé pour l’alignement horizontal avec retour à la ligne selon la largeur ; aucune nouvelle règle CSS.
+- Traitement partagé par `setSelection(checked)` : `true` coche toutes les cases du groupe, `false` les décoche. Les deux boutons appellent cette fonction ; focus sur la première case et actualisation du statut conservés. « Tout sélectionner » se désactive lorsque toutes les cases sont cochées ; « Tout désélectionner » lorsque rien n’est coché. Les changements manuels réactualisent les deux états.
+- Vérifications IA : syntaxe et simulations Node réussies pour sélection/désélection complète, état partiel, préselection, groupes indépendants, cible du focus et contrôles manquants. Présence des deux boutons dans le même conteneur flexible contrôlée dans le HTML. Disposition réelle, retour à la ligne et clavier restent à confirmer par Steve dans le navigateur ; aucun essai navigateur effectué par l’IA.
+- HTML, JavaScript, README/plan et complément de fiche hors dépôt rédigés par l’IA. Aucune modification PHP, CSS ou activation des soumissions ; espaces Git vérifiés, aucun staging ni commit effectué.

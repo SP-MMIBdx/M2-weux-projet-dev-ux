@@ -327,7 +327,8 @@ L’IA peut préparer et rédiger ces documents à partir des éléments fournis
 - [ ] Présélection du rôle depuis les liens
 - [x] Retour JavaScript sur la correspondance des mots de passe (simulations IA réussies, fonctionnement navigateur confirmé par Steve)
 - [x] Comparaison client des e-mails par réutilisation de la fonction de confirmation (27/10 ; simulations IA réussies, fonctionnement navigateur confirmé par Steve)
-- [x] Compteur de description et limite native de 500 caractères choisie par Steve (27/10 ; simulations IA réussies, limite à confirmer dans le navigateur)
+- [x] Compteur de description et limite native de 500 caractères choisie par Steve (27/10 ; simulations IA réussies, fonctionnement navigateur confirmé par Steve)
+- [x] Compteurs et actions « Tout sélectionner » / « Tout désélectionner » indépendantes par groupe intérêts/besoins (27/10 ; simulations IA réussies, navigateur à confirmer)
 - [ ] Validation serveur des formulaires
 - [x] Header partagé sur sept pages et footers intégrés selon le découpage provisoire
 - [ ] Valider la navigation et le footer selon connexion/rôle
@@ -346,9 +347,13 @@ Structure actuelle : voir la section 5, « Structure actuelle du dépôt ».
 
 **Prochaine étape proposée :** cadrer la structure PHP/SQL avant implémentation : inventaire de l’environnement local, racine publique et fichiers privés, modèle de données minimal et première étape PHP à expliquer à Steve. Transfert préparé hors dépôt ; aucun agent backend lancé ni migration engagée. Comparaison e-mail et compteur de description différés. Le conseil de mot de passe est un repère pédagogique, sans mesure complète de robustesse. Navigation selon connexion/rôle, domaines d’aide du parrain et revue navigateur globale restent ouverts ; soumissions désactivées et validation serveur future conservées.
 
-**Reprise frontend au 27/10/2026 :** Steve souhaite poursuivre quelques exercices JavaScript en parallèle de la préparation backend désormais visible dans `backend/`. La comparaison des e-mails partage la même fonction que les mots de passe, avec fonctionnement navigateur confirmé par Steve. Le compteur de description affiche la longueur sur une limite native de 500 choisie par Steve, sans CSS supplémentaire. Prochaine étape frontend : essai navigateur de la limite, puis filtrage des profils fictifs. Ce complément actualise la proposition précédente ; aucun changement ni revue du backend dans cette étape.
+**Reprise frontend au 27/10/2026 :** Steve souhaite poursuivre quelques exercices JavaScript en parallèle de la préparation backend désormais visible dans `backend/`. Confirmations e-mail/mot de passe et limite de description fonctionnent selon les essais navigateur de Steve. Les groupes intérêts/besoins possèdent désormais un compteur et une désélection indépendante, sans CSS supplémentaire ; essais navigateur à confirmer. Le filtrage des profils revient à PHP/SQL selon la préférence enseignant réaffirmée par Steve ; il n’est pas développé en JavaScript. Prochaine étape : valider ces dernières interactions client puis poursuivre la préparation backend. Aucun changement ni revue du backend dans cette étape.
 
 **Décisions reportées :** direction artistique finale, navigation selon connexion/rôle, destinations FAQ/démarches/mentions légales, placement du footer en bas des pages courtes. Le footer reste dans le flux normal. L’absence de lien vers un profil sur la connexion est une décision d’interface, pas un contrôle d’accès : les protections réelles seront implémentées côté PHP.
+
+**Navigation — décision de Steve du 27/10/2026 :** conserver la navigation principale dans le footer pour le moment, conformément à l’orientation du wireframe. Le header garde l’identité du projet et le lien d’accueil. Destinations exactes et variantes publique/étudiant/parrain restent à définir ; leur sélection sera gérée par PHP lors de l’implémentation des sessions et rôles. Cette décision ne rend pas le footer fixe et n’ajoute pas de contrôle d’accès côté client.
+
+- [ ] Revenir sur l’idée d’une navigation persistante en bas du viewport mobile. Discussion mise en attente par Steve le 27/10 ; aucun choix de positionnement engagé. Le footer reste dans le flux normal en attendant cette revue.
 
 ### Phase 2 — Intégration UX/UI depuis Figma
 Commencée partiellement en parallèle de la phase 1 : première intégration depuis le wireframe V1 sur les deux flux, la connexion, la création de compte et la configuration du profil ; accueil et profil proposés sans écran dédié. Les sept pages ont du contenu initial. Direction artistique, proportions et détails du wireframe restent à valider. Les actualités restent une réservation visuelle d’une fonctionnalité ultérieure.

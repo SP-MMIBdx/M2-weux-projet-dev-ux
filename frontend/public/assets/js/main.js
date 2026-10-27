@@ -159,3 +159,50 @@ function setupCharacterCounter(inputId, counterId) {
 }
 
 setupCharacterCounter("profile-description", "profile-description-count");
+
+// Compteur et sélection groupée indépendants pour chaque groupe de cases
+function setupTagSelection(groupId) {
+  const group = document.getElementById(groupId);
+
+  if (!group) {
+    return;
+  }
+
+  const checkboxes = group.querySelectorAll('input[type="checkbox"]');
+  const counter = group.querySelector("[data-selection-count]");
+  const selectButton = group.querySelector("[data-select-all]");
+  const clearButton = group.querySelector("[data-clear-selection]");
+
+  if (!counter || !selectButton || !clearButton || checkboxes.length === 0) {
+    return;
+  }
+
+  function updateSelection() {
+    const count = group.querySelectorAll('input[type="checkbox"]:checked').length;
+    const label = count > 1 ? "options sélectionnées" : "option sélectionnée";
+    counter.textContent = `${count} ${label}`;
+    selectButton.disabled = count === checkboxes.length;
+    clearButton.disabled = count === 0;
+  }
+
+  function setSelection(checked) {
+    checkboxes.forEach(function (checkbox) {
+      checkbox.checked = checked;
+    });
+    checkboxes[0].focus();
+    updateSelection();
+  }
+
+  group.addEventListener("change", updateSelection);
+  selectButton.addEventListener("click", function () {
+    setSelection(true);
+  });
+  clearButton.addEventListener("click", function () {
+    setSelection(false);
+  });
+
+  updateSelection();
+}
+
+setupTagSelection("profile-interests");
+setupTagSelection("profile-needs");
