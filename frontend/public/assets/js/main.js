@@ -139,3 +139,24 @@ function setupPasswordGuidance() {
 }
 
 setupPasswordGuidance();
+
+// Compteur de saisie, sans limite de longueur imposée
+function setupCharacterCounter(inputId, counterId) {
+  const input = document.getElementById(inputId);
+  const counter = document.getElementById(counterId);
+
+  if (!input || !counter) {
+    return;
+  }
+
+  function updateCount() {
+    const count = Array.from(input.value).length;
+    const label = count > 1 ? "caractères saisis" : "caractère saisi";
+    counter.textContent = `${count} ${label}`;
+  }
+
+  input.addEventListener("input", updateCount);
+  updateCount();
+}
+
+setupCharacterCounter("profile-description", "profile-description-count");

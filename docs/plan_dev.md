@@ -327,6 +327,7 @@ L’IA peut préparer et rédiger ces documents à partir des éléments fournis
 - [ ] Présélection du rôle depuis les liens
 - [x] Retour JavaScript sur la correspondance des mots de passe (simulations IA réussies, fonctionnement navigateur confirmé par Steve)
 - [x] Comparaison client des e-mails par réutilisation de la fonction de confirmation (27/10 ; simulations IA réussies, fonctionnement navigateur confirmé par Steve)
+- [x] Compteur de description sans limite imposée (27/10 ; simulations IA réussies, navigateur à confirmer)
 - [ ] Validation serveur des formulaires
 - [x] Header partagé sur sept pages et footers intégrés selon le découpage provisoire
 - [ ] Valider la navigation et le footer selon connexion/rôle
@@ -345,7 +346,7 @@ Structure actuelle : voir la section 5, « Structure actuelle du dépôt ».
 
 **Prochaine étape proposée :** cadrer la structure PHP/SQL avant implémentation : inventaire de l’environnement local, racine publique et fichiers privés, modèle de données minimal et première étape PHP à expliquer à Steve. Transfert préparé hors dépôt ; aucun agent backend lancé ni migration engagée. Comparaison e-mail et compteur de description différés. Le conseil de mot de passe est un repère pédagogique, sans mesure complète de robustesse. Navigation selon connexion/rôle, domaines d’aide du parrain et revue navigateur globale restent ouverts ; soumissions désactivées et validation serveur future conservées.
 
-**Reprise frontend au 27/10/2026 :** Steve souhaite poursuivre quelques exercices JavaScript en parallèle de la préparation backend désormais visible dans `backend/`. La comparaison des e-mails est ajoutée en partageant la même fonction que les mots de passe, sans modifier le travail PHP/SQL. Prochaine étape frontend : essais navigateur des deux paires, puis compteur de description et filtrage des profils fictifs. Ce complément actualise la proposition précédente ; aucune revue du backend dans cette étape.
+**Reprise frontend au 27/10/2026 :** Steve souhaite poursuivre quelques exercices JavaScript en parallèle de la préparation backend désormais visible dans `backend/`. La comparaison des e-mails partage la même fonction que les mots de passe, avec fonctionnement navigateur confirmé par Steve. Un compteur de description est ajouté, sans limite de longueur ni CSS supplémentaire. Prochaine étape frontend : essai navigateur du compteur, puis filtrage des profils fictifs. Ce complément actualise la proposition précédente ; aucun changement ni revue du backend dans cette étape.
 
 **Décisions reportées :** direction artistique finale, navigation selon connexion/rôle, destinations FAQ/démarches/mentions légales, placement du footer en bas des pages courtes. Le footer reste dans le flux normal. L’absence de lien vers un profil sur la connexion est une décision d’interface, pas un contrôle d’accès : les protections réelles seront implémentées côté PHP.
 

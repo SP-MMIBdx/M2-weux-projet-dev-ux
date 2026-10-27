@@ -25,7 +25,7 @@
         alt=""
         width="64"
         height="64"
-      >
+      />
 
       <form class="auth-form" method="post" aria-describedby="profile-note">
         <div class="form-panel">
@@ -65,12 +65,16 @@
 
         <div class="form-panel">
           <div class="form-field">
-            <label for="profile-description">Présente-toi en quelques mots</label>
+            <label for="profile-description"
+              >Présente-toi en quelques mots</label
+            >
             <textarea
               id="profile-description"
               name="description"
               rows="4"
+              aria-describedby="profile-description-count"
             ></textarea>
+            <p id="profile-description-count">0 caractère saisi</p>
           </div>
         </div>
 
@@ -107,7 +111,10 @@
 
         <fieldset>
           <legend>Tes besoins d’accompagnement</legend>
-          <p>Dans quels domaines souhaites-tu être accompagné ? Plusieurs réponses sont possibles.</p>
+          <p>
+            Dans quels domaines souhaites-tu être accompagné ? Plusieurs
+            réponses sont possibles.
+          </p>
           <div class="tag-options">
             <label>
               <input type="checkbox" name="needs[]" value="vie-sociale" />
@@ -126,7 +133,11 @@
               Transports
             </label>
             <label>
-              <input type="checkbox" name="needs[]" value="sorties-culturelles" />
+              <input
+                type="checkbox"
+                name="needs[]"
+                value="sorties-culturelles"
+              />
               Sorties et activités culturelles
             </label>
             <label>

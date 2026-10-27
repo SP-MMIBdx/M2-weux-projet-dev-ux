@@ -623,3 +623,21 @@ Notes de Steve prises lors du retour enseignant, synthétisées sans ajout de re
 - Code et documentation rédigés par l’IA. Syntaxe et simulations Node réussies : vide, différence, correspondance, modification de chaque champ, casse, espaces, effacement, indépendance des paires, fonctionnement des révélations et du conseil de mot de passe, éléments absents. Identifiants HTML uniques et références ARIA contrôlés, espaces Git vérifiés. Aucun nouvel essai navigateur effectué par l’IA ; consignes fournies à Steve.
 - README et checklist du plan synchronisés, fiche personnelle JavaScript complétée hors dépôt pour expliquer les cinq paramètres et la conservation du comportement. Compteur de description et filtrage proposés ensuite, sans implémentation dans cette étape. Aucun staging ni commit effectué par l’IA.
 - Steve confirme ensuite que les interactions fonctionnent toujours dans le navigateur. Statut du README et de la checklist actualisé par l’IA avant le commit laissé à Steve ; aucun nouvel essai navigateur réalisé par l’IA. Prochain exercice : compteur de description sans limite métier arbitraire ; champ existant relu, aucun code de compteur ajouté dans ce commit.
+
+### 27/10/2026 — Compteur de description du profil
+
+- Steve a saisi le paragraphe `profile-description-count` et sa référence `aria-describedby` sur le textarea. Au contrôle initial, seul ce fichier HTML était modifié. L’IA ajoute `setupCharacterCounter(inputId, counterId)` : recherche des éléments, garde-fou, calcul sur `input` et initialisation immédiate.
+- `Array.from(input.value).length` compte les points de code Unicode, espaces et retours à la ligne compris. Le ternaire choisit le libellé singulier/pluriel et un littéral de gabarit compose le texte. Ce compteur ne compte pas les graphèmes composés ; aucune limite de longueur ni règle métier ajoutée. Aucun CSS ou backend modifié, aucune sauvegarde ou soumission activée.
+- Vérifications IA : syntaxe, référence HTML unique et simulation Node réussies pour contenu prérempli, zéro/un/plusieurs caractères, changement équivalent à un collage, effacement, espaces, retours à la ligne, emoji simple, accent combiné, valeurs conservées et éléments absents. Espaces Git vérifiés ; aucun essai navigateur effectué par l’IA. Tests réels de saisie/collage/effacement à confirmer par Steve.
+- Attribution : HTML saisi par Steve ; JavaScript et mises à jour documentaires par l’IA. README/plan et fiche personnelle hors dépôt actualisés. Aucun staging ni commit effectué par l’IA.
+
+### 27/10/2026 — Essai de saumon pâle pour le header/footer
+
+- À la demande de Steve, remplacement de la couleur actuellement jaune du header/footer par un saumon très clair `#F2D6D0` dans la variable partagée ; texte quasi-noir `#111113` déjà présent et conservé.
+- Cartes jaunes, actions vertes, fond crème et autres styles conservés. Liens et contours de focus suivent la couleur de texte existante par héritage et `currentColor` ; aucune nouvelle règle, classe ou variable.
+- CSS et présente entrée générés et écrits par l’IA à la demande de Steve. Espaces Git vérifiés ; rendu à consulter avant validation. Modifications parallèles déjà présentes conservées et aucun fichier PHP modifié ; commit laissé à Steve.
+
+### 27/10/2026 — Ajustement léger du saumon
+
+- À la demande de Steve, saumon du header/footer légèrement foncé : `--color-header-footer` passe de `#F2D6D0` à `#EBC3BA`. Texte et reste de la palette conservés.
+- Modification de cette seule valeur CSS et note générées par l’IA ; espaces Git vérifiés, autres travaux parallèles inchangés. Rendu à consulter par Steve ; commit laissé à Steve.
