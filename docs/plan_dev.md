@@ -55,7 +55,7 @@ Privilégier PHP pour les traitements réalisables côté serveur : rendu et inc
 
 Le chargement actuel du header/footer par JavaScript reste une solution provisoire de la maquette statique. Sa migration vers des inclusions PHP sera réalisée lors de la mise en place explicite de l’environnement PHP. La présélection du rôle par JavaScript proposée précédemment n’est pas une prochaine étape actée : elle sera revue selon cette répartition.
 
-**Ordre d’apprentissage précisé le 26/10/2026 :** Steve rapporte que l’enseignant souhaite une implémentation JavaScript avant PHP. Poursuivre de petites interactions client utiles, sans changer les responsabilités serveur prévues. Affichage/masquage des mots de passe implémenté ; retour sur la correspondance des confirmations proposé ensuite comme aide immédiate, avec validation PHP nécessaire lors de l’implémentation serveur. Les soumissions restent désactivées.
+**Ordre d’apprentissage précisé le 26/10/2026 :** Steve rapporte que l’enseignant souhaite une implémentation JavaScript avant PHP. Poursuivre de petites interactions client utiles, sans changer les responsabilités serveur prévues. Affichage/masquage et retour sur la correspondance des confirmations désormais implémentés comme aides immédiates ; validation PHP nécessaire lors de l’implémentation serveur. Les soumissions restent désactivées.
 
 ### Base de données
 
@@ -107,10 +107,19 @@ Branche de développement commune à l'équipe.
 
 ## 5. Structure actuelle du dépôt
 
-Au 20/10/2026, la structure de travail est la suivante :
+Au 27/10/2026, la structure versionnée de travail est la suivante :
 
 ```text
 /
+├── backend/
+│   ├── config/
+│   │   └── database.local.php.example
+│   ├── includes/
+│   │   ├── header.php
+│   │   └── footer.php
+│   ├── sql/
+│   │   └── schema.sql
+│   └── db.php
 ├── docs/
 │   ├── wireframes/
 │   │   └── WIREFRAME_V1.pdf
@@ -153,14 +162,14 @@ flowchart TD
     Pages --> JS["main.js"]
     JS --> Header["header.html"]
     JS --> Footer["footer.html : deux flux et profil"]
-    JS --> Passwords["Afficher/masquer : connexion et inscription"]
+    JS --> Interactions["Interactions des formulaires"]
 ```
 
 Les fichiers CSS et JavaScript se trouvent dans `assets/css/` et `assets/js/`, et les fragments dans `includes/`. Les formulaires, les deux flux et le profil utilisent `assets/images/avatar-default.svg`. L’accueil et les formulaires conservent un footer public local ; les deux flux et le profil chargent le footer commun. Ce schéma décrit les fichiers utilisés, pas un parcours utilisateur ni une gestion de session ; PHP n’est pas encore intégré.
 
 La branche `dev` contient également les prototypes d’Alexandre et Ange dans `prototypes/`.
 
-Les dossiers PHP, SQL et de configuration seront ajoutés lorsqu’ils deviendront nécessaires.
+Le scaffold `backend/` est présent : connexion PDO, inclusions, schéma et modèle public de configuration ne contiennent que des commentaires préparatoires. La configuration locale `backend/config/database.local.php` est exclue de Git et omise de cette arborescence versionnée. Aucun traitement PHP, connexion SQL ou migration des pages n’est fonctionnel.
 
 ---
 
@@ -341,13 +350,17 @@ L’IA peut préparer et rédiger ces documents à partir des éléments fournis
 
 Structure actuelle : voir la section 5, « Structure actuelle du dépôt ».
 
-**État actuel au 20/10/2026 :** le flux parrain dispose d’une première présentation responsive avec données illustratives et actions désactivées. Connexion et création de compte disposent de formulaires stylisés ; la configuration du profil contient les informations personnelles et deux groupes de choix multiples : six intérêts et sept besoins provisoires. Les options sont des mini-cartes jaunes utilisant `--color-surface`, avec cases natives visibles, état sélectionné en CSS et retour à la ligne. Titres et instructions restent hors des cartes. Les panneaux des informations personnelles et la silhouette décorative sont réutilisés sur les écrans de formulaire ; la couleur de surface reste provisoire et partagée avec le header/footer. Le groupe des besoins cible encore l’étudiant accompagné, sans adaptation au parrain. Le flux étudiant présente trois profils fictifs et des actions désactivées. L’accueil présente le service et les liens de démonstration ; le profil affiche un exemple statique de Lucia, sans préremplissage ni enregistrement. Ces deux derniers écrans ne disposent pas de wireframes dédiés et restent à valider. Les soumissions sont désactivées ; présélection du rôle et comparaison des confirmations restent à implémenter. Les tests visuels rapportés par Steve ne constituent pas encore une validation exhaustive du responsive ou de l’accessibilité. Aucun code PHP ou SQL n’a été introduit.
+**État actuel au 27/10/2026 :** les sept pages disposent d’une première structure statique. Les deux flux montrent des données fictives avec actions désactivées ; accueil et profil restent des propositions sans écran dédié dans V1. Le profil affiché n’est pas relié au formulaire. La configuration comprend informations personnelles, description limitée à 500 unités UTF-16 avec compteur, six intérêts et sept besoins provisoires. Les besoins sont encore formulés pour l’étudiant accompagné.
 
-**Complément au 26/10/2026 :** Steve a confirmé les contrôles mobile/clavier des mini-cartes et le fonctionnement de la révélation du mot de passe de connexion, puis de sa fonction paramétrée. Deux boutons indépendants sont maintenant intégrés à l’inscription ; simulations IA réussies, essai navigateur de cette dernière correction encore à confirmer explicitement. Cela ne vaut pas validation exhaustive des sept écrans. Aucun PHP ni SQL introduit.
+Le JavaScript propose révélation indépendante des mots de passe, comparaison des confirmations e-mail/mot de passe, conseil pédagogique de mot de passe et compteurs/actions de sélection par groupe. Les soumissions restent désactivées : aucun compte, session, enregistrement ni contrôle d’accès. La présélection du rôle et la validation serveur restent à implémenter ; le filtrage des profils est réservé à PHP/SQL.
 
-**Prochaine étape proposée :** cadrer la structure PHP/SQL avant implémentation : inventaire de l’environnement local, racine publique et fichiers privés, modèle de données minimal et première étape PHP à expliquer à Steve. Transfert préparé hors dépôt ; aucun agent backend lancé ni migration engagée. Comparaison e-mail et compteur de description différés. Le conseil de mot de passe est un repère pédagogique, sans mesure complète de robustesse. Navigation selon connexion/rôle, domaines d’aide du parrain et revue navigateur globale restent ouverts ; soumissions désactivées et validation serveur future conservées.
+La présentation utilise la palette provisoire crème/jaune/vert avec header/footer saumon pâle, une hiérarchie de titres fluide, `--space` pour les espacements et `--shadow-raised` pour le relief des cartes/boutons. Le footer actuel conserve ses liens textuels et reste dans le flux normal ; les icônes et le burger de V1 ne sont pas implémentés. Les variantes publiques restent simplifiées. La reprise visuelle du footer et l’idée de navigation persistante sont mises en attente.
 
-**Reprise frontend au 27/10/2026 :** Steve souhaite poursuivre quelques exercices JavaScript en parallèle de la préparation backend désormais visible dans `backend/`. Confirmations e-mail/mot de passe et limite de description fonctionnent selon les essais navigateur de Steve. Les groupes intérêts/besoins possèdent désormais un compteur et une désélection indépendante, sans CSS supplémentaire ; essais navigateur à confirmer. Le filtrage des profils revient à PHP/SQL selon la préférence enseignant réaffirmée par Steve ; il n’est pas développé en JavaScript. Prochaine étape : valider ces dernières interactions client puis poursuivre la préparation backend. Aucun changement ni revue du backend dans cette étape.
+**Vérifications :** Steve a confirmé le fonctionnement des confirmations, du compteur limité à 500 et des mini-cartes au clavier/mobile lors des étapes précédentes. Les actions groupées de sélection/désélection restent à confirmer dans le navigateur. Contrôles sources et simulations ne constituent pas une validation exhaustive du responsive, de l’accessibilité ou des cas d’échec réseau. Les essais et leurs auteurs sont détaillés dans le journal.
+
+**Backend :** fichiers préparatoires PHP/SQL présents et commentés uniquement. Aucune inclusion serveur, connexion PDO ou table fonctionnelle ; environnement d’exécution à vérifier avant le premier exercice. La migration du chargeur header/footer reste une étape PHP séparée.
+
+**Prochaine étape proposée :** vérifier dans le navigateur les compteurs et les deux actions de sélection de chaque groupe, puis reprendre progressivement les premiers exercices PHP avec Steve. Navigation selon rôle, configuration parrain et vérifications globales restent ouvertes. Footer visuel en pause ; pas de nouvelle refonte dans ce bilan.
 
 **Décisions reportées :** direction artistique finale, navigation selon connexion/rôle, destinations FAQ/démarches/mentions légales, placement du footer en bas des pages courtes. Le footer reste dans le flux normal. L’absence de lien vers un profil sur la connexion est une décision d’interface, pas un contrôle d’accès : les protections réelles seront implémentées côté PHP.
 
@@ -359,7 +372,7 @@ Structure actuelle : voir la section 5, « Structure actuelle du dépôt ».
 Commencée partiellement en parallèle de la phase 1 : première intégration depuis le wireframe V1 sur les deux flux, la connexion, la création de compte et la configuration du profil ; accueil et profil proposés sans écran dédié. Les sept pages ont du contenu initial. Direction artistique, proportions et détails du wireframe restent à valider. Les actualités restent une réservation visuelle d’une fonctionnalité ultérieure.
 
 ### Phase 3+ — PHP / SQL / authentification / données dynamiques
-Non commencées.
+Scaffold préparatoire créé ; implémentation fonctionnelle non commencée. Voir la section 5 pour les fichiers et le journal du 26/10 pour leur création.
 
 ### Retour enseignant du 14/10/2026 — à revisiter
 
