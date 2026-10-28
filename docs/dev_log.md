@@ -782,3 +782,21 @@ Notes de Steve prises lors du retour enseignant, synthétisées sans ajout de re
 - Mon profil reste limité aux deux flux et au profil, avec texte encore visible. Aucun lien profil ajouté aux pages publiques ; il s’agit d’une répartition provisoire par page, pas d’une protection d’accès. Sessions, autorisations et choix de navigation selon rôle restent prévus en PHP.
 - Aucun changement CSS, JavaScript ou backend. Footers publics conservés sans identifiant de chargement du fragment complet ; FAQ/démarches/menu toujours en attente et footer non fixe.
 - README et état du plan synchronisés avec l’intégration progressive, arborescence complétée avec le sprite. HTML et documentation rédigés par l’IA à la demande de Steve ; structures, variantes et liens documentaires contrôlés sur sept pages, espaces Git vérifiés. Rendu des quatre pages publiques à confirmer par Steve dans le navigateur ; commit laissé à Steve.
+
+### 28/10/2026 — Contrôles du footer : style et centrage à traiter ensemble
+
+- Steve confirme le fonctionnement de l’extension Accueil aux pages publiques, puis signale une cible cliquable décalée vers la droite et un pictogramme non centré dans son espace. Cause non encore diagnostiquée.
+- Il souhaite désormais présenter les contrôles du footer comme des cartes/boutons avec le même style que les boutons communs. Décision : regrouper cette évolution et la correction du centrage dans une seule prochaine étape, plutôt que corriger l’alignement séparément.
+- Point de suivi ajouté au plan et présente note rédigés par l’IA à sa demande. Aucun HTML, CSS, JavaScript ou PHP modifié ; espaces Git vérifiés. Commit laissé à Steve.
+
+### 28/10/2026 — Essai du bouton Accueil centré dans le footer
+
+- À la demande de Steve de traiter un contrôle à la fois, ajout des seules classes existantes `button button--secondary` au lien Accueil des sept pages et du fragment footer. Icône, destination et nom accessible conservés ; Mon profil laissé inchangé pour comparaison.
+- Diagnostic dans les styles : le lien précédent avait une largeur minimale mais aucun centrage horizontal. La classe `.button` apporte déjà `justify-content: center`, padding équilibré, bordure, arrondi, fond jaune, ombre et effet pressé. Aucune déclaration CSS, variable ou classe supplémentaire nécessaire.
+- HTML et présente entrée rédigés par l’IA. Imbrication, présence des classes, nom/destination et concordance fragment/fallbacks vérifiés ; espaces Git contrôlés. Centrage réel, cible cliquable, pression et focus à confirmer par Steve en mobile/desktop avant extension du style à Mon profil. Aucun JavaScript ni travail PHP modifié ; commit laissé à Steve.
+
+### 28/10/2026 — Bouton Mon profil cohérent avec Accueil
+
+- Steve valide le rendu et la cible cliquable du bouton Accueil. À sa demande de poursuivre, ajout des classes existantes `button button--secondary` au lien Mon profil du fragment et des copies de secours sur les deux flux et le profil.
+- Icône, texte visible et destination conservés ; aucun lien profil ajouté aux quatre pages publiques. Style, centrage et effet pressé réutilisés sans nouveau CSS, JavaScript ou changement PHP.
+- HTML et présente entrée rédigés par l’IA. Classes, concordance fragment/fallbacks et séparation des footers publics vérifiées ; espaces Git contrôlés. Rendu/cible/focus de Mon profil à confirmer par Steve ; commit laissé à Steve.

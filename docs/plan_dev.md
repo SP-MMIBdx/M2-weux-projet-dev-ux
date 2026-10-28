@@ -370,6 +370,8 @@ La présentation utilise la palette provisoire crème/jaune/vert avec header/foo
 
 - [ ] Revenir sur l’idée d’une navigation persistante en bas du viewport mobile. Discussion mise en attente par Steve le 27/10 ; aucun choix de positionnement engagé. Le footer reste dans le flux normal en attendant cette revue.
 
+- [ ] Reprendre ensemble le style et l’alignement des contrôles à icônes du footer : Steve signale une zone cliquable qui dépasse davantage à droite et un pictogramme non centré dans ses dimensions. Il souhaite des cartes/boutons cohérents avec les boutons du site ; centrer le pictogramme dans la cible lors de cette même étape, puis vérifier visuellement et au clavier sur mobile/desktop. Observation à diagnostiquer, sans correction isolée engagée (28/10).
+
 ### Phase 2 — Intégration UX/UI depuis Figma
 Commencée partiellement en parallèle de la phase 1 : première intégration depuis le wireframe V1 sur les deux flux, la connexion, la création de compte et la configuration du profil ; accueil et profil proposés sans écran dédié. Les sept pages ont du contenu initial. Direction artistique, proportions et détails du wireframe restent à valider. Les actualités restent une réservation visuelle d’une fonctionnalité ultérieure.
 
