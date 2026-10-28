@@ -159,6 +159,7 @@ function setupCharacterCounter(inputId, counterId) {
 }
 
 setupCharacterCounter("profile-description", "profile-description-count");
+setupCharacterCounter("contact-message", "contact-message-count");
 
 // Compteur et sélection groupée indépendants pour chaque groupe de cases
 function setupTagSelection(groupId) {

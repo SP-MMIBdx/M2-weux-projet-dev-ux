@@ -9,6 +9,7 @@
   --color-background: #E9E6DD;
   --content-max-width: 60rem;
   --color-surface: #E4CF72;
+  --color-button-secondary: #FFD52A;
   --color-border: #111113;
   --shadow-offset: 3px;
   --shadow-raised: var(--shadow-offset) var(--shadow-offset) 0 var(--color-border);
@@ -249,7 +250,7 @@ main > section + section {
 
 .button--secondary {
   color: var(--color-text);
-  background-color: var(--color-surface);
+  background-color: var(--color-button-secondary);
 }
 
 /* États des boutons */

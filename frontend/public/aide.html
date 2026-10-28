@@ -62,7 +62,8 @@
             </div>
             <div class="form-field">
               <label for="contact-message">Ton message</label>
-              <textarea id="contact-message" name="contact_message" rows="5" required></textarea>
+              <textarea id="contact-message" name="contact_message" rows="5" maxlength="500" aria-describedby="contact-message-count" required></textarea>
+              <p id="contact-message-count">0 / 500 caractères</p>
             </div>
             <button type="submit" class="button" disabled>Envoyer le message</button>
           </div>
