@@ -2,6 +2,8 @@
 
 ## 1. Objectif général
 
+Nom de travail choisi par Steve le 28/10/2026 : **Binô**, en attente de validation du groupe.
+
 Le projet consiste à développer une application web de parrainage destinée aux étudiants étrangers arrivant en France.
 
 L'application doit permettre de faciliter leur intégration sociale, universitaire et quotidienne grâce à une mise en relation avec des étudiants parrains selon leurs profils, besoins et centres d'intérêt.
@@ -134,6 +136,9 @@ Au 28/10/2026, la structure versionnée de travail est la suivante :
 │       │   ├── images/
 │       │   │   ├── .gitkeep
 │       │   │   ├── avatar-default.svg
+│       │   │   ├── logo.svg
+│       │   │   ├── mascot-etudiant.svg
+│       │   │   ├── mascot-parrain.svg
 │       │   │   └── icons/
 │       │   │       └── navigation.svg
 │       │   └── js/
@@ -458,6 +463,30 @@ Les prototypes d'Alexandre et Ange pourront être utilisés comme base ou réfé
 ## Phase 3 — Introduction de PHP
 
 Objectif : commencer à rendre les pages dynamiques.
+
+### Migration progressive proposée après revue du 28/10/2026
+
+Le serveur PHP local sert déjà les huit pages HTML depuis `frontend/public/` ; son utilisation pour la prévisualisation ne signifie pas que les pages exécutent du PHP. Conserver ce serveur, cette racine publique et l’emplacement des assets. Aucun changement applicatif effectué par cette proposition ; premiers exemples à saisir par Steve après explication.
+
+**Dépendances actuelles vérifiées :**
+
+- Toutes les pages chargent `main.js`, `style.css` et le header via `site-header`. Le header et les huit footers proposent Accueil ; les huit footers proposent FAQ.
+- `fluxetudiant.html`, `fluxparrain.html` et `profil.html` chargent `includes/footer.html` via `site-footer`, avec trois copies de secours concordantes : Accueil, FAQ, Démarches désactivé, Mon profil. Les cinq autres pages gardent leur footer public local : Accueil et FAQ.
+- L’accueil mène à connexion, inscription et aux deux flux de démonstration. Connexion mène à inscription avec `?role=etudiant` ou `?role=parrain` ; FAQ mène aussi à inscription ; inscription revient à connexion. Profil mène à configuration et au flux étudiant. Configuration ne sauvegarde rien et son retour se fait actuellement par la navigation commune, sans retour profil dédié.
+- Les confirmations, révélations de mots de passe, compteurs et sélections groupées dépendent des IDs des champs, des groupes et de leurs attributs, pas de l’extension HTML/PHP. Aucun routage JavaScript ni session ; paramètres de rôle encore ignorés. Classes CSS du header/footer indépendantes des IDs utilisés par le chargeur.
+
+**Ordre proposé, un objectif vérifiable à la fois :**
+
+1. Créer manuellement `frontend/public/essai.php`, sans lien depuis la navigation, pour constater une réponse produite par PHP. Puis étudier séparément une inclusion fixe vers `backend/includes/header.php`, avec `require` et un chemin fondé sur `__DIR__`. Remplir le header préparatoire à cette étape seulement ; pas de donnée utilisateur dans le chemin. Vérifier rendu, liens et réponse HTML avant toute conversion réelle.
+2. Préparer `createprofile.php` au même niveau que la page HTML comme première page pilote, avec formulaire toujours inactif et IDs/classes/assets conservés. Ne pas modifier les liens entrants avant comparaison. Migrer uniquement le header en premier ; conserver le footer public local. Sur cette version, retirer l’ID de ciblage `site-header` du header rendu par PHP, en conservant ses classes : le garde existant de `loadPartial` empêche alors le fetch de le remplacer. Vérifier qu’aucune autre dépendance ne réclame cet ID avant retrait. Même principe pour `site-footer` lors de sa migration ultérieure.
+3. Après validation de la page pilote, basculer ensemble ses liens entrants dans accueil, connexion et FAQ vers `createprofile.php`, en conservant les deux paramètres `role`. Retirer ensuite la copie HTML devenue inutile après contrôle des références ; ne pas entretenir deux versions divergentes. Si d’anciennes URL partagées doivent rester utilisables, définir un mécanisme de redirection adapté au serveur avant retrait. Conversion et changement d’URL ne sont pas une activation de l’inscription.
+4. Étendre les inclusions page par page. Conserver explicitement les deux variantes de footer ; ajouter un fragment PHP public seulement lorsqu’il est utilisé, sans simuler une session à partir du nom de page. À chaque changement d’URL, contrôler liens du contenu, fragments HTML encore utilisés et fallbacks. Migrer l’accueil avec vérification particulière de `/` et `/index.html` pour éviter l’ambiguïté entre deux index. Supprimer le chargeur JavaScript et les fragments HTML seulement lorsqu’aucune page n’en dépend plus ; conserver les interactions client.
+5. Sur l’inscription migrée, introduire la lecture de `role` via GET comme petit comportement serveur distinct : accepter uniquement une chaîne `etudiant` ou `parrain`, sinon laisser le choix vide. La présélection reste un choix de formulaire, jamais une preuve d’autorisation. Tester paramètre absent, inconnu et sous forme de tableau ; soumission encore désactivée.
+6. Valider ensuite le modèle relationnel et les règles métier, puis première connexion PDO et inscription sécurisée, connexion/session, autorisations, profil et demandes. Appliquer les critères de sécurité de la section 6 avant activation de chaque traitement. Lors de l’introduction des contrôles d’accès, retirer/protéger toute ancienne copie HTML présentant des données privées ; conserver les exemples publics uniquement s’ils restent fictifs et clairement annoncés.
+
+**Vérification à chaque bascule :** accès direct à la nouvelle URL et liens entrants/sortants, réponses HTTP et assets/SVG, header/footer présents une seule fois sans remplacement JavaScript, variantes de navigation conservées, absence de code PHP brut dans la réponse, interactions client de la page, clavier/mobile et formulaires encore inactifs tant que leur traitement n’est pas construit. Tracer séparément contrôles source/HTTP, simulations et essais navigateur. Les chemins d’inclusion sont des chemins disque ; les `href`/`src` rendus restent des URL relatives à la page demandée, pas au dossier `backend/includes/`.
+
+Références pédagogiques : [PHP — require](https://www.php.net/manual/en/function.require.php), [PHP — __DIR__](https://www.php.net/manual/en/language.constants.magic.php).
 
 Les pages HTML pourront progressivement être converties :
 

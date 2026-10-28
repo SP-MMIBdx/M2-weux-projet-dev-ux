@@ -1,6 +1,6 @@
-# M2 WEUX — Projet UX / Développement
+# Binô — Projet UX / Développement M2 WEUX
 
-Application web de parrainage destinée à faciliter l'intégration des étudiants étrangers grâce à une mise en relation avec des étudiants parrains.
+**Binô** est le nom provisoire, en attente de validation du groupe. Application web de parrainage destinée à faciliter l'intégration des étudiants étrangers grâce à une mise en relation avec des étudiants parrains.
 
 ## Équipe
 
@@ -35,6 +35,8 @@ Le CSS commun suit une approche mobile-first avec une palette provisoire : fond 
 Le scaffold `backend/` contient uniquement des fichiers préparatoires commentés (inclusions, PDO, schéma et modèle de configuration) ; aucun backend fonctionnel ni base de données n’est implémenté. La configuration locale privée est exclue de Git. Une phase d’apprentissage JavaScript vanilla précède l’introduction de PHP, conformément à la demande enseignant rapportée par Steve. PHP reste prévu pour les traitements serveur ; la répartition est précisée dans le [plan](docs/plan_dev.md).
 
 ## Organisation du frontend
+
+Le header associe un duo de personnages SVG original (`assets/images/logo.svg`) au texte « Binô », centré sous le logo au sein d’un bloc aligné à gauche, en noir avec un contour saumon de 4px. Le jaune représente le parrain, le saumon l’étudiant ; deux SVG autonomes (`mascot-parrain.svg`, `mascot-etudiant.svg`) accompagnent les titres des flux correspondants sur leur droite, avec retour centré sous le titre sur petit écran (cadre de 16rem). Le duo reste réservé au header. Couleurs issues des variables existantes ; aucune animation active.
 
 Les pages HTML restent à la racine de `frontend/public/` ; les styles, scripts et images sont dans `assets/`, et les fragments communs dans `includes/`.
 

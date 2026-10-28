@@ -862,3 +862,65 @@ Notes de Steve prises lors du retour enseignant, synthétisées sans ajout de re
 - README/plan synchronisés : carte d’attente des actualités, compteur de contact à 500, résolution du dimensionnement footer confirmée par Steve et serveur PHP déjà utilisé uniquement pour la prévisualisation. Documentation technique relue : périmètre fonctionnel visé inchangé, aucune réécriture nécessaire.
 - Piste de contrôle profil selon connexion consignée dans le plan pour la future authentification PHP ; burger différé faute de contenu défini. Passage au backend encore en discussions préliminaires, sans migration ou implémentation engagée dans cette revue. Placeholders PHP/SQL relus, toujours non fonctionnels ; configuration privée non consultée.
 - Synthèse et corrections documentaires rédigées par l’IA. Contrôles source et espaces Git vérifiés ; aucune nouvelle recette navigateur exhaustive effectuée. Changements applicatifs de ce checkpoint limités aux cartes d’attente des deux flux ; aucun staging ni commit effectué par l’IA.
+
+### 28/10/2026 — Revue des dépendances et proposition de migration PHP progressive
+
+- À la demande de Steve, relecture des huit pages, fragments, JavaScript, CSS, sprite de navigation, scaffold backend public, README, périmètre fonctionnel et sections pertinentes du plan/journal. Configuration locale privée non consultée. Git propre au départ sur `main`, sans divergence affichée avec la référence locale `origin/main` ; aucun accès distant Git.
+- Vérifications source IA : aucune ressource locale manquante ni ID dupliqué dans les huit pages ; cartographie des liens et concordance des trois footers de secours avec le fragment commun, après normalisation des espaces. Syntaxe de `main.js` valide. Deux variantes de footer confirmées, rôle GET ignoré, profil/configuration non reliés à des données, soumissions inactives. Les interactions client actuelles sont conservables après changement d’extension si leurs éléments/attributs sont préservés.
+- Après refus réseau dans le contexte restreint, requêtes HTTP locales en lecture seule effectuées avec autorisation : les huit pages, les deux fragments, JavaScript, CSS et sprite répondent 200 sur le serveur existant `127.0.0.1:8000`, avec contenu identique au disque. Aucun serveur démarré/reconfiguré. Ces contrôles ne simulent pas les clics, l’exécution JavaScript, le focus ou le rendu mobile ; aucun nouvel essai navigateur pendant cette revue.
+- Point de vigilance : `loadPartial` remplace tout contenu des cibles `site-header`/`site-footer`, y compris un futur rendu PHP si ces cibles restent présentes. Plan enrichi d’une migration graduelle avec exercice isolé, inclusion privée fixe, inscription pilote, bascule coordonnée des liens entrants, conservation des variantes de footer et suppression du chargeur seulement après migration complète. Anciennes copies HTML à éliminer/protéger avant introduction de données privées. Aucune migration automatique des pages engagée.
+- Références officielles PHP `require` et `__DIR__` consultées ; plan et présente entrée rédigés par l’IA. Contrôle Git des espaces réussi, seules ces deux documentations modifiées. Premiers exemples applicatifs laissés à Steve après explication ligne par ligne ; aucun staging ni commit effectué par l’IA.
+
+### 28/10/2026 — Proposition de logo vectoriel pour le header
+
+- Après questions préalables, Steve choisit deux personnages accueillants et joueurs, la palette actuelle et le maintien du texte « Parrainage étudiant ». Création par l’IA de `assets/images/logo.svg` : duo original jaune/saumon, expressions souriantes, geste de rencontre, étincelle verte et contours/ombres sombres. Aucun asset Discord repris, bitmap, fonte ou bibliothèque ajouté.
+- SVG autonome avec viewBox `0 0 128 96`, groupes nommés pour chaque personnage, visage, geste et étincelle ; utilisable directement en aperçu et par référence externe `use`. Couleurs issues des variables CSS existantes avec valeurs de secours pour l’aperçu autonome. Pas de variable de palette supplémentaire.
+- Intégration dans le fragment header et les huit fallbacks, à côté du texte conservé dans un span. SVG décoratif masqué à l’accessibilité ; texte et destination Accueil inchangés. CSS limité à un gap dans `.site-brand` et une règle commune pour le SVG (4rem × 3rem, sans rétrécissement).
+- Préparation pour une animation future seulement : groupes séparés, aucun mouvement ni JavaScript ajouté. L’accès individuel aux parties via CSS/JS depuis la page nécessitera une intégration inline ou une animation définie dans le SVG ; la référence externe actuelle évite de dupliquer le dessin dans les pages. Compatible avec une future inclusion PHP.
+- Vérifications IA : XML, identifiants uniques, viewBox et concordance des huit fallbacks ; aperçu navigateur sur accueil aux largeurs desktop et 375px, logo 64 × 48px et absence de débordement horizontal, nom du lien conservé. README/arborescence du plan complétés ; espaces Git contrôlés. Code et présente entrée rédigés par l’IA ; appréciation artistique par Steve attendue. Modifications documentaires déjà présentes conservées, aucun fichier backend modifié, aucun commit effectué.
+
+### 28/10/2026 — Agrandissement du logo et préparation des mascottes
+
+- Steve valide le duo proposé et demande un agrandissement de 50 % : dimensions CSS du logo header passées de 4 × 3rem à 6 × 4.5rem (96 × 72px à la taille de base). Dimensions HTML de secours alignées dans le fragment et les huit pages ; viewBox, proportions et dessin conservés.
+- Il souhaite ensuite attribuer les rôles étudiant/parrain aux personnages, disposer d’un SVG autonome pour chacun et les réutiliser près de certains titres comme accompagnateurs visuels. Choix des rôles demandé avant extraction ; placements à définir avec parcimonie. Aucun personnage individuel ni décoration de titre intégré dans cette étape.
+- Modification et présente synthèse rédigées par l’IA. Espaces Git contrôlés ; aucun JavaScript/PHP ajouté, aucun commit effectué.
+
+### 28/10/2026 — Rôles des mascottes et premiers titres accompagnés
+
+- Steve attribue le personnage jaune au parrain et le saumon à l’étudiant. Extraction depuis le dessin du duo vers `mascot-parrain.svg` et `mascot-etudiant.svg`, chacun avec viewBox portrait `0 0 72 96`, groupe racine référençable et parties nommées. Petit bras de salutation complété pour une présentation autonome ; couleurs, contours et ombres cohérents avec le logo. SVG autonomes consultables directement, sans image matricielle.
+- Premiers placements : parrain près du titre du flux parrain, étudiant près de celui du flux étudiant et duo près du titre Aide et FAQ. Dessins décoratifs avec `aria-hidden`, titres textuels conservés. Une classe partagée `.title-with-mascot` et deux règles CSS : alignement flexible, espacement existant et cadre SVG de 4rem. Aucune animation, logique de session ou dépendance ajoutée.
+- Vérification IA dans le navigateur intégré à 375px : header agrandi à 96 × 72px, trois pages sans débordement horizontal ; titres et lien d’accueil toujours nommés. Aperçu visuel du flux parrain consulté. XML des deux assets, références externes et concordance des huit headers contrôlés ; espaces Git vérifiés. README et arborescence du plan actualisés. Code et présente synthèse rédigés par l’IA ; appréciation des placements par Steve attendue, aucun commit effectué.
+
+### 28/10/2026 — Retrait du duo dans le titre de la FAQ
+
+- Après consultation, Steve valide les mascottes mais demande de retirer le duo du titre Aide et FAQ, trop semblable au logo déjà présent dans le header. Retour à un simple `h1` textuel ; personnages des deux flux et logo commun conservés. Aucun nouveau dessin de duo créé.
+- HTML, synchronisation du README et présente note rédigés par l’IA. Aucun CSS, JavaScript ou PHP modifié ; référence du logo limitée au header sur cette page et espaces Git contrôlés. Commit laissé à Steve.
+
+### 28/10/2026 — Lettrage du header et nom provisoire Bino
+
+- Steve précise que la demande de style concerne le texte de marque près du logo, puis choisit « Bino » comme nom provisoire avant validation du groupe. Remplacement dans le fragment header, ses huit copies, les titres des onglets et le titre d’accueil. Description du service conservée ; README/plan précisent le statut provisoire, documentation technique non renommée avant décision collective.
+- Lettrage du header ajusté dans les règles existantes : taille fluide 1.375 à 1.75rem, graisse 900, interligne 1.1 et espacement des lettres légèrement resserré. Une règle pour le span ajoute une ombre franche saumon avec `--shadow-offset` et `--color-surface` existants. Police système conservée, aucune fonte, variable ou dépendance ajoutée ; titres des pages non restylisés dans cette étape.
+- Code et présente note rédigés par l’IA. Avant renommage, aperçu du lettrage avec l’ancien nom vérifié à 375px et 1280px sans débordement, respectivement 22px et 28px. Concordance des headers et remplacement du nom contrôlés après renommage ; espaces Git vérifiés. Aucun PHP/JavaScript modifié, aucun staging ni commit effectué ; nom et direction artistique restent provisoires.
+
+### 28/10/2026 — Marque centrée et mascottes à droite des titres
+
+- À la demande de Steve, déplacement du SVG après le texte du titre principal dans chacun des deux flux. Même classe, tailles et espacements ; aucune décoration supplémentaire sur les sous-titres des sections.
+- Marque du header en colonne, centrée horizontalement, texte Bino sous le logo. Taille du texte augmentée à 1.75–2.25rem ; remplissage saumon via `--color-surface`, contour jaune vif via `--color-button-secondary` avec `-webkit-text-stroke` et `paint-order`. Ancienne ombre du texte remplacée par ce contour ; logo et palette globale inchangés. Gap réduit à un quart de `--space`, aucune variable/classe ajoutée.
+- HTML, CSS, synchronisation du README et présente note rédigés par l’IA. Contrôle navigateur du flux parrain à 375px : empilement centré, mascotte à droite, aucun débordement horizontal ; absence de débordement également contrôlée à 1280px. Ordre des éléments vérifié sur les deux flux, espaces Git contrôlés. Aucun JavaScript/PHP modifié, appréciation visuelle par Steve attendue ; aucun commit effectué.
+
+### 28/10/2026 — Binó : lettrage noir, contour saumon et retour à gauche
+
+- À la demande de Steve, ajout d’un accent aigu sur le o : nom provisoire « Binó » dans les headers, titres d’onglet, accueil, README et plan. Historique des propositions antérieures conservé dans le journal.
+- Texte de marque noir via `--color-text`, contour saumon de 4px via `--color-surface` au lieu du contour jaune de 2px. Bloc logo/nom replacé à gauche dans le header ; disposition en colonne conservée, texte centré sous le logo. Taille du logo et mascottes des flux inchangées.
+- Modifications et présente note rédigées par l’IA. Concordance des headers, variables et espaces Git contrôlés ; aucun ajout de classe, variable, JavaScript ou PHP. Nom toujours en attente d’approbation collective ; aucun commit effectué.
+
+### 28/10/2026 — Accent circonflexe et mascottes de contenu agrandies
+
+- Steve précise l’accent souhaité : nom corrigé en « Binô » (o circonflexe) sur les huit pages, le fragment header et les références actuelles du README/plan. Historique des anciennes graphies conservé.
+- À sa demande, dimensions des deux mascottes de titre multipliées par quatre : cadre de 4rem à 16rem, soit 256 × 256px à la taille de base, dimensions HTML alignées. Header conservé à 96 × 72px, avatars de profils à 64 × 64px. Flex-wrap ajouté au titre et marge logique automatique sur la mascotte pour permettre un retour sous le texte, aligné à droite, quand la largeur manque. Aucun dessin vectoriel redimensionné dans son code source.
+- Code et présente synthèse rédigés par l’IA. Contrôle navigateur du flux parrain à 375px : cadre mascotte 256 × 256px, header et avatar inchangés, aucun débordement horizontal. Tailles déclarées sur les deux flux, concordance des huit headers et espaces Git contrôlés. Aucun JavaScript/PHP ajouté ; appréciation des nouvelles proportions par Steve attendue, aucun commit effectué.
+
+### 28/10/2026 — Centrage des mascottes après retour à la ligne
+
+- À la demande de Steve, centrage de la mascotte lorsqu’elle passe sous le titre : retrait de sa marge automatique, ajout de `justify-content: center` au conteneur flexible et d’une règle `flex-grow: 1` sur le texte. Sur une ligne commune, le texte occupe l’espace disponible et la mascotte reste à sa droite ; seule sur la ligne suivante, elle est centrée. Tailles et alignement du header inchangés.
+- CSS, synchronisation du README et présente note rédigés par l’IA. Espaces Git contrôlés ; aucun JavaScript/PHP modifié, commit laissé à Steve.
