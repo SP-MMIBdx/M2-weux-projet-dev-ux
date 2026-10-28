@@ -935,3 +935,31 @@ Notes de Steve prises lors du retour enseignant, synthétisées sans ajout de re
 - Vérifications IA pendant cette étape : deux flux à 375px sans débordement, titre et mascotte côte à côte, zone de titre d’environ 101px contre environ 350px après l’agrandissement fixe ; flux étudiant à 1280px avec mascotte haute de 256px. Avant nettoyage final, huit pages parcourues à 375px : un H1 par page et aucun débordement ; FAQ aussi vérifiée à 1280px. XML, viewBoxes, accolades et espaces Git contrôlés. Ces vérifications ne constituent pas une recette exhaustive.
 - Après nettoyage final, contrôle navigateur du flux parrain à 375px et 1280px sans débordement. H1 et nom Binô : même saumon calculé, contour noir de 3px, aucune ombre ni décoration de texte.
 - HTML/SVG/CSS, README et présente synthèse rédigés par l’IA à la demande de Steve. Entrées intermédiaires non commitées regroupées pour éviter les répétitions tout en conservant les décisions et essais. Aucun JavaScript/PHP modifié, aucun staging ni commit effectué ; commit laissé à Steve.
+
+### 28/10/2026 — Style partagé des H2
+
+- À la demande de Steve de poursuivre les titres, ajout de quatre déclarations dans la règle H2 existante : graisse 800, lettres légèrement resserrées, petit bord logique gauche jaune de 0.25rem et padding d’une demi-unité. Taille fluide, texte sombre hérité et marge basse existants conservés ; pas de contour de lettres ni soulignement pour garder un niveau visuel secondaire aux H1.
+- Police toujours héritée de `--font-body`, y compris pour les contrôles via `font: inherit`. Couleurs des mascottes toujours modifiables dans les variables partagées : `--color-button-secondary` pour le parrain, `--color-surface` pour l’étudiant, `--color-border` pour les contours et `--color-action` pour l’étincelle du duo. Aucun asset modifié dans cette étape ; changement de ces variables affectant aussi les composants qui les utilisent.
+- CSS et présente note rédigés par l’IA. Règle unique et variables contrôlées ; espaces Git vérifiés. Aucun nouveau sélecteur, classe, variable, fonte, JavaScript ou PHP ; aucun commit effectué.
+
+### 28/10/2026 — H3 et paragraphes : hiérarchie et lecture
+
+- Après validation des H2 par Steve, ajustement de la seule règle H3 : taille fluide de 1.125 à 1.25rem, graisse 800, lettres légèrement resserrées et lignes équilibrées par `text-wrap: balance`. Texte sombre hérité, sans contour, ombre, accent ou soulignement supplémentaire.
+- Une règle partagée de paragraphe limite la largeur à 65ch, améliore les retours de ligne avec `text-wrap: pretty` et autorise la coupure de chaînes trop longues via `overflow-wrap: anywhere`. Taille 1rem, interligne 1.6 et couleur hérités du body conservés ; pas de marges ajoutées qui doubleraient les gaps existants des cartes/formulaires. Carte et formulaire gardent leur largeur propre : seule la mesure du texte est limitée.
+- CSS, résumé du README et présente note rédigés par l’IA. FAQ consultée dans le navigateur à 375px et 1280px sans débordement : H3 respectivement 18px et 20px, interligne des paragraphes 25.6px. Équilibrage des H3 ajouté après cet aperçu pour éviter une ligne finale réduite à un point d’interrogation. Police et couleurs restent centralisées ; aucun HTML, asset, JavaScript ou PHP modifié. Espaces Git contrôlés, commit laissé à Steve.
+
+### 28/10/2026 — Badges des tags affichés sur les profils
+
+- À la demande de Steve, style de `.tag-list > li` partagé par le profil et les deux flux : fond jaune vif `--color-button-secondary`, bordure sombre, arrondi `--radius-control` et graisse 600. Padding existant conservé ; largeur limitée au conteneur et coupure des longues chaînes pour éviter les débordements.
+- Tags conservés comme éléments de liste informatifs : aucun curseur pointeur, focus, effet de pression ou action ajouté. Choix à cocher `.tag-options` et leurs états de sélection inchangés. Modification dans la seule règle existante, sans classe ou variable supplémentaire.
+- CSS et présente note rédigés par l’IA. Profil vérifié dans le navigateur à 375px et 1280px sans débordement, tags courts et besoins longs contrôlés ; fond jaune et absence de curseur de bouton confirmés. Espaces Git contrôlés, aucun HTML/SVG/JavaScript/PHP modifié, commit laissé à Steve.
+
+### 28/10/2026 — Tags distincts des boutons
+
+- Steve juge les badges précédents trop carrés et trop proches des boutons. Retour à la forme de pilule (rayon 1rem), retrait de la bordure et remplacement du jaune vif par le jaune atténué `--color-header-footer`. Graisse 600, padding et gestion des longues chaînes conservés ; aucune ombre ou interaction ajoutée.
+- Seule la règle `.tag-list > li` ajustée ; boutons et choix sélectionnables inchangés. CSS et présente note rédigés par l’IA, espaces Git contrôlés ; rendu à consulter par Steve, aucun commit effectué.
+
+### 28/10/2026 — Tags en jaune vif
+
+- À la demande de Steve, remplacement du fond jaune atténué des tags par le jaune vif existant `--color-button-secondary` (`#FFD52A`). Forme de pilule, absence de bordure/ombre et comportement informatif conservés ; aucun autre composant modifié.
+- Une déclaration CSS et présente note rédigées par l’IA ; espaces Git contrôlés, rendu à consulter par Steve, aucun commit effectué.

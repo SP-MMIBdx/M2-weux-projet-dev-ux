@@ -88,11 +88,24 @@ h1 {
 
 h2 {
   font-size: clamp(1.25rem, 1rem + 1vw, 1.5rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  border-inline-start: 0.25rem solid var(--color-button-secondary);
+  padding-inline-start: calc(var(--space) / 2);
   margin-bottom: var(--space);
 }
 
 h3 {
-  font-size: 1.125rem;
+  font-size: clamp(1.125rem, 1rem + 0.5vw, 1.25rem);
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+p {
+  max-width: 65ch;
+  text-wrap: pretty;
+  overflow-wrap: anywhere;
 }
 
 .title-with-mascot {
@@ -228,7 +241,7 @@ main > section + section {
   box-shadow: var(--shadow-raised);
 }
 
-/* Liste des centres d’intérêt */
+/* Tags de profil et de besoins : badges informatifs */
 .tag-list {
   display: flex;
   flex-wrap: wrap;
@@ -239,9 +252,12 @@ main > section + section {
 }
 
 .tag-list > li {
+  max-width: 100%;
   padding: calc(var(--space) / 4) calc(var(--space) * 0.75);
-  background-color: var(--color-background);
+  font-weight: 600;
+  background-color: var(--color-button-secondary);
   border-radius: 1rem;
+  overflow-wrap: anywhere;
 }
 
 /* Disposition des actions */
