@@ -5,6 +5,7 @@
   --font-body: Arial, Helvetica, sans-serif;
   --space: 1rem;
   --color-text: #111113;
+  --color-icon: var(--color-text);
   --color-background: #E9E6DD;
   --content-max-width: 60rem;
   --color-surface: #E4CF72;
@@ -44,6 +45,15 @@ input,
 select,
 textarea {
   font: inherit;
+}
+
+/* Icônes SVG partagées */
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+  color: var(--color-icon);
+  stroke-width: 1.8;
 }
 
 /* Largeur et espacement du contenu principal */
