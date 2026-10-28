@@ -43,8 +43,17 @@
                 id="login-username"
                 name="username"
                 autocomplete="username"
+                maxlength="24"
+                pattern="[A-Za-z0-9_\-]+"
+                autocapitalize="none"
+                spellcheck="false"
+                aria-describedby="login-username-help login-username-feedback"
                 required
               />
+              <p id="login-username-help">
+                24 caractères maximum, lettres A–Z, chiffres, _ ou -, sans espace.
+              </p>
+              <p id="login-username-feedback"></p>
             </div>
           </div>
 

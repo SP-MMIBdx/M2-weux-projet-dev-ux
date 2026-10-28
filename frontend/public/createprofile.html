@@ -36,11 +36,15 @@
         method="post"
         aria-describedby="registration-note"
       >
+        <p id="registration-note">
+          Tous les champs sont obligatoires. Maquette : la création de compte n’est pas encore disponible.
+        </p>
+
         <div class="form-panel">
           <div class="form-field">
             <label for="register-role">Type de compte</label>
             <select id="register-role" name="role" required>
-              <option value="">Choisis ton type de compte</option>
+              <option value="" disabled selected>Choisis ton type de compte</option>
               <option value="etudiant">Étudiant accompagné</option>
               <option value="parrain">Parrain</option>
             </select>
@@ -55,8 +59,17 @@
               id="register-username"
               name="username"
               autocomplete="username"
+              maxlength="24"
+              pattern="[A-Za-z0-9_\-]+"
+              autocapitalize="none"
+              spellcheck="false"
+              aria-describedby="register-username-help register-username-feedback"
               required
             />
+            <p id="register-username-help">
+              24 caractères maximum, lettres A–Z, chiffres, _ ou -, sans espace.
+            </p>
+            <p id="register-username-feedback"></p>
           </div>
         </div>
 
@@ -74,7 +87,7 @@
 
           <div class="form-field">
             <label for="register-email-confirm"
-              >Confirmer ton adresse e-mail</label
+              >Confirmation de l’adresse e-mail</label
             >
             <input
               type="email"
@@ -112,7 +125,7 @@
 
           <div class="form-field">
             <label for="register-password-confirm"
-              >Confirmer ton mot de passe</label
+              >Confirmation du mot de passe</label
             >
             <input
               type="password"
@@ -133,10 +146,6 @@
             </button>
           </div>
         </div>
-
-        <p id="registration-note">
-          Maquette : la création de compte n’est pas encore disponible.
-        </p>
 
         <button type="submit" class="button" disabled>Créer mon compte</button>
 
