@@ -986,3 +986,10 @@ Notes de Steve prises lors du retour enseignant, synthétisées sans ajout de re
 
 - Steve trouve le logo trop synchronisé avec les personnages des flux. Remplacement de son salut par des keyframes propres `logo-greeting` : légère pulsation de l’échelle neutre à 1.06 puis retour neutre, sur 450ms. Aucun déplacement ni inclinaison à l’arrivée du logo ; mascottes toujours avec leur salut de 700ms, sans changement.
 - Une durée dédiée `--duration-logo-greeting`, règle conditionnelle reduced-motion conservée, une itération sans délai ni boucle. Survol du logo et fondu des cartes inchangés. README synchronisé ; CSS et présente note rédigés par l’IA. Aucun HTML/SVG/JavaScript/PHP modifié, espaces Git contrôlés, commit laissé à Steve.
+
+### 28/10/2026 — Survol léger des boutons actifs
+
+- Après validation du mouvement distinct du logo, poursuite des animations : boutons activés légèrement relevés de 2px au survol, transition de 180ms via `--duration-feedback` existant. Deux règles dans le bloc déjà limité aux mouvements non réduits, pointeur fin et survol disponible ; aucune interaction tactile ajoutée.
+- État pressé existant conservé prioritaire dans la cascade ; `transition: none` dans sa règle commune pour une réaction immédiate, sans temporisation du clic. Retour animé au relâchement sur les appareils concernés. Boutons désactivés et tags informatifs exclus du survol.
+- CSS, README et présente note rédigés par l’IA. Navigateur : transition calculée 0.18s sur bouton actif, 0s et transform neutre sur action désactivée. Priorité du sélecteur pressé et gardes de média vérifiées en source ; sensations au survol/clic à confirmer par Steve. Espaces Git contrôlés, aucune classe, variable, dépendance, modification HTML/JavaScript/PHP ou commit ajouté.
+- Steve confirme ensuite le bon fonctionnement du survol et de la pression des boutons dans le navigateur. Validation humaine consignée par l’IA avant checkpoint ; aucune nouvelle modification applicative.
