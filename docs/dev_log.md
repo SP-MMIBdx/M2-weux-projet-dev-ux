@@ -713,3 +713,18 @@ Notes de Steve prises lors du retour enseignant, synthétisées sans ajout de re
 - Documentation technique fonctionnelle relue et laissée inchangée : pas de décision produit à modifier. Aucun fichier d’apprentissage personnel ajouté au dépôt.
 - Vérifications de la revue précédente : structure, labels/références, chemins et classes des sept pages, parité des fallbacks, variables/accolades CSS, SVG et syntaxe JavaScript ; simulations des interactions et du chargeur réussies. Placeholders PHP exécutables lintés sans chargement du php.ini, exclusion de la configuration locale confirmée ; aucune connexion SQL ni configuration privée lue. Aucun essai navigateur ni validation CSS complète effectué par l’IA.
 - Mises à jour et présente entrée rédigées par l’IA à la demande de Steve. Liens documentaires locaux, blocs de code, concordance des schémas, arborescence et espaces Git vérifiés. Seuls README, plan et journal modifiés ; staging et commit laissés à Steve.
+
+### 28/10/2026 — Pression des boutons cohérente avec le relief
+
+- À la demande de Steve, remplacement du simple assombrissement dans la règle `.button:not(:disabled):active` par un décalage vers le bas/droite et la suppression temporaire de l’ombre. Le bouton rejoint ainsi la position de son ombre pendant la pression, puis reprend son aspect au relâchement.
+- Une seule variable ajoutée, `--shadow-offset: 3px`, partagée par les deux décalages de `--shadow-raised` et la translation du bouton. Couleurs, géométrie des cartes et classes existantes conservées ; aucun nouvel écouteur JavaScript, temporisation ou règle de transition. La transformation visuelle ne réorganise pas les éléments voisins.
+- Liens `.button` toujours sans soulignement grâce à la déclaration commune existante `text-decoration: none`. Focus clavier conservé, contrôles désactivés exclus de l’effet. Liens ordinaires du header/footer inchangés.
+- Personnalisation des cases à cocher réservée à l’étape suivante : leur apparence native n’est pas modifiée dans cette passe.
+- CSS et présente entrée générés et écrits par l’IA à la demande de Steve. Références de variables, différence et espaces Git contrôlés ; pression/relâchement, focus clavier et petits écrans à confirmer dans le navigateur par Steve. Aucun HTML ni travail PHP/JavaScript parallèle modifié ; commit laissé à Steve.
+
+### 28/10/2026 — Retour à la connexion présenté en bouton
+
+- Steve confirme les tests du nouvel effet de pression des boutons avant cette étape ; aucun essai navigateur supplémentaire effectué par l’IA.
+- À sa demande, remplacement du paragraphe contenant le lien de connexion dans `createprofile.html` par un lien portant les classes existantes `button button--secondary`, avec le libellé « Déjà un compte ? Connecte-toi » et la destination `login.html` conservée. Il reste sémantiquement un lien de navigation.
+- Apparence, focus, absence de soulignement et effet de pression réutilisés sans nouvelle déclaration CSS ni JavaScript. Disposition en colonne du formulaire conservée. Personnalisation et interaction visuelle des choix de listes à traiter à l’étape suivante.
+- HTML et présente entrée générés et écrits par l’IA à la demande de Steve. Destination locale et espaces Git vérifiés ; rendu du lien à confirmer par Steve. Aucun travail PHP parallèle modifié ; commit laissé à Steve.

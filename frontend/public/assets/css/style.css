@@ -9,7 +9,8 @@
   --content-max-width: 60rem;
   --color-surface: #E4CF72;
   --color-border: #111113;
-  --shadow-raised: 3px 3px 0 var(--color-border);
+  --shadow-offset: 3px;
+  --shadow-raised: var(--shadow-offset) var(--shadow-offset) 0 var(--color-border);
   --radius-card: 0.75rem;
   --color-action: #64CE80;
   --color-on-action: #111113;
@@ -240,7 +241,8 @@ main > section + section {
 
 /* États des boutons */
 .button:not(:disabled):active {
-  filter: brightness(0.85);
+  transform: translate(var(--shadow-offset), var(--shadow-offset));
+  box-shadow: none;
 }
 
 .button:focus-visible {
