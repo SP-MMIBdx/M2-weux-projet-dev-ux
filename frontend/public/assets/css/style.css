@@ -136,23 +136,10 @@ main > section + section {
   list-style: none;
 }
 
-.footer-links a {
-  display: inline-flex;
-  align-items: center;
-  gap: calc(var(--space) / 2);
-  min-width: 2.75rem;
-  min-height: 2.75rem;
-  color: inherit;
-  text-underline-offset: 0.2em;
-}
-
-.footer-links a:hover {
-  text-decoration-thickness: 2px;
-}
-
-.footer-links a:focus-visible {
-  outline: 2px solid currentColor;
-  outline-offset: 3px;
+.footer-links .button {
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: calc(var(--space) / 2);
 }
 
 .site-brand {
