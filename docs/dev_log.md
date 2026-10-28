@@ -775,3 +775,10 @@ Notes de Steve prises lors du retour enseignant, synthétisées sans ajout de re
 - Ajout de `min-width: 2.75rem` à la règle existante des liens footer pour que le lien Accueil réduit à une icône garde une cible large, en complément de sa hauteur minimale existante. Aucune nouvelle classe/variable ou logique JavaScript.
 - Checkpoint prévu avec les deux icônes avant tout élargissement aux autres pages. Footers publics inchangés ; accès selon connexion/rôle à définir et faire respecter côté PHP, sans afficher par anticipation le profil sur les formulaires publics.
 - HTML/CSS et présente entrée rédigés par l’IA. Nommage accessible, concordance fragment/fallbacks et espaces Git vérifiés ; rendu final sans texte à confirmer par Steve. Aucun travail PHP modifié ; commit laissé à Steve.
+
+### 28/10/2026 — Accueil dans les footers publics
+
+- Après le commit `995c510`, extension du seul lien Accueil à icône vers les footers locaux de l’accueil, connexion, inscription et configuration du profil. Nom accessible, destination, SVG et classe `.icon` identiques à ceux déjà testés sur les flux.
+- Mon profil reste limité aux deux flux et au profil, avec texte encore visible. Aucun lien profil ajouté aux pages publiques ; il s’agit d’une répartition provisoire par page, pas d’une protection d’accès. Sessions, autorisations et choix de navigation selon rôle restent prévus en PHP.
+- Aucun changement CSS, JavaScript ou backend. Footers publics conservés sans identifiant de chargement du fragment complet ; FAQ/démarches/menu toujours en attente et footer non fixe.
+- README et état du plan synchronisés avec l’intégration progressive, arborescence complétée avec le sprite. HTML et documentation rédigés par l’IA à la demande de Steve ; structures, variantes et liens documentaires contrôlés sur sept pages, espaces Git vérifiés. Rendu des quatre pages publiques à confirmer par Steve dans le navigateur ; commit laissé à Steve.

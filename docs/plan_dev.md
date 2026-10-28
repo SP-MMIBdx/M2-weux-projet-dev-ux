@@ -107,7 +107,7 @@ Branche de développement commune à l'équipe.
 
 ## 5. Structure actuelle du dépôt
 
-Au 27/10/2026, la structure versionnée de travail est la suivante :
+Au 28/10/2026, la structure versionnée de travail est la suivante :
 
 ```text
 /
@@ -133,7 +133,9 @@ Au 27/10/2026, la structure versionnée de travail est la suivante :
 │       │   │   └── style.css
 │       │   ├── images/
 │       │   │   ├── .gitkeep
-│       │   │   └── avatar-default.svg
+│       │   │   ├── avatar-default.svg
+│       │   │   └── icons/
+│       │   │       └── navigation.svg
 │       │   └── js/
 │       │       └── main.js
 │       ├── includes/
@@ -350,17 +352,17 @@ L’IA peut préparer et rédiger ces documents à partir des éléments fournis
 
 Structure actuelle : voir la section 5, « Structure actuelle du dépôt ».
 
-**État actuel au 27/10/2026 :** les sept pages disposent d’une première structure statique. Les deux flux montrent des données fictives avec actions désactivées ; accueil et profil restent des propositions sans écran dédié dans V1. Le profil affiché n’est pas relié au formulaire. La configuration comprend informations personnelles, description limitée à 500 unités UTF-16 avec compteur, six intérêts et sept besoins provisoires. Les besoins sont encore formulés pour l’étudiant accompagné.
+**État actuel au 28/10/2026 :** les sept pages disposent d’une première structure statique. Les deux flux montrent des données fictives avec actions désactivées ; accueil et profil restent des propositions sans écran dédié dans V1. Le profil affiché n’est pas relié au formulaire. La configuration comprend informations personnelles, description limitée à 500 unités UTF-16 avec compteur, six intérêts et sept besoins provisoires. Les besoins sont encore formulés pour l’étudiant accompagné.
 
 Le JavaScript propose révélation indépendante des mots de passe, comparaison des confirmations e-mail/mot de passe, conseil pédagogique de mot de passe et compteurs/actions de sélection par groupe. Les soumissions restent désactivées : aucun compte, session, enregistrement ni contrôle d’accès. La présélection du rôle et la validation serveur restent à implémenter ; le filtrage des profils est réservé à PHP/SQL.
 
-La présentation utilise la palette provisoire crème/jaune/vert avec header/footer saumon pâle, une hiérarchie de titres fluide, `--space` pour les espacements et `--shadow-raised` pour le relief des cartes/boutons. Le footer actuel conserve ses liens textuels et reste dans le flux normal ; les icônes et le burger de V1 ne sont pas implémentés. Les variantes publiques restent simplifiées. La reprise visuelle du footer et l’idée de navigation persistante sont mises en attente.
+La présentation utilise la palette provisoire crème/jaune/vert avec header/footer saumon pâle, une hiérarchie de titres fluide, `--space` pour les espacements et `--shadow-raised` pour le relief des cartes/boutons. Le footer reste dans le flux normal : icône Accueil sur sept pages, icône Mon profil et texte sur les deux flux et le profil seulement. Les variantes publiques restent locales et sans lien profil ; cette répartition par page n’est pas un contrôle de session. Sprite local `navigation.svg`, classe `.icon` et variable `--color-icon` réutilisés. Intégration progressive reprise le 28/10 ; FAQ, démarches et burger restent à construire une étape à la fois. Navigation persistante toujours différée.
 
 **Vérifications :** Steve a confirmé le fonctionnement des confirmations, du compteur limité à 500 et des mini-cartes au clavier/mobile lors des étapes précédentes. Les actions groupées de sélection/désélection restent à confirmer dans le navigateur. Contrôles sources et simulations ne constituent pas une validation exhaustive du responsive, de l’accessibilité ou des cas d’échec réseau. Les essais et leurs auteurs sont détaillés dans le journal.
 
 **Backend :** fichiers préparatoires PHP/SQL présents et commentés uniquement. Aucune inclusion serveur, connexion PDO ou table fonctionnelle ; environnement d’exécution à vérifier avant le premier exercice. La migration du chargeur header/footer reste une étape PHP séparée.
 
-**Prochaine étape proposée :** vérifier dans le navigateur les compteurs et les deux actions de sélection de chaque groupe, puis reprendre progressivement les premiers exercices PHP avec Steve. Navigation selon rôle, configuration parrain et vérifications globales restent ouvertes. Footer visuel en pause ; pas de nouvelle refonte dans ce bilan.
+**Prochaine étape proposée :** vérifier dans le navigateur les compteurs et les deux actions de sélection de chaque groupe, puis reprendre progressivement les premiers exercices PHP avec Steve. Navigation selon rôle, configuration parrain et vérifications globales restent ouvertes. Pour le footer, confirmer la répartition publique/espaces de démonstration et les icônes déjà intégrées avant de passer à une autre icône. Aucun contrôle d’accès avant la phase PHP.
 
 **Décisions reportées :** direction artistique finale, navigation selon connexion/rôle, destinations FAQ/démarches/mentions légales, placement du footer en bas des pages courtes. Le footer reste dans le flux normal. L’absence de lien vers un profil sur la connexion est une décision d’interface, pas un contrôle d’accès : les protections réelles seront implémentées côté PHP.
 
