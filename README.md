@@ -55,7 +55,15 @@ Les huit pages disposent d’une première structure de contenu. Steve a confirm
 
 ## Lancement local
 
-Ouvrir le dépôt dans VS Code et utiliser le Live Server déjà installé pour servir `frontend/public/fluxparrain.html` ou `frontend/public/login.html`. Conserver l’adresse HTTP locale fournie par le serveur : ouvrir directement les fichiers en `file://` ne permet pas de tester correctement le chargement des fragments avec `fetch`.
+Depuis un terminal à la racine du dépôt, lancer le serveur de développement PHP installé localement (adapter le chemin selon la machine) :
+
+```powershell
+& "C:\wamp64\bin\php\php8.3.14\php.exe" -S 127.0.0.1:8000 -t frontend/public
+```
+
+Ouvrir [le flux parrain](http://127.0.0.1:8000/fluxparrain.html) ou [la connexion](http://127.0.0.1:8000/login.html). Garder le terminal ouvert, rafraîchir manuellement après modification et arrêter le serveur avec Ctrl+C. Les services WAMP ne sont pas nécessaires pour cette prévisualisation.
+
+Ce serveur sert les fichiers HTML/CSS/JavaScript existants : aucune migration vers des pages PHP ni des inclusions serveur n’est réalisée. Live Server est écarté pour cette prévisualisation : son injection de rechargement dans les SVG du fragment footer produit une réponse tronquée, constatée le 28/10. Ouvrir directement les fichiers en `file://` ne permet pas de tester correctement les fragments avec `fetch`.
 
 Le serveur fournit les fichiers ; le navigateur exécute JavaScript. Aucun build ni installation de dépendances applicatives n’est nécessaire. Dans l’émulation mobile des outils de développement, utiliser « Fit to window » pour voir l’intégralité du viewport simulé.
 
