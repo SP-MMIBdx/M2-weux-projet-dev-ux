@@ -5,27 +5,42 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Espace étudiant — Parrainage étudiant</title>
+    <title>Espace étudiant — Binô</title>
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   <body>
     <header class="site-header" id="site-header">
       <div class="site-header__inner">
-        <a class="site-brand" href="index.html">Parrainage étudiant</a>
+        <a class="site-brand" href="index.html">
+          <svg viewBox="0 0 128 96" aria-hidden="true" focusable="false" width="96" height="72">
+            <use href="assets/images/logo.svg#student-connection"></use>
+          </svg>
+          <span>Binô</span>
+        </a>
       </div>
     </header>
 
     <main>
-      <h1>Bienvenue dans ton espace étudiant</h1>
+      <h1 class="title-with-mascot">
+        <span>Bienvenue dans ton espace étudiant</span>
+        <svg viewBox="4 12 64 76" aria-hidden="true" focusable="false" width="256" height="256">
+          <use href="assets/images/mascot-etudiant.svg#mascot-etudiant"></use>
+        </svg>
+      </h1>
 
       <section>
         <h2>Trois parrains à découvrir</h2>
         <p>Profils fictifs pour la maquette : les suggestions et les demandes ne sont pas encore disponibles.</p>
 
         <article class="request-card">
-          <img src="assets/images/avatar-default.svg" alt="" width="64" height="64" />
-          <h3>Vincent</h3>
-          <p>Étudiant en M1 à Poitiers</p>
+          <div class="profile-heading">
+            <img src="assets/images/avatar-default.svg" alt="" width="64" height="64" />
+            <div>
+              <h3>Vincent</h3>
+              <p>Parrain</p>
+              <p>Étudiant en M1 à Poitiers</p>
+            </div>
+          </div>
 
           <ul class="tag-list">
             <li>Musique</li>
@@ -43,9 +58,14 @@
         </article>
 
         <article class="request-card">
-          <img src="assets/images/avatar-default.svg" alt="" width="64" height="64" />
-          <h3>Sarah</h3>
-          <p>Étudiante en L3 à Poitiers</p>
+          <div class="profile-heading">
+            <img src="assets/images/avatar-default.svg" alt="" width="64" height="64" />
+            <div>
+              <h3>Sarah</h3>
+              <p>Marraine</p>
+              <p>Étudiante en L3 à Poitiers</p>
+            </div>
+          </div>
 
           <ul class="tag-list">
             <li>Sport</li>
@@ -63,9 +83,14 @@
         </article>
 
         <article class="request-card">
-          <img src="assets/images/avatar-default.svg" alt="" width="64" height="64" />
-          <h3>Amine</h3>
-          <p>Étudiant en M2 à Poitiers</p>
+          <div class="profile-heading">
+            <img src="assets/images/avatar-default.svg" alt="" width="64" height="64" />
+            <div>
+              <h3>Amine</h3>
+              <p>Parrain</p>
+              <p>Étudiant en M2 à Poitiers</p>
+            </div>
+          </div>
 
           <ul class="tag-list">
             <li>Jeux vidéo</li>
@@ -90,7 +115,9 @@
 
       <section>
         <h2>La vie étudiante</h2>
-        <p>Les actualités seront disponibles prochainement.</p>
+        <div class="request-card">
+          <p>Les actualités seront disponibles prochainement.</p>
+        </div>
       </section>
     </main>
 
@@ -98,11 +125,37 @@
       <div class="site-footer__inner">
         <nav aria-label="Navigation de pied de page">
           <ul class="footer-links">
-            <li><a href="index.html">Accueil</a></li>
-            <li><a href="profil.html">Mon profil</a></li>
+            <li>
+              <a class="button button--secondary" href="index.html" aria-label="Accueil">
+                <svg class="icon" aria-hidden="true" focusable="false" width="24" height="24">
+                  <use href="assets/images/icons/navigation.svg#home"></use>
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a class="button button--secondary" href="aide.html" aria-label="Aide / FAQ">
+                <svg class="icon" aria-hidden="true" focusable="false" width="24" height="24">
+                  <use href="assets/images/icons/navigation.svg#help"></use>
+                </svg>
+              </a>
+            </li>
+            <li>
+              <button type="button" class="button button--secondary" aria-label="Démarches — à venir" disabled>
+                <svg class="icon" aria-hidden="true" focusable="false" width="24" height="24">
+                  <use href="assets/images/icons/navigation.svg#documents"></use>
+                </svg>
+              </button>
+            </li>
+            <li>
+              <a class="button button--secondary" href="profil.html" aria-label="Mon profil">
+                <svg class="icon" aria-hidden="true" focusable="false" width="24" height="24">
+                  <use href="assets/images/icons/navigation.svg#profile"></use>
+                </svg>
+              </a>
+            </li>
           </ul>
         </nav>
-        <p>Aide / FAQ · Démarches · Mentions légales — à venir</p>
+        <p>Mentions légales — à venir</p>
       </div>
     </footer>
 

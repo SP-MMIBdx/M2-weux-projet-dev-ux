@@ -455,3 +455,553 @@ Notes de Steve prises lors du retour enseignant, synthétisées sans ajout de re
 - Ajustements documentaires limités : date de l’arborescence, intégration provisoire des éléments communs et bilan de la phase UI dans le plan ; rappel de la répartition PHP/JavaScript dans le README. Historique du journal et périmètre fonctionnel conservés.
 - Restent ouverts : revue mobile/clavier et échec réel des fragments, choix de navigation/rôle, configuration parrain, présélection du rôle et confirmations, environnement PHP puis données/sessions. Aucun nouveau code applicatif ajouté lors de cette revue. `.gitignore` inchangé : aucun nouveau fichier à exclure identifié.
 - Revue, corrections documentaires et actualisation du fichier de transfert hors dépôt générées par l’IA à la demande de Steve ; espaces Git vérifiés. Aucun staging ni commit réalisé par l’IA.
+
+### 26/10/2026 — Afficher et masquer le mot de passe de connexion
+
+- Première interaction client ajoutée dans la phase JavaScript souhaitée avant PHP : bouton natif de type `button` associé au champ par `aria-controls`, avec les classes CSS existantes. Soumission de connexion toujours désactivée.
+- `setupPasswordToggle()` retrouve le champ et le bouton, quitte la fonction si un élément est absent, puis enregistre un écouteur de clic. Celui-ci alterne le type `password` / `text` et actualise le libellé avec `textContent`. Aucun traitement serveur ni nouvelle règle CSS.
+- Code proposé et expliqué ligne par ligne par l’IA, saisi manuellement par Steve. Relecture des sources et rédaction de cette entrée réalisées par l’IA ; fonctionnement confirmé par Steve dans le navigateur. Aucun essai navigateur effectué par l’IA ; activation clavier de ce nouveau bouton non confirmée séparément.
+- Steve a également confirmé les vérifications précédemment proposées sur les mini-cartes de configuration, notamment leur fonctionnement au clavier ; ne pas les considérer comme de nouveaux essais réalisés par l’IA.
+- Suite proposée : rendre la fonction réutilisable pour les champs de création de compte, progressivement et sans duplication du traitement. Aucun staging ni commit effectué par l’IA ; notes pédagogiques conservées hors dépôt.
+
+### 26/10/2026 — Réutilisation et boutons de révélation à l’inscription
+
+- Steve a saisi la fonction paramétrée par identifiants et confirmé son fonctionnement sur la connexion. Lors du contrôle suivant, le bouton d’inscription ciblait correctement le premier champ mais se trouvait après les deux groupes ; la confirmation ne disposait pas encore de bouton ni d’appel dédié. Aucun défaut de correspondance des identifiants du premier bouton trouvé ; la cause de l’échec signalé par Steve n’est donc pas établie.
+- À la demande explicite de Steve, l’IA a déplacé le premier bouton dans son `form-field`, ajouté le bouton de confirmation dans le sien et connecté ce dernier à la fonction partagée. Chaque bouton contrôle uniquement son champ.
+- Deux paramètres de libellé avec valeurs par défaut permettent de conserver les appels existants tout en distinguant « Afficher/Masquer la confirmation du mot de passe ». Aucun changement CSS, serveur ou activation des soumissions.
+- Vérifications IA : syntaxe JavaScript et simulation Node avec éléments simplifiés issus des identifiants HTML, couvrant les trois boutons, deux clics successifs, indépendance des champs, restauration des libellés, conservation des valeurs et absence des éléments propres à l’autre page. Contrôle Git des espaces réussi. Aucun essai navigateur effectué par l’IA ; rendu et comportement réels de l’inscription à confirmer par Steve. Aucun staging ni commit effectué.
+
+### 26/10/2026 — Cohérence documentaire avant commit et suite pédagogique
+
+- À la demande de Steve, revue des quatre fichiers Markdown du dépôt : README, plan, journal et documentation technique. README et plan actualisés pour les boutons de révélation, les contrôles des mini-cartes déjà confirmés par Steve et l’ordre d’apprentissage JavaScript avant PHP demandé par l’enseignant selon Steve. Schémas des dépendances synchronisés pour inclure l’interaction de mot de passe.
+- Documentation technique inchangée : elle décrit toujours le produit cible et non l’inventaire des réalisations. Anciennes entrées du journal et bilan daté du 20/10 conservés comme historique ; les compléments du 26/10 précisent l’état actuel. Aucune validation navigateur supplémentaire déduite du seul accord pour préparer le commit.
+- Prochain exercice proposé, non implémenté : aide immédiate à la correspondance des confirmations, d’abord mot de passe puis e-mail, sans activer les soumissions ni remplacer la future validation PHP. Un compteur pour la description du profil pourra ensuite introduire le traitement des chaînes et l’événement `input`, après définition de son utilité et de ses critères.
+- Demande de Steve confirmée : premiers exemples saisis manuellement, explications détaillées et fiche d’apprentissage de fin de journée hors dépôt, centrée sur les interactions entre fichiers, événements/callbacks, paramètres/arguments, valeurs par défaut, portée des variables et vérifications. Fiche complète à préparer au bilan de séance ; aucun support personnel ajouté au dépôt.
+- Mises à jour documentaires réalisées par l’IA. Contrôle des liens Markdown locaux, clôtures des blocs de code, concordance des schémas README/plan et espaces Git ; pas de nouvel essai navigateur. Message de commit proposé, staging et commit laissés à Steve.
+- Suite confirmée par Steve : poursuivre les fonctionnalités JavaScript et conserver la matière des exercices pour une fiche personnelle détaillée, comme pour HTML/CSS et le chargeur initial. Une préparation de structure PHP/SQL et un transfert vers un nouvel agent sont envisagés ensuite ; aucun transfert ni travail backend engagé. Prochain petit ajout guidé : zone de retour associée au champ de confirmation du mot de passe, à saisir par Steve avant de connecter les événements JavaScript.
+
+### 26/10/2026 — Zone de retour pour la confirmation du mot de passe
+
+- À la demande de Steve de réaliser cet ajout, l’IA a ajouté un paragraphe vide `register-password-feedback` immédiatement après le champ de confirmation, avant son bouton de révélation, et l’a associé au champ avec `aria-describedby`.
+- Cette étape prépare uniquement la destination du message ; comparaison et écouteurs JavaScript restent à implémenter. Aucune modification CSS ni activation de la soumission.
+- Vérifications IA : identifiant unique, correspondance de la référence descriptive et emplacement dans le même `form-field` contrôlés dans les sources ; espaces Git vérifiés. Aucun essai navigateur ni commit effectué par l’IA. Explications de l’exercice à reprendre dans la fiche personnelle hors dépôt au bilan.
+
+### 26/10/2026 — Comparaison JavaScript des mots de passe
+
+- Code ajouté par l’IA à la demande de Steve : `setupPasswordConfirmation()` retrouve les deux champs et le paragraphe de retour, avec arrêt si l’un manque. Sa fonction interne `updateFeedback()` lit les valeurs exactes, efface le message si la confirmation est vide et indique correspondance ou différence autrement. Aucun retrait des espaces ni modification des valeurs saisies.
+- Les deux champs écoutent l’événement `input` et partagent le même callback ; un appel initial synchronise le message avec les valeurs présentes lors du chargement. Pas de nouvelle règle CSS, de soumission activée, d’enregistrement ou de validation serveur. La correspondance ne mesure pas la robustesse du mot de passe.
+- Vérifications IA : syntaxe et simulation Node réussies pour état initial, confirmation vide, différence, correspondance, modification de chaque champ, espace supplémentaire, effacement et éléments absents. Contrôle Git des espaces réussi. Aucun essai navigateur effectué par l’IA ; consignes de test fournies à Steve. README et checklist du plan précisés ; comparaison e-mail encore à faire. Aucun staging ni commit effectué.
+- Notions à détailler dans la fiche personnelle de fin de journée hors dépôt : événement `input`, propriété `value`, comparaison stricte, fonction interne et portée des variables, référence de callback sans parenthèses et appel initial avec parenthèses.
+- Steve confirme ensuite le bon fonctionnement dans le navigateur. README et checklist du plan synchronisés par l’IA ; cette confirmation ne constitue pas un essai navigateur réalisé par l’IA. Steve propose un commit puis un indicateur de robustesse : prochaine étape consignée, critères encore à définir et code non ajouté à ce stade. Contrôle Git des espaces réussi ; staging et commit laissés à Steve.
+
+### 26/10/2026 — Première étape de l’indicateur de robustesse
+
+- Après accord de Steve pour poursuivre, l’IA ajoute le paragraphe vide `register-password-strength` après le premier champ de mot de passe, avant son bouton, et l’associe au champ par `aria-describedby`. Cette étape HTML prépare le retour ; aucun calcul ni indicateur fonctionnel ajouté pour l’instant.
+- Référence consultée : [OWASP, contrôles de robustesse des mots de passe](https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html#implement-proper-password-strength-controls). Le choix de l’estimation reste à expliquer avant le JavaScript ; une simple longueur ou une liste de catégories de caractères ne suffira pas à déclarer un mot de passe sûr.
+- Référence descriptive et identifiant contrôlés dans les sources, espaces Git vérifiés. Aucun essai navigateur, staging ou commit effectué par l’IA. Liens entre HTML, calcul et retour visuel à reprendre dans la fiche personnelle hors dépôt.
+
+### 26/10/2026 — Conseil de mot de passe en JavaScript, sans CSS
+
+- À la demande de Steve, ajout par l’IA de deux fonctions courtes : `getPasswordGuidance(password)` renvoie un texte sans modifier le DOM ; `setupPasswordGuidance()` retrouve le champ et le paragraphe, protège leur absence et actualise le texte au chargement et sur `input`.
+- Ordre des contrôles : vide → aucun message ; présence d’une des six suites courantes ou répétition d’un seul caractère → conseil sur les motifs ; longueur inférieure à 15 caractères → conseil de longueur ; sinon → longueur suffisante pour ce repère, sans déclarer le mot de passe sûr. Liste volontairement limitée, sans dictionnaire exhaustif ni vérification des mots de passe compromis. Référence OWASP consultée à l’étape précédente ; seuil utilisé comme conseil client, pas comme validation serveur.
+- Notions pour la fiche personnelle hors dépôt : fonction qui retourne une valeur, tableau et `some`, callback avec paramètre, `toLowerCase` et `includes`, expression régulière `^(.)\1+$` (un caractère répété), `Array.from(...).length` pour compter les points de code Unicode, séparation calcul/affichage. Les graphèmes composés peuvent contenir plusieurs points de code.
+- Aucun ajout ni changement CSS. Indentation d’un attribut HTML corrigée ; README et plan synchronisés. Aucun mot de passe enregistré, affiché dans le message, transmis ni journalisé ; soumission inchangée.
+- Vérifications IA : syntaxe et simulation Node réussies pour champ vide, seuil de longueur (dont Unicode), motifs courants insensibles à la casse, répétition, mise à jour par événement, effacement et éléments absents. Espaces Git vérifiés. Aucun essai navigateur par l’IA ; tests à effectuer par Steve. Code et documentation écrits par l’IA, aucun staging ni commit effectué.
+- Steve confirme ensuite le bon fonctionnement dans le navigateur. En bref : la première fonction calcule un message, la seconde l’affiche sur l’événement `input` ; HTML fournit le paragraphe lié au champ par `aria-describedby`, sans CSS ajouté. Cette confirmation humaine complète les simulations, sans constituer un test navigateur réalisé par l’IA.
+- Point d’arrêt JavaScript proposé : préparation d’un transfert hors dépôt pour cadrer PHP/SQL avant implémentation. Comparaison e-mail et compteur de description restent différés. Fiche personnelle détaillée JavaScript toujours à produire au bilan ; notes des notions conservées dans les entrées précédentes. Transfert et mises à jour documentaires rédigés par l’IA, aucun agent backend lancé ni code backend créé.
+
+### 26/10/2026 — Fiche personnelle de révision JavaScript
+
+- À la demande de Steve, fiche Markdown téléchargeable rédigée par l’IA hors dépôt : relations HTML/DOM/JavaScript, révélation réutilisable, paramètres et valeurs par défaut, événements et callbacks, portée et fermetures, comparaison des champs, calcul/affichage du conseil, tableaux, regex et Unicode, tests et questions corrigées.
+- Sources actuelles relues ; les quatre fonctions reproduites dans la fiche correspondent au code actuel et les extraits JavaScript ont une syntaxe valide. Limites du conseil et distinction entre simulations IA et essais navigateur de Steve précisées. Aucun code applicatif changé, aucun staging ni commit effectué.
+
+### 26/10/2026 — Inventaire local et proposition de cadrage PHP/SQL
+
+- À la demande de Steve, lecture des deux copies du handoff hors dépôt, du README, du plan, de la spécification fonctionnelle, des dernières entrées du journal et des sources concernées. Handoff traité comme contexte à vérifier. État confirmé : sept pages HTML, fragments chargés par JavaScript, interactions de mot de passe et boutons de soumission désactivés ; aucun code PHP/SQL applicatif. Le dossier `backend/` existe mais est vide ; `.gitignore` est vide. Aucune instruction `AGENTS.md` trouvée dans le dépôt ou ses répertoires parents contrôlés.
+- Git au départ : arbre propre sur `main`, sans avance/retard affiché par rapport à la référence locale `origin/main` ; dernier commit local `ec807df` (conseil de mot de passe). Aucun accès distant Git effectué : cela ne confirme pas l’état actuel du serveur GitHub.
+- Vérifications en lecture seule par l’IA : PHP CLI 8.3.14 disponible via `C:/wamp64/bin/php/php8.3.14/php.exe`, configuration CLI chargée depuis son `php.ini`, pilotes PDO `mysql` et `sqlite` annoncés. Avertissement Xdebug : ouverture de son fichier de journal impossible ; les commandes PHP ont néanmoins retourné version et pilotes. Aucun réglage corrigé.
+- Wampserver présent avec répertoires MySQL 9.1.0, MariaDB 11.5.2 et Apache 2.4.62.1. Versions des clients MySQL/MariaDB confirmées par leurs exécutables ; clients absents du PATH. Ports déclarés dans les configurations : MySQL 3306, MariaDB 3307. Les hôtes virtuels Apache lus ciblent d’autres projets, pas ce dépôt. Extension VS Code Live Server 5.7.10 présente, cohérente avec le lancement documenté ; aucun essai HTTP ni navigateur effectué pendant cette passe.
+- Limites : inventaires des services et des ports en écoute refusés par l’environnement ; aucune connexion SQL, version du serveur en fonctionnement, base, identité SQL ou disponibilité effective du service validée. Aucun service démarré, aucune installation, aucun identifiant recherché ou utilisé.
+- Proposition seulement : conserver `frontend/public/` comme racine HTTP ; placer progressivement les inclusions PHP dans `backend/includes/`, la configuration locale dans `backend/config/`, la connexion PDO dans `backend/db.php` et le schéma dans `backend/sql/schema.sql`. Ne créer ces éléments qu’au moment de leur utilisation. Exclure la configuration contenant des secrets de Git avant de la créer. Le chargeur de fragments actuel reste conservé jusqu’à une migration PHP délibérée ; la racine du dépôt ne devra pas être exposée par le futur serveur PHP.
+- Modèle initial proposé, non validé ni créé : `users` (identifiant, username/e-mail uniques, empreinte de mot de passe, rôle étudiant/parrain), `profiles` (clé primaire également étrangère vers users), `interests` et `profile_interests`, `help_domains` et `profile_help_domains`, puis `mentorship_requests` (étudiant, parrain, statut, dates). Clés composées des associations pour éviter les doublons ; domaines partagés, interprétés comme besoins ou aide proposée selon le rôle. Une demande acceptée représente d’abord la relation, sans table de parrainage dupliquant son état. Rôles des participants et autorisation de consulter le contact à contrôler côté PHP. Langues, photo et autres champs prévus au MVP restent à détailler dans un incrément du modèle ; règles de nouvelle demande après refus, cumul/changement des rôles et fin de relation à arbitrer avant leur implémentation.
+- Première étape proposée à saisir par Steve : une page PHP d’exercice isolée générant une phrase HTML, sans base ni conversion de page existante. Le serveur intégré PHP avec racine explicite pourra être utilisé lorsque cette étape sera choisie ; aucune commande de lancement exécutée. Critères futurs : phrase rendue dans le navigateur, code PHP absent de la réponse HTML, pages statiques et fragments toujours accessibles. Référence technique consultée : [manuel PHP, serveur intégré et option de racine publique](https://www.php.net/manual/en/features.commandline.webserver.php).
+- Inventaire, proposition et présente entrée rédigés par l’IA ; aucun code applicatif, support pédagogique détaillé, staging ou commit créé pendant ce cadrage. Seul le journal est modifié. Vérification documentaire et contrôle Git des espaces effectués ; aucun test fonctionnel PHP/SQL revendiqué. Steve conserve la saisie des premiers exemples et tous les staging/commits.
+
+### 26/10/2026 — Création du scaffold backend
+
+- À la demande explicite de Steve, création par l’IA des dossiers `backend/includes/`, `backend/config/` et `backend/sql/`, avec `header.php`, `footer.php`, `database.local.php.example`, `database.local.php` et `schema.sql`, ainsi que `backend/db.php`.
+- Fichiers réservés aux prochaines étapes : commentaires explicatifs uniquement, sans rendu, chargement de configuration, connexion PDO ni instruction SQL exécutable. Aucun identifiant ajouté. Le modèle de configuration `.example` est versionnable ; la copie locale `backend/config/database.local.php` est exclue par une règle précise ajoutée à `.gitignore`.
+- Aucun fichier frontend modifié : pages HTML, fragments, chargement JavaScript, formulaires désactivés et prévisualisation Live Server conservés. Aucun serveur démarré ni installation effectuée. Les premiers exemples fonctionnels restent à saisir par Steve.
+- Vérifications IA : syntaxe des cinq fichiers PHP contrôlée avec `php -n -l` (configuration locale PHP non chargée pour ce contrôle), exclusion de la configuration locale confirmée par `git check-ignore`, absence de différence frontend et contrôle Git des espaces réussis. Aucun essai navigateur, connexion SQL ni exécution de schéma. Fichiers et présente entrée écrits par l’IA ; aucun staging ni commit effectué.
+
+### 26/10/2026 — Critères de sécurité intégrés au plan
+
+- Steve demande de prendre en compte la sécurité dès le début du développement. L’IA ajoute au plan une rubrique transversale associant protections et vérifications à chaque étape : racine publique/secrets, PDO et droits SQL, validation et encodage des sorties, CSRF, mots de passe et limitation des tentatives, sessions et autorisations, uploads et déploiement. La revue finale est conservée comme complément.
+- Références officielles OWASP (injection SQL, CSRF) et PHP (sessions) consultées et liées dans le plan. Critères marqués comme futurs, sans déclarer ces protections implémentées. Sécurité et performance distinguées ; aucune abstraction ni installation ajoutée.
+- Plan et présente entrée rédigés par l’IA. Différence documentaire relue et contrôle Git des espaces réussi. Aucun code applicatif modifié, test de sécurité exécuté, staging ou commit effectué ; prévisualisation actuelle conservée.
+
+### 26/10/2026 — Hébergement différé et accompagnement pédagogique
+
+- À la demande de Steve, discussion Azrael/Vercel consignée dans le plan comme point à revoir. Exigence Azrael rapportée par Steve ; caractéristiques du serveur encore inconnues. Hébergement précoce de test proposé, sans décision ni déploiement. Références Vercel consultées pendant la discussion précédente conservées dans le plan.
+- Méthode pédagogique précisée pour PHP/SQL : expliquer l’utilité et les dépendances de chaque fichier, puis chaque ligne des premiers exemples avant saisie par Steve et vérification progressive. Bilan quotidien détaillé hors dépôt, en complément des explications pendant la séance.
+- Documentation rédigée par l’IA ; différence relue et contrôle Git des espaces réussi. Aucun fichier applicatif créé ou modifié, aucun test navigateur/PHP/SQL, staging ou commit effectué lors de cette étape. L’exercice PHP proposé reste à saisir.
+
+### 26/10/2026 — Essai de palette jaune et bleu marine
+
+- À la demande de Steve, conservation de la surface jaune principale `#FBB609` et modification des variables existantes : texte `#252A34`, fond de page blanc chaud `#FAF9F6`, bordures `#736344`, actions et focus bleu marine `#203653`. Blanc des champs et du texte sur les actions conservé, notation harmonisée en `#FFFFFF`.
+- Aucun ajout de classe, variable, règle CSS ou dépendance ; répercussion sur les composants qui consomment ces valeurs, y compris header/footer, cartes et boutons. Palette provisoire à consulter dans le navigateur ; couleurs des boutons désactivés toujours atténuées par leur opacité existante.
+- CSS et présente entrée générés et écrits par l’IA à la demande de Steve. Contrôle Git des espaces effectué ; rendu et validation des contrastes restent à confirmer. Autres modifications documentaires déjà présentes conservées ; commit laissé à Steve.
+
+### 26/10/2026 — Contraste visuel renforcé du header/footer
+
+- Après le premier essai jugé trop subtil par Steve, application du bleu marine au header/footer et de texte blanc chaud, en conservant les cartes et choix jaunes et le fond de page blanc chaud.
+- Deux variables ajoutées pour les éléments communs : `--color-header-footer`, initialement liée à `--color-action`, et `--color-on-header-footer`. Les couleurs du header/footer peuvent désormais évoluer indépendamment des surfaces des cartes.
+- Marque et liens du footer héritent de la couleur de leur conteneur. Contours de focus correspondants en `currentColor` pour rester visibles sur le fond sombre. Aucune modification HTML/JavaScript ou de disposition.
+- CSS et présente entrée générés et écrits par l’IA à la demande de Steve. Différence et espaces Git contrôlés ; rendu à consulter par Steve avant validation. Palette toujours provisoire ; commit laissé à Steve.
+
+### 26/10/2026 — Statut provisoire de la direction visuelle
+
+- Steve précise que la palette jaune/bleu actuelle reste un essai, sans validation définitive : l’intention est une interface moderne, accueillante, tournée vers les interactions sociales entre jeunes étudiants, avec de futurs visuels cartoon dans un esprit Discord.
+- Le jaune reste la couleur principale souhaitée. Le bleu marine testé et sa répartition sont à réévaluer ; aucune nouvelle couleur ou illustration ajoutée lors de cette clarification.
+- Changements CSS limités à la palette et à son application : valeurs centralisées dans `:root`, deux variables dédiées au header/footer, héritage de leur texte et contours de focus adaptés. Aucun changement de disposition ou de JavaScript dans cet essai visuel.
+- Steve travaille également sur PHP en parallèle. Cette entrée concerne uniquement la direction visuelle ; elle ne décrit ni ne valide l’avancement PHP. Aucun fichier PHP ni autre travail parallèle modifié pendant cette mise à jour.
+- Entrée générée et écrite par l’IA à la demande de Steve. Contrôle Git des espaces effectué ; commit laissé à Steve.
+
+### 26/10/2026 — Essai visuel plus ludique bleu vif / jaune doux
+
+- Steve autorise une direction plus expressive, y compris la révision du jaune. Remplacement des seules valeurs existantes dans `:root` : texte bleu nuit `#25264B`, fond légèrement lavande `#F5F4FF`, surfaces jaune doux `#FFE179`, bordures bleu violacé `#454783`, actions `#454BCE`, header/footer bleu vif `#5056DF` avec texte blanc. Le header/footer utilise désormais une valeur distincte de celle des actions.
+- Aucune classe, variable ou règle supplémentaire ; mise en page, typographie, états et logique conservés. Essai de palette pour consultation, sans nouvelle illustration ni décision de direction artistique définitive.
+- Calcul des contrastes des couleurs opaques : texte/fond 13.22:1, texte/carte 11.18:1, blanc/action 6.67:1, blanc/header-footer 5.62:1 et texte secondaire/jaune 5.17:1. Ces cinq couples dépassent 4.5:1 ; cela ne constitue pas une validation globale d’accessibilité, des états filtrés ou des boutons désactivés.
+- CSS et présente entrée générés et écrits par l’IA à la demande de Steve. Espaces Git vérifiés ; rendu navigateur à consulter par Steve. Travail PHP parallèle laissé séparé et inchangé ; commit laissé à Steve.
+
+### 26/10/2026 — Retour à la palette précédente
+
+- Steve ne retient pas l’essai bleu vif / jaune doux et demande son retrait. Restauration des seules valeurs de couleur antérieures : jaune `#FBB609`, bleu marine `#203653`, fond blanc chaud `#FAF9F6`, texte `#252A34`, bordures `#736344` ; header/footer à nouveau liés à la couleur d’action avec texte blanc chaud.
+- L’essai précédent reste dans le journal comme historique, sans constituer une direction validée. Couleur du fond et équilibre général de la palette à reconsidérer avant un prochain essai.
+- Restauration CSS et présente entrée générées et écrites par l’IA à la demande de Steve. Espaces Git vérifiés. Aucun changement de disposition, de JavaScript ni du travail PHP parallèle ; commit laissé à Steve.
+
+### 26/10/2026 — Bleu vif rétabli avec le jaune original
+
+- Après clarification, Steve choisit de restaurer les couleurs de l’essai bleu vif tout en conservant le jaune original `#FBB609` pour les surfaces.
+- Valeurs existantes actualisées : texte `#25264B`, fond lavande très pâle `#F5F4FF`, bordures `#454783`, actions `#454BCE`, header/footer `#5056DF` et texte blanc. Aucun ajout de règle, variable ou classe ; travail PHP parallèle inchangé.
+- Modification CSS et présente entrée générées et écrites par l’IA à la demande de Steve. Espaces Git vérifiés ; combinaison à consulter dans le navigateur. Les mesures de contraste de l’essai précédent sur le jaune doux ne décrivent pas ce jaune rétabli. Commit laissé à Steve.
+
+### 26/10/2026 — Texte sombre sur les surfaces jaunes
+
+- Steve conserve la combinaison bleu vif / fond lavande pâle / jaune original, mais demande un texte noir plutôt que bleu sur le jaune. Variable `--color-text` ramenée au quasi-noir `#222222` et texte de `.button--secondary` relié à cette variable plutôt qu’à la couleur d’action.
+- Texte courant, champs et tags suivent ainsi la même couleur sombre. Texte blanc sur les actions bleues et le header/footer conservé ; bordures et focus bleus inchangés. Aucune nouvelle variable, classe ou règle.
+- CSS et présente entrée générés et écrits par l’IA à la demande de Steve. Espaces Git vérifiés ; travail PHP parallèle inchangé et commit laissé à Steve.
+
+### 26/10/2026 — Essai de la palette de référence cartoon
+
+- À la demande de Steve après partage de sa palette précédente, essai des couleurs proposées : fond crème `#E9E6DD`, cartes jaunes `#E4CF72`, actions vertes `#64CE80`, header/footer saumon `#CB5A52`, texte et bordures quasi-noirs `#111113`. Champs blancs conservés ; rose et bleu de la référence non ajoutés.
+- Modification des valeurs de couleur existantes. Bordure des boutons, contours de focus des contrôles et contour des tags sélectionnés reliés à `--color-border` plutôt qu’au vert d’action pour conserver des repères sombres sur les fonds clairs. Aucun ajout de classe, variable ou règle, aucune modification des épaisseurs, arrondis, disposition, HTML ou JavaScript.
+- Contrastes calculés des couples opaques : texte/fond 15.11:1, texte/jaune 12.10:1, texte/vert 9.59:1, texte/saumon 4.60:1 et texte/champ blanc 18.86:1. Ces cinq couples dépassent 4.5:1 ; états désactivés et filtrés non couverts par ces mesures, sans déclaration de conformité globale.
+- CSS et présente entrée générés et écrits par l’IA à la demande de Steve. Différence et espaces Git contrôlés ; rendu navigateur à consulter avant validation. Travail PHP parallèle inchangé ; commit laissé à Steve.
+
+### 26/10/2026 — Header/footer charbon pour équilibrer la palette
+
+- Steve conserve le fond crème, les cartes jaunes et les actions vertes, mais ne retient pas le saumon. Modification des deux seules variables header/footer : fond charbon `#242426` et texte crème `#E9E6DD`.
+- Avant commit, Steve précise que le charbon reste à reconsidérer : cette teinte n’est pas validée définitivement. Note ajoutée par l’IA à sa demande.
+- Les liens et contours de focus du header/footer suivent déjà leur couleur de texte par héritage et `currentColor`. Aucun autre style, HTML, JavaScript ou travail PHP modifié.
+- CSS et présente entrée générés et écrits par l’IA à la demande de Steve. Espaces Git vérifiés ; rendu à consulter par Steve. Commit laissé à Steve.
+
+### 26/10/2026 — Revue de cohérence frontend avant poursuite PHP
+
+- Après le commit palette `843666b`, contrôle des sept pages : structure, titres principaux, labels, identifiants et références ARIA (dont contrôles des mots de passe), chemins locaux, classes présentes dans la feuille commune et soumissions désactivées. Aucun écart bloquant relevé dans ces contrôles sources.
+- Contenus de secours header/footer comparés aux fragments partagés : cohérents sur toutes les pages qui les chargent. Palette commune crème/jaune/vert/charbon et texte sombre appliqués via variables ; charbon toujours à reconsidérer. États de focus et de sélection distincts des couleurs de remplissage.
+- Syntaxe du JavaScript actuel vérifiée, y compris les interactions de mots de passe ajoutées dans le travail parallèle. Variables CSS définies, accolades équilibrées, SVG XML, liens documentaires et clôture des blocs Markdown contrôlés. Aucun nouveau test navigateur ni validation CSS complète pendant cette revue.
+- Écarts de périmètre conservés : pas de navigation conditionnée par session/rôle ; profil fictif non relié au formulaire ; configuration encore orientée étudiant ; e-mails non comparés. Le bloc daté du 20/10 du plan reste un instantané antérieur et ne décrit pas les nouvelles interactions du 26/10 ; sa mention de surface partagée avec le header/footer a été dépassée par les essais de palette consignés ci-dessus.
+- Fichiers préparatoires PHP/SQL désormais visibles dans `backend/` : existence constatée seulement, sans lecture des configurations privées ni revue ou modification de ce travail parallèle. L’état PHP et les prochains changements de routes/inclusions sont à documenter dans cette étape séparée ; cette revue ne les valide pas.
+- Revue et présente entrée générées et écrites par l’IA à la demande de Steve. Aucun changement applicatif réalisé ; espaces Git vérifiés, commit laissé à Steve.
+
+### 27/10/2026 — Confirmation des e-mails et réutilisation du JavaScript
+
+- Après reprise demandée par Steve, arbre Git propre constaté avant modification. Lecture du JavaScript et des groupes de formulaire actuels ; fichiers préparatoires backend repérés, sans modification ni revue de leurs configurations.
+- L’IA remplace `setupPasswordConfirmation()` par `setupFieldConfirmation(inputId, confirmationId, feedbackId, matchMessage, mismatchMessage)`. Le mécanisme est conservé : références DOM, garde-fou si élément absent, message vide pour confirmation vide, comparaison exacte et écoute de `input` sur les deux champs. Deux appels fournissent les identifiants et textes propres aux mots de passe et aux e-mails, sans duplication du traitement.
+- Ajout du paragraphe `register-email-feedback` après la confirmation e-mail, associé par `aria-describedby`. Aucune normalisation de casse ni modification des valeurs ; le message décrit seulement l’égalité des saisies, pas la validité du format ni la possession de l’adresse. Validation serveur et soumissions désactivées conservées. Aucun CSS ajouté.
+- Code et documentation rédigés par l’IA. Syntaxe et simulations Node réussies : vide, différence, correspondance, modification de chaque champ, casse, espaces, effacement, indépendance des paires, fonctionnement des révélations et du conseil de mot de passe, éléments absents. Identifiants HTML uniques et références ARIA contrôlés, espaces Git vérifiés. Aucun nouvel essai navigateur effectué par l’IA ; consignes fournies à Steve.
+- README et checklist du plan synchronisés, fiche personnelle JavaScript complétée hors dépôt pour expliquer les cinq paramètres et la conservation du comportement. Compteur de description et filtrage proposés ensuite, sans implémentation dans cette étape. Aucun staging ni commit effectué par l’IA.
+- Steve confirme ensuite que les interactions fonctionnent toujours dans le navigateur. Statut du README et de la checklist actualisé par l’IA avant le commit laissé à Steve ; aucun nouvel essai navigateur réalisé par l’IA. Prochain exercice : compteur de description sans limite métier arbitraire ; champ existant relu, aucun code de compteur ajouté dans ce commit.
+
+### 27/10/2026 — Compteur de description du profil
+
+- Steve a saisi le paragraphe `profile-description-count` et sa référence `aria-describedby` sur le textarea. Au contrôle initial, seul ce fichier HTML était modifié. L’IA ajoute `setupCharacterCounter(inputId, counterId)` : recherche des éléments, garde-fou, calcul sur `input` et initialisation immédiate.
+- `Array.from(input.value).length` compte les points de code Unicode, espaces et retours à la ligne compris. Le ternaire choisit le libellé singulier/pluriel et un littéral de gabarit compose le texte. Ce compteur ne compte pas les graphèmes composés ; aucune limite de longueur ni règle métier ajoutée. Aucun CSS ou backend modifié, aucune sauvegarde ou soumission activée.
+- Vérifications IA : syntaxe, référence HTML unique et simulation Node réussies pour contenu prérempli, zéro/un/plusieurs caractères, changement équivalent à un collage, effacement, espaces, retours à la ligne, emoji simple, accent combiné, valeurs conservées et éléments absents. Espaces Git vérifiés ; aucun essai navigateur effectué par l’IA. Tests réels de saisie/collage/effacement à confirmer par Steve.
+- Attribution : HTML saisi par Steve ; JavaScript et mises à jour documentaires par l’IA. README/plan et fiche personnelle hors dépôt actualisés. Aucun staging ni commit effectué par l’IA.
+
+### 27/10/2026 — Essai de saumon pâle pour le header/footer
+
+- À la demande de Steve, remplacement de la couleur actuellement jaune du header/footer par un saumon très clair `#F2D6D0` dans la variable partagée ; texte quasi-noir `#111113` déjà présent et conservé.
+- Cartes jaunes, actions vertes, fond crème et autres styles conservés. Liens et contours de focus suivent la couleur de texte existante par héritage et `currentColor` ; aucune nouvelle règle, classe ou variable.
+- CSS et présente entrée générés et écrits par l’IA à la demande de Steve. Espaces Git vérifiés ; rendu à consulter avant validation. Modifications parallèles déjà présentes conservées et aucun fichier PHP modifié ; commit laissé à Steve.
+
+### 27/10/2026 — Ajustement léger du saumon
+
+- À la demande de Steve, saumon du header/footer légèrement foncé : `--color-header-footer` passe de `#F2D6D0` à `#EBC3BA`. Texte et reste de la palette conservés.
+- Modification de cette seule valeur CSS et note générées par l’IA ; espaces Git vérifiés, autres travaux parallèles inchangés. Rendu à consulter par Steve ; commit laissé à Steve.
+
+### 27/10/2026 — Limite de 500 pour la description
+
+- Steve confirme avoir commité le compteur avec ses changements de palette ; arbre propre constaté au départ. L’entrée du compteur était déjà présente dans le journal. Il choisit explicitement une limite de 500.
+- L’IA ajoute `maxlength="500"` au textarea et adapte le compteur en `nombre / limite caractères`. JavaScript lit `input.maxLength`, ce qui garde la valeur HTML comme référence pour la limite. Le HTML initial affiche `0 / 500 caractères`.
+- `input.value.length` remplace `Array.from(input.value).length` pour compter les mêmes unités UTF-16 que le `maxlength` natif ; un emoji simple tel que 🙂 compte désormais pour deux unités. Le navigateur gère la limite de saisie, JavaScript affiche le compte sans tronquer la valeur ni masquer un dépassement provenant d’un autre script. Validation serveur future nécessaire ; soumission toujours désactivée. Aucun CSS ni backend modifié.
+- Référence consultée : [MDN — maxlength](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/maxlength). Simulations IA réussies : initialisation, vide, un caractère, 499/500, dépassement assigné par script, Unicode, changement de limite et absence des éléments ; syntaxe et espaces Git contrôlés. Saisie et collage au-delà de la limite restent à tester dans le navigateur par Steve ; aucun essai navigateur effectué par l’IA.
+- Code et documentation actualisés par l’IA, fiche personnelle complétée hors dépôt. Aucun staging ni commit effectué par l’IA.
+
+### 27/10/2026 — Hiérarchie typographique et unité d’espacement
+
+- À la demande de Steve, première passe de typographie/espacement avant une prochaine revue du header/footer. Police système existante conservée, sans téléchargement de fonte ni ajout de dépendance.
+- Tailles explicites : h1 fluide via `clamp` de 1.75rem à 2.5rem, h2 de 1.25rem à 1.5rem, h3 à 1.125rem. Interligne des titres à 1.2, texte courant de 1.5 à 1.6 ; ligne des boutons inchangée à 1.5. Les titres peuvent revenir à la ligne et ne reçoivent pas de hauteur fixe.
+- Ajout d’une seule variable `--space: 1rem`, réutilisée dans marges, paddings et gaps existants avec `var` et `calc`. Valeurs numériques des espacements existants conservées, y compris fractions 0.25/0.5/0.75/1.25/1.5 ; padding fin de 0.625rem des contrôles laissé en place. Tailles de police, rayons, dimensions d’avatar et hauteurs minimales ne dépendent pas de cette unité.
+- Ajout d’une marge au paragraphe qui suit directement une `request-card`, pour séparer la dernière suggestion du message « Aucun de ces profils… ». Aucune classe supplémentaire, aucun changement de palette, HTML, JavaScript ou travail PHP.
+- Point du plan sur les variables d’espacement marqué traité pour la mise en page ; autres retours enseignant conservés ouverts. Le header/footer consomme la même unité pour ses espacements existants, sans refonte de son contenu ni de sa disposition.
+- CSS et documentation générés et écrits par l’IA à la demande de Steve. Références de variables, accolades et espaces Git contrôlés. Bornes de tailles vérifiées par calcul à 375, 768 et 1440px avec racine 16px ; ce calcul ne remplace pas une vérification navigateur. Rendu mobile/desktop et zoom à consulter par Steve avant validation ; commit laissé à Steve.
+
+### 27/10/2026 — Alignement responsive du header/footer
+
+- Avant intervention, arbre Git propre et commit `ac9cfc3` constatés. Les entrées « Limite de 500 pour la description » et « Hiérarchie typographique et unité d’espacement » décrivent séparément les changements JavaScript/HTML et CSS ; aucun chevauchement de responsabilité relevé dans leur contenu.
+- À la demande de Steve de poursuivre sur le header/footer, modification CSS seulement : `.site-brand` passe en `inline-flex` avec centrage vertical et hauteur minimale de 2.75rem pour agrandir la cible du lien d’accueil sans imposer une hauteur fixe au texte.
+- Footer : remplacement de la colonne forcée par une ligne flexible avec retour à la ligne, centrage vertical et répartition de l’espace. Navigation et texte peuvent partager une ligne si la place suffit, sinon reviennent à la ligne naturellement. Gap existant fondé sur `--space` conservé, sans media query ni classe supplémentaire ; footer toujours dans le flux normal.
+- Conservation des classes et du découpage HTML actuel : la mise en page s’applique aussi aux futurs fragments inclus par PHP. Aucun changement au chargeur JavaScript, aux formulaires, aux liens ni au travail PHP parallèle ; migration des inclusions toujours à réaliser dans cette étape séparée.
+- CSS et présente entrée générés et écrits par l’IA à la demande de Steve. Différence, références de variables, accolades et espaces Git contrôlés ; affichage sur petites/grandes largeurs et clic/focus du lien à confirmer dans le navigateur par Steve. Commit laissé à Steve.
+
+### 27/10/2026 — Ombre franche des boutons
+
+- À la demande de Steve après partage d’une référence visuelle, ajout de `box-shadow: 3px 3px 0 var(--color-border)` dans la règle commune `.button`. Décalage de 3px vers la droite et le bas, sans flou, pour un relief graphique similaire à la référence.
+- Une seule déclaration ajoutée, couleur de bordure existante réutilisée ; aucune nouvelle classe ou variable. Bordure, arrondi et disposition conservés. Effet commun aux boutons et liens `.button`, y compris la variante secondaire ; l’opacité des contrôles désactivés atténue aussi leur ombre.
+- Aucune nouvelle animation de clic : effet de pression existant conservé, raffinement interactif reporté à la demande de Steve. Aucun HTML, JavaScript ou fichier PHP modifié.
+- CSS et présente entrée générés et écrits par l’IA à la demande de Steve. Différence et espaces Git contrôlés ; rendu et absence de débordement à vérifier dans le navigateur par Steve. Commit laissé à Steve.
+
+### 27/10/2026 — Relief commun des cartes et boutons
+
+- À la demande de Steve, extension de l’ombre franche aux cartes de profils/demandes (`request-card`), panneaux (`form-panel`) et mini-cartes de sélection (`tag-options label`), via une règle groupée sans nouvelle classe. Pastilles de lecture `tag-list` conservées sans relief supplémentaire.
+- Ajout d’une variable partagée `--shadow-raised: 3px 3px 0 var(--color-border)` et réutilisation sur les boutons : modification du relief désormais centralisée. État sélectionné des mini-cartes adapté pour cumuler le contour intérieur existant et l’ombre extérieure, sans effacer cette dernière.
+- CSS et présente entrée générés et écrits par l’IA à la demande de Steve. Différence et espaces Git contrôlés ; rendu mobile et état sélectionné à vérifier dans le navigateur. Aucun HTML, JavaScript ou travail PHP parallèle modifié ; commit laissé à Steve.
+
+### 27/10/2026 — Navigation principale conservée dans le footer
+
+- Steve confirme que la navigation principale reste dans le footer pour le moment. Header limité à l’identité du projet et au lien d’accueil ; variantes selon connexion/rôle et destinations détaillées encore à définir, avec rendu prévu côté PHP.
+- Décision ajoutée au plan et présente synthèse rédigées par l’IA. Aucun changement applicatif ou de positionnement du footer ; espaces Git vérifiés. Commit laissé à Steve.
+
+### 27/10/2026 — Navigation persistante mobile différée
+
+- Après discussion d’une barre de navigation toujours visible en bas sur mobile, Steve demande de mettre l’idée en attente et d’y revenir ultérieurement. Point de suivi ajouté au plan ; footer conservé dans le flux normal, sans modification CSS/HTML/JavaScript ou PHP.
+- Note et mise à jour documentaire rédigées par l’IA à la demande de Steve ; espaces Git vérifiés. Commit laissé à Steve.
+
+### 27/10/2026 — Sélections des intérêts et besoins : compteur et désélection
+
+- À la demande de Steve, ajout de `profile-interests` et `profile-needs` sur les deux fieldsets, d’un paragraphe de statut et d’un bouton natif « Tout désélectionner » dans chacun. Fieldsets, légendes et treize cases natives avec leurs noms/valeurs sont conservés ; la formulation du deuxième groupe reste orientée étudiant, sans nouvelle gestion du rôle.
+- `setupTagSelection(groupId)` prépare une interaction indépendante par groupe : sélection DOM limitée au fieldset, compteur des cases `:checked`, singulier/pluriel et bouton désactivé lorsque rien n’est coché. Un écouteur `change` sur le groupe reçoit les changements remontés depuis les cases. Le bouton parcourt les cases avec `forEach`, affecte `checked = false`, replace le focus sur la première case puis recalcule le statut. L’appel initial prend aussi en compte d’éventuelles cases précochées.
+- La modification de `.checked` par script ne déclenche pas automatiquement `change` : l’actualisation est appelée explicitement après la boucle. Pas de limite de sélection, de sauvegarde, de requête réseau ou de CSS supplémentaire. Apparence existante réutilisée ; validation et enregistrement futurs restent côté PHP. Filtrage des profils réservé à PHP/SQL après clarification de Steve, proposition JavaScript antérieure abandonnée.
+- Vérifications IA : syntaxe et simulations Node réussies pour zéro/une/plusieurs sélections, préselection, groupes indépendants, désélection, toutes les options, décochage manuel, cible du focus et éléments manquants. Treize noms/valeurs de cases comparés à la version Git, boutons de type `button`, statuts et soumission toujours désactivée contrôlés. La remontée réelle des événements, le focus clavier et le rendu restent à vérifier dans le navigateur par Steve ; aucun essai navigateur réalisé par l’IA.
+- JavaScript, HTML, mises à jour README/plan et nouvelle fiche pédagogique Markdown hors dépôt rédigés par l’IA. Explications et checklist fournies à Steve ; message de commit proposé, aucun staging ni commit effectué. Les modifications documentaires de navigation déjà présentes au départ sont conservées.
+
+### 27/10/2026 — Sélection de toutes les options par groupe
+
+- À la demande de Steve, ajout d’un bouton natif « Tout sélectionner » avant « Tout désélectionner » dans chacun des deux groupes. Conteneur `request-actions` existant réutilisé pour l’alignement horizontal avec retour à la ligne selon la largeur ; aucune nouvelle règle CSS.
+- Traitement partagé par `setSelection(checked)` : `true` coche toutes les cases du groupe, `false` les décoche. Les deux boutons appellent cette fonction ; focus sur la première case et actualisation du statut conservés. « Tout sélectionner » se désactive lorsque toutes les cases sont cochées ; « Tout désélectionner » lorsque rien n’est coché. Les changements manuels réactualisent les deux états.
+- Vérifications IA : syntaxe et simulations Node réussies pour sélection/désélection complète, état partiel, préselection, groupes indépendants, cible du focus et contrôles manquants. Présence des deux boutons dans le même conteneur flexible contrôlée dans le HTML. Disposition réelle, retour à la ligne et clavier restent à confirmer par Steve dans le navigateur ; aucun essai navigateur effectué par l’IA.
+- HTML, JavaScript, README/plan et complément de fiche hors dépôt rédigés par l’IA. Aucune modification PHP, CSS ou activation des soumissions ; espaces Git vérifiés, aucun staging ni commit effectué.
+
+### 27/10/2026 — Synchronisation documentaire après revue globale
+
+- À la demande de Steve, correction documentaire sans modification applicative : arborescence versionnée du plan actualisée au 27/10 avec les placeholders backend, et précision que la configuration locale est exclue de Git. Suppression de la phrase annonçant ces dossiers comme futurs.
+- Consolidation des anciens bilans 20/10 et 26/10 du plan en un état actuel unique : confirmations, compteur limité à 500, actions de sélection groupée, styles partagés, soumissions désactivées et scaffold backend non fonctionnel. Prochaines étapes périmées retirées ; essais navigateur restant à effectuer conservés ouverts. Historique détaillé maintenu dans les entrées antérieures du journal.
+- README aligné sur les couleurs/espacements/ombres actuels, l’existence des placeholders backend et le footer textuel présent. Schémas README/plan synchronisés avec un nœud compact pour les interactions des formulaires. Reprise du footer et navigation persistante restent différées, sans nouveau développement.
+- Documentation technique fonctionnelle relue et laissée inchangée : pas de décision produit à modifier. Aucun fichier d’apprentissage personnel ajouté au dépôt.
+- Vérifications de la revue précédente : structure, labels/références, chemins et classes des sept pages, parité des fallbacks, variables/accolades CSS, SVG et syntaxe JavaScript ; simulations des interactions et du chargeur réussies. Placeholders PHP exécutables lintés sans chargement du php.ini, exclusion de la configuration locale confirmée ; aucune connexion SQL ni configuration privée lue. Aucun essai navigateur ni validation CSS complète effectué par l’IA.
+- Mises à jour et présente entrée rédigées par l’IA à la demande de Steve. Liens documentaires locaux, blocs de code, concordance des schémas, arborescence et espaces Git vérifiés. Seuls README, plan et journal modifiés ; staging et commit laissés à Steve.
+
+### 28/10/2026 — Pression des boutons cohérente avec le relief
+
+- À la demande de Steve, remplacement du simple assombrissement dans la règle `.button:not(:disabled):active` par un décalage vers le bas/droite et la suppression temporaire de l’ombre. Le bouton rejoint ainsi la position de son ombre pendant la pression, puis reprend son aspect au relâchement.
+- Une seule variable ajoutée, `--shadow-offset: 3px`, partagée par les deux décalages de `--shadow-raised` et la translation du bouton. Couleurs, géométrie des cartes et classes existantes conservées ; aucun nouvel écouteur JavaScript, temporisation ou règle de transition. La transformation visuelle ne réorganise pas les éléments voisins.
+- Liens `.button` toujours sans soulignement grâce à la déclaration commune existante `text-decoration: none`. Focus clavier conservé, contrôles désactivés exclus de l’effet. Liens ordinaires du header/footer inchangés.
+- Personnalisation des cases à cocher réservée à l’étape suivante : leur apparence native n’est pas modifiée dans cette passe.
+- CSS et présente entrée générés et écrits par l’IA à la demande de Steve. Références de variables, différence et espaces Git contrôlés ; pression/relâchement, focus clavier et petits écrans à confirmer dans le navigateur par Steve. Aucun HTML ni travail PHP/JavaScript parallèle modifié ; commit laissé à Steve.
+
+### 28/10/2026 — Retour à la connexion présenté en bouton
+
+- Steve confirme les tests du nouvel effet de pression des boutons avant cette étape ; aucun essai navigateur supplémentaire effectué par l’IA.
+- À sa demande, remplacement du paragraphe contenant le lien de connexion dans `createprofile.html` par un lien portant les classes existantes `button button--secondary`, avec le libellé « Déjà un compte ? Connecte-toi » et la destination `login.html` conservée. Il reste sémantiquement un lien de navigation.
+- Apparence, focus, absence de soulignement et effet de pression réutilisés sans nouvelle déclaration CSS ni JavaScript. Disposition en colonne du formulaire conservée. Personnalisation et interaction visuelle des choix de listes à traiter à l’étape suivante.
+- HTML et présente entrée générés et écrits par l’IA à la demande de Steve. Destination locale et espaces Git vérifiés ; rendu du lien à confirmer par Steve. Aucun travail PHP parallèle modifié ; commit laissé à Steve.
+
+### 28/10/2026 — États visuels des mini-cartes de sélection
+
+- Après le commit des boutons par Steve, personnalisation CSS des choix intérêts/besoins à sa demande : `accent-color` des cases natives reliée au texte sombre pour remplacer l’accent bleu par défaut ; aucune reconstruction du contrôle ni masquage de la case.
+- Une mini-carte cochée prend le fond vert `--color-action`, en conservant son texte sombre, le contour intérieur et l’ombre partagée. Carte non cochée toujours jaune. Les sélections effectuées par les boutons de groupe utilisent aussi ce rendu puisque le CSS lit l’état natif `:checked`.
+- Sélecteur `.tag-options label:has(input:enabled):active` ajouté à la règle de pression existante des boutons : translation selon `--shadow-offset` et retrait temporaire de l’ombre. Sa spécificité permet de conserver l’effet pressé même sur une carte déjà cochée. Aucune transition ou animation JavaScript ajoutée ; focus clavier existant conservé. Le rendu exact de la coche native reste dépendant du navigateur.
+- Aucun ajout de classe ou variable ; seules une règle d’accent natif, une déclaration de fond sélectionné et l’extension du sélecteur de pression sont nécessaires. HTML, logique de sélection/compteurs, JavaScript et PHP inchangés.
+- CSS et présente entrée générés et écrits par l’IA à la demande de Steve. Variables, accolades, différence et espaces Git contrôlés ; clic sur case/texte, décochage, sélection groupée, Tab/Espace et état pressé à vérifier dans le navigateur par Steve. Commit laissé à Steve.
+
+### 28/10/2026 — Sélection groupée : défilement et retour tactile
+
+- Steve signale un retour en haut du groupe et un effet pressé peu visible après alternance des actions en émulation mobile Chrome ; comportement desktop correct selon ses essais. La couleur bleu clair apparaît au tap sur mobile.
+- Cause du déplacement identifiée dans `setSelection` : focus explicite sur la première case. Ajout de `{ preventScroll: true }` à cet appel pour conserver le focus existant sans demander son défilement dans le viewport. Référence : [MDN — focus et preventScroll](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus).
+- Ajout d’une seule déclaration `-webkit-tap-highlight-color: transparent` dans `.button` pour retirer la surbrillance tactile native susceptible de masquer le retour visuel personnalisé. Extension navigateur ciblée, sans remplacement du focus clavier ni nouvel écouteur tactile ; source : [MDN — tap highlight](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/-webkit-tap-highlight-color). La sélection se produit toujours au clic et le bouton concerné devient désactivé lorsque son action n’est plus applicable ; l’état `:active` reste limité à la pression.
+- Correction JS minimale, CSS et présente entrée rédigés par l’IA. Syntaxe et trois cycles sélectionner/désélectionner simulés avec états des boutons et option preventScroll contrôlés ; espaces Git vérifiés. Défilement réel et effet pressé répété restent à confirmer par Steve dans Chrome mobile émulé. Aucune affirmation de reproduction ou de résolution complète de l’affichage mobile par l’IA ; aucun HTML/PHP modifié, commit laissé à Steve.
+
+### 28/10/2026 — Préparation des icônes SVG de navigation
+
+- À la demande de Steve, création de `assets/images/icons/navigation.svg` : sprite local contenant cinq symboles originaux en tracés vectoriels (Accueil, FAQ, Démarches, Menu, Profil), chacun avec un viewBox commun `0 0 24 24`, traits arrondis et dessin contenu dans la grille.
+- Symboles conçus pour une référence `svg` / `use` : couleur héritée par `currentColor`, épaisseur héritée du SVG qui les utilise, dimensions contrôlables par CSS. Aucun bitmap, fonte, script, bibliothèque ou générateur d’image ajouté. Un affichage de 24px est distinct de la cible interactive, qui devra rester suffisamment grande.
+- Préparation de l’asset seulement : aucun footer, HTML de page, CSS, JavaScript ou PHP modifié. Intégration prévue progressivement, en commençant par Accueil et Profil après consultation. Libellés accessibles à fournir par les liens/contrôles lors de cette étape.
+- Aperçu autonome de deux couleurs/épaisseurs généré hors dépôt pour consultation. XML, cinq identifiants uniques et viewBoxes contrôlés ; aucun essai navigateur effectué par l’IA. Asset et présente entrée rédigés par l’IA, commit laissé à Steve.
+
+### 28/10/2026 — Style et couleur communs des icônes
+
+- Après validation de l’aperçu par Steve, sprite conservé dans `assets/images/icons/navigation.svg` et ajout d’une classe CSS réutilisable `.icon` : dimensions 1.5rem, absence de rétrécissement en Flexbox, épaisseur 1.8 et couleur issue de la nouvelle variable unique `--color-icon`.
+- Variable reliée par défaut à `--color-text` ; les tracés du sprite consomment cette couleur via `currentColor`. Couleur des cinq icônes modifiable à un seul endroit ; taille et épaisseur dans une seule règle partagée, sans classes par dessin.
+- CSS et présente entrée rédigés par l’IA à la demande de Steve. Asset préparé et styles définis, sans intégration ni modification du footer, du HTML des pages, du JavaScript ou du PHP. Références de variables et espaces Git vérifiés ; commit laissé à Steve.
+
+### 28/10/2026 — Première icône intégrée : Accueil
+
+- À la demande de Steve de poursuivre progressivement, ajout du seul symbole `#home` au lien Accueil du fragment footer et de ses copies de secours sur les deux flux et le profil. Texte « Accueil » et destination `index.html` conservés ; SVG décoratif avec `aria-hidden` et `focusable="false"`, dimensions 24 × 24 et classe `.icon`.
+- Une seule déclaration CSS ajoutée au lien de footer : gap d’une demi-unité pour séparer icône et texte. Couleur/épaisseur déjà gérées par le style partagé. Autres icônes, footer public, JavaScript et PHP inchangés.
+- HTML/CSS et présente entrée rédigés par l’IA. Symbole, imbrication, présence dans le lien et concordance fragment/fallbacks vérifiés ; espaces Git contrôlés. Test via Live Server sur un flux ou le profil à effectuer par Steve : dessin, couleur, clic vers l’accueil et focus clavier. Aucun test navigateur effectué par l’IA ; commit laissé à Steve.
+
+### 28/10/2026 — Deuxième icône intégrée : Mon profil
+
+- Steve confirme le bon affichage de l’icône Accueil, avec texte conservé à côté. À sa demande, ajout du symbole `#profile` au lien Mon profil du fragment footer et des mêmes copies de secours sur les deux flux et le profil.
+- Classe `.icon`, dimensions 24 × 24, SVG décoratif et espacement déjà définis réutilisés ; libellé visible et destination `profil.html` conservés. Aucune nouvelle règle CSS, classe ou logique JavaScript ; autres icônes et travail PHP inchangés.
+- HTML et présente entrée rédigés par l’IA. Symbole, destination, unicité de l’utilisation et concordance fragment/fallbacks contrôlés ; espaces Git vérifiés. Rendu, couleur, clic et focus du lien Mon profil à confirmer par Steve dans le navigateur. Aucun test navigateur effectué par l’IA ; commit laissé à Steve.
+
+### 28/10/2026 — Accueil sans texte visible avant checkpoint
+
+- Steve confirme le fonctionnement de l’icône Mon profil. À sa demande, retrait du seul texte visible Accueil dans le fragment et les trois copies de secours ; ajout d’`aria-label="Accueil"` au lien pour conserver un nom accessible. SVG toujours décoratif ; destination inchangée. Texte Mon profil conservé.
+- Ajout de `min-width: 2.75rem` à la règle existante des liens footer pour que le lien Accueil réduit à une icône garde une cible large, en complément de sa hauteur minimale existante. Aucune nouvelle classe/variable ou logique JavaScript.
+- Checkpoint prévu avec les deux icônes avant tout élargissement aux autres pages. Footers publics inchangés ; accès selon connexion/rôle à définir et faire respecter côté PHP, sans afficher par anticipation le profil sur les formulaires publics.
+- HTML/CSS et présente entrée rédigés par l’IA. Nommage accessible, concordance fragment/fallbacks et espaces Git vérifiés ; rendu final sans texte à confirmer par Steve. Aucun travail PHP modifié ; commit laissé à Steve.
+
+### 28/10/2026 — Accueil dans les footers publics
+
+- Après le commit `995c510`, extension du seul lien Accueil à icône vers les footers locaux de l’accueil, connexion, inscription et configuration du profil. Nom accessible, destination, SVG et classe `.icon` identiques à ceux déjà testés sur les flux.
+- Mon profil reste limité aux deux flux et au profil, avec texte encore visible. Aucun lien profil ajouté aux pages publiques ; il s’agit d’une répartition provisoire par page, pas d’une protection d’accès. Sessions, autorisations et choix de navigation selon rôle restent prévus en PHP.
+- Aucun changement CSS, JavaScript ou backend. Footers publics conservés sans identifiant de chargement du fragment complet ; FAQ/démarches/menu toujours en attente et footer non fixe.
+- README et état du plan synchronisés avec l’intégration progressive, arborescence complétée avec le sprite. HTML et documentation rédigés par l’IA à la demande de Steve ; structures, variantes et liens documentaires contrôlés sur sept pages, espaces Git vérifiés. Rendu des quatre pages publiques à confirmer par Steve dans le navigateur ; commit laissé à Steve.
+
+### 28/10/2026 — Contrôles du footer : style et centrage à traiter ensemble
+
+- Steve confirme le fonctionnement de l’extension Accueil aux pages publiques, puis signale une cible cliquable décalée vers la droite et un pictogramme non centré dans son espace. Cause non encore diagnostiquée.
+- Il souhaite désormais présenter les contrôles du footer comme des cartes/boutons avec le même style que les boutons communs. Décision : regrouper cette évolution et la correction du centrage dans une seule prochaine étape, plutôt que corriger l’alignement séparément.
+- Point de suivi ajouté au plan et présente note rédigés par l’IA à sa demande. Aucun HTML, CSS, JavaScript ou PHP modifié ; espaces Git vérifiés. Commit laissé à Steve.
+
+### 28/10/2026 — Essai du bouton Accueil centré dans le footer
+
+- À la demande de Steve de traiter un contrôle à la fois, ajout des seules classes existantes `button button--secondary` au lien Accueil des sept pages et du fragment footer. Icône, destination et nom accessible conservés ; Mon profil laissé inchangé pour comparaison.
+- Diagnostic dans les styles : le lien précédent avait une largeur minimale mais aucun centrage horizontal. La classe `.button` apporte déjà `justify-content: center`, padding équilibré, bordure, arrondi, fond jaune, ombre et effet pressé. Aucune déclaration CSS, variable ou classe supplémentaire nécessaire.
+- HTML et présente entrée rédigés par l’IA. Imbrication, présence des classes, nom/destination et concordance fragment/fallbacks vérifiés ; espaces Git contrôlés. Centrage réel, cible cliquable, pression et focus à confirmer par Steve en mobile/desktop avant extension du style à Mon profil. Aucun JavaScript ni travail PHP modifié ; commit laissé à Steve.
+
+### 28/10/2026 — Bouton Mon profil cohérent avec Accueil
+
+- Steve valide le rendu et la cible cliquable du bouton Accueil. À sa demande de poursuivre, ajout des classes existantes `button button--secondary` au lien Mon profil du fragment et des copies de secours sur les deux flux et le profil.
+- Icône, texte visible et destination conservés ; aucun lien profil ajouté aux quatre pages publiques. Style, centrage et effet pressé réutilisés sans nouveau CSS, JavaScript ou changement PHP.
+- HTML et présente entrée rédigés par l’IA. Classes, concordance fragment/fallbacks et séparation des footers publics vérifiées ; espaces Git contrôlés. Rendu/cible/focus de Mon profil à confirmer par Steve ; commit laissé à Steve.
+
+### 28/10/2026 — Page Aide / FAQ et contact de démonstration
+
+- Steve confirme le fonctionnement du bouton Mon profil avant cette étape. À sa demande, création de `frontend/public/aide.html` : cinq questions/réponses fondées sur les scénarios et fonctionnalités de la documentation technique (public visé, rôles, informations du profil, demande de parrainage et accès aux moyens de contact après acceptation). Une introduction distingue le parcours prévu de la maquette statique actuelle.
+- Ajout d’un formulaire de contact de démonstration : nom, e-mail et message avec labels explicites, champs natifs et bouton Envoyer désactivé. Aucun envoi, stockage ou traitement serveur ; aucune liste de catégories ajoutée à ce stade.
+- Réutilisation exclusive des classes de cartes, panneaux, champs et boutons existantes. Aucun ajout ou changement CSS, JavaScript ou PHP ; pas de nouvelle dépendance. En-tête partagé et pied de page public local sur la nouvelle page.
+- Lien Aide / FAQ avec symbole SVG `#help` et texte visible ajouté aux huit footers et au fragment commun, avec synchronisation des trois copies de secours. Ancien texte FAQ « à venir » retiré ; démarches, menu et mentions légales restent à construire. Mon profil reste absent des footers publics ; aucune gestion de session introduite.
+- README et plan synchronisés : huit pages, arborescence, schémas de dépendances et état de la FAQ. Documentation technique fonctionnelle conservée sans extension du périmètre.
+- HTML et documentation générés et écrits par l’IA à la demande de Steve. Contrôles source réussis sur les huit pages : imbrication, identifiants, références des labels/ARIA, destinations locales et symboles SVG, soumissions désactivées, concordance fragment/fallbacks et variantes publiques. Schémas README/plan concordants et espaces Git contrôlés. Aucun essai navigateur effectué par l’IA : rendu mobile/desktop, navigation FAQ et parcours clavier restent à confirmer par Steve. Aucun staging ni commit effectué.
+
+### 28/10/2026 — Limite du message de contact et jaune des boutons
+
+- Après le commit de la FAQ par Steve, ajout de `maxlength="500"` au message de contact et d’un compteur associé par `aria-describedby`. Un seul appel supplémentaire à `setupCharacterCounter` réutilise la fonction du profil : HTML limite la saisie, JavaScript affiche la longueur, sans logique dupliquée. Comptage natif en unités UTF-16 ; l’envoi reste désactivé et la validation serveur reste à implémenter avec PHP.
+- À la demande de Steve d’un jaune plus vif que les cartes pour les boutons jaunes, ajout de `--color-button-secondary` et utilisation dans la seule règle `.button--secondary`. Première proposition `#F2D65C`, puis accentuation à `#FFD52A` à sa demande pour un jaune plus visible. Cartes toujours `#E4CF72`, texte sombre, actions vertes et états de pression inchangés. Aucune nouvelle classe ni règle CSS ; couleur modifiable à un seul endroit.
+- HTML, JavaScript, CSS et présente entrée générés et écrits par l’IA. Syntaxe JavaScript et simulations du compteur vérifiées : initialisation, saisie, 500 unités, effacement, emoji et contrôles absents. Espaces Git contrôlés. Limitation réelle à la saisie/au collage et rendu des couleurs mobile/desktop à confirmer par Steve dans le navigateur ; aucun essai navigateur effectué par l’IA. Aucun fichier PHP modifié, staging et commit laissés à Steve.
+
+### 28/10/2026 — Essai d’inversion des jaunes
+
+- À la demande de Steve, permutation des deux variables : `--color-surface: #FFD52A` pour les cartes, panneaux et mini-cartes non sélectionnées ; `--color-button-secondary: #E4CF72` pour les boutons secondaires. Essai visuel, sans décision de direction artistique définitive.
+- Seules ces deux valeurs CSS modifiées ; styles, textes et interactions conservés. Modification et présente note rédigées par l’IA ; espaces Git contrôlés, rendu navigateur à consulter par Steve. Aucun commit effectué.
+- Après consultation, Steve demande d’annuler cet essai : valeurs restaurées à `--color-surface: #E4CF72` et `--color-button-secondary: #FFD52A`. Retour effectué par l’IA ; cartes de nouveau atténuées et boutons secondaires jaune vif.
+
+### 28/10/2026 — Cartes saumon et header/footer jaune atténué
+
+- Après le commit `7bb87e8` (limite et compteur du message de contact, boutons jaunes plus vifs), Steve inverse lui-même les couleurs des surfaces et du header/footer : `--color-surface: #EBC3BA` et `--color-header-footer: #E4CF72`. Il confirme apprécier cette combinaison. Les boutons secondaires restent jaune vif `#FFD52A` ; actions et sélections vertes, fond crème, textes sombres, bordures et ombres conservés.
+- La variable de surface s’applique aux cartes, panneaux et mini-cartes non sélectionnées ; la variable header/footer s’applique aux deux zones communes. Deux valeurs existantes modifiées, sans nouvelle classe, règle ou variable. Direction artistique toujours provisoire.
+- À sa demande, revue des différences et de la chronologie par l’IA : FAQ, compteur et précédente couleur des boutons déjà commités, sans autre changement applicatif en attente. Deux lignes vides supplémentaires retirées du CSS ; descriptions de palette du README et du plan synchronisées. Présente synthèse rédigée par l’IA, modification des couleurs réalisée par Steve. Espaces Git contrôlés ; appréciation visuelle rapportée par Steve, sans essai navigateur effectué par l’IA. Commit laissé à Steve.
+
+### 28/10/2026 — Contrôle Démarches dans le footer des espaces de démonstration
+
+- À la demande de Steve de poursuivre le footer progressivement, ajout du symbole existant `#documents` dans un bouton natif désactivé, libellé « Démarches — à venir ». Contrôle placé entre FAQ et Mon profil dans le fragment commun et ses trois copies de secours (deux flux et profil). Retrait du doublon Démarches dans la ligne de texte sous la navigation.
+- Classes existantes `button button--secondary` et `icon` réutilisées : aucune modification CSS, JavaScript ou PHP. Aucun lien sans destination ni page supplémentaire ; footers publics inchangés. Burger menu et contenu Démarches restent à construire ; aucune gestion de session ajoutée.
+- HTML et présente entrée rédigés par l’IA. Présence unique, état désactivé, symbole et concordance fragment/fallbacks contrôlés ; espaces Git vérifiés. Rendu et retour à la ligne sur mobile à confirmer par Steve, sans essai navigateur effectué par l’IA. Commit laissé à Steve.
+
+### 28/10/2026 — Diagnostic du footer tronqué et changement de serveur de prévisualisation
+
+- Steve signale un footer complet visible brièvement puis remplacé par deux icônes incomplètes. Vérification IA : fragment et trois fallbacks identiques sur disque ; le chargement JavaScript remplace normalement le fallback par la réponse HTTP.
+- Lecture de la réponse de Live Server sur `http://127.0.0.1:5500/frontend/public/includes/footer.html` : scripts de rechargement injectés aux fermetures SVG, réponse coupée avant la fin du fragment. Lecture du code de l’extension installée confirmant la détection des fermetures SVG pour l’injection et l’ajustement de longueur. Cause liée à l’outil de prévisualisation, pas à une divergence des copies HTML ; hypothèse initiale de cache non retenue après ce contrôle.
+- Prévisualisation déplacée vers le serveur de développement PHP local, racine `frontend/public`, adresse `http://127.0.0.1:8000`. Steve confirme que le footer s’affiche correctement après ce changement. Aucun changement de JavaScript, de PHP applicatif ou de fallback pour ce diagnostic ; aucune migration des inclusions ni activation du backend. Fallbacks conservés pour les échecs de chargement. README actualisé avec la commande et le rafraîchissement manuel.
+- Capture mobile fournie par Steve (iPhone 16, même constat sur SE) : les libellés entraînent une navigation répartie sur trois lignes. Compacité du footer à revoir à la prochaine étape ; aucune correction de mise en page engagée dans ce checkpoint.
+- Diagnostic et présente synthèse rédigés par l’IA ; réponse HTTP et code de l’outil inspectés par l’IA, essai navigateur réussi rapporté par Steve. Espaces Git vérifiés. Commit laissé à Steve : contrôle Démarches, copies de secours et documentation ; aucun staging effectué.
+
+### 28/10/2026 — Footer compact à icônes seules
+
+- À la demande de Steve de corriger l’empilement mobile, retrait des libellés visibles FAQ, Démarches et Mon profil dans les footers concernés. Noms accessibles conservés par `aria-label` ; SVG décoratifs inchangés. Même présentation FAQ appliquée aux footers publics, sans y ajouter profil ou démarches. Fragment et trois fallbacks synchronisés.
+- Remplacement des anciennes règles de liens footer par une seule règle `.footer-links .button` : largeur/hauteur 2.75rem (44px à la taille de base) et padding d’une demi-unité. Styles communs de couleur, centrage, ombre, pression et focus réutilisés ; règles hover/focus locales redondantes supprimées. Flexbox et retour à la ligne conservés pour les largeurs insuffisantes ; footer toujours dans le flux normal. Aucune variable/classe ajoutée, aucun JavaScript ou PHP modifié.
+- Vérification IA dans le navigateur intégré via le serveur PHP, sur flux parrain après chargement du fragment : quatre contrôles de 44 × 44px sur une ligne à 375px, puis une ligne sans débordement horizontal à environ 393px et à 1280px. Noms accessibles présents dans l’arbre du navigateur, Démarches toujours désactivé. Cela ne constitue pas un essai sur iPhone physique ni une validation complète du clavier.
+- Contrôles source des noms accessibles sur les huit footers et concordance des trois fallbacks réussis ; espaces Git vérifiés. README/plan actualisés sur les libellés et le contrôle Démarches. Code et présente synthèse rédigés par l’IA ; confirmation visuelle par Steve attendue, commit laissé à Steve.
+
+### 28/10/2026 — Carte de réservation des actualités
+
+- À la demande de Steve, ajout d’un conteneur `div.request-card` autour du message d’attente des actualités sur les deux flux. Titre « La vie étudiante » conservé au-dessus ; aucun contenu fictif ni fonctionnalité de chargement ajouté.
+- Réutilisation des styles communs : fond saumon, bordure, arrondi, ombre et espacement existants. Aucune nouvelle classe ou règle CSS, aucun changement JavaScript/PHP.
+- HTML et présente note rédigés par l’IA. Différences et espaces Git contrôlés ; rendu des deux flux à confirmer par Steve dans le navigateur. Aucun staging ni commit effectué.
+
+### 28/10/2026 — Revue documentaire et navigation avant discussion backend
+
+- À la demande de Steve, vérification source des huit pages : destinations locales et fragments SVG existants, identifiants uniques, variantes de footer cohérentes et fragment commun identique aux trois fallbacks. Accueil et FAQ accessibles partout ; profil limité aux espaces de démonstration ; Démarches désactivé, mentions légales en attente. Les formulaires restent sans soumission active.
+- Limites conservées explicitement : paramètres de rôle dans les liens de connexion non exploités pour présélectionner l’inscription, profil fictif non relié à la configuration, absence de sessions et d’autorisation. Aucun parcours authentifié complet revendiqué. Liens documentaires locaux et clôture des blocs de code des quatre fichiers Markdown contrôlés.
+- README/plan synchronisés : carte d’attente des actualités, compteur de contact à 500, résolution du dimensionnement footer confirmée par Steve et serveur PHP déjà utilisé uniquement pour la prévisualisation. Documentation technique relue : périmètre fonctionnel visé inchangé, aucune réécriture nécessaire.
+- Piste de contrôle profil selon connexion consignée dans le plan pour la future authentification PHP ; burger différé faute de contenu défini. Passage au backend encore en discussions préliminaires, sans migration ou implémentation engagée dans cette revue. Placeholders PHP/SQL relus, toujours non fonctionnels ; configuration privée non consultée.
+- Synthèse et corrections documentaires rédigées par l’IA. Contrôles source et espaces Git vérifiés ; aucune nouvelle recette navigateur exhaustive effectuée. Changements applicatifs de ce checkpoint limités aux cartes d’attente des deux flux ; aucun staging ni commit effectué par l’IA.
+
+### 28/10/2026 — Revue des dépendances et proposition de migration PHP progressive
+
+- À la demande de Steve, relecture des huit pages, fragments, JavaScript, CSS, sprite de navigation, scaffold backend public, README, périmètre fonctionnel et sections pertinentes du plan/journal. Configuration locale privée non consultée. Git propre au départ sur `main`, sans divergence affichée avec la référence locale `origin/main` ; aucun accès distant Git.
+- Vérifications source IA : aucune ressource locale manquante ni ID dupliqué dans les huit pages ; cartographie des liens et concordance des trois footers de secours avec le fragment commun, après normalisation des espaces. Syntaxe de `main.js` valide. Deux variantes de footer confirmées, rôle GET ignoré, profil/configuration non reliés à des données, soumissions inactives. Les interactions client actuelles sont conservables après changement d’extension si leurs éléments/attributs sont préservés.
+- Après refus réseau dans le contexte restreint, requêtes HTTP locales en lecture seule effectuées avec autorisation : les huit pages, les deux fragments, JavaScript, CSS et sprite répondent 200 sur le serveur existant `127.0.0.1:8000`, avec contenu identique au disque. Aucun serveur démarré/reconfiguré. Ces contrôles ne simulent pas les clics, l’exécution JavaScript, le focus ou le rendu mobile ; aucun nouvel essai navigateur pendant cette revue.
+- Point de vigilance : `loadPartial` remplace tout contenu des cibles `site-header`/`site-footer`, y compris un futur rendu PHP si ces cibles restent présentes. Plan enrichi d’une migration graduelle avec exercice isolé, inclusion privée fixe, inscription pilote, bascule coordonnée des liens entrants, conservation des variantes de footer et suppression du chargeur seulement après migration complète. Anciennes copies HTML à éliminer/protéger avant introduction de données privées. Aucune migration automatique des pages engagée.
+- Références officielles PHP `require` et `__DIR__` consultées ; plan et présente entrée rédigés par l’IA. Contrôle Git des espaces réussi, seules ces deux documentations modifiées. Premiers exemples applicatifs laissés à Steve après explication ligne par ligne ; aucun staging ni commit effectué par l’IA.
+
+### 28/10/2026 — Proposition de logo vectoriel pour le header
+
+- Après questions préalables, Steve choisit deux personnages accueillants et joueurs, la palette actuelle et le maintien du texte « Parrainage étudiant ». Création par l’IA de `assets/images/logo.svg` : duo original jaune/saumon, expressions souriantes, geste de rencontre, étincelle verte et contours/ombres sombres. Aucun asset Discord repris, bitmap, fonte ou bibliothèque ajouté.
+- SVG autonome avec viewBox `0 0 128 96`, groupes nommés pour chaque personnage, visage, geste et étincelle ; utilisable directement en aperçu et par référence externe `use`. Couleurs issues des variables CSS existantes avec valeurs de secours pour l’aperçu autonome. Pas de variable de palette supplémentaire.
+- Intégration dans le fragment header et les huit fallbacks, à côté du texte conservé dans un span. SVG décoratif masqué à l’accessibilité ; texte et destination Accueil inchangés. CSS limité à un gap dans `.site-brand` et une règle commune pour le SVG (4rem × 3rem, sans rétrécissement).
+- Préparation pour une animation future seulement : groupes séparés, aucun mouvement ni JavaScript ajouté. L’accès individuel aux parties via CSS/JS depuis la page nécessitera une intégration inline ou une animation définie dans le SVG ; la référence externe actuelle évite de dupliquer le dessin dans les pages. Compatible avec une future inclusion PHP.
+- Vérifications IA : XML, identifiants uniques, viewBox et concordance des huit fallbacks ; aperçu navigateur sur accueil aux largeurs desktop et 375px, logo 64 × 48px et absence de débordement horizontal, nom du lien conservé. README/arborescence du plan complétés ; espaces Git contrôlés. Code et présente entrée rédigés par l’IA ; appréciation artistique par Steve attendue. Modifications documentaires déjà présentes conservées, aucun fichier backend modifié, aucun commit effectué.
+
+### 28/10/2026 — Agrandissement du logo et préparation des mascottes
+
+- Steve valide le duo proposé et demande un agrandissement de 50 % : dimensions CSS du logo header passées de 4 × 3rem à 6 × 4.5rem (96 × 72px à la taille de base). Dimensions HTML de secours alignées dans le fragment et les huit pages ; viewBox, proportions et dessin conservés.
+- Il souhaite ensuite attribuer les rôles étudiant/parrain aux personnages, disposer d’un SVG autonome pour chacun et les réutiliser près de certains titres comme accompagnateurs visuels. Choix des rôles demandé avant extraction ; placements à définir avec parcimonie. Aucun personnage individuel ni décoration de titre intégré dans cette étape.
+- Modification et présente synthèse rédigées par l’IA. Espaces Git contrôlés ; aucun JavaScript/PHP ajouté, aucun commit effectué.
+
+### 28/10/2026 — Rôles des mascottes et premiers titres accompagnés
+
+- Steve attribue le personnage jaune au parrain et le saumon à l’étudiant. Extraction depuis le dessin du duo vers `mascot-parrain.svg` et `mascot-etudiant.svg`, chacun avec viewBox portrait `0 0 72 96`, groupe racine référençable et parties nommées. Petit bras de salutation complété pour une présentation autonome ; couleurs, contours et ombres cohérents avec le logo. SVG autonomes consultables directement, sans image matricielle.
+- Premiers placements : parrain près du titre du flux parrain, étudiant près de celui du flux étudiant et duo près du titre Aide et FAQ. Dessins décoratifs avec `aria-hidden`, titres textuels conservés. Une classe partagée `.title-with-mascot` et deux règles CSS : alignement flexible, espacement existant et cadre SVG de 4rem. Aucune animation, logique de session ou dépendance ajoutée.
+- Vérification IA dans le navigateur intégré à 375px : header agrandi à 96 × 72px, trois pages sans débordement horizontal ; titres et lien d’accueil toujours nommés. Aperçu visuel du flux parrain consulté. XML des deux assets, références externes et concordance des huit headers contrôlés ; espaces Git vérifiés. README et arborescence du plan actualisés. Code et présente synthèse rédigés par l’IA ; appréciation des placements par Steve attendue, aucun commit effectué.
+
+### 28/10/2026 — Retrait du duo dans le titre de la FAQ
+
+- Après consultation, Steve valide les mascottes mais demande de retirer le duo du titre Aide et FAQ, trop semblable au logo déjà présent dans le header. Retour à un simple `h1` textuel ; personnages des deux flux et logo commun conservés. Aucun nouveau dessin de duo créé.
+- HTML, synchronisation du README et présente note rédigés par l’IA. Aucun CSS, JavaScript ou PHP modifié ; référence du logo limitée au header sur cette page et espaces Git contrôlés. Commit laissé à Steve.
+
+### 28/10/2026 — Lettrage du header et nom provisoire Bino
+
+- Steve précise que la demande de style concerne le texte de marque près du logo, puis choisit « Bino » comme nom provisoire avant validation du groupe. Remplacement dans le fragment header, ses huit copies, les titres des onglets et le titre d’accueil. Description du service conservée ; README/plan précisent le statut provisoire, documentation technique non renommée avant décision collective.
+- Lettrage du header ajusté dans les règles existantes : taille fluide 1.375 à 1.75rem, graisse 900, interligne 1.1 et espacement des lettres légèrement resserré. Une règle pour le span ajoute une ombre franche saumon avec `--shadow-offset` et `--color-surface` existants. Police système conservée, aucune fonte, variable ou dépendance ajoutée ; titres des pages non restylisés dans cette étape.
+- Code et présente note rédigés par l’IA. Avant renommage, aperçu du lettrage avec l’ancien nom vérifié à 375px et 1280px sans débordement, respectivement 22px et 28px. Concordance des headers et remplacement du nom contrôlés après renommage ; espaces Git vérifiés. Aucun PHP/JavaScript modifié, aucun staging ni commit effectué ; nom et direction artistique restent provisoires.
+
+### 28/10/2026 — Marque centrée et mascottes à droite des titres
+
+- À la demande de Steve, déplacement du SVG après le texte du titre principal dans chacun des deux flux. Même classe, tailles et espacements ; aucune décoration supplémentaire sur les sous-titres des sections.
+- Marque du header en colonne, centrée horizontalement, texte Bino sous le logo. Taille du texte augmentée à 1.75–2.25rem ; remplissage saumon via `--color-surface`, contour jaune vif via `--color-button-secondary` avec `-webkit-text-stroke` et `paint-order`. Ancienne ombre du texte remplacée par ce contour ; logo et palette globale inchangés. Gap réduit à un quart de `--space`, aucune variable/classe ajoutée.
+- HTML, CSS, synchronisation du README et présente note rédigés par l’IA. Contrôle navigateur du flux parrain à 375px : empilement centré, mascotte à droite, aucun débordement horizontal ; absence de débordement également contrôlée à 1280px. Ordre des éléments vérifié sur les deux flux, espaces Git contrôlés. Aucun JavaScript/PHP modifié, appréciation visuelle par Steve attendue ; aucun commit effectué.
+
+### 28/10/2026 — Binó : lettrage noir, contour saumon et retour à gauche
+
+- À la demande de Steve, ajout d’un accent aigu sur le o : nom provisoire « Binó » dans les headers, titres d’onglet, accueil, README et plan. Historique des propositions antérieures conservé dans le journal.
+- Texte de marque noir via `--color-text`, contour saumon de 4px via `--color-surface` au lieu du contour jaune de 2px. Bloc logo/nom replacé à gauche dans le header ; disposition en colonne conservée, texte centré sous le logo. Taille du logo et mascottes des flux inchangées.
+- Modifications et présente note rédigées par l’IA. Concordance des headers, variables et espaces Git contrôlés ; aucun ajout de classe, variable, JavaScript ou PHP. Nom toujours en attente d’approbation collective ; aucun commit effectué.
+
+### 28/10/2026 — Accent circonflexe et mascottes de contenu agrandies
+
+- Steve précise l’accent souhaité : nom corrigé en « Binô » (o circonflexe) sur les huit pages, le fragment header et les références actuelles du README/plan. Historique des anciennes graphies conservé.
+- À sa demande, dimensions des deux mascottes de titre multipliées par quatre : cadre de 4rem à 16rem, soit 256 × 256px à la taille de base, dimensions HTML alignées. Header conservé à 96 × 72px, avatars de profils à 64 × 64px. Flex-wrap ajouté au titre et marge logique automatique sur la mascotte pour permettre un retour sous le texte, aligné à droite, quand la largeur manque. Aucun dessin vectoriel redimensionné dans son code source.
+- Code et présente synthèse rédigés par l’IA. Contrôle navigateur du flux parrain à 375px : cadre mascotte 256 × 256px, header et avatar inchangés, aucun débordement horizontal. Tailles déclarées sur les deux flux, concordance des huit headers et espaces Git contrôlés. Aucun JavaScript/PHP ajouté ; appréciation des nouvelles proportions par Steve attendue, aucun commit effectué.
+
+### 28/10/2026 — Centrage des mascottes après retour à la ligne
+
+- À la demande de Steve, centrage de la mascotte lorsqu’elle passe sous le titre : retrait de sa marge automatique, ajout de `justify-content: center` au conteneur flexible et d’une règle `flex-grow: 1` sur le texte. Sur une ligne commune, le texte occupe l’espace disponible et la mascotte reste à sa droite ; seule sur la ligne suivante, elle est centrée. Tailles et alignement du header inchangés.
+- CSS, synchronisation du README et présente note rédigés par l’IA. Espaces Git contrôlés ; aucun JavaScript/PHP modifié, commit laissé à Steve.
+
+### 28/10/2026 — Compacité des titres et lettrage final partagé
+
+- Steve signale un espace excessif après agrandissement des mascottes. Hauteur fixe de 256px remplacée par `clamp(6rem, 25vw, 16rem)` : 96px sur petit écran, maximum 256px sur grand écran. Largeur automatique, ratio 16/19 ; canvas des deux SVG et viewBoxes des références recadrés à `4 12 64 76`, sans modifier les tracés. Titres flexibles sur une base de 12rem, gap d’une demi-unité et marge basse d’une unité. Retour centré toujours possible. Padding vertical du header réduit à 0.5rem ; footer et logo inchangés.
+- Style des H1 travaillé avec Steve : essai initial de graisse forte, ombre saumon et soulignement jaune ; ombre retirée pour éviter le flou, puis soulignement retiré à sa demande. Choix retenu : remplissage saumon, contour noir de 3px et absence d’ombre/soulignement. À sa demande, même traitement appliqué au nom Binô sous le logo, toujours à gauche et centré sous les personnages. Tailles fluides et police système conservées.
+- Nettoyage CSS : graisse 900, espacement des lettres -0.035em, couleur, contour et ordre de peinture réunis dans une seule règle `h1, .site-brand span`. Règle séparée de lettrage du header et déclarations dupliquées supprimées ; marge nulle du lien, déjà valeur par défaut, retirée. Pas de classe, variable, fonte ou dépendance ajoutée. Trois règles partagées pour les titres avec mascotte ; aucune copie spécifique à un flux.
+- Couleurs des mascottes confirmées : parrain via `--color-button-secondary`, étudiant via `--color-surface`, contours/ombres via `--color-border`, étincelle du duo via `--color-action`. Valeurs hexadécimales des SVG comme secours d’aperçu autonome. Variables partagées avec les composants du site ; palette indépendante à introduire seulement si nécessaire.
+- Steve signale des traits sur le contour des deux personnages du logo, puis accepte de conserver les marques du geste de connexion. Dessin du duo laissé intact ; aucune correction de tracé revendiquée.
+- Vérifications IA pendant cette étape : deux flux à 375px sans débordement, titre et mascotte côte à côte, zone de titre d’environ 101px contre environ 350px après l’agrandissement fixe ; flux étudiant à 1280px avec mascotte haute de 256px. Avant nettoyage final, huit pages parcourues à 375px : un H1 par page et aucun débordement ; FAQ aussi vérifiée à 1280px. XML, viewBoxes, accolades et espaces Git contrôlés. Ces vérifications ne constituent pas une recette exhaustive.
+- Après nettoyage final, contrôle navigateur du flux parrain à 375px et 1280px sans débordement. H1 et nom Binô : même saumon calculé, contour noir de 3px, aucune ombre ni décoration de texte.
+- HTML/SVG/CSS, README et présente synthèse rédigés par l’IA à la demande de Steve. Entrées intermédiaires non commitées regroupées pour éviter les répétitions tout en conservant les décisions et essais. Aucun JavaScript/PHP modifié, aucun staging ni commit effectué ; commit laissé à Steve.
+
+### 28/10/2026 — Style partagé des H2
+
+- À la demande de Steve de poursuivre les titres, ajout de quatre déclarations dans la règle H2 existante : graisse 800, lettres légèrement resserrées, petit bord logique gauche jaune de 0.25rem et padding d’une demi-unité. Taille fluide, texte sombre hérité et marge basse existants conservés ; pas de contour de lettres ni soulignement pour garder un niveau visuel secondaire aux H1.
+- Police toujours héritée de `--font-body`, y compris pour les contrôles via `font: inherit`. Couleurs des mascottes toujours modifiables dans les variables partagées : `--color-button-secondary` pour le parrain, `--color-surface` pour l’étudiant, `--color-border` pour les contours et `--color-action` pour l’étincelle du duo. Aucun asset modifié dans cette étape ; changement de ces variables affectant aussi les composants qui les utilisent.
+- CSS et présente note rédigés par l’IA. Règle unique et variables contrôlées ; espaces Git vérifiés. Aucun nouveau sélecteur, classe, variable, fonte, JavaScript ou PHP ; aucun commit effectué.
+
+### 28/10/2026 — H3 et paragraphes : hiérarchie et lecture
+
+- Après validation des H2 par Steve, ajustement de la seule règle H3 : taille fluide de 1.125 à 1.25rem, graisse 800, lettres légèrement resserrées et lignes équilibrées par `text-wrap: balance`. Texte sombre hérité, sans contour, ombre, accent ou soulignement supplémentaire.
+- Une règle partagée de paragraphe limite la largeur à 65ch, améliore les retours de ligne avec `text-wrap: pretty` et autorise la coupure de chaînes trop longues via `overflow-wrap: anywhere`. Taille 1rem, interligne 1.6 et couleur hérités du body conservés ; pas de marges ajoutées qui doubleraient les gaps existants des cartes/formulaires. Carte et formulaire gardent leur largeur propre : seule la mesure du texte est limitée.
+- CSS, résumé du README et présente note rédigés par l’IA. FAQ consultée dans le navigateur à 375px et 1280px sans débordement : H3 respectivement 18px et 20px, interligne des paragraphes 25.6px. Équilibrage des H3 ajouté après cet aperçu pour éviter une ligne finale réduite à un point d’interrogation. Police et couleurs restent centralisées ; aucun HTML, asset, JavaScript ou PHP modifié. Espaces Git contrôlés, commit laissé à Steve.
+
+### 28/10/2026 — Badges des tags affichés sur les profils
+
+- À la demande de Steve, style de `.tag-list > li` partagé par le profil et les deux flux : fond jaune vif `--color-button-secondary`, bordure sombre, arrondi `--radius-control` et graisse 600. Padding existant conservé ; largeur limitée au conteneur et coupure des longues chaînes pour éviter les débordements.
+- Tags conservés comme éléments de liste informatifs : aucun curseur pointeur, focus, effet de pression ou action ajouté. Choix à cocher `.tag-options` et leurs états de sélection inchangés. Modification dans la seule règle existante, sans classe ou variable supplémentaire.
+- CSS et présente note rédigés par l’IA. Profil vérifié dans le navigateur à 375px et 1280px sans débordement, tags courts et besoins longs contrôlés ; fond jaune et absence de curseur de bouton confirmés. Espaces Git contrôlés, aucun HTML/SVG/JavaScript/PHP modifié, commit laissé à Steve.
+
+### 28/10/2026 — Tags distincts des boutons
+
+- Steve juge les badges précédents trop carrés et trop proches des boutons. Retour à la forme de pilule (rayon 1rem), retrait de la bordure et remplacement du jaune vif par le jaune atténué `--color-header-footer`. Graisse 600, padding et gestion des longues chaînes conservés ; aucune ombre ou interaction ajoutée.
+- Seule la règle `.tag-list > li` ajustée ; boutons et choix sélectionnables inchangés. CSS et présente note rédigés par l’IA, espaces Git contrôlés ; rendu à consulter par Steve, aucun commit effectué.
+
+### 28/10/2026 — Tags en jaune vif
+
+- À la demande de Steve, remplacement du fond jaune atténué des tags par le jaune vif existant `--color-button-secondary` (`#FFD52A`). Forme de pilule, absence de bordure/ombre et comportement informatif conservés ; aucun autre composant modifié.
+- Une déclaration CSS et présente note rédigées par l’IA ; espaces Git contrôlés, rendu à consulter par Steve, aucun commit effectué.
+
+### 28/10/2026 — Premier mouvement des mascottes de flux
+
+- Après accord de Steve, ajout d’un salut CSS sur les seuls SVG de `.title-with-mascot` : léger déplacement vertical et inclinaison de -6° puis +4°, retour à la position neutre. Durée 700ms dans `--duration-greeting`, une seule itération au chargement de chaque flux, sans boucle ni retard. Transformation visuelle sans réorganisation du contenu ; aucun masquage initial des titres ou des mascottes.
+- Animation appliquée uniquement dans `@media (prefers-reduced-motion: no-preference)` : préférence de réduction des mouvements ou absence de prise en charge = mascotte statique. Header, cartes, boutons et champs inchangés. Une définition de keyframes et une règle conditionnelle partagée, sans nouveau HTML, classe, asset, bibliothèque, JavaScript ou PHP.
+- CSS, mise à jour du README et présente note rédigés par l’IA. Contrôle navigateur à 375px sur les deux flux : nom de l’animation présent, durée calculée 0.7s et une itération ; état final du parrain sans transformation et absence d’animation du header. Aucun débordement horizontal constaté à l’état contrôlé. Garde reduced-motion vérifiée dans la source, sans simulation du réglage système dans le navigateur ; fluidité perçue à confirmer par Steve. Espaces Git contrôlés, commit laissé à Steve.
+
+### 28/10/2026 — Survol du logo et apparition des cartes de profils
+
+- Steve confirme le fonctionnement du salut des mascottes, puis demande le survol du logo et les fondus. Logo du header : petit décalage de -2px à l’unité actuelle et inclinaison de -5° au survol, transition aller/retour de 180ms. Appliqué seulement si mouvements non réduits, survol disponible et pointeur fin ; texte Binô statique et focus clavier conservé. Ancienne règle de soulignement au survol retirée.
+- Cartes de profils des deux flux ciblées par `.title-with-mascot + section > article.request-card` : opacité de 0 à 1 en 400ms, une seule fois au chargement, sans délai, décalage de contenu ou classe supplémentaire. FAQ, actualités et formulaires non animés. Contenu visible par défaut hors animation ; garde `prefers-reduced-motion: no-preference` partagée avec le salut. Durées dans `--duration-feedback` et `--duration-reveal`.
+- CSS, README et présente note rédigés par l’IA ; aucun HTML, asset, JavaScript/PHP, bibliothèque ou événement tactile ajouté. Vérifications navigateur du flux étudiant : trois cartes avec animation 0.4s, une itération et opacité finale 1 ; actualités sans animation, transition du header 0.18s sous les conditions de média présentes. Clic du logo vers l’accueil confirmé ; état de survol visuel non validé par ce clic car le header est rechargé. Réglage système reduced-motion non simulé ; garde contrôlée en source. Effet perçu et survol à confirmer par Steve, espaces Git vérifiés, aucun commit effectué.
+
+### 28/10/2026 — Salut du logo à l’arrivée sur une page
+
+- À la demande de Steve d’un retour adapté au mobile lors de navigation, ajout du seul sélecteur `.site-brand svg` à la règle de salut existante : même animation de 700ms, une itération, puis repos. Le clic du logo conserve sa navigation immédiate vers l’accueil, dont le logo joue le salut à l’arrivée ; aucun gestionnaire tactile/clic, délai de navigation ou duplication de keyframes ajouté.
+- Survol desktop conservé sous conditions de pointeur fin ; préférence reduced-motion toujours respectée par la règle conditionnelle existante. Le salut est associé au chargement de l’élément SVG, actuellement remplacé lors du chargement du fragment header ; ce mécanisme provisoire reste à revoir lors des inclusions PHP. Aucun changement du chargeur dans cette étape.
+- CSS, README et présente note rédigés par l’IA. Navigateur sur FAQ : nom `mascot-greeting`, durée 0.7s, une itération et transform final neutre ; clic vers l’accueil confirmé, même animation présente après navigation. Espaces Git contrôlés ; aucun JavaScript/PHP ou asset modifié, commit laissé à Steve.
+
+### 28/10/2026 — Mouvement du logo distinct des mascottes
+
+- Steve trouve le logo trop synchronisé avec les personnages des flux. Remplacement de son salut par des keyframes propres `logo-greeting` : légère pulsation de l’échelle neutre à 1.06 puis retour neutre, sur 450ms. Aucun déplacement ni inclinaison à l’arrivée du logo ; mascottes toujours avec leur salut de 700ms, sans changement.
+- Une durée dédiée `--duration-logo-greeting`, règle conditionnelle reduced-motion conservée, une itération sans délai ni boucle. Survol du logo et fondu des cartes inchangés. README synchronisé ; CSS et présente note rédigés par l’IA. Aucun HTML/SVG/JavaScript/PHP modifié, espaces Git contrôlés, commit laissé à Steve.
+
+### 28/10/2026 — Survol léger des boutons actifs
+
+- Après validation du mouvement distinct du logo, poursuite des animations : boutons activés légèrement relevés de 2px au survol, transition de 180ms via `--duration-feedback` existant. Deux règles dans le bloc déjà limité aux mouvements non réduits, pointeur fin et survol disponible ; aucune interaction tactile ajoutée.
+- État pressé existant conservé prioritaire dans la cascade ; `transition: none` dans sa règle commune pour une réaction immédiate, sans temporisation du clic. Retour animé au relâchement sur les appareils concernés. Boutons désactivés et tags informatifs exclus du survol.
+- CSS, README et présente note rédigés par l’IA. Navigateur : transition calculée 0.18s sur bouton actif, 0s et transform neutre sur action désactivée. Priorité du sélecteur pressé et gardes de média vérifiées en source ; sensations au survol/clic à confirmer par Steve. Espaces Git contrôlés, aucune classe, variable, dépendance, modification HTML/JavaScript/PHP ou commit ajouté.
+- Steve confirme ensuite le bon fonctionnement du survol et de la pression des boutons dans le navigateur. Validation humaine consignée par l’IA avant checkpoint ; aucune nouvelle modification applicative.
+
+### 28/10/2026 — Premier essai d’identité compacte sur une carte
+
+- Après accord de Steve pour améliorer la présentation des profils, essai limité à Lucia sur le flux parrain : avatar et bloc nom/rôle/études/pays regroupés dans `.profile-heading`, avec tags et actions conservés dessous. Nom H3 et identifiant de l’article inchangés ; rôle étudiant accompagné explicité à partir du profil fictif existant.
+- Une classe et trois règles partagées : grille avec avatar de 4rem et colonne de texte flexible, cadre circulaire sombre sur fond crème avec `object-fit: cover` pour une photo future, petit espacement entre les lignes du texte. Variables de palette/espacement existantes réutilisées ; avatar décoratif toujours sans texte alternatif redondant. Aucun traitement photo ni compte connecté implémenté.
+- HTML/CSS et présente note rédigés par l’IA. Contrôles navigateur à 320px, 375px et 1280px sans débordement ; avatar de 64 × 64px et nom accessible de l’article conservés. Pays regroupé avec les études après aperçu pour éviter un séparateur isolé sur une ligne. Espaces Git contrôlés. Autres cartes et page profil laissées inchangées pour comparer avant extension, aucun JavaScript/PHP ou asset modifié, commit laissé à Steve.
+
+### 28/10/2026 — Identité compacte étendue aux profils affichés
+
+- Steve valide le premier essai sur Lucia et demande de l’étendre. Structure `.profile-heading` appliquée à Vincent, Sarah et Amine dans le flux étudiant et à la présentation de Lucia dans le profil. Rôles Parrain/Marraine explicités sur les cartes fictives ; études conservées, description personnelle du profil laissée sous le groupe d’identité.
+- Réutilisation intégrale des trois règles CSS existantes : aucune nouvelle classe, déclaration, variable ou animation. Silhouettes de connexion/inscription/configuration inchangées puisqu’elles ne représentent pas une carte d’utilisateur ; aucun compte réel ou chargement de photo ajouté.
+- HTML, résumé du README et présente note rédigés par l’IA. Vérifications navigateur sur flux étudiant et profil à 320px et 1280px : respectivement trois groupes et un groupe, avatars de 64px et aucun débordement horizontal. Espaces Git contrôlés. Aucun JavaScript/PHP ou asset modifié ; staging et commits laissés à Steve.

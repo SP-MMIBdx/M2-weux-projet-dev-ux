@@ -1,0 +1,4 @@
+<?php
+// Modèle public de configuration : ne jamais ajouter de vrais identifiants ici.
+// database.local.php est la copie locale exclue de Git.
+// Les paramètres seront définis ensemble avant la première connexion PDO.

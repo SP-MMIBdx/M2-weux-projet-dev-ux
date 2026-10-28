@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 96">
+  <!-- Original student duo. Named groups allow later animation without redrawing. -->
+  <g id="student-connection" stroke="var(--color-border, #111113)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <g id="character-left">
+      <path d="M12 49C9 32 18 20 30 21C33 13 43 15 46 23C58 27 61 41 57 55L54 75Q51 83 43 79L36 75L27 80Q17 83 16 73Z" fill="var(--color-border, #111113)" transform="translate(2 3)" />
+      <path d="M12 49C9 32 18 20 30 21C33 13 43 15 46 23C58 27 61 41 57 55L54 75Q51 83 43 79L36 75L27 80Q17 83 16 73Z" fill="var(--color-button-secondary, #FFD52A)" />
+      <g id="face-left">
+        <path d="M27 42V46M43 40V44" />
+        <path d="M31 53Q37 60 43 51" fill="none" />
+      </g>
+      <path d="M20 58Q13 64 10 58" fill="none" />
+    </g>
+    <g id="character-right">
+      <path d="M71 46C68 30 77 20 89 22C95 15 104 18 105 26C117 30 120 43 116 58L112 76Q109 83 102 79L95 75L86 80Q77 83 76 74Z" fill="var(--color-border, #111113)" transform="translate(2 3)" />
+      <path d="M71 46C68 30 77 20 89 22C95 15 104 18 105 26C117 30 120 43 116 58L112 76Q109 83 102 79L95 75L86 80Q77 83 76 74Z" fill="var(--color-surface, #EBC3BA)" />
+      <g id="face-right" fill="none">
+        <path d="M83 42Q86 38 89 42M99 43Q102 39 105 43" />
+        <path d="M88 52Q94 59 100 52" />
+      </g>
+      <path d="M112 59Q119 65 121 58" fill="none" />
+    </g>
+    <g id="greeting" fill="none">
+      <path d="M51 55Q58 59 64 47" />
+      <path d="M78 55Q70 59 64 47" />
+      <path d="M64 46V40M59 43L56 39M69 43L72 39" />
+    </g>
+    <g id="spark" fill="var(--color-action, #64CE80)" stroke-width="2">
+      <path d="M64 10L66 16L72 18L66 20L64 26L62 20L56 18L62 16Z" />
+    </g>
+  </g>
+</svg>

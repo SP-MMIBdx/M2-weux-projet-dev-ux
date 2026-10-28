@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="4 12 64 76">
+  <!-- Original etudiant mascot, extracted from the shared header duo. -->
+  <g id="mascot-etudiant" stroke="var(--color-border, #111113)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <g transform="translate(-56 0)">
+    <g id="etudiant-character">
+      <path d="M71 46C68 30 77 20 89 22C95 15 104 18 105 26C117 30 120 43 116 58L112 76Q109 83 102 79L95 75L86 80Q77 83 76 74Z" fill="var(--color-border, #111113)" transform="translate(2 3)" />
+      <path d="M71 46C68 30 77 20 89 22C95 15 104 18 105 26C117 30 120 43 116 58L112 76Q109 83 102 79L95 75L86 80Q77 83 76 74Z" fill="var(--color-surface, #EBC3BA)" />
+      <g id="etudiant-face" fill="none">
+        <path d="M83 42Q86 38 89 42M99 43Q102 39 105 43" />
+        <path d="M88 52Q94 59 100 52" />
+      </g>
+      <path d="M112 59Q119 65 121 58" fill="none" />
+    </g>
+      <path id="etudiant-greeting" d="M78 55Q70 59 66 49" fill="none" />
+    </g>
+  </g>
+</svg>

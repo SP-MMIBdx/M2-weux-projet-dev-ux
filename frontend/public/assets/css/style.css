@@ -3,17 +3,28 @@
 /* Valeurs provisoires de la maquette */
 :root {
   --font-body: Arial, Helvetica, sans-serif;
-  --color-text: #222;
-  --color-background: #f5f5f5;
+  --space: 1rem;
+  --duration-greeting: 700ms;
+  --duration-logo-greeting: 450ms;
+  --duration-feedback: 180ms;
+  --duration-reveal: 400ms;
+  --color-text: #111113;
+  --color-icon: var(--color-text);
+  --color-background: #E9E6DD;
   --content-max-width: 60rem;
-  --color-surface: #FBB609;
-  --color-border: #000000;
+  --color-surface: #EBC3BA;
+  --color-button-secondary: #FFD52A;
+  --color-border: #111113;
+  --shadow-offset: 3px;
+  --shadow-raised: var(--shadow-offset) var(--shadow-offset) 0 var(--color-border);
   --radius-card: 0.75rem;
-  --color-action: #222;
-  --color-on-action: #fff;
+  --color-action: #64CE80;
+  --color-on-action: #111113;
+  --color-header-footer: #E4CF72;
+  --color-on-header-footer: #111113;
   --radius-control: 0.5rem;
   --form-max-width: 32rem;
-  --color-input-background: #fff;
+  --color-input-background: #FFFFFF;
 }
 
 /* Inclure padding et bordures dans la largeur des éléments */
@@ -28,7 +39,7 @@ body {
   margin: 0;
   font-family: var(--font-body);
   font-size: 1rem;
-  line-height: 1.5;
+  line-height: 1.6;
   color: var(--color-text);
   background-color: var(--color-background);
 }
@@ -41,11 +52,20 @@ textarea {
   font: inherit;
 }
 
+/* Icônes SVG partagées */
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+  color: var(--color-icon);
+  stroke-width: 1.8;
+}
+
 /* Largeur et espacement du contenu principal */
 main {
   max-width: var(--content-max-width);
   margin-inline: auto;
-  padding: 2rem 1rem;
+  padding: calc(var(--space) * 2) var(--space);
 }
 
 /* Espacement des titres et paragraphes */
@@ -56,22 +76,141 @@ p {
   margin: 0;
 }
 
+h1,
+.site-brand span {
+  font-weight: 900;
+  letter-spacing: -0.035em;
+  color: var(--color-surface);
+  -webkit-text-stroke: 3px var(--color-border);
+  paint-order: stroke fill;
+}
+
 h1 {
-  margin-bottom: 2rem;
+  font-size: clamp(1.75rem, 1.25rem + 2vw, 2.5rem);
+  margin-bottom: calc(var(--space) * 2);
 }
 
 h2 {
-  margin-bottom: 1rem;
+  font-size: clamp(1.25rem, 1rem + 1vw, 1.5rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  border-inline-start: 0.25rem solid var(--color-button-secondary);
+  padding-inline-start: calc(var(--space) / 2);
+  margin-bottom: var(--space);
+}
+
+h3 {
+  font-size: clamp(1.125rem, 1rem + 0.5vw, 1.25rem);
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+p {
+  max-width: 65ch;
+  text-wrap: pretty;
+  overflow-wrap: anywhere;
+}
+
+.title-with-mascot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--space) / 2);
+  margin-bottom: var(--space);
+}
+
+.title-with-mascot span {
+  flex: 1 1 12rem;
+}
+
+.title-with-mascot svg {
+  width: auto;
+  height: clamp(6rem, 25vw, 16rem);
+  aspect-ratio: 16 / 19;
+  flex-shrink: 0;
+}
+
+@keyframes mascot-greeting {
+  0% {
+    transform: translateY(calc(var(--space) / 2)) rotate(-6deg);
+  }
+  60% {
+    transform: translateY(calc(var(--space) / -4)) rotate(4deg);
+  }
+  100% {
+    transform: none;
+  }
+}
+
+@keyframes card-reveal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes logo-greeting {
+  0%,
+  100% {
+    transform: none;
+  }
+  45% {
+    transform: scale(1.06);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .title-with-mascot svg {
+    transform-origin: 50% 85%;
+    animation: mascot-greeting var(--duration-greeting) ease-out;
+  }
+
+  .site-brand svg {
+    animation: logo-greeting var(--duration-logo-greeting) ease-in-out;
+  }
+
+  .title-with-mascot + section > article.request-card {
+    animation: card-reveal var(--duration-reveal) ease-out;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
+  .site-brand svg {
+    transition: transform var(--duration-feedback) ease-out;
+  }
+
+  .site-brand:hover svg {
+    transform: translateY(calc(var(--space) / -8)) rotate(-5deg);
+  }
+
+  .button:not(:disabled) {
+    transition: transform var(--duration-feedback) ease-out;
+  }
+
+  .button:not(:disabled):hover {
+    transform: translateY(calc(var(--space) / -8));
+  }
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.2;
 }
 
 /* Espacement entre les sections du contenu principal */
 main > section + section {
-  margin-top: 3rem;
+  margin-top: calc(var(--space) * 3);
 }
 
 /* En-tête commun */
 .site-header {
-  background-color: var(--color-surface);
+  color: var(--color-on-header-footer);
+  background-color: var(--color-header-footer);
   border-bottom: 1px solid var(--color-border);
 }
 
@@ -79,65 +218,67 @@ main > section + section {
 .site-footer__inner {
   max-width: var(--content-max-width);
   margin-inline: auto;
-  padding: 1rem;
+  padding: var(--space);
+}
+
+.site-header__inner {
+  padding-block: calc(var(--space) / 2);
 }
 
 /* Pied de page commun */
 .site-footer {
-  background-color: var(--color-surface);
+  color: var(--color-on-header-footer);
+  background-color: var(--color-header-footer);
   border-top: 1px solid var(--color-border);
 }
 
 .site-footer__inner {
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space);
 }
 
 /* Navigation du pied de page */
 .footer-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem 1rem;
+  gap: calc(var(--space) / 2) var(--space);
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.footer-links a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 2.75rem;
-  color: var(--color-text);
-  text-underline-offset: 0.2em;
-}
-
-.footer-links a:hover {
-  text-decoration-thickness: 2px;
-}
-
-.footer-links a:focus-visible {
-  outline: 2px solid var(--color-action);
-  outline-offset: 3px;
+.footer-links .button {
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: calc(var(--space) / 2);
 }
 
 .site-brand {
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(var(--space) / 4);
+  width: fit-content;
+  min-height: 2.75rem;
   max-width: 100%;
-  font-size: 1.25rem;
-  font-weight: 700;
-  line-height: 1.3;
-  color: var(--color-text);
+  font-size: clamp(1.75rem, 5vw, 2.25rem);
+  line-height: 1.1;
+  color: inherit;
   text-decoration: none;
   overflow-wrap: anywhere;
 }
 
-.site-brand:hover {
-  text-decoration: underline;
+.site-brand svg {
+  width: 6rem;
+  height: 4.5rem;
+  flex-shrink: 0;
 }
 
 .site-brand:focus-visible {
-  outline: 2px solid var(--color-action);
+  outline: 2px solid currentColor;
   outline-offset: 3px;
 }
 
@@ -145,35 +286,72 @@ main > section + section {
 .request-card {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  margin-top: 1rem;
-  padding: 1rem;
+  gap: var(--space);
+  margin-top: var(--space);
+  padding: var(--space);
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-card);
 }
 
-/* Liste des centres d’intérêt */
+.request-card + p {
+  margin-top: var(--space);
+}
+
+/* Identité compacte, réutilisable sur les cartes de profils */
+.profile-heading {
+  display: grid;
+  grid-template-columns: 4rem minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space);
+}
+
+.profile-heading > img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  background-color: var(--color-background);
+}
+
+.profile-heading > div {
+  display: grid;
+  gap: calc(var(--space) / 4);
+}
+
+/* Relief commun aux cartes et panneaux */
+.request-card,
+.form-panel,
+.tag-options label {
+  box-shadow: var(--shadow-raised);
+}
+
+/* Tags de profil et de besoins : badges informatifs */
 .tag-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: calc(var(--space) / 2);
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
 .tag-list > li {
-  padding: 0.25rem 0.75rem;
-  background-color: var(--color-background);
+  max-width: 100%;
+  padding: calc(var(--space) / 4) calc(var(--space) * 0.75);
+  font-weight: 600;
+  background-color: var(--color-button-secondary);
   border-radius: 1rem;
+  overflow-wrap: anywhere;
 }
 
 /* Disposition des actions */
 .request-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
+  gap: calc(var(--space) * 0.75);
 }
 
 .request-actions > .button {
@@ -183,9 +361,10 @@ main > section + section {
 /* Boutons communs */
 .button {
   min-height: 2.75rem;
-  padding: 0.625rem 1rem;
-  border: 1px solid var(--color-action);
+  padding: 0.625rem var(--space);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-control);
+  box-shadow: var(--shadow-raised);
   font: inherit;
   font-weight: 600;
   line-height: 1.5;
@@ -197,20 +376,24 @@ main > section + section {
   align-items: center;
   justify-content: center;
   text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .button--secondary {
-  color: var(--color-action);
-  background-color: var(--color-surface);
+  color: var(--color-text);
+  background-color: var(--color-button-secondary);
 }
 
 /* États des boutons */
-.button:not(:disabled):active {
-  filter: brightness(0.85);
+.button:not(:disabled):active,
+.tag-options label:has(input:enabled):active {
+  transition: none;
+  transform: translate(var(--shadow-offset), var(--shadow-offset));
+  box-shadow: none;
 }
 
 .button:focus-visible {
-  outline: 2px solid var(--color-action);
+  outline: 2px solid var(--color-border);
   outline-offset: 3px;
 }
 
@@ -230,20 +413,20 @@ main > section + section {
   width: 4rem;
   max-width: 100%;
   height: auto;
-  margin: 0 auto 1.5rem;
+  margin: 0 auto calc(var(--space) * 1.5);
 }
 
 /* Organisation du formulaire */
 .auth-form {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: calc(var(--space) * 1.25);
 }
 
 .form-field {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: calc(var(--space) / 2);
 }
 
 .form-field label {
@@ -257,7 +440,7 @@ main > section + section {
   width: 100%;
   min-width: 0;
   min-height: 2.75rem;
-  padding: 0.625rem 0.75rem;
+  padding: 0.625rem calc(var(--space) * 0.75);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-control);
   color: var(--color-text);
@@ -267,7 +450,7 @@ main > section + section {
 .form-field input:focus-visible,
 .form-field select:focus-visible,
 .form-field textarea:focus-visible {
-  outline: 2px solid var(--color-action);
+  outline: 2px solid var(--color-border);
   outline-offset: 3px;
 }
 
@@ -279,8 +462,8 @@ main > section + section {
 .form-panel {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  padding: 1rem;
+  gap: var(--space);
+  padding: var(--space);
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-card);
@@ -290,7 +473,7 @@ main > section + section {
 .auth-form fieldset {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: var(--space);
   min-width: 0;
   margin: 0;
   padding: 0;
@@ -299,7 +482,7 @@ main > section + section {
 
 .auth-form legend {
   padding: 0;
-  margin-bottom: 1rem;
+  margin-bottom: var(--space);
   font-weight: 600;
 }
 
@@ -307,27 +490,32 @@ main > section + section {
 .tag-options {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: calc(var(--space) / 2);
 }
 
 .tag-options label {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: calc(var(--space) / 2);
   min-height: 2.75rem;
   max-width: 100%;
-  padding: 0.625rem 0.75rem;
+  padding: 0.625rem calc(var(--space) * 0.75);
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-card);
 }
 
+.tag-options input[type="checkbox"] {
+  accent-color: var(--color-text);
+}
+
 .tag-options label:has(input:checked) {
-  box-shadow: inset 0 0 0 2px var(--color-action);
+  background-color: var(--color-action);
+  box-shadow: inset 0 0 0 2px var(--color-border), var(--shadow-raised);
 }
 
 .tag-options label:focus-within {
-  outline: 2px solid var(--color-action);
+  outline: 2px solid var(--color-border);
   outline-offset: 3px;
 }
 
@@ -335,6 +523,6 @@ main > section + section {
 .registration-options {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  margin-top: 1rem;
+  gap: calc(var(--space) * 0.75);
+  margin-top: var(--space);
 }

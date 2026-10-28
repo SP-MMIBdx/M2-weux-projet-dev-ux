@@ -5,14 +5,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Créer un compte — Parrainage étudiant</title>
+    <title>Créer un compte — Binô</title>
 
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   <body>
     <header class="site-header" id="site-header">
       <div class="site-header__inner">
-        <a class="site-brand" href="index.html">Parrainage étudiant</a>
+        <a class="site-brand" href="index.html">
+          <svg viewBox="0 0 128 96" aria-hidden="true" focusable="false" width="96" height="72">
+            <use href="assets/images/logo.svg#student-connection"></use>
+          </svg>
+          <span>Binô</span>
+        </a>
       </div>
     </header>
     <main class="auth-page">
@@ -24,9 +29,13 @@
         alt=""
         width="64"
         height="64"
-      >
+      />
 
-      <form class="auth-form" method="post" aria-describedby="registration-note">
+      <form
+        class="auth-form"
+        method="post"
+        aria-describedby="registration-note"
+      >
         <div class="form-panel">
           <div class="form-field">
             <label for="register-role">Type de compte</label>
@@ -47,7 +56,7 @@
               name="username"
               autocomplete="username"
               required
-            >
+            />
           </div>
         </div>
 
@@ -60,18 +69,22 @@
               name="email"
               autocomplete="email"
               required
-            >
+            />
           </div>
 
           <div class="form-field">
-            <label for="register-email-confirm">Confirmer ton adresse e-mail</label>
+            <label for="register-email-confirm"
+              >Confirmer ton adresse e-mail</label
+            >
             <input
               type="email"
               id="register-email-confirm"
               name="email_confirmation"
               autocomplete="email"
+              aria-describedby="register-email-feedback"
               required
-            >
+            />
+            <p id="register-email-feedback"></p>
           </div>
         </div>
 
@@ -83,19 +96,41 @@
               id="register-password"
               name="password"
               autocomplete="new-password"
+              aria-describedby="register-password-strength"
               required
+            />
+            <p id="register-password-strength"></p>
+            <button
+              type="button"
+              id="toggle-register-password"
+              class="button button--secondary"
+              aria-controls="register-password"
             >
+              Afficher le mot de passe
+            </button>
           </div>
 
           <div class="form-field">
-            <label for="register-password-confirm">Confirmer ton mot de passe</label>
+            <label for="register-password-confirm"
+              >Confirmer ton mot de passe</label
+            >
             <input
               type="password"
               id="register-password-confirm"
               name="password_confirmation"
               autocomplete="new-password"
+              aria-describedby="register-password-feedback"
               required
+            />
+            <p id="register-password-feedback"></p>
+            <button
+              type="button"
+              id="toggle-register-password-confirm"
+              class="button button--secondary"
+              aria-controls="register-password-confirm"
             >
+              Afficher la confirmation du mot de passe
+            </button>
           </div>
         </div>
 
@@ -103,17 +138,35 @@
           Maquette : la création de compte n’est pas encore disponible.
         </p>
 
-        <button type="submit" class="button" disabled>
-          Créer mon compte
-        </button>
+        <button type="submit" class="button" disabled>Créer mon compte</button>
 
-        <p>Déjà un compte ? <a href="login.html">Connecte-toi</a></p>
+        <a class="button button--secondary" href="login.html">
+          Déjà un compte ? Connecte-toi
+        </a>
       </form>
     </main>
 
     <footer class="site-footer">
       <div class="site-footer__inner">
-        <p>Aide / FAQ · Mentions légales — à venir</p>
+        <nav aria-label="Navigation de pied de page">
+          <ul class="footer-links">
+            <li>
+              <a class="button button--secondary" href="index.html" aria-label="Accueil">
+                <svg class="icon" aria-hidden="true" focusable="false" width="24" height="24">
+                  <use href="assets/images/icons/navigation.svg#home"></use>
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a class="button button--secondary" href="aide.html" aria-label="Aide / FAQ">
+                <svg class="icon" aria-hidden="true" focusable="false" width="24" height="24">
+                  <use href="assets/images/icons/navigation.svg#help"></use>
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <p>Mentions légales — à venir</p>
       </div>
     </footer>
 

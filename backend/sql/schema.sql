@@ -1,0 +1,3 @@
+-- Futur schéma relationnel MySQL / MariaDB.
+-- Les tables et contraintes seront écrites après validation du modèle.
+-- Ce fichier ne contient actuellement aucune instruction SQL exécutable.

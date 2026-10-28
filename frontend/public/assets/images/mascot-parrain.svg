@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="4 12 64 76">
+  <!-- Original parrain mascot, extracted from the shared header duo. -->
+  <g id="mascot-parrain" stroke="var(--color-border, #111113)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <g transform="translate(0 0)">
+    <g id="parrain-character">
+      <path d="M12 49C9 32 18 20 30 21C33 13 43 15 46 23C58 27 61 41 57 55L54 75Q51 83 43 79L36 75L27 80Q17 83 16 73Z" fill="var(--color-border, #111113)" transform="translate(2 3)" />
+      <path d="M12 49C9 32 18 20 30 21C33 13 43 15 46 23C58 27 61 41 57 55L54 75Q51 83 43 79L36 75L27 80Q17 83 16 73Z" fill="var(--color-button-secondary, #FFD52A)" />
+      <g id="parrain-face">
+        <path d="M27 42V46M43 40V44" />
+        <path d="M31 53Q37 60 43 51" fill="none" />
+      </g>
+      <path d="M20 58Q13 64 10 58" fill="none" />
+    </g>
+      <path id="parrain-greeting" d="M51 55Q59 59 63 49" fill="none" />
+    </g>
+  </g>
+</svg>
