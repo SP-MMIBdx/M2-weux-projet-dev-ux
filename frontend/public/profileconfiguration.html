@@ -33,6 +33,10 @@
       />
 
       <form class="auth-form" method="post" aria-describedby="profile-note">
+        <p id="profile-note">
+          Maquette de profil étudiant accompagné : tous les champs sont facultatifs dans cette version. Les informations ne sont pas encore enregistrées.
+        </p>
+
         <div class="form-panel">
           <div class="form-field">
             <label for="profile-name">Nom affiché</label>
@@ -71,7 +75,7 @@
         <div class="form-panel">
           <div class="form-field">
             <label for="profile-description"
-              >Présente-toi en quelques mots</label
+              >Présente-toi en quelques mots (500 caractères maximum)</label
             >
             <textarea
               id="profile-description"
@@ -174,10 +178,6 @@
             </button>
           </div>
         </fieldset>
-
-        <p id="profile-note">
-          Maquette : les informations ne sont pas encore enregistrées.
-        </p>
 
         <button type="submit" class="button" disabled>
           Terminer mon profil

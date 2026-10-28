@@ -345,31 +345,31 @@ L’IA peut préparer et rédiger ces documents à partir des éléments fournis
 - [x] Retour JavaScript sur la correspondance des mots de passe (simulations IA réussies, fonctionnement navigateur confirmé par Steve)
 - [x] Comparaison client des e-mails par réutilisation de la fonction de confirmation (27/10 ; simulations IA réussies, fonctionnement navigateur confirmé par Steve)
 - [x] Compteur de description et limite native de 500 caractères choisie par Steve (27/10 ; simulations IA réussies, fonctionnement navigateur confirmé par Steve)
-- [x] Compteurs et actions « Tout sélectionner » / « Tout désélectionner » indépendantes par groupe intérêts/besoins (27/10 ; simulations IA réussies, navigateur à confirmer)
+- [x] Compteurs et actions « Tout sélectionner » / « Tout désélectionner » indépendantes par groupe intérêts/besoins (27/10 ; simulations IA réussies, sélection/effacement des deux groupes vérifiés dans le navigateur par l’IA le 29/10)
 - [ ] Validation serveur des formulaires
 - [x] Header partagé sur huit pages et footers intégrés selon le découpage provisoire
 - [x] Page Aide / FAQ et formulaire de contact statique, envoi désactivé (28/10)
 - [ ] Valider la navigation et le footer selon connexion/rôle
-- [ ] Navigation complète entre les pages
-- [ ] Responsive vérifié sur toutes les pages
-- [ ] Interactions métier JavaScript de base selon les besoins
+- [x] Navigation statique de démo : chemins existants et parcours principaux vérifiés le 29/10 ; navigation authentifiée à implémenter en PHP
+- [x] Huit pages sans débordement horizontal à 320, 375, 768 et 1280px dans le navigateur intégré (29/10) ; appareils réels à vérifier
+- [ ] Autres interactions client à définir seulement selon un besoin ; traitements métier prévus côté PHP
 - [x] Afficher/masquer indépendamment les mots de passe de connexion et d’inscription avec une fonction réutilisable
 - [x] Conseil textuel sur la longueur du mot de passe et quelques motifs prévisibles, sans CSS (simulations IA réussies ; fonctionnement navigateur confirmé par Steve)
 - [ ] Vérifications navigateur complètes, clavier et cas d’échec du chargement
 
 Structure actuelle : voir la section 5, « Structure actuelle du dépôt ».
 
-**État actuel au 28/10/2026 :** les huit pages disposent d’une première structure statique. Les deux flux montrent des données fictives avec actions désactivées ; accueil et profil restent des propositions sans écran dédié dans V1. Le profil affiché n’est pas relié au formulaire. La configuration comprend informations personnelles, description limitée à 500 unités UTF-16 avec compteur, six intérêts et sept besoins provisoires. Les besoins sont encore formulés pour l’étudiant accompagné.
+**État actuel au 29/10/2026 :** les huit pages disposent d’une première structure statique. Les deux flux montrent des données fictives avec actions désactivées ; accueil et profil restent des propositions sans écran dédié dans V1. Le profil affiché n’est pas relié au formulaire. La configuration comprend informations personnelles, description limitée à 500 unités UTF-16 avec compteur, six intérêts et sept besoins provisoires. Les besoins sont encore formulés pour l’étudiant accompagné.
 
 Le JavaScript propose révélation indépendante des mots de passe, comparaison des confirmations e-mail/mot de passe, conseil pédagogique de mot de passe et compteurs/actions de sélection par groupe. Les soumissions restent désactivées : aucun compte, session, enregistrement ni contrôle d’accès. La présélection du rôle et la validation serveur restent à implémenter ; le filtrage des profils est réservé à PHP/SQL. Décision du 28/10 : nom de connexion distinct du nom affiché public ; identifiant limité à 24 caractères, lettres A–Z, chiffres, underscore et tiret, sans espace. Contraintes HTML et feedback JavaScript partagé présents à l’inscription et à la connexion, contrôle PHP et unicité à implémenter ; nom affiché autorisant espaces/accents.
 
 La présentation utilise la palette provisoire : fond crème, cartes saumon pâle, header/footer jaune atténué, boutons secondaires jaune vif et actions vertes, une hiérarchie de titres fluide, `--space` pour les espacements et `--shadow-raised` pour le relief des cartes/boutons. Le footer reste dans le flux normal : icône Accueil et lien Aide / FAQ sur huit pages, icône Mon profil sur les deux flux et le profil seulement. Les variantes publiques restent locales et sans lien profil ; cette répartition par page n’est pas un contrôle de session. Sprite local `navigation.svg`, classe `.icon` et variable `--color-icon` réutilisés. Intégration progressive reprise le 28/10 ; Aide / FAQ dispose de cinq réponses et d’un formulaire de contact de démonstration (nom, e-mail, message limité à 500 unités UTF-16 avec compteur) avec envoi désactivé ; aucune sélection de catégorie ajoutée. Démarches est présent comme bouton à icône désactivé sur les deux flux et le profil ; son contenu et le burger restent à construire. Contrôles footer à icônes seules, nommés par aria-label, dimensions communes de 2.75rem. Navigation persistante toujours différée.
 
-**Vérifications :** Steve a confirmé le fonctionnement des confirmations, du compteur limité à 500 et des mini-cartes au clavier/mobile lors des étapes précédentes. Les actions groupées de sélection/désélection restent à confirmer dans le navigateur. Contrôles sources et simulations ne constituent pas une validation exhaustive du responsive, de l’accessibilité ou des cas d’échec réseau. Les essais et leurs auteurs sont détaillés dans le journal.
+**Vérifications au 29/10 :** confirmations et révélations de mots de passe, username, compteurs/limites de 500 et deux groupes de sélection vérifiés dans le navigateur intégré par l’IA ; parcours clavier ciblés sur connexion et configuration. Steve a confirmé les comportements des étapes précédentes. Huit pages contrôlées à quatre largeurs ; erreurs du chargeur simulées en Node avec fallback conservé. Appareils physiques, autres moteurs, préférence reduced-motion réellement activée et revue d’accessibilité exhaustive restent ouverts. Les essais et leurs auteurs sont détaillés dans le journal.
 
 **Backend :** fichiers préparatoires PHP/SQL présents et commentés uniquement. Aucune inclusion serveur, connexion PDO ou table fonctionnelle ; serveur de développement PHP utilisé pour prévisualiser le frontend, sans migration applicative ; connexion SQL et traitements restent à vérifier lors des premiers exercices. La migration du chargeur header/footer reste une étape PHP séparée.
 
-**Prochaine étape proposée :** vérifier dans le navigateur les compteurs et les deux actions de sélection de chaque groupe, puis reprendre progressivement les premiers exercices PHP avec Steve. Navigation selon rôle, configuration parrain et vérifications globales restent ouvertes. Pour le footer, contenu Démarches et utilité du burger à définir avant de poursuivre. Passage au backend encore en discussion préliminaire : aucun travail PHP applicatif engagé par cette revue. Aucun contrôle d’accès avant la phase PHP.
+**Prochaine étape proposée :** jalon de frontend statique atteint le 29/10 ; commencer une inclusion PHP sur un écran pilote, conserver styles/interactions, puis étendre progressivement. Avant authentification et SQL, préciser unicité/casse du username, données obligatoires, rôles et accès ; appliquer les contrôles de sécurité déjà prévus en section 6. Navigation conditionnelle, présélection du rôle et configuration parrain restent à construire côté serveur. Aucun backend fonctionnel engagé dans ce checkpoint.
 
 **Décisions reportées :** direction artistique finale, navigation selon connexion/rôle, destinations démarches/mentions légales, placement du footer en bas des pages courtes. Le footer reste dans le flux normal. L’absence de lien vers un profil sur la connexion est une décision d’interface, pas un contrôle d’accès : les protections réelles seront implémentées côté PHP.
 
@@ -380,6 +380,31 @@ La présentation utilise la palette provisoire : fond crème, cartes saumon pâl
 - [ ] Revenir sur l’idée d’une navigation persistante en bas du viewport mobile. Discussion mise en attente par Steve le 27/10 ; aucun choix de positionnement engagé. Le footer reste dans le flux normal en attendant cette revue.
 
 - [x] Style et centrage des contrôles footer : boutons communs et icônes seules, cibles de 44 × 44px à la taille de base. Tests IA à 375px, environ 393px et 1280px ; Steve confirme le résultat (28/10). Revue clavier globale toujours ouverte.
+
+### Jalon de transition frontend → PHP — 29/10/2026
+
+Périmètre atteint : une base statique cohérente pour intégrer le serveur, avec données fictives et soumissions désactivées. Ce n’est pas la fin des tests ni une application prête à être publiée.
+
+| Contrôle | Résultat et limite |
+| --- | --- |
+| Huit pages, assets et fragments | Structure, labels, identifiants, chemins locaux et références SVG vérifiés ; fallbacks identiques aux fragments. |
+| Mise en page | 32 contrôles page/largeur : 320, 375, 768, 1280px, sans débordement horizontal dans le navigateur intégré. |
+| Formulaires | Notes au début, champs requis/facultatifs explicites ; limites et feedback client fonctionnels, aucun enregistrement. |
+| Clavier et navigation | Tab/Espace/Entrée testés sur les contrôles ciblés, liens de démo parcourus ; revue exhaustive et appareils réels encore ouverts. |
+| Chargeur | Succès, HTTP 404, rejet réseau, échec de lecture et conteneur absent simulés avec le code réel ; fallback préservé en cas d’erreur. |
+
+Les notes de configuration décrivent volontairement le profil étudiant accompagné et les champs facultatifs de cette maquette, sans acter les futures obligations métier. Cas d’erreur serveur, contrôle de session, rôle du footer, accès aux coordonnées et persistance appartiennent aux prochains incréments PHP.
+
+Pistes de pages à discuter après ce jalon, sans engagement ni fichier créé :
+
+| Page possible | Intérêt |
+| --- | --- |
+| Détail d’un parrain | Consulter un profil complet avant d’envoyer une demande ; réutiliser la présentation de profil existante. |
+| Mes demandes / mon parrainage | Distinguer demandes en attente, refusées et acceptées ; contact accessible seulement après acceptation. |
+| Démarches et ressources | Donner un contenu au contrôle footer actuel ; contenu éditorial à définir avec le groupe. |
+| Récupération d’accès | Compléter le futur parcours d’authentification ; à concevoir avec le backend. |
+
+Menu burger toujours différé faute de raccourcis définis ; mentions légales déjà réservées dans le footer, contenu à préparer séparément. Aucun écran additionnel requis avant de commencer les inclusions PHP.
 
 ### Phase 2 — Intégration UX/UI depuis Figma
 Commencée partiellement en parallèle de la phase 1 : première intégration depuis le wireframe V1 sur les deux flux, la connexion, la création de compte et la configuration du profil ; accueil et profil proposés sans écran dédié. Les sept pages initiales ont du contenu ; une page Aide / FAQ a été ajoutée le 28/10. Direction artistique, proportions et détails du wireframe restent à valider. Les actualités restent une réservation visuelle dans une carte sur chacun des deux flux, sans contenu ni chargement dynamique.
