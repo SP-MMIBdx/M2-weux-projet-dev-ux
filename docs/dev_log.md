@@ -963,3 +963,26 @@ Notes de Steve prises lors du retour enseignant, synthétisées sans ajout de re
 
 - À la demande de Steve, remplacement du fond jaune atténué des tags par le jaune vif existant `--color-button-secondary` (`#FFD52A`). Forme de pilule, absence de bordure/ombre et comportement informatif conservés ; aucun autre composant modifié.
 - Une déclaration CSS et présente note rédigées par l’IA ; espaces Git contrôlés, rendu à consulter par Steve, aucun commit effectué.
+
+### 28/10/2026 — Premier mouvement des mascottes de flux
+
+- Après accord de Steve, ajout d’un salut CSS sur les seuls SVG de `.title-with-mascot` : léger déplacement vertical et inclinaison de -6° puis +4°, retour à la position neutre. Durée 700ms dans `--duration-greeting`, une seule itération au chargement de chaque flux, sans boucle ni retard. Transformation visuelle sans réorganisation du contenu ; aucun masquage initial des titres ou des mascottes.
+- Animation appliquée uniquement dans `@media (prefers-reduced-motion: no-preference)` : préférence de réduction des mouvements ou absence de prise en charge = mascotte statique. Header, cartes, boutons et champs inchangés. Une définition de keyframes et une règle conditionnelle partagée, sans nouveau HTML, classe, asset, bibliothèque, JavaScript ou PHP.
+- CSS, mise à jour du README et présente note rédigés par l’IA. Contrôle navigateur à 375px sur les deux flux : nom de l’animation présent, durée calculée 0.7s et une itération ; état final du parrain sans transformation et absence d’animation du header. Aucun débordement horizontal constaté à l’état contrôlé. Garde reduced-motion vérifiée dans la source, sans simulation du réglage système dans le navigateur ; fluidité perçue à confirmer par Steve. Espaces Git contrôlés, commit laissé à Steve.
+
+### 28/10/2026 — Survol du logo et apparition des cartes de profils
+
+- Steve confirme le fonctionnement du salut des mascottes, puis demande le survol du logo et les fondus. Logo du header : petit décalage de -2px à l’unité actuelle et inclinaison de -5° au survol, transition aller/retour de 180ms. Appliqué seulement si mouvements non réduits, survol disponible et pointeur fin ; texte Binô statique et focus clavier conservé. Ancienne règle de soulignement au survol retirée.
+- Cartes de profils des deux flux ciblées par `.title-with-mascot + section > article.request-card` : opacité de 0 à 1 en 400ms, une seule fois au chargement, sans délai, décalage de contenu ou classe supplémentaire. FAQ, actualités et formulaires non animés. Contenu visible par défaut hors animation ; garde `prefers-reduced-motion: no-preference` partagée avec le salut. Durées dans `--duration-feedback` et `--duration-reveal`.
+- CSS, README et présente note rédigés par l’IA ; aucun HTML, asset, JavaScript/PHP, bibliothèque ou événement tactile ajouté. Vérifications navigateur du flux étudiant : trois cartes avec animation 0.4s, une itération et opacité finale 1 ; actualités sans animation, transition du header 0.18s sous les conditions de média présentes. Clic du logo vers l’accueil confirmé ; état de survol visuel non validé par ce clic car le header est rechargé. Réglage système reduced-motion non simulé ; garde contrôlée en source. Effet perçu et survol à confirmer par Steve, espaces Git vérifiés, aucun commit effectué.
+
+### 28/10/2026 — Salut du logo à l’arrivée sur une page
+
+- À la demande de Steve d’un retour adapté au mobile lors de navigation, ajout du seul sélecteur `.site-brand svg` à la règle de salut existante : même animation de 700ms, une itération, puis repos. Le clic du logo conserve sa navigation immédiate vers l’accueil, dont le logo joue le salut à l’arrivée ; aucun gestionnaire tactile/clic, délai de navigation ou duplication de keyframes ajouté.
+- Survol desktop conservé sous conditions de pointeur fin ; préférence reduced-motion toujours respectée par la règle conditionnelle existante. Le salut est associé au chargement de l’élément SVG, actuellement remplacé lors du chargement du fragment header ; ce mécanisme provisoire reste à revoir lors des inclusions PHP. Aucun changement du chargeur dans cette étape.
+- CSS, README et présente note rédigés par l’IA. Navigateur sur FAQ : nom `mascot-greeting`, durée 0.7s, une itération et transform final neutre ; clic vers l’accueil confirmé, même animation présente après navigation. Espaces Git contrôlés ; aucun JavaScript/PHP ou asset modifié, commit laissé à Steve.
+
+### 28/10/2026 — Mouvement du logo distinct des mascottes
+
+- Steve trouve le logo trop synchronisé avec les personnages des flux. Remplacement de son salut par des keyframes propres `logo-greeting` : légère pulsation de l’échelle neutre à 1.06 puis retour neutre, sur 450ms. Aucun déplacement ni inclinaison à l’arrivée du logo ; mascottes toujours avec leur salut de 700ms, sans changement.
+- Une durée dédiée `--duration-logo-greeting`, règle conditionnelle reduced-motion conservée, une itération sans délai ni boucle. Survol du logo et fondu des cartes inchangés. README synchronisé ; CSS et présente note rédigés par l’IA. Aucun HTML/SVG/JavaScript/PHP modifié, espaces Git contrôlés, commit laissé à Steve.

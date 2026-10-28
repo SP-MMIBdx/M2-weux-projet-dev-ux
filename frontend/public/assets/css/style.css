@@ -4,6 +4,10 @@
 :root {
   --font-body: Arial, Helvetica, sans-serif;
   --space: 1rem;
+  --duration-greeting: 700ms;
+  --duration-logo-greeting: 450ms;
+  --duration-feedback: 180ms;
+  --duration-reveal: 400ms;
   --color-text: #111113;
   --color-icon: var(--color-text);
   --color-background: #E9E6DD;
@@ -128,6 +132,70 @@ p {
   flex-shrink: 0;
 }
 
+@keyframes mascot-greeting {
+  0% {
+    transform: translateY(calc(var(--space) / 2)) rotate(-6deg);
+  }
+  60% {
+    transform: translateY(calc(var(--space) / -4)) rotate(4deg);
+  }
+  100% {
+    transform: none;
+  }
+}
+
+@keyframes card-reveal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes logo-greeting {
+  0%,
+  100% {
+    transform: none;
+  }
+  45% {
+    transform: scale(1.06);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .title-with-mascot svg {
+    transform-origin: 50% 85%;
+    animation: mascot-greeting var(--duration-greeting) ease-out;
+  }
+
+  .site-brand svg {
+    animation: logo-greeting var(--duration-logo-greeting) ease-in-out;
+  }
+
+  .title-with-mascot + section > article.request-card {
+    animation: card-reveal var(--duration-reveal) ease-out;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
+  .site-brand svg {
+    transition: transform var(--duration-feedback) ease-out;
+  }
+
+  .site-brand:hover svg {
+    transform: translateY(calc(var(--space) / -8)) rotate(-5deg);
+  }
+
+  .button:not(:disabled) {
+    transition: transform var(--duration-feedback) ease-out;
+  }
+
+  .button:not(:disabled):hover {
+    transform: translateY(calc(var(--space) / -8));
+  }
+}
+
 h1,
 h2,
 h3 {
@@ -207,10 +275,6 @@ main > section + section {
   width: 6rem;
   height: 4.5rem;
   flex-shrink: 0;
-}
-
-.site-brand:hover {
-  text-decoration: underline;
 }
 
 .site-brand:focus-visible {
@@ -300,6 +364,7 @@ main > section + section {
 /* États des boutons */
 .button:not(:disabled):active,
 .tag-options label:has(input:enabled):active {
+  transition: none;
   transform: translate(var(--shadow-offset), var(--shadow-offset));
   box-shadow: none;
 }
