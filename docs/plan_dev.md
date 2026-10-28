@@ -141,6 +141,7 @@ Au 28/10/2026, la structure versionnée de travail est la suivante :
 │       ├── includes/
 │       │   ├── header.html
 │       │   └── footer.html
+│       ├── aide.html
 │       ├── createprofile.html
 │       ├── fluxetudiant.html
 │       ├── fluxparrain.html
@@ -154,20 +155,20 @@ Au 28/10/2026, la structure versionnée de travail est la suivante :
 
 `frontend/public/` est destiné à servir de racine publique pour le frontend statique. Les pages HTML y sont placées directement ; les fichiers CSS, JavaScript et les images sont regroupés dans `assets/`.
 
-Le dossier `includes/` contient les fragments HTML partagés. La fonction `loadPartial(containerId, filePath)` dans `assets/js/main.js` les charge avec `fetch`, puis remplace le contenu de secours du conteneur ciblé. Les deux flux et le profil utilisent les deux fragments ; l’accueil et les pages de formulaire utilisent l’en-tête partagé et conservent chacun un pied de page public local sans identifiant `site-footer`. Les sept pages disposent d’un premier contenu statique. Un serveur HTTP local est nécessaire pour tester ce mécanisme.
+Le dossier `includes/` contient les fragments HTML partagés. La fonction `loadPartial(containerId, filePath)` dans `assets/js/main.js` les charge avec `fetch`, puis remplace le contenu de secours du conteneur ciblé. Les deux flux et le profil utilisent les deux fragments ; l’accueil, l’aide et les pages de formulaire utilisent l’en-tête partagé et conservent chacun un pied de page public local sans identifiant `site-footer`. Les huit pages disposent d’un premier contenu statique. Un serveur HTTP local est nécessaire pour tester ce mécanisme.
 
 ### Dépendances du frontend statique
 
 ```mermaid
 flowchart TD
-    Pages["Sept pages HTML"] --> CSS["style.css"]
+    Pages["Huit pages HTML"] --> CSS["style.css"]
     Pages --> JS["main.js"]
     JS --> Header["header.html"]
     JS --> Footer["footer.html : deux flux et profil"]
     JS --> Interactions["Interactions des formulaires"]
 ```
 
-Les fichiers CSS et JavaScript se trouvent dans `assets/css/` et `assets/js/`, et les fragments dans `includes/`. Les formulaires, les deux flux et le profil utilisent `assets/images/avatar-default.svg`. L’accueil et les formulaires conservent un footer public local ; les deux flux et le profil chargent le footer commun. Ce schéma décrit les fichiers utilisés, pas un parcours utilisateur ni une gestion de session ; PHP n’est pas encore intégré.
+Les fichiers CSS et JavaScript se trouvent dans `assets/css/` et `assets/js/`, et les fragments dans `includes/`. Les formulaires, les deux flux et le profil utilisent `assets/images/avatar-default.svg`. L’accueil, l’aide et les formulaires conservent un footer public local ; les deux flux et le profil chargent le footer commun. Ce schéma décrit les fichiers utilisés, pas un parcours utilisateur ni une gestion de session ; PHP n’est pas encore intégré.
 
 La branche `dev` contient également les prototypes d’Alexandre et Ange dans `prototypes/`.
 
@@ -341,7 +342,8 @@ L’IA peut préparer et rédiger ces documents à partir des éléments fournis
 - [x] Compteur de description et limite native de 500 caractères choisie par Steve (27/10 ; simulations IA réussies, fonctionnement navigateur confirmé par Steve)
 - [x] Compteurs et actions « Tout sélectionner » / « Tout désélectionner » indépendantes par groupe intérêts/besoins (27/10 ; simulations IA réussies, navigateur à confirmer)
 - [ ] Validation serveur des formulaires
-- [x] Header partagé sur sept pages et footers intégrés selon le découpage provisoire
+- [x] Header partagé sur huit pages et footers intégrés selon le découpage provisoire
+- [x] Page Aide / FAQ et formulaire de contact statique, envoi désactivé (28/10)
 - [ ] Valider la navigation et le footer selon connexion/rôle
 - [ ] Navigation complète entre les pages
 - [ ] Responsive vérifié sur toutes les pages
@@ -352,11 +354,11 @@ L’IA peut préparer et rédiger ces documents à partir des éléments fournis
 
 Structure actuelle : voir la section 5, « Structure actuelle du dépôt ».
 
-**État actuel au 28/10/2026 :** les sept pages disposent d’une première structure statique. Les deux flux montrent des données fictives avec actions désactivées ; accueil et profil restent des propositions sans écran dédié dans V1. Le profil affiché n’est pas relié au formulaire. La configuration comprend informations personnelles, description limitée à 500 unités UTF-16 avec compteur, six intérêts et sept besoins provisoires. Les besoins sont encore formulés pour l’étudiant accompagné.
+**État actuel au 28/10/2026 :** les huit pages disposent d’une première structure statique. Les deux flux montrent des données fictives avec actions désactivées ; accueil et profil restent des propositions sans écran dédié dans V1. Le profil affiché n’est pas relié au formulaire. La configuration comprend informations personnelles, description limitée à 500 unités UTF-16 avec compteur, six intérêts et sept besoins provisoires. Les besoins sont encore formulés pour l’étudiant accompagné.
 
 Le JavaScript propose révélation indépendante des mots de passe, comparaison des confirmations e-mail/mot de passe, conseil pédagogique de mot de passe et compteurs/actions de sélection par groupe. Les soumissions restent désactivées : aucun compte, session, enregistrement ni contrôle d’accès. La présélection du rôle et la validation serveur restent à implémenter ; le filtrage des profils est réservé à PHP/SQL.
 
-La présentation utilise la palette provisoire crème/jaune/vert avec header/footer saumon pâle, une hiérarchie de titres fluide, `--space` pour les espacements et `--shadow-raised` pour le relief des cartes/boutons. Le footer reste dans le flux normal : icône Accueil sur sept pages, icône Mon profil et texte sur les deux flux et le profil seulement. Les variantes publiques restent locales et sans lien profil ; cette répartition par page n’est pas un contrôle de session. Sprite local `navigation.svg`, classe `.icon` et variable `--color-icon` réutilisés. Intégration progressive reprise le 28/10 ; FAQ, démarches et burger restent à construire une étape à la fois. Navigation persistante toujours différée.
+La présentation utilise la palette provisoire crème/jaune/vert avec header/footer saumon pâle, une hiérarchie de titres fluide, `--space` pour les espacements et `--shadow-raised` pour le relief des cartes/boutons. Le footer reste dans le flux normal : icône Accueil et lien Aide / FAQ sur huit pages, icône Mon profil et texte sur les deux flux et le profil seulement. Les variantes publiques restent locales et sans lien profil ; cette répartition par page n’est pas un contrôle de session. Sprite local `navigation.svg`, classe `.icon` et variable `--color-icon` réutilisés. Intégration progressive reprise le 28/10 ; Aide / FAQ dispose de cinq réponses et d’un formulaire de contact de démonstration (nom, e-mail, message) avec envoi désactivé ; aucune sélection de catégorie ajoutée. Démarches et burger restent à construire une étape à la fois. Navigation persistante toujours différée.
 
 **Vérifications :** Steve a confirmé le fonctionnement des confirmations, du compteur limité à 500 et des mini-cartes au clavier/mobile lors des étapes précédentes. Les actions groupées de sélection/désélection restent à confirmer dans le navigateur. Contrôles sources et simulations ne constituent pas une validation exhaustive du responsive, de l’accessibilité ou des cas d’échec réseau. Les essais et leurs auteurs sont détaillés dans le journal.
 
@@ -364,7 +366,7 @@ La présentation utilise la palette provisoire crème/jaune/vert avec header/foo
 
 **Prochaine étape proposée :** vérifier dans le navigateur les compteurs et les deux actions de sélection de chaque groupe, puis reprendre progressivement les premiers exercices PHP avec Steve. Navigation selon rôle, configuration parrain et vérifications globales restent ouvertes. Pour le footer, confirmer la répartition publique/espaces de démonstration et les icônes déjà intégrées avant de passer à une autre icône. Aucun contrôle d’accès avant la phase PHP.
 
-**Décisions reportées :** direction artistique finale, navigation selon connexion/rôle, destinations FAQ/démarches/mentions légales, placement du footer en bas des pages courtes. Le footer reste dans le flux normal. L’absence de lien vers un profil sur la connexion est une décision d’interface, pas un contrôle d’accès : les protections réelles seront implémentées côté PHP.
+**Décisions reportées :** direction artistique finale, navigation selon connexion/rôle, destinations démarches/mentions légales, placement du footer en bas des pages courtes. Le footer reste dans le flux normal. L’absence de lien vers un profil sur la connexion est une décision d’interface, pas un contrôle d’accès : les protections réelles seront implémentées côté PHP.
 
 **Navigation — décision de Steve du 27/10/2026 :** conserver la navigation principale dans le footer pour le moment, conformément à l’orientation du wireframe. Le header garde l’identité du projet et le lien d’accueil. Destinations exactes et variantes publique/étudiant/parrain restent à définir ; leur sélection sera gérée par PHP lors de l’implémentation des sessions et rôles. Cette décision ne rend pas le footer fixe et n’ajoute pas de contrôle d’accès côté client.
 
@@ -373,7 +375,7 @@ La présentation utilise la palette provisoire crème/jaune/vert avec header/foo
 - [ ] Reprendre ensemble le style et l’alignement des contrôles à icônes du footer : Steve signale une zone cliquable qui dépasse davantage à droite et un pictogramme non centré dans ses dimensions. Il souhaite des cartes/boutons cohérents avec les boutons du site ; centrer le pictogramme dans la cible lors de cette même étape, puis vérifier visuellement et au clavier sur mobile/desktop. Observation à diagnostiquer, sans correction isolée engagée (28/10).
 
 ### Phase 2 — Intégration UX/UI depuis Figma
-Commencée partiellement en parallèle de la phase 1 : première intégration depuis le wireframe V1 sur les deux flux, la connexion, la création de compte et la configuration du profil ; accueil et profil proposés sans écran dédié. Les sept pages ont du contenu initial. Direction artistique, proportions et détails du wireframe restent à valider. Les actualités restent une réservation visuelle d’une fonctionnalité ultérieure.
+Commencée partiellement en parallèle de la phase 1 : première intégration depuis le wireframe V1 sur les deux flux, la connexion, la création de compte et la configuration du profil ; accueil et profil proposés sans écran dédié. Les sept pages initiales ont du contenu ; une page Aide / FAQ a été ajoutée le 28/10. Direction artistique, proportions et détails du wireframe restent à valider. Les actualités restent une réservation visuelle d’une fonctionnalité ultérieure.
 
 ### Phase 3+ — PHP / SQL / authentification / données dynamiques
 Scaffold préparatoire créé ; implémentation fonctionnelle non commencée. Voir la section 5 pour les fichiers et le journal du 26/10 pour leur création.

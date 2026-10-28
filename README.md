@@ -15,7 +15,7 @@ Application web de parrainage destinée à faciliter l'intégration des étudian
 
 ## État du projet
 
-Au 27/10/2026, les sept pages du scaffold sont regroupées dans `frontend/public/`. Le projet reste une maquette statique en cours de construction, avec de premières interactions client.
+Au 28/10/2026, les huit pages du frontend sont regroupées dans `frontend/public/`. Le projet reste une maquette statique en cours de construction, avec de premières interactions client.
 
 - Flux parrain : structure sémantique, carte de demande illustrative, tags, boutons désactivés et en-tête/pied de page partagés et stylisés.
 - Connexion : formulaire stylisé, panneaux de surface provisoire, silhouette de profil et liens vers la création de compte selon le rôle choisi.
@@ -23,6 +23,7 @@ Au 27/10/2026, les sept pages du scaffold sont regroupées dans `frontend/public
 - Configuration du profil : nom affiché, pays, parcours et description avec compteur et limite native de 500 caractères confirmée dans le navigateur par Steve, plus six centres d’intérêt et sept besoins sélectionnables sous forme de mini-cartes. Chaque groupe possède un compteur et les actions « Tout sélectionner » / « Tout désélectionner », disposées dans une ligne flexible ; essais navigateur de ce nouvel ajout à confirmer. Choix provisoires, sans enregistrement.
 - Flux étudiant : trois profils fictifs, tags, avatars, actions désactivées et actualités à venir.
 - Accueil : présentation du service, étapes du parcours prévu et liens vers les formulaires et les deux espaces de démonstration.
+- Aide / FAQ : cinq réponses issues du périmètre fonctionnel et formulaire de contact de démonstration (nom, e-mail, message), avec envoi désactivé.
 - Profil : exemple statique de Lucia, présentation, intérêts, besoins et lien vers la configuration non préremplie. Accueil et profil restent des propositions à valider, sans écran dédié dans le wireframe V1.
 
 Les trois pages de formulaire utilisent la même silhouette décorative et un pied de page public simplifié. Leurs soumissions restent désactivées : aucune connexion, création de compte ou sauvegarde de profil n’est disponible. Une fonction partagée compare les mots de passe et les e-mails pendant la saisie ; Steve a confirmé son fonctionnement dans le navigateur. La présélection du rôle et la validation serveur restent à implémenter.
@@ -39,7 +40,7 @@ Les pages HTML restent à la racine de `frontend/public/` ; les styles, scripts 
 
 ```mermaid
 flowchart TD
-    Pages["Sept pages HTML"] --> CSS["style.css"]
+    Pages["Huit pages HTML"] --> CSS["style.css"]
     Pages --> JS["main.js"]
     JS --> Header["header.html"]
     JS --> Footer["footer.html : deux flux et profil"]
@@ -48,9 +49,9 @@ flowchart TD
 
 Les formulaires, les deux flux et le profil partagent l’image `assets/images/avatar-default.svg`. Le schéma représente les dépendances de fichiers, pas le parcours utilisateur.
 
-Le script remplace le contenu de secours des conteneurs identifiés par `site-header` et `site-footer`, lorsqu’ils existent. L’accueil et les pages de formulaire n’ont pas de conteneur `site-footer` : leur pied de page public reste local. Il ne s’agit pas encore d’un affichage conditionné par une session utilisateur. Le footer propose l’icône Accueil sur les sept pages ; Mon profil (icône et texte) reste limité aux deux flux et au profil. FAQ, démarches et menu restent à construire ; navigation persistante différée. Cette répartition par page est provisoire, sans contrôle de session.
+Le script remplace le contenu de secours des conteneurs identifiés par `site-header` et `site-footer`, lorsqu’ils existent. L’accueil, l’aide et les pages de formulaire n’ont pas de conteneur `site-footer` : leur pied de page public reste local. Il ne s’agit pas encore d’un affichage conditionné par une session utilisateur. Le footer propose l’icône Accueil sur les huit pages ; Mon profil (icône et texte) reste limité aux deux flux et au profil. Aide / FAQ (icône et texte) est accessible sur les huit pages ; démarches et menu restent à construire ; navigation persistante différée. Cette répartition par page est provisoire, sans contrôle de session.
 
-Les sept pages disposent d’une première structure de contenu. Steve a confirmé les vérifications mobile et clavier des mini-cartes de configuration et les confirmations partagées ; cela ne constitue pas une validation exhaustive des sept pages. Suite frontend proposée : tester les compteurs et les actions de sélection/désélection des groupes, puis reprendre les premiers exercices PHP/SQL. Le filtrage des profils est réservé au serveur, selon la répartition convenue avec Steve. La configuration reste à adapter au rôle parrain ; navigation selon rôle et vérifications navigateur globales restent ouvertes. Les retours enseignant du 14/10 sont consignés dans le journal et à revoir dans le plan ; les schémas Mermaid, les variables d’espacement et la suppression du soulignement au survol des boutons ont été appliqués ; les autres points restent à revoir.
+Les huit pages disposent d’une première structure de contenu. Steve a confirmé les vérifications mobile et clavier des mini-cartes de configuration et les confirmations partagées ; cela ne constitue pas une validation exhaustive des huit pages. Suite frontend proposée : tester les compteurs et les actions de sélection/désélection des groupes, puis reprendre les premiers exercices PHP/SQL. Le filtrage des profils est réservé au serveur, selon la répartition convenue avec Steve. La configuration reste à adapter au rôle parrain ; navigation selon rôle et vérifications navigateur globales restent ouvertes. Les retours enseignant du 14/10 sont consignés dans le journal et à revoir dans le plan ; les schémas Mermaid, les variables d’espacement et la suppression du soulignement au survol des boutons ont été appliqués ; les autres points restent à revoir.
 
 ## Lancement local
 
