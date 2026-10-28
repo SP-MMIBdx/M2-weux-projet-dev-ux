@@ -298,6 +298,29 @@ main > section + section {
   margin-top: var(--space);
 }
 
+/* Identité compacte, réutilisable sur les cartes de profils */
+.profile-heading {
+  display: grid;
+  grid-template-columns: 4rem minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space);
+}
+
+.profile-heading > img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  background-color: var(--color-background);
+}
+
+.profile-heading > div {
+  display: grid;
+  gap: calc(var(--space) / 4);
+}
+
 /* Relief commun aux cartes et panneaux */
 .request-card,
 .form-panel,
