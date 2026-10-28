@@ -756,3 +756,22 @@ Notes de Steve prises lors du retour enseignant, synthétisées sans ajout de re
 - Après validation de l’aperçu par Steve, sprite conservé dans `assets/images/icons/navigation.svg` et ajout d’une classe CSS réutilisable `.icon` : dimensions 1.5rem, absence de rétrécissement en Flexbox, épaisseur 1.8 et couleur issue de la nouvelle variable unique `--color-icon`.
 - Variable reliée par défaut à `--color-text` ; les tracés du sprite consomment cette couleur via `currentColor`. Couleur des cinq icônes modifiable à un seul endroit ; taille et épaisseur dans une seule règle partagée, sans classes par dessin.
 - CSS et présente entrée rédigés par l’IA à la demande de Steve. Asset préparé et styles définis, sans intégration ni modification du footer, du HTML des pages, du JavaScript ou du PHP. Références de variables et espaces Git vérifiés ; commit laissé à Steve.
+
+### 28/10/2026 — Première icône intégrée : Accueil
+
+- À la demande de Steve de poursuivre progressivement, ajout du seul symbole `#home` au lien Accueil du fragment footer et de ses copies de secours sur les deux flux et le profil. Texte « Accueil » et destination `index.html` conservés ; SVG décoratif avec `aria-hidden` et `focusable="false"`, dimensions 24 × 24 et classe `.icon`.
+- Une seule déclaration CSS ajoutée au lien de footer : gap d’une demi-unité pour séparer icône et texte. Couleur/épaisseur déjà gérées par le style partagé. Autres icônes, footer public, JavaScript et PHP inchangés.
+- HTML/CSS et présente entrée rédigés par l’IA. Symbole, imbrication, présence dans le lien et concordance fragment/fallbacks vérifiés ; espaces Git contrôlés. Test via Live Server sur un flux ou le profil à effectuer par Steve : dessin, couleur, clic vers l’accueil et focus clavier. Aucun test navigateur effectué par l’IA ; commit laissé à Steve.
+
+### 28/10/2026 — Deuxième icône intégrée : Mon profil
+
+- Steve confirme le bon affichage de l’icône Accueil, avec texte conservé à côté. À sa demande, ajout du symbole `#profile` au lien Mon profil du fragment footer et des mêmes copies de secours sur les deux flux et le profil.
+- Classe `.icon`, dimensions 24 × 24, SVG décoratif et espacement déjà définis réutilisés ; libellé visible et destination `profil.html` conservés. Aucune nouvelle règle CSS, classe ou logique JavaScript ; autres icônes et travail PHP inchangés.
+- HTML et présente entrée rédigés par l’IA. Symbole, destination, unicité de l’utilisation et concordance fragment/fallbacks contrôlés ; espaces Git vérifiés. Rendu, couleur, clic et focus du lien Mon profil à confirmer par Steve dans le navigateur. Aucun test navigateur effectué par l’IA ; commit laissé à Steve.
+
+### 28/10/2026 — Accueil sans texte visible avant checkpoint
+
+- Steve confirme le fonctionnement de l’icône Mon profil. À sa demande, retrait du seul texte visible Accueil dans le fragment et les trois copies de secours ; ajout d’`aria-label="Accueil"` au lien pour conserver un nom accessible. SVG toujours décoratif ; destination inchangée. Texte Mon profil conservé.
+- Ajout de `min-width: 2.75rem` à la règle existante des liens footer pour que le lien Accueil réduit à une icône garde une cible large, en complément de sa hauteur minimale existante. Aucune nouvelle classe/variable ou logique JavaScript.
+- Checkpoint prévu avec les deux icônes avant tout élargissement aux autres pages. Footers publics inchangés ; accès selon connexion/rôle à définir et faire respecter côté PHP, sans afficher par anticipation le profil sur les formulaires publics.
+- HTML/CSS et présente entrée rédigés par l’IA. Nommage accessible, concordance fragment/fallbacks et espaces Git vérifiés ; rendu final sans texte à confirmer par Steve. Aucun travail PHP modifié ; commit laissé à Steve.
