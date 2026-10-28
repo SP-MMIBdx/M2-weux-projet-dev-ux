@@ -232,6 +232,7 @@ main > section + section {
   align-items: center;
   justify-content: center;
   text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .button--secondary {

@@ -189,7 +189,7 @@ function setupTagSelection(groupId) {
     checkboxes.forEach(function (checkbox) {
       checkbox.checked = checked;
     });
-    checkboxes[0].focus();
+    checkboxes[0].focus({ preventScroll: true });
     updateSelection();
   }
 
