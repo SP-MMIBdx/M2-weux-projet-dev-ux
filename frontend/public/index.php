@@ -7,15 +7,8 @@
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   <body>
-    <header class="site-header" id="site-header">
-      <div class="site-header__inner">
-        <a class="site-brand" href="index.html">
-          <svg viewBox="0 0 128 96" aria-hidden="true" focusable="false" width="96" height="72">
-            <use href="assets/images/logo.svg#student-connection"></use>
-          </svg>
-          <span>Binô</span>
-        </a>
-      </div>
+    <header class="site-header">
+      <?php require __DIR__ . '/../../backend/includes/header.php'; ?>
     </header>
 
     <main>
@@ -48,35 +41,15 @@
         <div class="form-panel">
           <p>Le parcours décrit ci-dessus est prévu pour la suite du projet. Cette version utilise des profils fictifs, sans connexion, enregistrement ni demande réelle.</p>
           <div class="request-actions">
-            <a class="button" href="fluxetudiant.html">Voir l’exemple d’espace étudiant</a>
-            <a class="button button--secondary" href="fluxparrain.html">Voir l’exemple d’espace parrain</a>
+            <a class="button" href="fluxetudiant.php">Voir l’exemple d’espace étudiant</a>
+            <a class="button button--secondary" href="fluxparrain.php">Voir l’exemple d’espace parrain</a>
           </div>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <div class="site-footer__inner">
-        <nav aria-label="Navigation de pied de page">
-          <ul class="footer-links">
-            <li>
-              <a class="button button--secondary" href="index.html" aria-label="Accueil">
-                <svg class="icon" aria-hidden="true" focusable="false" width="24" height="24">
-                  <use href="assets/images/icons/navigation.svg#home"></use>
-                </svg>
-              </a>
-            </li>
-            <li>
-              <a class="button button--secondary" href="aide.html" aria-label="Aide / FAQ">
-                <svg class="icon" aria-hidden="true" focusable="false" width="24" height="24">
-                  <use href="assets/images/icons/navigation.svg#help"></use>
-                </svg>
-              </a>
-            </li>
-          </ul>
-        </nav>
-        <p>Mentions légales — à venir</p>
-      </div>
+      <?php require __DIR__ . '/../../backend/includes/footer.php'; ?>
     </footer>
     <script src="assets/js/main.js"></script>
   </body>

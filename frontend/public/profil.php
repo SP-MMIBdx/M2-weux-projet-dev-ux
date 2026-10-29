@@ -1,0 +1,74 @@
+<?php
+// Variante visuelle de la maquette, sans authentification ni autorisation.
+$showDemoNavigation = true;
+?>
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mon profil — Binô</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <?php require __DIR__ . '/../../backend/includes/header.php'; ?>
+    </header>
+
+    <main>
+      <h1>Mon profil</h1>
+
+      <section>
+        <h2>Présentation</h2>
+        <div class="form-panel">
+          <p>Profil fictif pour la maquette : ces informations ne proviennent pas d’un compte connecté.</p>
+          <div class="profile-heading">
+            <img src="assets/images/avatar-default.svg" alt="" width="64" height="64" />
+            <div>
+              <h3>Lucia</h3>
+              <p>Étudiante accompagnée · Colombie</p>
+              <p>L1 de lettres à l’université de Poitiers</p>
+            </div>
+          </div>
+          <p>Je viens d’arriver à Poitiers et j’aimerais rencontrer d’autres étudiants, découvrir la ville et partager des activités culturelles.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Mes centres d’intérêt</h2>
+        <div class="form-panel">
+          <ul class="tag-list">
+            <li>Musique</li>
+            <li>Culture</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2>Mes besoins d’accompagnement</h2>
+        <div class="form-panel">
+          <ul class="tag-list">
+            <li>Vie sociale et rencontres</li>
+            <li>Démarches administratives</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2>Compléter mes informations</h2>
+        <div class="form-panel">
+          <p>Le formulaire n’est pas encore prérempli avec ce profil et ne permet pas d’enregistrer de modifications.</p>
+          <div class="request-actions">
+            <a class="button" href="profileconfiguration.php">Configurer mon profil</a>
+            <a class="button button--secondary" href="fluxetudiant.php">Voir l’exemple d’espace étudiant</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <?php require __DIR__ . '/../../backend/includes/footer.php'; ?>
+    </footer>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
