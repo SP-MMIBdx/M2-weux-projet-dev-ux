@@ -10,12 +10,12 @@
 
 ## Stack
 
-- Actuellement : HTML, CSS et JavaScript natif.
-- Prévu pour le backend : PHP et SQL / MySQL.
+- Actuellement : HTML, CSS, JavaScript natif et premières inclusions PHP.
+- Prévu pour les données : SQL / MySQL via PDO.
 
 ## État du projet
 
-Au 29/10/2026, les huit écrans du frontend sont regroupés dans `frontend/public/` : sept pages HTML et l’inscription `createprofile.php`. Le contenu reste une maquette avec interactions client ; les premières inclusions serveur PHP sont vérifiées sur l’inscription.
+Au 29/10/2026, les huit écrans sont regroupés dans `frontend/public/` : six pages HTML, l’inscription `createprofile.php` et la connexion `login.php`. Le contenu reste une maquette ; les inclusions serveur sont vérifiées sur les deux pages PHP et la présélection du rôle fonctionne à l’inscription.
 
 - Flux parrain : structure sémantique, carte de demande illustrative, carte d’attente des actualités, tags, boutons désactivés et en-tête/pied de page partagés et stylisés.
 - Connexion : formulaire stylisé, panneaux de surface provisoire, silhouette de profil et liens vers la création de compte selon le rôle choisi.
@@ -28,34 +28,34 @@ Au 29/10/2026, les huit écrans du frontend sont regroupés dans `frontend/publi
 
 Les cartes des deux flux et la présentation du profil réutilisent `.profile-heading` pour regrouper avatar circulaire, nom, rôle et études. Les informations restent fictives.
 
-Les trois pages de formulaire utilisent la même silhouette décorative et un pied de page public simplifié. Leurs soumissions restent désactivées : aucune connexion, création de compte ou sauvegarde de profil n’est disponible. Une fonction partagée compare les mots de passe et les e-mails pendant la saisie ; Steve a confirmé son fonctionnement dans le navigateur. La présélection du rôle et la validation serveur restent à implémenter.
+Les trois pages de formulaire utilisent la même silhouette décorative et un pied de page public simplifié. Leurs soumissions restent désactivées : aucune connexion, création de compte ou sauvegarde de profil n’est disponible. Les confirmations e-mail/mot de passe restent en JavaScript ; PHP présélectionne le rôle à partir d’une liste autorisée stricte, sans accorder de permission. La validation serveur des soumissions reste à implémenter.
 
 Le CSS commun suit une approche mobile-first avec une palette provisoire : fond crème, cartes saumon pâle, header/footer jaune atténué, boutons secondaires jaune vif et actions vertes, titres fluides avec H1 gras saumon à contour noir, H2 à accent jaune, H3 sobres et paragraphes limités à 65ch, espacements et ombres de composants centralisés en variables. Le JavaScript charge les fragments HTML communs et permet d’afficher/masquer indépendamment les mots de passe de connexion et d’inscription, y compris la confirmation, avec une fonction réutilisable. Il ne gère pas de comptes ni de données enregistrées.
 
 À l’inscription, un conseil textuel indique une longueur inférieure à 15 caractères ou quelques motifs prévisibles. Ce repère pédagogique n’est pas une estimation complète de robustesse ; Steve a confirmé son fonctionnement dans le navigateur.
 
-`backend/includes/header.php` et `footer.php` fournissent l’en-tête et le pied de page public de l’inscription par inclusions PHP. Les quatre liens entrants ciblent cette version ; l’ancienne copie HTML est supprimée. PDO, schéma et modèle de configuration restent préparatoires, sans connexion SQL ni authentification. La configuration locale privée est exclue de Git. La présélection du rôle est le prochain exercice, encore non implémenté ; répartition des responsabilités dans le [plan](docs/plan_dev.md).
+`backend/includes/header.php` et `footer.php` fournissent le header/footer public de l’inscription et de la connexion. Liens entrants basculés et anciennes copies HTML supprimées. PDO, schéma et configuration restent préparatoires, sans SQL ni authentification ; configuration privée exclue de Git. Prochaine migration proposée : configuration du profil, après ce checkpoint. Répartition des responsabilités dans le [plan](docs/plan_dev.md).
 
 ## Organisation du frontend
 
 Le header associe un duo de personnages SVG original (`assets/images/logo.svg`) au texte « Binô », centré sous le logo au sein d’un bloc aligné à gauche, en saumon avec un contour noir de 3px, comme les H1. Le jaune représente le parrain, le saumon l’étudiant ; deux SVG autonomes (`mascot-parrain.svg`, `mascot-etudiant.svg`) accompagnent les titres des flux correspondants sur leur droite, avec une hauteur fluide de 6 à 16rem et retour centré sous le titre si nécessaire. Le duo reste réservé au header. Couleurs issues des variables existantes. Au chargement, le logo du header joue une légère pulsation de 450ms, distincte du salut avec inclinaison des mascottes de flux (700ms). Chaque effet joue une fois, uniquement sans préférence de réduction des mouvements. Dans ce même mode, les cartes de profils des flux apparaissent par un fondu de 400ms et le logo du header et les boutons actifs réagissent au survol avec une souris ; aucun mouvement continu.
 
-Les sept pages HTML et l’inscription PHP restent à la racine de `frontend/public/`. Les assets sont inchangés ; les fragments HTML dans `includes/` servent les pages non migrées, les fragments PHP privés sont dans `backend/includes/`.
+Les six pages HTML et les deux pages PHP restent à la racine de `frontend/public/`. Les assets sont inchangés ; les fragments HTML publics servent les pages non migrées et les fragments PHP privés sont dans `backend/includes/`.
 
 ```mermaid
 flowchart TD
-    Pages["Huit écrans : sept HTML, une PHP"] --> CSS["style.css"]
+    Pages["Huit écrans : six HTML, deux PHP"] --> CSS["style.css"]
     Pages --> JS["main.js"]
-    JS --> Header["header.html : sept pages HTML"]
+    JS --> Header["header.html : six pages HTML"]
     JS --> Footer["footer.html : deux flux et profil"]
     JS --> Interactions["Interactions des formulaires"]
-    Pilot["createprofile.php"] --> PHPHeader["backend/includes/header.php"]
+    Pilot["createprofile.php et login.php"] --> PHPHeader["backend/includes/header.php"]
     Pilot --> PHPFooter["backend/includes/footer.php : public"]
 ```
 
 Les formulaires, les deux flux et le profil partagent l’image `assets/images/avatar-default.svg`. Le schéma représente les dépendances de fichiers, pas le parcours utilisateur.
 
-Sur les sept pages HTML, le script remplace le contenu de secours de `site-header` et, pour les deux flux et le profil, de `site-footer`. Accueil, aide, connexion et configuration gardent un footer public local. L’inscription PHP utilise les fragments privés sans ces IDs de chargement. Accueil et FAQ restent accessibles sur les huit écrans ; Mon profil et Démarches désactivé restent limités aux deux flux et au profil. Cette répartition est provisoire, sans contrôle de session ; menu, contenu Démarches et navigation persistante restent différés.
+Sur les six pages HTML, le script remplace le contenu de secours de `site-header` et, pour les deux flux et le profil, de `site-footer`. Accueil, aide et configuration gardent un footer public local. Inscription et connexion PHP utilisent les fragments privés sans ces IDs de chargement. Accueil et FAQ restent accessibles sur les huit écrans ; Mon profil et Démarches désactivé restent limités aux deux flux et au profil. Cette répartition est provisoire, sans contrôle de session ; menu, contenu Démarches et navigation persistante restent différés.
 
 **Jalon frontend statique du 29/10 atteint :** formulaires harmonisés, huit pages contrôlées dans le navigateur intégré à 320, 375, 768 et 1280px sans débordement horizontal, parcours de navigation et interactions principales vérifiés. Les échecs du chargeur de fragments ont aussi été simulés avec conservation du contenu de secours. Ce checkpoint permet de commencer une migration progressive des inclusions vers PHP ; il ne constitue pas une validation complète sur appareils physiques ni une certification d’accessibilité. Le filtrage des profils est réservé au serveur, selon la répartition convenue avec Steve. La configuration reste à adapter au rôle parrain ; navigation selon rôle et vérifications navigateur globales restent ouvertes. Les retours enseignant du 14/10 sont consignés dans le journal et à revoir dans le plan ; les schémas Mermaid, les variables d’espacement et la suppression du soulignement au survol des boutons ont été appliqués ; les autres points restent à revoir.
 
@@ -67,9 +67,9 @@ Depuis un terminal à la racine du dépôt, lancer le serveur de développement 
 & "C:\wamp64\bin\php\php8.3.14\php.exe" -S 127.0.0.1:8000 -t frontend/public
 ```
 
-Ouvrir [le flux parrain](http://127.0.0.1:8000/fluxparrain.html) ou [la connexion](http://127.0.0.1:8000/login.html). Garder le terminal ouvert, rafraîchir manuellement après modification et arrêter le serveur avec Ctrl+C. Les services WAMP ne sont pas nécessaires pour cette prévisualisation.
+Ouvrir [le flux parrain](http://127.0.0.1:8000/fluxparrain.html) ou [la connexion](http://127.0.0.1:8000/login.php). Garder le terminal ouvert, rafraîchir manuellement après modification et arrêter le serveur avec Ctrl+C. Les services WAMP ne sont pas nécessaires pour cette prévisualisation.
 
-Ce serveur sert le frontend et exécute les inclusions de [l’inscription PHP](http://127.0.0.1:8000/createprofile.php). Les sept autres pages utilisent encore le chargement JavaScript des fragments. Live Server est écarté : son injection de rechargement dans les SVG du fragment footer produit une réponse tronquée, constatée le 28/10. Ouvrir directement les fichiers en `file://` ne permet pas d’exécuter PHP ni de tester correctement les fragments avec `fetch`.
+Ce serveur sert le frontend et exécute inscription et connexion PHP. Les six autres pages utilisent encore le chargement JavaScript des fragments. Live Server est écarté : son injection de rechargement dans les SVG du fragment footer produit une réponse tronquée, constatée le 28/10. Ouvrir directement les fichiers en `file://` ne permet pas d’exécuter PHP ni de tester correctement les fragments avec `fetch`.
 
 Le serveur fournit les fichiers ; le navigateur exécute JavaScript. Aucun build ni installation de dépendances applicatives n’est nécessaire. Dans l’émulation mobile des outils de développement, utiliser « Fit to window » pour voir l’intégralité du viewport simulé.
 

@@ -10,16 +10,9 @@
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   <body>
-    <header class="site-header" id="site-header">
-      <div class="site-header__inner">
-        <a class="site-brand" href="index.html">
-          <svg viewBox="0 0 128 96" aria-hidden="true" focusable="false" width="96" height="72">
-            <use href="assets/images/logo.svg#student-connection"></use>
-          </svg>
-          <span>Binô</span>
-        </a>
-      </div>
-    </header>
+<header class="site-header">
+  <?php require __DIR__ . '/../../backend/includes/header.php'; ?>
+</header>
 
     <main class="auth-page">
       <h1>Bienvenue sur notre plateforme</h1>
@@ -104,29 +97,9 @@
       </section>
     </main>
 
-    <footer class="site-footer">
-      <div class="site-footer__inner">
-        <nav aria-label="Navigation de pied de page">
-          <ul class="footer-links">
-            <li>
-              <a class="button button--secondary" href="index.html" aria-label="Accueil">
-                <svg class="icon" aria-hidden="true" focusable="false" width="24" height="24">
-                  <use href="assets/images/icons/navigation.svg#home"></use>
-                </svg>
-              </a>
-            </li>
-            <li>
-              <a class="button button--secondary" href="aide.html" aria-label="Aide / FAQ">
-                <svg class="icon" aria-hidden="true" focusable="false" width="24" height="24">
-                  <use href="assets/images/icons/navigation.svg#help"></use>
-                </svg>
-              </a>
-            </li>
-          </ul>
-        </nav>
-        <p>Mentions légales — à venir</p>
-      </div>
-    </footer>
+<footer class="site-footer">
+  <?php require __DIR__ . '/../../backend/includes/footer.php'; ?>
+</footer>
 
     <script src="assets/js/main.js"></script>
   </body>

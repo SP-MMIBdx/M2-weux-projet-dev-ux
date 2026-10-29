@@ -151,27 +151,27 @@ Au 28/10/2026, la structure versionnée de travail est la suivante :
 │       ├── fluxetudiant.html
 │       ├── fluxparrain.html
 │       ├── index.html
-│       ├── login.html
+│       ├── login.php
 │       ├── profil.html
 │       └── profileconfiguration.html
 ├── .gitignore
 └── README.md
 ```
 
-`frontend/public/` est la racine publique : sept pages HTML et l’inscription PHP y sont placées directement ; CSS, JavaScript et images restent dans `assets/`.
+`frontend/public/` est la racine publique : six pages HTML, inscription et connexion PHP y sont placées directement ; CSS, JavaScript et images restent dans `assets/`.
 
-Le dossier public `includes/` contient les fragments HTML chargés par `loadPartial` dans les sept pages non migrées. Les deux flux et le profil utilisent header et footer HTML ; accueil, aide, connexion et configuration gardent un footer local. L’inscription utilise les inclusions privées PHP sans cibles de remplacement JavaScript. Le contenu des huit écrans reste fictif ; le serveur PHP local permet de tester les deux mécanismes.
+Le dossier public `includes/` contient les fragments HTML chargés par `loadPartial` dans les six pages non migrées. Les deux flux et le profil utilisent header et footer HTML ; accueil, aide et configuration gardent un footer local. Inscription et connexion utilisent les inclusions privées PHP sans cibles de remplacement JavaScript. Le contenu des huit écrans reste fictif ; le serveur PHP local permet de tester les deux mécanismes.
 
 ### Dépendances du frontend statique
 
 ```mermaid
 flowchart TD
-    Pages["Huit écrans : sept HTML, une PHP"] --> CSS["style.css"]
+    Pages["Huit écrans : six HTML, deux PHP"] --> CSS["style.css"]
     Pages --> JS["main.js"]
-    JS --> Header["header.html : sept pages HTML"]
+    JS --> Header["header.html : six pages HTML"]
     JS --> Footer["footer.html : deux flux et profil"]
     JS --> Interactions["Interactions des formulaires"]
-    Pilot["createprofile.php"] --> PHPHeader["backend/includes/header.php"]
+    Pilot["createprofile.php et login.php"] --> PHPHeader["backend/includes/header.php"]
     Pilot --> PHPFooter["backend/includes/footer.php : public"]
 ```
 
@@ -305,6 +305,8 @@ Rythme retenu : journal mis à jour à chaque étape ; README et plan actualisé
 
 Précision de Steve du 26/10/2026 pour PHP/SQL : avant chaque création ou modification, expliquer brièvement pourquoi ce fichier est nécessaire, qui l’appelle et à quels autres fichiers il se relie. Présenter le premier code par petits blocs avec explication de chaque ligne, puis laisser Steve le saisir et vérifier le résultat avant de poursuivre. Ces explications alimentent le bilan pédagogique quotidien hors dépôt ; ce bilan ne remplace pas l’accompagnement pendant l’exercice.
 
+Rappel de Steve du 29/10 : à sa demande en fin de journée, fournir une fiche personnelle Markdown PHP hors dépôt, avec explication ligne par ligne du code effectivement étudié, concepts clés, liens entre fichiers, erreurs corrigées et vérifications réelles. Inclure notamment head/header, wrapper/fragment, PHP côté serveur, require, __DIR__, chemins disque/URL, interactions conservées, GET et validation stricte. Ne pas présenter une étape proposée mais non saisie comme réalisée.
+
 Pour limiter les doublons, le dépôt conserve la description du produit dans la documentation technique, l’état et les décisions de travail dans le plan, et l’historique factuel dans le journal. Les explications détaillées restent dans les supports personnels. Les synthèses quotidiennes portent surtout sur le code nouveau ou modifié, ses interactions et les notions à réviser ; elles ne recopient pas toute l’application chaque jour.
 
 L’IA peut préparer et rédiger ces documents à partir des éléments fournis et des fichiers autorisés ; Steve et l’équipe en assurent la relecture, l’exactitude et la validation. La quantité de texte ne constitue pas une preuve de qualité ou de compréhension.
@@ -344,7 +346,7 @@ L’IA peut préparer et rédiger ces documents à partir des éléments fournis
 - [x] Centres d’intérêt et besoins statiques : cases natives présentées en mini-cartes
 - [ ] Adapter les domaines d’aide et leur formulation au rôle parrain
 - [x] Confirmer le rendu mobile et la navigation clavier des mini-cartes (confirmation de Steve)
-- [ ] Présélection du rôle depuis les liens
+- [x] Présélection PHP du rôle depuis les liens : liste autorisée stricte et attribut selected conditionnel ; six cas CLI et quatre cas navigateur vérifiés le 29/10, aucune attribution de permission
 - [x] Retour JavaScript sur la correspondance des mots de passe (simulations IA réussies, fonctionnement navigateur confirmé par Steve)
 - [x] Comparaison client des e-mails par réutilisation de la fonction de confirmation (27/10 ; simulations IA réussies, fonctionnement navigateur confirmé par Steve)
 - [x] Compteur de description et limite native de 500 caractères choisie par Steve (27/10 ; simulations IA réussies, fonctionnement navigateur confirmé par Steve)
@@ -495,6 +497,8 @@ Objectif : commencer à rendre les pages dynamiques.
 **Incrément vérifié le 29/10/2026 :** inscription `createprofile.php` avec inclusions privées de `header.php` et `footer.php`, sans cibles de remplacement JavaScript. Un seul couple de fragments PHP retenu par Steve ; footer public à ce stade, conditions de session ultérieures. PHP exécuté, sortie comparée au HTML et navigation testée dans le navigateur intégré. Les quatre liens entrants ciblent PHP et l’ancienne copie HTML est supprimée. Aucun fichier d’exercice ni variante publique supplémentaire créé. Lecture GET et présélection encore non implémentées.
 
 ### Migration progressive proposée après revue du 28/10/2026
+
+**Checkpoint avant commit — 29/10 :** connexion et inscription migrées, anciennes copies HTML supprimées et liens entrants vérifiés. Présélection GET de l’inscription fonctionnelle, validée pour six cas CLI et quatre cas navigateur. Les fragments privés restent uniques ; aucun SQL, session ou formulaire actif. Configuration du profil proposée ensuite, aucun fichier PHP de configuration du profil encore créé. Les paragraphes datés ci-dessous conservent les repères de la progression initiale, notamment la présélection qui était alors à réaliser.
 
 **Bascule vérifiée le 29/10 :** les quatre liens entrants d’inscription dans accueil, FAQ et connexion ciblent `createprofile.php`. Parcours testés dans le navigateur intégré ; paramètres étudiant/parrain conservés. Ancienne copie HTML retirée par Steve et absence de références applicatives contrôlée. La présélection reste le prochain exercice.
 
