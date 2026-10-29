@@ -1059,3 +1059,58 @@ Notes de Steve prises lors du retour enseignant, synthétisées sans ajout de re
 - Simulation Node du chargeur réel : succès, HTTP 404, rejet réseau, lecture de réponse en échec et cible absente ; fallback conservé dans les cas d’erreur, aucun fetch sans conteneur. Erreurs simulées, pas de panne réelle imposée au serveur. Préférence reduced-motion vérifiée en source lors des étapes précédentes, pas émulation du réglage système dans cette revue.
 - Jalon retenu : base frontend statique prête pour migration progressive des inclusions PHP. État réel maintenu : pas de session, base, authentification ou sauvegarde ; présélection du rôle, adaptation parrain et navigation protégée encore ouvertes. Placeholders backend relus et toujours commentés, configuration privée non consultée. README/plan mis à jour sans modifier la documentation technique de périmètre.
 - À la demande de Steve, pistes conceptuelles seulement ajoutées au plan : détail d’un parrain, suivi des demandes/parrainage, démarches/ressources et récupération d’accès. Aucun écran supplémentaire créé ni scope produit acté. HTML, documentation et présente synthèse rédigés par l’IA ; espaces Git contrôlés. Aucun staging ou commit effectué.
+
+### 29/10/2026 — Préférence de suivi navigateur et relais PHP
+
+- Steve souhaite pouvoir regarder les essais dans le navigateur intégré : préférence enregistrée dans la méthode du plan (annoncer, afficher les essais, distinguer source/simulations, garder l’onglet sur demande). Aucun changement de configuration de l’application ou d’automatisation effectué.
+- Préparation à sa demande d’un prompt de relais vers son échange backend existant, sans envoi à un autre agent. Ordre proposé : relire le contexte, une inclusion PHP pilote sans base, étendre après contrôle, puis définir le modèle SQL avant PDO/authentification. Serveur PHP local déjà disponible ; WAMP/MySQL à démarrer seulement quand requis, tests du premier PHP exécutable à ne pas différer jusqu’à une grosse intégration.
+- Notes et prompt rédigés par l’IA, espaces Git contrôlés ; aucun code applicatif, serveur, base, staging ou commit modifié.
+
+### 29/10/2026 — Premier fragment de header préparé manuellement pour PHP
+
+- Après explication ligne par ligne par l’IA, Steve remplace lui-même les commentaires de `backend/includes/header.php` par le contenu HTML du header Binô existant. Classes, lien d’accueil et référence au logo conservés ; aucun code PHP nécessaire dans ce fragment de présentation.
+- Vérifications IA : contenu identique au fragment public actuel et contrôle `php -n -l backend/includes/header.php` réussi ; contrôle Git des espaces réussi. Aucun appel depuis une page à ce stade, aucun essai HTTP ou navigateur pendant cette étape : le rendu par inclusion reste à vérifier dès la saisie du premier appel PHP.
+- Présente entrée rédigée par l’IA. Aucun fichier applicatif modifié par l’IA, staging ou commit effectué. Prochaine étape expliquée : préparer la version PHP pilote de l’inscription sans basculer les liens existants, remplacer son seul header de secours par une inclusion fixe et retirer son ID de ciblage JavaScript ; footer et interactions conservés.
+
+### 29/10/2026 — Premier appel d’inclusion : exécution et correction à saisir
+
+- Steve crée manuellement `frontend/public/createprofile.php` et saisit l’inclusion du header. Contrôle IA : `php -n -l` réussi et exécution CLI produisant le contenu du fragment, sans connexion SQL ni session.
+- Relecture : le nouveau bloc header remplace par erreur le bloc `<head>` (métadonnées, titre et lien CSS absents), tandis que le header original et son ID de chargement JavaScript restent dans le body. Deux headers produits ; syntaxe PHP valide ne signifie donc pas structure HTML correcte. Correction expliquée à Steve, sans modification applicative par l’IA.
+- Essais navigateur annoncés puis différés après ce constat source, jusqu’à correction de cette petite étape. Aucun essai HTTP ou navigateur effectué ni validation visuelle revendiquée. Présente note rédigée par l’IA ; contrôle Git des espaces effectué, staging et commits laissés à Steve.
+
+### 29/10/2026 — Inclusion du header pilote corrigée et vérifiée
+
+- Steve corrige manuellement `createprofile.php` : head restauré, header unique dans le body avec inclusion fixe et sans ID `site-header`. Vérifications IA : syntaxe PHP valide, exécution CLI réussie, un head et un header ; sortie identique à la page HTML après retrait du seul ID de chargement et normalisation des espaces entre balises.
+- Début et fin des contrôles navigateur annoncés ; pilote ouvert visiblement dans le navigateur intégré sur `http://127.0.0.1:8000/createprofile.php`. Header/logo et styles affichés, lien de marque testé vers l’accueil. Sur le pilote, valeurs fictives saisies : conseil de longueur et confirmation des mots de passe visibles, bouton de révélation passant à « Masquer le mot de passe », soumission toujours désactivée. Retour sur le pilote avec champs réinitialisés et onglet conservé pour Steve.
+- Contrôle ciblé du premier incrément, sans nouvelle recette exhaustive des confirmations e-mail/username, du responsive ou du clavier. Footer encore local ; liens entrants toujours vers la version HTML. Aucun SQL ni authentification. Code saisi/corrigé par Steve, contrôles et présente entrée réalisés par l’IA ; espaces Git vérifiés, aucun staging ou commit effectué.
+
+### 29/10/2026 — Inclusion du footer : structure unique retenue et correction à saisir
+
+- Steve choisit de conserver un seul couple `backend/includes/header.php` / `footer.php`, sans nouveau fichier de variante publique. Le footer PHP contient pour l’instant la navigation publique du pilote ; les conditions de session seront étudiées lors de l’authentification. Les autres pages et leurs fragments HTML restent inchangés.
+- Steve saisit l’inclusion dans `createprofile.php` et copie le footer dans le fragment. Contrôles IA : syntaxe des deux fichiers valide, exécution CLI réalisée ; deux éléments footer produits car le fragment contient aussi le wrapper déjà présent dans la page. Sortie différente de l’original pour cette raison ; correction expliquée à Steve : conserver le wrapper dans la page et uniquement son contenu dans le fragment.
+- Vérification navigateur annoncée puis différée jusqu’à correction, aucun essai visuel effectué à cette étape. Note rédigée par l’IA, espaces Git contrôlés ; aucun code applicatif modifié par l’IA, staging ou commit effectué.
+
+### 29/10/2026 — Footer pilote corrigé et contrôlé
+
+- À la demande explicite de Steve, l’IA retire uniquement les balises footer ouvrante/fermante du fragment `backend/includes/footer.php`. Le wrapper reste dans la page ; son contenu est inclus. Aucun changement de style, navigation, JavaScript, SQL ou authentification.
+- Vérifications IA : syntaxe PHP du fragment et du pilote valide ; exécution CLI avec exactement un header et un footer. Sortie identique à la version HTML après retrait du seul ID de chargement header et normalisation des espaces entre balises. Espaces Git contrôlés.
+- Essais annoncés et réalisés dans le navigateur intégré visible : rendu du footer public et des deux icônes, clic FAQ vers `aide.html`, retour au pilote et clic du lien Accueil du footer vers `index.html`, puis retour au pilote. Soumission affichée désactivée. Onglet conservé à la position du footer ; pas de nouvelle recette responsive/clavier ou de toutes les interactions du formulaire pendant ce contrôle ciblé.
+- Plan actualisé avec le choix d’un couple unique de fragments PHP et l’état du pilote. Liens entrants encore inchangés : bascule manuelle proposée ensuite à Steve, paramètres de rôle à conserver. Correction du fragment et documentation réalisées par l’IA, premier appel saisi par Steve ; aucun staging ni commit effectué.
+
+### 29/10/2026 — Liens d’inscription basculés vers PHP
+
+- Steve modifie manuellement les quatre href dans `index.html`, `aide.html` et `login.html` vers `createprofile.php`, avec conservation de `?role=etudiant` et `?role=parrain` sur les deux liens de connexion. Relecture IA : différences limitées à ces quatre destinations ; aucune référence à `createprofile.html` restante dans les sources HTML/PHP du frontend.
+- Essais annoncés et réalisés dans le navigateur intégré visible : clic inscription depuis accueil puis FAQ, retour connexion depuis le pilote, clic inscription étudiant puis parrain. Les quatre parcours aboutissent à la page PHP attendue ; paramètres conservés dans les URL. Choix du rôle encore vide et soumission désactivée, conformément à l’absence de traitement GET. Onglet pilote conservé avec URL rôle parrain.
+- Contrôle Git des espaces réussi. Code modifié par Steve ; vérifications et présente entrée rédigées par l’IA. Aucun nouveau traitement PHP, SQL, staging ou commit effectué. Ancienne copie HTML conservée pour l’instant ; prochaine étape possible : retrait de cette copie après validation de la bascule, puis exercice de présélection PHP.
+
+### 29/10/2026 — Retrait manuel de l’ancienne inscription HTML
+
+- Steve supprime `frontend/public/createprofile.html` après validation de la bascule. Vérifications IA : fichier absent, suppression visible dans Git, aucune référence à cette ancienne URL dans `frontend/public/` ou `backend/`. Le frontend conserve huit écrans : sept pages HTML et l’inscription PHP.
+- Aucun nouvel essai navigateur effectué pour ce retrait ; les quatre parcours vers PHP avaient été vérifiés à l’étape précédente. Présélection GET encore non implémentée ; premier bloc de lecture et de validation proposé à saisir par Steve avant de modifier les options du select.
+- Présente entrée rédigée par l’IA, contrôle Git des espaces réussi ; aucun fichier applicatif modifié par l’IA, staging ou commit effectué.
+
+### 29/10/2026 — Préparation du commit des premières inclusions PHP
+
+- À la demande de Steve, arrêt avant l’exercice GET pour préparer un checkpoint : inscription migrée vers PHP, fragments privés header/footer, quatre liens entrants basculés et ancienne page HTML supprimée. Relecture du début de `createprofile.php` : aucun bloc de lecture du rôle ajouté, présélection toujours non implémentée ; formulaires désactivés, sans SQL ni authentification.
+- README et état courant du plan synchronisés par l’IA : sept pages HTML et une PHP, arborescence, dépendances, exécution serveur et prochaine étape. Anciennes entrées datées du journal conservées comme historique. Contributions : saisie initiale et corrections manuelles de Steve, retrait du wrapper footer par l’IA à sa demande, contrôles et documentation par l’IA.
+- Contrôles de ce checkpoint : syntaxe des trois fichiers PHP valide et espaces Git vérifiés. Les essais navigateur et comparaisons de sortie sont ceux détaillés dans les entrées précédentes ; aucun nouvel essai navigateur effectué pour cette préparation documentaire. Nouveau fichier `createprofile.php` encore non suivi et suppression HTML visibles dans Git ; tous deux à inclure dans le même commit. Message proposé, staging et commit exclusivement laissés à Steve.
