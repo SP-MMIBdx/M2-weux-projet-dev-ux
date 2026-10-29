@@ -59,6 +59,41 @@ setupPasswordToggle(
   "Masquer la confirmation du mot de passe"
 );
 
+// Règles du nom de connexion, définies dans les attributs HTML du champ.
+function setupUsernameValidation(inputId, feedbackId) {
+  const input = document.getElementById(inputId);
+  const feedback = document.getElementById(feedbackId);
+
+  if (!input || !feedback) {
+    return;
+  }
+
+  function updateFeedback() {
+    let message = "";
+
+    if (input.value.length > input.maxLength) {
+      message = `Limite de ${input.maxLength} caractères dépassée.`;
+    } else if (input.validity.patternMismatch) {
+      message = "Utilise uniquement des lettres A–Z, des chiffres, _ ou -, sans espace.";
+    }
+
+    input.setCustomValidity(message);
+    feedback.textContent = message;
+
+    if (message) {
+      input.setAttribute("aria-invalid", "true");
+    } else {
+      input.removeAttribute("aria-invalid");
+    }
+  }
+
+  input.addEventListener("input", updateFeedback);
+  updateFeedback();
+}
+
+setupUsernameValidation("register-username", "register-username-feedback");
+setupUsernameValidation("login-username", "login-username-feedback");
+
 // Retour immédiat sur deux champs à comparer
 function setupFieldConfirmation(inputId, confirmationId, feedbackId, matchMessage, mismatchMessage) {
   const input = document.getElementById(inputId);

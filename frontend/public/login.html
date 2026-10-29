@@ -35,6 +35,10 @@
         />
 
         <form class="auth-form" method="post" aria-describedby="login-note">
+          <p id="login-note">
+            Tous les champs sont obligatoires. Maquette : la connexion n’est pas encore disponible.
+          </p>
+
           <div class="form-panel">
             <div class="form-field">
               <label for="login-username">Nom d’utilisateur</label>
@@ -43,8 +47,17 @@
                 id="login-username"
                 name="username"
                 autocomplete="username"
+                maxlength="24"
+                pattern="[A-Za-z0-9_\-]+"
+                autocapitalize="none"
+                spellcheck="false"
+                aria-describedby="login-username-help login-username-feedback"
                 required
               />
+              <p id="login-username-help">
+                24 caractères maximum, lettres A–Z, chiffres, _ ou -, sans espace.
+              </p>
+              <p id="login-username-feedback"></p>
             </div>
           </div>
 
@@ -68,10 +81,6 @@
               </button>
             </div>
           </div>
-
-          <p id="login-note">
-            Maquette : la connexion n’est pas encore disponible.
-          </p>
 
           <button type="submit" class="button" disabled>Se connecter</button>
         </form>
