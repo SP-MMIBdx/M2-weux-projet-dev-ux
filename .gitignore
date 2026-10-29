@@ -1,1 +1,14 @@
-/backend/config/database.local.php
+# Configuration locale et secrets ; modeles sans identifiants versionnables.
+/backend/config/*.local.php
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# Emplacements reserves aux journaux et exports prives.
+/backend/logs/
+/backend/sql/private/
+
+# Fichiers de bases locales eventuelles.
+*.sqlite
+*.sqlite3

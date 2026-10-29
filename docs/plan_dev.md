@@ -109,6 +109,8 @@ Branche de développement commune à l'équipe.
 
 ## 5. Structure actuelle du dépôt
 
+**Branches — précision de Steve après migration, 29/10/2026 :** `main` contient la version PHP et `dev` reste volontairement au checkpoint frontend avant PHP. Ce décalage est intentionnel ; aucune fusion ou synchronisation automatique à réaliser pour aider le groupe à lancer le projet. Les commandes de premier lancement, prérequis et choix de branche sont dans le README. Le workflow d’intégration ultérieur reste à discuter avec le groupe.
+
 Au 29/10/2026, après migration des inclusions, la structure de travail est la suivante :
 
 ```text
@@ -176,6 +178,8 @@ CSS et JavaScript restent dans leurs dossiers assets. Les chemins des liens et S
 La branche `dev` contient également les prototypes d’Alexandre et Ange dans `prototypes/`.
 
 Les fragments privés sont utilisés sur les huit pages. Connexion PDO, schéma et modèle public de configuration restent préparatoires ; configuration locale exclue de Git. Aucune connexion SQL, authentification ou persistance fonctionnelle.
+
+**Exclusions et lancement local — 29/10 :** configuration `*.local.php`, éventuels `.env` (modèles .example exceptés), journaux `backend/logs/`, exports privés `backend/sql/private/` et fichiers SQLite locaux exclus. Ces dossiers ne sont pas créés par cette convention. Code PDO, schéma SQL et modèles sans secrets restent versionnables. Gitignore ne remplace pas les contrôles HTTP ni la vérification des fichiers déjà suivis. Le README distingue racine du dépôt, exécutable PHP dans Wampserver et racine publique ; aucune copie du projet sous Wampserver nécessaire pour le serveur intégré. Travail sur les données différé à la demande de Steve.
 
 ---
 

@@ -60,7 +60,41 @@ PHP assemble le header et le footer avant de transmettre le HTML au navigateur. 
 
 ## Lancement local
 
-Depuis un terminal à la racine du dépôt, lancer le serveur de développement PHP installé localement (adapter le chemin selon la machine) :
+### Choisir la version du projet
+
+Au checkpoint du 29/10/2026, les branches ont volontairement deux états différents :
+
+| Branche | Version | Lancement |
+| --- | --- | --- |
+| `main` | Huit pages PHP avec inclusions partagées | Serveur PHP local nécessaire |
+| `dev` | Checkpoint frontend avant PHP, huit pages HTML | Serveur HTTP statique ou PHP ; pas d’exécution PHP requise |
+
+`dev` est conservée à ce checkpoint par Steve. Ne pas y fusionner `main` uniquement pour lancer le projet. Le fonctionnement du footer du checkpoint statique peut être perturbé par l’injection Live Server ; le serveur PHP local peut aussi servir les fichiers HTML sans les modifier.
+
+### Premier lancement de la version PHP pour un membre du groupe
+
+Prévoir Git et un interpréteur PHP CLI installé. Référence testée sur la machine de Steve : PHP 8.3.14 ; utiliser une version PHP 8.3 maintenue à jour pour rester proche de cet environnement. Aucun MySQL/MariaDB, service Apache, Composer, npm, compte utilisateur ou fichier de configuration privé n’est requis pour le rendu actuel.
+
+Dans un terminal, télécharger la branche PHP dans le dossier de son choix :
+
+```text
+git clone --branch main https://github.com/SP-MMIBdx/M2-weux-projet-dev-ux.git bino-php
+cd bino-php
+php -v
+php -S 127.0.0.1:8000 -t frontend/public
+```
+
+Les deux dernières commandes fonctionnent dans PowerShell, Terminal macOS et les shells Linux si `php` est dans le PATH. Si la commande est inconnue, PHP doit être installé ou son chemin déclaré ; utiliser sinon le chemin complet de l’exécutable déjà installé. Exemple PowerShell propre à la machine de Steve, à adapter :
+
+Le projet n’a pas besoin d’être placé dans `C:\wamp64\www`. Sur la machine de Steve, les chemins ont trois rôles distincts :
+
+| Chemin | Rôle |
+| --- | --- |
+| `D:\University\Github\M2-weux-projet-dev-ux\M2-weux-projet-dev-ux` | Racine du dépôt, depuis laquelle lancer le serveur |
+| `C:\wamp64\bin\php\php8.3.14\php.exe` | Programme PHP installé par Wampserver ; aucun fichier du projet à y copier |
+| `frontend/public` dans le dépôt | Racine HTTP définie par `-t` ; fichiers publics servis au navigateur |
+
+Chaque membre conserve son clone où il le souhaite et utilise son propre exécutable PHP. Le serveur intégré fonctionne indépendamment du DocumentRoot Apache de Wampserver ; ce README ne configure pas Apache.
 
 ```powershell
 & "C:\wamp64\bin\php\php8.3.14\php.exe" -S 127.0.0.1:8000 -t frontend/public
@@ -68,9 +102,43 @@ Depuis un terminal à la racine du dépôt, lancer le serveur de développement 
 
 Ouvrir [l’accueil](http://127.0.0.1:8000/), [le flux parrain](http://127.0.0.1:8000/fluxparrain.php) ou [la connexion](http://127.0.0.1:8000/login.php). Garder le terminal ouvert, rafraîchir manuellement et arrêter avec Ctrl+C. Les services WAMP/MySQL ne sont pas nécessaires à cette étape.
 
+`-S` lance le serveur de développement et `-t frontend/public` limite les fichiers servis à la racine publique ; lancer la commande depuis la racine du dépôt. `127.0.0.1` désigne la machine du membre du groupe : chacun ouvre sa propre adresse locale. Si le port 8000 est occupé, utiliser 8001 dans la commande et dans l’adresse du navigateur. Ce serveur reste destiné aux essais locaux.
+
+Vérification simple : accueil avec logo, connexion, inscription depuis les deux choix de rôle et FAQ accessibles ; rôle initial correct et boutons de soumission désactivés. Si du PHP brut s’affiche, que le fichier est téléchargé ou que la page est ouverte depuis `file://`, vérifier que l’adresse utilise bien le serveur PHP. Les pages fictives ne permettent pas encore de créer un compte ou sauvegarder un profil.
+
+Pour récupérer une mise à jour dans une copie existante : vérifier `git status`, puis, si le travail local est sauvegardé et l’arbre propre, `git fetch origin`, `git switch main` et `git pull --ff-only`. En cas de divergence ou de travail local en attente, s’arrêter pour décider de son intégration ; aucune commande de réinitialisation n’est nécessaire au lancement.
+
+### Consulter le checkpoint statique sans toucher à la copie PHP
+
+Une seconde copie est possible dans un autre dossier :
+
+```text
+git clone --branch dev https://github.com/SP-MMIBdx/M2-weux-projet-dev-ux.git bino-static
+cd bino-static
+php -S 127.0.0.1:8001 -t frontend/public
+```
+
+Ouvrir `http://127.0.0.1:8001/index.html`. PHP ne fait ici que servir les fichiers statiques ; un serveur HTTP statique sans injection perturbant les fragments convient aussi. Les instructions de ce README concernent `main` : le README de la copie `dev` peut conserver les indications historiques du checkpoint.
+
 Le serveur PHP exécute désormais les huit pages. Live Server et les URL `file://` ne permettent pas cette exécution. Le changement de prévisualisation du 28/10, puis la suppression du chargement JavaScript des fragments le 29/10, sont détaillés dans le journal. Aucun changement d’environnement ni build requis.
 
 Le serveur fournit les fichiers ; le navigateur exécute JavaScript. Aucun build ni installation de dépendances applicatives n’est nécessaire. Dans l’émulation mobile des outils de développement, utiliser « Fit to window » pour voir l’intégralité du viewport simulé.
+
+## Fichiers privés et exclusions Git
+
+Les règles couvrent ces noms/emplacements, sans créer de base ni implémenter de traitement de données :
+
+| Exclu de Git | Usage |
+| --- | --- |
+| `backend/config/*.local.php` | Configuration personnelle, notamment `database.local.php` et futurs identifiants |
+| `.env` et `.env.*` | Éventuels secrets, à tout niveau ; aucun chargement .env implémenté |
+| `backend/logs/` | Journaux locaux |
+| `backend/sql/private/` | Emplacement réservé aux exports/sauvegardes contenant des données privées |
+| `*.sqlite`, `*.sqlite3` | Fichiers de bases locales éventuelles ; SQLite non utilisé actuellement |
+
+Les modèles `.env.example`, `.env.*.example` et `database.local.php.example` restent versionnables et doivent contenir uniquement des exemples sans vrais secrets. `backend/db.php` et `backend/sql/schema.sql` restent partagés : code et structure, sans identifiants ni données privées. Un export SQL placé ailleurs que dans le dossier privé n’est pas automatiquement ignoré ; ne pas y ajouter de données réelles.
+
+`.gitignore` évite l’ajout ordinaire de fichiers non suivis correspondant aux règles. Il ne masque pas les dossiers dans l’éditeur, ne retire pas les fichiers déjà suivis et ne protège pas les URL. La séparation HTTP repose sur `frontend/public/` ; configuration et fichiers privés restent hors de cette racine. Vérifier `git status` avant staging : aucun motif de nommage ne détecte un secret collé dans un fichier suivi.
 
 ## Documentation
 
