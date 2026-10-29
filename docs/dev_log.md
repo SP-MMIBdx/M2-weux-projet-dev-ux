@@ -1151,3 +1151,28 @@ Notes de Steve prises lors du retour enseignant, synthétisées sans ajout de re
 - Steve demande un commit avant de poursuivre la configuration du profil. Périmètre en attente confirmé : lecture/validation GET et selected conditionnel de l’inscription, connexion PHP et liens entrants, suppression de `login.html`, mise en forme des deux fragments partagés. Aucun `profileconfiguration.php` créé.
 - README et plan actualisés par l’IA pour les six pages HTML et deux PHP, diagrammes, navigation et statut de la présélection ; journal complété sans supprimer les vérifications antérieures. Différences des fragments relues : indentation et fin de fichier uniquement, contenu conservé. Aucun code applicatif modifié par l’IA pendant cette préparation.
 - Contrôle des espaces et syntaxe PHP de connexion, inscription et des deux fragments réussis. Essais navigateur et cas GET sont ceux des entrées précédentes, sans nouvelle recette exécutée ici. Message de commit proposé ; nouveau `login.php` et suppression HTML à inclure ensemble. Aucun staging ni commit effectué par l’IA.
+
+### 29/10/2026 — Pilote configuration du profil vérifié avant bascule
+
+- Steve crée manuellement `profileconfiguration.php` avec les mêmes inclusions header/footer. Relecture IA : syntaxe PHP valide, exécution CLI produisant un header et un footer sans IDs du chargeur ; sortie équivalente au HTML après normalisation du formatage et retrait du seul ID header. Compteurs, groupes et soumission désactivée conservés.
+- Essais annoncés et réalisés dans le navigateur intégré visible : description « Bonjour » donnant 7 / 500, sélection des six intérêts puis des sept besoins, désélection indépendante des intérêts en conservant les besoins, puis désélection des besoins. États des boutons et compteurs conformes, soumission désactivée ; rechargement et retour à zéro confirmés, onglet conservé. Pas de nouvelle recette des limites à 500, du responsive ou de tous les liens.
+- Un lien entrant reste à migrer : `profil.html` cible encore `profileconfiguration.html`. Consigne à Steve : remplacer ce href par `profileconfiguration.php` et vérifier le parcours avant de supprimer l’ancienne copie. Code saisi par Steve ; tests et présente note par l’IA, espaces Git contrôlés ; aucun code applicatif, staging ou commit effectué par l’IA à cette étape.
+
+### 29/10/2026 — Lien profil vers configuration PHP validé
+
+- Steve bascule le seul href de configuration dans `profil.html` vers `profileconfiguration.php`. Relecture IA : différence limitée à cette destination, aucune référence à l’ancienne URL HTML dans les sources frontend/backend ; syntaxe PHP et espaces Git valides.
+- Essai annoncé et réalisé dans le navigateur intégré visible : ouverture du profil, activation Entrée du lien « Configurer mon profil », arrivée sur la configuration PHP avec formulaire et compteur initial présents, soumission désactivée. Contrôle terminé et onglet conservé. Tests des groupes et du compteur déjà détaillés à l’étape précédente, non répétés ici.
+- Suppression de l’ancienne copie HTML désormais possible après cette validation, non effectuée par l’IA. Code modifié par Steve, tests et présente note par l’IA ; aucun staging ni commit effectué.
+
+### 29/10/2026 — Ancienne configuration retirée, FAQ proposée ensuite
+
+- Suppression manuelle de `profileconfiguration.html` confirmée : fichier absent, suppression visible dans Git et aucune référence applicative restante. Les parcours vers PHP et interactions avaient été vérifiés aux étapes précédentes ; aucun nouvel essai navigateur pour ce retrait.
+- Prochaine répétition proposée à Steve : `aide.php` avec inclusions publiques existantes, compteur contact et envoi désactivé conservés. Vérifier la page avant de modifier les destinations FAQ dans les deux fragments, les pages HTML et leurs fallbacks ; un changement du footer PHP se propage aux trois pages déjà migrées. Aucune bascule FAQ effectuée à ce stade.
+- Note rédigée par l’IA, espaces Git contrôlés ; aucune modification applicative, installation, staging ou commit par l’IA.
+
+### 29/10/2026 — Pilote FAQ testé et préparation du checkpoint
+
+- Steve crée manuellement `aide.php` avec les inclusions publiques existantes ; aucun lien FAQ basculé. Contrôles IA : syntaxe PHP valide, un header/un footer sans IDs du chargeur, sortie équivalente à `aide.html` après normalisation du formatage et retrait du seul ID header. Premier comparateur signalant uniquement un espace de fin de paragraphe ; contenu relu puis équivalence confirmée avec normalisation adaptée.
+- Essais annoncés et réalisés dans le navigateur intégré visible : cinq réponses FAQ présentes, saisie « Bonjour » donnant 7 / 500, envoi désactivé, activation Entrée du lien inscription vers `createprofile.php`, puis du lien Accueil du footer vers `index.html`. Retour au pilote FAQ avec compteur réinitialisé, onglet conservé. Aucun essai de soumission, de limite 500, de responsive global ni nouvelle recette du lien FAQ encore vers HTML.
+- Checkpoint demandé par Steve avant poursuite : configuration PHP avec lien profil et suppression de l’ancienne copie, plus FAQ PHP pilote conservant sa version HTML et ses anciennes destinations. README et plan actualisés par l’IA ; vérification des espaces et syntaxe des quatre pages PHP et deux fragments. Résultats navigateur de configuration et de ses liens consignés aux entrées précédentes, non répétés ici.
+- Code saisi par Steve, contrôles et documentation par l’IA. Aucun staging ni commit effectué ; message proposé pour ce périmètre, bascule FAQ à réaliser dans l’étape suivante.

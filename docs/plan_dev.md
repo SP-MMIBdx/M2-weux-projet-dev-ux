@@ -147,18 +147,19 @@ Au 28/10/2026, la structure versionnée de travail est la suivante :
 │       │   ├── header.html
 │       │   └── footer.html
 │       ├── aide.html
+│       ├── aide.php (pilote, liens FAQ encore vers HTML)
 │       ├── createprofile.php
 │       ├── fluxetudiant.html
 │       ├── fluxparrain.html
 │       ├── index.html
 │       ├── login.php
 │       ├── profil.html
-│       └── profileconfiguration.html
+│       └── profileconfiguration.php
 ├── .gitignore
 └── README.md
 ```
 
-`frontend/public/` est la racine publique : six pages HTML, inscription et connexion PHP y sont placées directement ; CSS, JavaScript et images restent dans `assets/`.
+`frontend/public/` est la racine publique : cinq pages HTML, inscription/connexion/configuration PHP et pilote FAQ PHP y sont placés directement ; CSS, JavaScript et images restent dans `assets/`. Le pilote FAQ est une copie temporaire du même écran avant bascule de ses liens.
 
 Le dossier public `includes/` contient les fragments HTML chargés par `loadPartial` dans les six pages non migrées. Les deux flux et le profil utilisent header et footer HTML ; accueil, aide et configuration gardent un footer local. Inscription et connexion utilisent les inclusions privées PHP sans cibles de remplacement JavaScript. Le contenu des huit écrans reste fictif ; le serveur PHP local permet de tester les deux mécanismes.
 
@@ -166,12 +167,12 @@ Le dossier public `includes/` contient les fragments HTML chargés par `loadPart
 
 ```mermaid
 flowchart TD
-    Pages["Huit écrans : six HTML, deux PHP"] --> CSS["style.css"]
+    Pages["Huit écrans : cinq HTML, trois PHP ; pilote FAQ"] --> CSS["style.css"]
     Pages --> JS["main.js"]
-    JS --> Header["header.html : six pages HTML"]
+    JS --> Header["header.html : cinq pages HTML"]
     JS --> Footer["footer.html : deux flux et profil"]
     JS --> Interactions["Interactions des formulaires"]
-    Pilot["createprofile.php et login.php"] --> PHPHeader["backend/includes/header.php"]
+    Pilot["Inscription, connexion, configuration et pilote FAQ"] --> PHPHeader["backend/includes/header.php"]
     Pilot --> PHPFooter["backend/includes/footer.php : public"]
 ```
 
@@ -497,6 +498,8 @@ Objectif : commencer à rendre les pages dynamiques.
 **Incrément vérifié le 29/10/2026 :** inscription `createprofile.php` avec inclusions privées de `header.php` et `footer.php`, sans cibles de remplacement JavaScript. Un seul couple de fragments PHP retenu par Steve ; footer public à ce stade, conditions de session ultérieures. PHP exécuté, sortie comparée au HTML et navigation testée dans le navigateur intégré. Les quatre liens entrants ciblent PHP et l’ancienne copie HTML est supprimée. Aucun fichier d’exercice ni variante publique supplémentaire créé. Lecture GET et présélection encore non implémentées.
 
 ### Migration progressive proposée après revue du 28/10/2026
+
+**Checkpoint configuration et pilote FAQ — 29/10 :** configuration PHP exécutée et testée (compteur, sélections indépendantes), lien depuis le profil vérifié et ancienne copie HTML supprimée. `aide.php` exécuté et vérifié avec les mêmes inclusions : compteur contact, contenu et navigation conservés, envoi désactivé. Les liens FAQ ciblent toujours `aide.html` ; conserver cette copie jusqu’à bascule coordonnée des pages, fragments publics et footer PHP. Aucun traitement de données ni nouveau comportement client.
 
 **Checkpoint avant commit — 29/10 :** connexion et inscription migrées, anciennes copies HTML supprimées et liens entrants vérifiés. Présélection GET de l’inscription fonctionnelle, validée pour six cas CLI et quatre cas navigateur. Les fragments privés restent uniques ; aucun SQL, session ou formulaire actif. Configuration du profil proposée ensuite, aucun fichier PHP de configuration du profil encore créé. Les paragraphes datés ci-dessous conservent les repères de la progression initiale, notamment la présélection qui était alors à réaliser.
 
