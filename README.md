@@ -144,5 +144,6 @@ Les modèles `.env.example`, `.env.*.example` et `database.local.php.example` re
 
 - [Documentation technique](docs/documentation_technique.md) : fonctionnement et périmètre du projet
 - [Plan de développement](docs/plan_dev.md) : feuille de route et bilan quotidien
+- [Sécurité et confidentialité](docs/security_privacy.md) : checklist partagée et statuts de vérification, selon les fonctionnalités présentes
 - [Journal de développement](docs/dev_log.md) : suivi chronologique des changements
 - [Wireframes](docs/wireframes/WIREFRAME_V1.pdf) : référence fonctionnelle

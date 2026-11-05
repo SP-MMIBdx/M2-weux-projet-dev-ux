@@ -129,7 +129,8 @@ Au 29/10/2026, après migration des inclusions, la structure de travail est la s
 │   │   └── WIREFRAME_V1.pdf
 │   ├── dev_log.md
 │   ├── documentation_technique.md
-│   └── plan_dev.md
+│   ├── plan_dev.md
+│   └── security_privacy.md
 ├── frontend/
 │   └── public/
 │       ├── assets/
@@ -231,6 +232,8 @@ Le travail initial directement sur `main` diffère de la recommandation avancée
 ### Sécurité dès les premières étapes PHP/SQL — 26/10/2026
 
 Demande de Steve : intégrer la sécurité à chaque fonctionnalité dès sa construction. La revue finale de sécurité reste nécessaire, mais ne remplace pas ces contrôles progressifs. Cette liste fixe des critères à implémenter et vérifier ; elle ne décrit pas des protections déjà fonctionnelles.
+
+La [checklist partagée de sécurité et de confidentialité](security_privacy.md), ajoutée le 05/11/2026 à la demande de Steve, regroupe les points transversaux pour l’équipe et ses outils : minimisation des données, accès, entrées/sorties, configuration, tiers, cookies et confidentialité. Le tableau ci-dessous conserve les jalons et critères d’activation ; les résultats réels restent dans le journal avec statut « vérifié / problème trouvé / non applicable / non testé ». Ne pas dupliquer la checklist à chaque incrément ni présenter les fonctions absentes comme sécurisées.
 
 | Étape | Protections à construire | Vérification attendue avant activation |
 | --- | --- | --- |
