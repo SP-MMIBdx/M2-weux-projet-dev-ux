@@ -1,4 +1,4 @@
-import translations from "./vendor/zxcvbn-ts/translations-fr.mjs";
+  import translations from "./vendor/zxcvbn-ts/translations-fr.mjs";
 
 const input = document.getElementById("register-password");
 const feedback = document.getElementById("register-password-strength");

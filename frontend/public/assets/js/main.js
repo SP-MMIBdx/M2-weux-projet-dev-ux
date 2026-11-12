@@ -120,14 +120,8 @@ function setupCharacterCounter(inputId, counterId) {
 setupCharacterCounter("profile-description", "profile-description-count");
 setupCharacterCounter("contact-message", "contact-message-count");
 
-// Compteur et sélection groupée indépendants pour chaque groupe de cases
-function setupTagSelection(groupId) {
-  const group = document.getElementById(groupId);
-
-  if (!group) {
-    return;
-  }
-
+/** Gère le compteur et les actions groupées d’un groupe de cases. */
+function setupTagSelection(group) {
   const checkboxes = group.querySelectorAll('input[type="checkbox"]');
   const counter = group.querySelector("[data-selection-count]");
   const selectButton = group.querySelector("[data-select-all]");
@@ -164,5 +158,4 @@ function setupTagSelection(groupId) {
   updateSelection();
 }
 
-setupTagSelection("profile-interests");
-setupTagSelection("profile-needs");
+document.querySelectorAll("#profile-interests, #profile-needs").forEach(setupTagSelection);

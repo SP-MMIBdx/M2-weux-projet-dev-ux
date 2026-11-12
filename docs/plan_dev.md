@@ -437,7 +437,7 @@ La synthèse des suggestions de Yannis Delmas est conservée dans `docs/dev_log.
 2. Vérifier ce que fournit le champ HTML `type="password"` dans les navigateurs visés. Le masquage est natif. La commande de révélation dépend du navigateur. Conserver une bascule JavaScript commune si elle reste nécessaire pour offrir une commande cohérente et utilisable au clavier.
 3. Comparer les bibliothèques d’estimation de la force d’un mot de passe déjà disponibles et privilégier une solution adaptée au projet avant d’étendre les heuristiques maison. Évaluer le poids chargé, la lisibilité du retour et l’intégration sans étape de build. L’estimation s’exécute dans le navigateur et reste distincte de la confirmation des champs et de la validation serveur.
 
-**État de cet incrément :** `password-strength.mjs` affiche le score et un conseil de zxcvbn-ts, chargé localement à l’inscription seulement. Liste et règles maison retirées de `main.js` ; confirmation indépendante conservée. Fonctionnement navigateur confirmé par Steve. Un indicateur visuel peut être ajouté séparément, sans modifier l’estimation.
+**État de cet incrément :** `password-strength.mjs` affiche le score et un conseil de zxcvbn-ts, chargé localement à l’inscription seulement. Liste et règles maison retirées de `main.js` ; confirmation indépendante conservée. Fonctionnement navigateur confirmé par Steve. Le retour textuel suffit pour l’instant : reporter la mise en forme du message à la prochaine passe CSS, sans modifier l’estimation.
 
 Faire la revue des redondances HTML/CSS après ce premier incrément JavaScript, en tenant compte des sélecteurs utilisés par le script. L’édition du profil sur place et les demandes AJAX restent prévues aux phases 7 et 9.
 
