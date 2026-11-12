@@ -1228,3 +1228,10 @@ Notes de Steve prises lors du retour enseignant, synthétisées sans ajout de re
 - Liste transversale couvrant données/accès, validation, PDO, encodage, uploads, secrets, dépendances, cookies, information utilisateur et déploiement. Références OWASP/CNIL du document source conservées comme ressources à consulter aux étapes concernées ; aucun audit juridique ni revue actuelle de leurs contenus revendiqué. Authentification, base et uploads toujours non implémentés, sans cases déclarées vérifiées par anticipation.
 - Lien ajouté au README et à la rubrique sécurité du plan ; arborescence mise à jour. Jalons de protection par étape conservés dans le plan pour éviter de recopier la checklist. Document source personnel conservé sans modification ; pas de nouveau fichier d’instructions agent ajouté à la racine.
 - Adaptation et documentation rédigées par l’IA avec autorisation de Steve. Vérification des liens Markdown locaux, structure des blocs et espaces Git ; aucune modification applicative, recette de sécurité ou essai navigateur effectué. Arbre propre sur main au départ ; message de commit préparé pour Steve, aucun staging/commit effectué par l’IA.
+
+### 12/11/2026 — Retours de Y. Delmas du 09/11 : parrainage et profil
+
+- Notes transmises par Steve intégrées à la documentation technique et aux phases 7 et 9 du plan : mise à jour en AJAX de la carte après l’envoi, l’acceptation ou le refus d’une demande ; édition depuis `profil.php` sans passage par un écran de paramètres.
+- Notification d’acceptation avec lien vers le profil du parrain envisagée dans le lot 2. L’accès via le pied de page connecté et le rafraîchissement restent des pistes à arbitrer. Aucun fonctionnement en temps réel acté.
+- Répartition précisée : composants HTML pour les boutons, formulaires et messages ; JavaScript pour l’interaction et l’actualisation locale ; PHP/SQL pour les autorisations, la validation et les données. Propositions non implémentées.
+- Rédaction par l’IA à partir des notes de Steve ; différences et espaces Git vérifiés. Aucun code modifié, aucun essai navigateur, staging ou commit effectué.

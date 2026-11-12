@@ -611,6 +611,8 @@ Fonctionnalités :
 
 Les pages statiques construites précédemment commenceront alors à afficher des données provenant réellement de la base de données.
 
+**Édition sur place (retour Y. Delmas du 09/11) :** prévoir sur `profil.php` les vues de lecture et d’édition, avec formulaire et actions Modifier, Enregistrer et Annuler. JavaScript bascule entre les vues sur la même page. PHP vérifie que l’utilisateur peut modifier ce profil, valide les champs et enregistre les changements. Tester l’annulation, la sauvegarde et l’affichage des erreurs sans perdre la saisie.
+
 ---
 
 ## Phase 8 — Système de mise en relation
@@ -662,6 +664,10 @@ Fonctionnalités envisagées :
 - refus ;
 - affichage du statut ;
 - déblocage des informations de contact après acceptation.
+
+**Mise à jour des cartes sans rechargement (retour Y. Delmas du 09/11) :** préparer les boutons et une zone de retour dans chaque carte. JavaScript envoie l’action en AJAX (`fetch`), puis actualise la carte concernée avec l’état renvoyé par PHP : en attente côté étudiant après l’envoi, acceptée ou refusée côté parrain après sa décision. PHP contrôle la session, le rôle, l’accès à la demande et la transition d’état avant de l’enregistrer. Tester aussi un échec serveur : garder le dernier état confirmé et afficher un message.
+
+**Notification d’acceptation (lot 2) :** PHP fournit les notifications autorisées pour l’étudiant connecté ; l’interface affiche un lien vers le profil du parrain. L’accès par le pied de page et le mode de rafraîchissement restent à décider. La mise à jour immédiate de la carte de l’auteur de l’action ne suppose pas une notification en temps réel chez l’autre utilisateur.
 
 ---
 

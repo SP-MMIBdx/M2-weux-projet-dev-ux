@@ -4,7 +4,7 @@
 
 - **Titre du projet :** À définir
 - **Membres du groupe :** Alexandre, Ange, Steve
-- **Date de mise à jour du document :** 14/10/2026
+- **Date de mise à jour du document :** 12/11/2026
 - **Adresse :** https://github.com/SP-MMIBdx/M2-weux-projet-dev-ux
 
 ### Pitch
@@ -98,6 +98,8 @@ L'étudiant étranger crée un profil afin de présenter sa situation, ses centr
 
 Le parrain présente également son parcours, ses centres d'intérêt, ses disponibilités et les domaines dans lesquels il souhaite accompagner un étudiant.
 
+**Édition sur place (prévue) :** depuis son propre profil, l’utilisateur peut passer du mode lecture au mode édition, puis enregistrer ou annuler, sans ouvrir une page de paramètres séparée.
+
 ### 3.2 Trouver un parrain adapté
 
 L'étudiant consulte une sélection de parrains correspondant à son profil.
@@ -114,6 +116,8 @@ La mise en relation s'appuie notamment sur :
 
 L'étudiant peut sélectionner un ou plusieurs profils de parrains et envoyer une demande de parrainage.
 
+**Retour prévu :** après confirmation de l’envoi par le serveur, la carte du parrain affiche « Ta demande est en attente » sans rechargement de la page, en conservant les informations du profil déjà visibles.
+
 Le parrain ne peut pas contacter directement les étudiants.
 
 Tant que la demande n'est pas acceptée, les informations de contact personnelles restent masquées.
@@ -129,6 +133,8 @@ Il peut :
 - consulter les informations pertinentes du profil avant de prendre sa décision.
 
 Une fois la demande acceptée, les deux utilisateurs peuvent accéder au moyen de communication prévu par l'application.
+
+**Retour prévu côté parrain :** après confirmation d’une acceptation ou d’un refus par le serveur, la carte concernée affiche le nouvel état sans rechargement. Côté étudiant, une notification d’acceptation avec un lien vers le profil du parrain est envisagée dans le lot 2. Un accès « Notifications » dans le pied de page de l’espace connecté est une piste ; son emplacement et le moment d’affichage restent à définir.
 
 ### 3.5 Faciliter l'intégration au-delà du parrainage
 
