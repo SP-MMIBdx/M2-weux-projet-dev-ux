@@ -1232,6 +1232,14 @@ Notes de Steve prises lors du retour enseignant, synthétisées sans ajout de re
 ### 12/11/2026 — Retours de Y. Delmas du 09/11 : parrainage et profil
 
 - Notes transmises par Steve intégrées à la documentation technique et aux phases 7 et 9 du plan : mise à jour en AJAX de la carte après l’envoi, l’acceptation ou le refus d’une demande ; édition depuis `profil.php` sans passage par un écran de paramètres.
+- Côté étudiant, après confirmation de l’envoi, conserver les informations du parrain visibles sur la même page et afficher un message d’attente dans sa carte. Côté parrain, actualiser la carte concernée après acceptation ou refus. Les deux interactions se font sans rechargement de la page.
 - Notification d’acceptation avec lien vers le profil du parrain envisagée dans le lot 2. L’accès via le pied de page connecté et le rafraîchissement restent des pistes à arbitrer. Aucun fonctionnement en temps réel acté.
 - Répartition précisée : composants HTML pour les boutons, formulaires et messages ; JavaScript pour l’interaction et l’actualisation locale ; PHP/SQL pour les autorisations, la validation et les données. Propositions non implémentées.
 - Rédaction par l’IA à partir des notes de Steve ; différences et espaces Git vérifiés. Aucun code modifié, aucun essai navigateur, staging ou commit effectué.
+
+### 12/11/2026 — Retours de Y. Delmas du 12/11 : JavaScript et mots de passe
+
+- Revoir ce que le HTML et le navigateur fournissent pour masquer et révéler un mot de passe, puis vérifier le besoin d’une bascule commune entre les états visible et masqué.
+- Pour évaluer la force du mot de passe, examiner une bibliothèque JavaScript existante plutôt que développer la comparaison avec une liste de motifs prévisibles. Le choix de la bibliothèque reste à faire.
+- Simplifier `main.js` en réduisant les répétitions et en ajoutant des commentaires qui expliquent les interactions. Privilégier les fonctionnalités natives et les bibliothèques existantes lorsqu’elles couvrent le besoin.
+- Consignes associées transmises par Steve : [instructions de l’enseignant pour l’étape JavaScript sur Azraël](https://azrael.sha.univ-poitiers.fr/~ydelmas/26-27-m2-programmation/projet-yannis/etape-5-js/instructions-enseignant.txt). Les conventions et l’ordre de travail sont repris dans le [plan de développement](plan_dev.md). La saisie et le test des premiers exemples restent à Steve. Ajout documentaire réalisé par l’IA, sans modification du code ni essai navigateur.

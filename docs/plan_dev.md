@@ -225,6 +225,12 @@ Référence pédagogique : Yannis Delmas, *Méthode de développement d’applic
 
 Pour chaque page ou comportement, préparer une courte liste de critères : contenu attendu, actions et destinations, état de maquette ou fonctionnel, petites/grandes largeurs, navigation clavier et labels, états d’erreur pertinents. Les critères non vérifiés restent ouverts. Une revue avec l’équipe et des utilisateurs représentatifs complétera les contrôles de développement.
 
+**Conventions du cours pour les prochains incréments**
+
+- Avant toute modification importante, décrire le fonctionnement du code existant, puis proposer un plan entre `<plan>` et `</plan>` avant de présenter du code. Clarifier les points ambigus, expliquer les compromis et conserver les noms et libellés existants sauf si le changement le justifie. Steve saisit et teste les premiers exemples par petits blocs expliqués, conformément à la méthode ci-dessus.
+- En JavaScript ES8 et en PHP 8, écrire des fonctions courtes à responsabilité unique et documenter les fonctions en JSDoc ou PHPDoc selon le langage. Charger le JavaScript comme module lorsque c’est pertinent, ou différer le chargement d’un script classique avec `defer` si nécessaire. Pour les actions AJAX, utiliser `fetch()` avec `async` et `await`.
+- En HTML et CSS, privilégier les éléments sémantiques et les états natifs, avec ARIA lorsque nécessaire. Utiliser des classes liées aux composants, rôles, comportements ou états, ainsi que des variables et l’imbrication CSS lorsqu’elles facilitent la lecture. Vérifier la compatibilité des fonctionnalités CSS dont le rendu ou l’interaction dépend.
+
 Le travail initial directement sur `main` diffère de la recommandation avancée GitHub Flow du support (issue → branche dédiée → pull request → revue → fusion). Le workflow d’équipe sera réexaminé avant les prochaines intégrations communes ; aucune migration de branches n’est réalisée par cette décision documentaire.
 
 ---
@@ -429,6 +435,14 @@ La synthèse des suggestions de Yannis Delmas est conservée dans `docs/dev_log.
 - [ ] Reprendre les autres points de cette synthèse avec Steve : ARIA et nom de navigation, classes/IDs des boutons, présentation des liens, curseurs, sélecteurs de pseudo-éléments, inclusions PHP et rôle de JavaScript/AJAX. Ces autres ajustements restent à revoir ; aucune date fixée.
 
 **Décision actualisée le 29/10 :** après un premier exemple manuel et plusieurs répétitions, Steve autorise l’IA à terminer inclusions et liens, avec vérification de chaque page avant suppression HTML. Le serveur PHP existant est conservé ; le chargement client des fragments est désormais retiré.
+
+### Retour enseignant du 12/11/2026 — prochaine passe JavaScript
+
+1. Relire `main.js` et relever les identifiants, attributs `data-*` et états HTML qu’il utilise. Réduire le volume du script en supprimant les répétitions utiles à factoriser, ajouter les commentaires et le JSDoc nécessaires, puis vérifier les interactions existantes.
+2. Vérifier ce que fournit le champ HTML `type="password"` dans les navigateurs visés. Le masquage est natif. La commande de révélation dépend du navigateur. Conserver une bascule JavaScript commune si elle reste nécessaire pour offrir une commande cohérente et utilisable au clavier.
+3. Comparer les bibliothèques d’estimation de la force d’un mot de passe déjà disponibles et privilégier une solution adaptée au projet avant d’étendre les heuristiques maison. Évaluer le poids chargé, la lisibilité du retour et l’intégration sans étape de build. L’estimation s’exécute dans le navigateur et reste distincte de la confirmation des champs et de la validation serveur.
+
+Faire la revue des redondances HTML/CSS après ce premier incrément JavaScript, en tenant compte des sélecteurs utilisés par le script. L’édition du profil sur place et les demandes AJAX restent prévues aux phases 7 et 9.
 
 
 ---
