@@ -1,5 +1,11 @@
 # Plan de développement — Application de parrainage
 
+## Priorités actuelles
+
+1. Reprendre `main.js` selon le retour enseignant du 12/11. Commencer par expliquer les interactions existantes, puis réduire les répétitions en conservant le comportement. Vérifier les commandes natives des champs de mot de passe et examiner les bibliothèques d’estimation de la force avant d’étendre la logique maison.
+2. Relire le HTML et le CSS après ce premier incrément JavaScript, en tenant compte des identifiants et attributs utilisés par le script.
+3. Reprendre la conception de la base de données lorsque Steve relancera ce chantier. Le nom d’utilisateur est déjà prévu comme unique et enregistré en minuscules. La suite doit préciser le modèle et les règles de compte encore ouvertes avant la création des tables et le premier essai PDO.
+
 ## 1. Objectif général
 
 Nom de travail choisi par Steve le 28/10/2026 : **Binô**, en attente de validation du groupe.
@@ -55,13 +61,13 @@ Les différentes étapes seront donc construites progressivement afin de compren
 
 Privilégier PHP pour les traitements réalisables côté serveur : rendu et inclusions HTML, lecture du rôle demandé, validation des formulaires, sessions, contrôles d’accès et accès aux données via PDO/SQL. Réserver JavaScript vanilla aux interactions côté navigateur et aux éventuels appels AJAX, avec validation serveur conservée. Styles, états visuels et animations restent en CSS. Aucun framework prévu.
 
-Le chargement actuel du header/footer par JavaScript reste une solution provisoire de la maquette statique. Sa migration vers des inclusions PHP sera réalisée lors de la mise en place explicite de l’environnement PHP. La présélection du rôle par JavaScript proposée précédemment n’est pas une prochaine étape actée : elle sera revue selon cette répartition.
+Sur `main`, les huit pages utilisent les inclusions PHP pour l’en-tête et le pied de page. PHP présélectionne aussi le rôle dans le formulaire d’inscription à partir d’une liste autorisée. Ce choix initialise le formulaire. Les autorisations relèveront des futurs traitements de compte et de session.
 
 **Ordre d’apprentissage précisé le 26/10/2026 :** Steve rapporte que l’enseignant souhaite une implémentation JavaScript avant PHP. Poursuivre de petites interactions client utiles, sans changer les responsabilités serveur prévues. Affichage/masquage et retour sur la correspondance des confirmations désormais implémentés comme aides immédiates ; validation PHP nécessaire lors de l’implémentation serveur. Les soumissions restent désactivées.
 
 ### Base de données
 
-- MySQL ou MariaDB
+- MySQL, administré avec phpMyAdmin. Version cible sur Azraël à confirmer.
 - SQL écrit explicitement dans le code PHP
 - PDO pour la connexion et l'exécution sécurisée des requêtes
 
@@ -91,25 +97,14 @@ L'objectif est de travailler directement avec les technologies fondamentales du 
 
 ## 4. Organisation Git
 
-Deux branches principales sont utilisées :
+- `main` contient la version PHP du projet.
+- `dev` conserve pour l’instant le jalon frontend HTML du 29/10/2026, avant les inclusions PHP.
 
-```text
-main
-```
-
-Branche stable correspondant aux étapes validées du projet.
-
-```text
-dev
-```
-
-Branche de développement commune à l'équipe.
+Le décalage entre les deux branches est volontaire. Le [README](../README.md#lancement-local) indique comment lancer chacune. Le workflow d’intégration reste à discuter avec le groupe.
 
 ---
 
 ## 5. Structure actuelle du dépôt
-
-**Branches — précision de Steve après migration, 29/10/2026 :** `main` contient la version PHP et `dev` reste volontairement au checkpoint frontend avant PHP. Ce décalage est intentionnel ; aucune fusion ou synchronisation automatique à réaliser pour aider le groupe à lancer le projet. Les commandes de premier lancement, prérequis et choix de branche sont dans le README. Le workflow d’intégration ultérieur reste à discuter avec le groupe.
 
 Au 29/10/2026, après migration des inclusions, la structure de travail est la suivante :
 
@@ -383,7 +378,7 @@ La présentation utilise la palette provisoire : fond crème, cartes saumon pâl
 
 **Backend :** les huit pages utilisent les inclusions privées. Liens PHP basculés, anciennes copies HTML, fallbacks et chargeur retirés après vérifications. GET rôle validé strictement et selected conditionnel à l’inscription. Le footer unique distingue public et démonstration par une variable de présentation fixée dans les deux flux et le profil, sans session. Aucun SQL, PDO ou enregistrement actif.
 
-**Prochaine étape proposée :** checkpoint de la migration complète, puis accord sur le modèle relationnel minimal et les règles encore ouvertes (notamment casse du username), avant tables/PDO. Revenir ensuite aux premiers exemples manuels de persistance et d’authentification, avec les critères de sécurité de la section 6. Ne pas confondre variante visuelle et contrôle d’accès.
+La suite immédiate est indiquée dans les [priorités actuelles](#priorités-actuelles). Les premiers exercices manuels de persistance et d’authentification reprendront avec les critères de sécurité de la section 6.
 
 **Décisions reportées :** direction artistique finale, navigation selon connexion/rôle, destinations démarches/mentions légales, placement du footer en bas des pages courtes. Le footer reste dans le flux normal. L’absence de lien vers un profil sur la connexion est une décision d’interface, pas un contrôle d’accès : les protections réelles seront implémentées côté PHP.
 
@@ -528,7 +523,7 @@ Objectif : concevoir la structure relationnelle permettant de stocker les inform
 
 Technologies :
 
-- MySQL ou MariaDB ;
+- MySQL ;
 - SQL ;
 - PHP PDO.
 
