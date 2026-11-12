@@ -2,6 +2,7 @@
 
 const input = document.getElementById("register-password");
 const feedback = document.getElementById("register-password-strength");
+// Les scripts locaux chargés avant ce module exposent zxcvbnts.
 const common = window.zxcvbnts["language-common"];
 const estimator = new window.zxcvbnts.core.ZxcvbnFactory({
   dictionary: common.dictionary,
@@ -9,7 +10,7 @@ const estimator = new window.zxcvbnts.core.ZxcvbnFactory({
   translations
 });
 
-/** Actualise le score et le conseil sans modifier le mot de passe. */
+/** Affiche le score et un conseil de la bibliothèque, calculés localement. */
 function updateStrength() {
   if (!input.value) {
     feedback.textContent = "";

@@ -1279,3 +1279,8 @@ Notes de Steve prises lors du retour enseignant, synthétisées sans ajout de re
 - À la demande de Steve, l’IA transmet directement chaque fieldset trouvé à `setupTagSelection` par une seule recherche DOM. Sur les autres pages, la liste vide n’appelle pas la fonction. Le compteur, les boutons et le déplacement du focus sans défilement sont inchangés. HTML garde les cases natives ; JavaScript garde les actions immédiates par groupe.
 - Le retour de robustesse textuel est conservé ; mise en forme reportée à la passe CSS dans le plan. L’indentation déjà modifiée dans le module de robustesse est laissée intacte.
 - Syntaxe JavaScript, différences Git et simulation Node contrôlées par l’IA : groupes indépendants, compteur, états des boutons, focus et page sans groupe. Essai navigateur à effectuer par Steve. Aucun staging ni commit effectué.
+
+### 12/11/2026 — Relecture des commentaires JavaScript applicatifs
+
+- Steve confirme le bon fonctionnement des sélections groupées dans le navigateur après simplification. À sa demande, l’IA relit ensuite `main.js` et `password-strength.mjs`, les deux fichiers JavaScript applicatifs hors bibliothèque. JSDoc en français sur les fonctions nommées et commentaires ciblés sur les contraintes natives, l’effacement d’erreur, la mise à jour groupée et l’ordre de chargement du module. Aucun fichier de bibliothèque retouché.
+- Relecture fondée sur les conventions du plan ; le document enseignant lié n’a pas pu être ouvert. Syntaxe des deux fichiers contrôlée et code hors commentaires comparé à `HEAD` : aucun changement exécutable. Pas de nouvel essai navigateur pour cette passe de commentaires ; aucun staging ni commit effectué par l’IA.

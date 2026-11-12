@@ -1,6 +1,6 @@
 // JavaScript principal de l'application
 
-/** Bascule la visibilité avec les libellés du bouton. */
+/** Relie le bouton à son champ via aria-controls et reprend les libellés du gabarit. */
 function setupPasswordToggle(buttonId) {
   const button = document.getElementById(buttonId);
 
@@ -27,7 +27,7 @@ setupPasswordToggle("toggle-login-password");
 setupPasswordToggle("toggle-register-password");
 setupPasswordToggle("toggle-register-password-confirm");
 
-// Règles du nom de connexion, définies dans les attributs HTML du champ.
+/** Affiche les erreurs de longueur ou de format selon les contraintes HTML du champ. */
 function setupUsernameValidation(inputId, feedbackId) {
   const input = document.getElementById(inputId);
   const feedback = document.getElementById(feedbackId);
@@ -36,6 +36,7 @@ function setupUsernameValidation(inputId, feedbackId) {
     return;
   }
 
+  /** Synchronise le message visible et l’état de validité du champ. */
   function updateFeedback() {
     let message = "";
 
@@ -45,6 +46,7 @@ function setupUsernameValidation(inputId, feedbackId) {
       message = "Utilise uniquement des lettres A–Z, des chiffres, _ ou -, sans espace.";
     }
 
+    // Une chaîne vide efface l’erreur personnalisée après correction.
     input.setCustomValidity(message);
     feedback.textContent = message;
 
@@ -62,7 +64,7 @@ function setupUsernameValidation(inputId, feedbackId) {
 setupUsernameValidation("register-username", "register-username-feedback");
 setupUsernameValidation("login-username", "login-username-feedback");
 
-/** Affiche la correspondance si la confirmation est saisie. */
+/** Compare les valeurs exactes de deux champs et actualise le retour à chaque saisie. */
 function setupFieldConfirmation(inputId, confirmationId, feedbackId, matchMessage, mismatchMessage) {
   const input = document.getElementById(inputId);
   const confirmationInput = document.getElementById(confirmationId);
@@ -72,6 +74,7 @@ function setupFieldConfirmation(inputId, confirmationId, feedbackId, matchMessag
     return;
   }
 
+  /** N’affiche aucun message tant que la confirmation est vide. */
   function updateFeedback() {
     const confirmationValue = confirmationInput.value;
     const message = input.value === confirmationValue ? matchMessage : mismatchMessage;
@@ -99,7 +102,7 @@ setupFieldConfirmation(
   "Les adresses e-mail ne correspondent pas."
 );
 
-// Compteur aligné sur la limite native du champ
+/** Compte les unités UTF-16, comme la limite native maxlength du champ. */
 function setupCharacterCounter(inputId, counterId) {
   const input = document.getElementById(inputId);
   const counter = document.getElementById(counterId);
@@ -108,6 +111,7 @@ function setupCharacterCounter(inputId, counterId) {
     return;
   }
 
+  /** Affiche la longueur actuelle et la limite lue dans le champ. */
   function updateCount() {
     const count = input.value.length;
     counter.textContent = `${count} / ${input.maxLength} caractères`;
@@ -120,7 +124,7 @@ function setupCharacterCounter(inputId, counterId) {
 setupCharacterCounter("profile-description", "profile-description-count");
 setupCharacterCounter("contact-message", "contact-message-count");
 
-/** Gère le compteur et les actions groupées d’un groupe de cases. */
+/** Installe le compteur et les actions groupées sur un fieldset. */
 function setupTagSelection(group) {
   const checkboxes = group.querySelectorAll('input[type="checkbox"]');
   const counter = group.querySelector("[data-selection-count]");
@@ -131,6 +135,7 @@ function setupTagSelection(group) {
     return;
   }
 
+  /** Recalcule le statut et l’état des boutons à partir des cases cochées. */
   function updateSelection() {
     const count = group.querySelectorAll('input[type="checkbox"]:checked').length;
     const label = count > 1 ? "options sélectionnées" : "option sélectionnée";
@@ -139,11 +144,13 @@ function setupTagSelection(group) {
     clearButton.disabled = count === 0;
   }
 
+  /** Applique le même état à toutes les cases et replace le focus sans défilement. */
   function setSelection(checked) {
     checkboxes.forEach(function (checkbox) {
       checkbox.checked = checked;
     });
     checkboxes[0].focus({ preventScroll: true });
+    // Modifier checked par script ne déclenche pas l’événement change.
     updateSelection();
   }
 
