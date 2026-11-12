@@ -71,7 +71,7 @@ function setupUsernameValidation(inputId, feedbackId) {
 setupUsernameValidation("register-username", "register-username-feedback");
 setupUsernameValidation("login-username", "login-username-feedback");
 
-// Retour immédiat sur deux champs à comparer
+/** Affiche la correspondance si la confirmation est saisie. */
 function setupFieldConfirmation(inputId, confirmationId, feedbackId, matchMessage, mismatchMessage) {
   const input = document.getElementById(inputId);
   const confirmationInput = document.getElementById(confirmationId);
@@ -82,13 +82,9 @@ function setupFieldConfirmation(inputId, confirmationId, feedbackId, matchMessag
   }
 
   function updateFeedback() {
-    if (confirmationInput.value === "") {
-      feedback.textContent = "";
-    } else if (input.value === confirmationInput.value) {
-      feedback.textContent = matchMessage;
-    } else {
-      feedback.textContent = mismatchMessage;
-    }
+    const confirmationValue = confirmationInput.value;
+    const message = input.value === confirmationValue ? matchMessage : mismatchMessage;
+    feedback.textContent = confirmationValue === "" ? "" : message;
   }
 
   input.addEventListener("input", updateFeedback);
