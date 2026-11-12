@@ -109,6 +109,9 @@ if (!in_array($role, ['etudiant', 'parrain'], true)) {
     </footer>
 
     <script src="assets/js/main.js"></script>
+    <script defer src="assets/js/vendor/zxcvbn-ts/core.js"></script>
+    <script defer src="assets/js/vendor/zxcvbn-ts/language-common.js"></script>
+    <script type="module" src="assets/js/password-strength.mjs"></script>
 </body>
 
 </html>
