@@ -1,40 +1,31 @@
 // JavaScript principal de l'application
 
-/**
- * Installe la bascule de visibilité d’un champ de mot de passe.
- * @param {string} inputId - Identifiant du champ.
- * @param {string} buttonId - Identifiant du bouton.
- * @param {string} [showLabel] - Libellé quand le mot de passe est masqué.
- * @param {string} [hideLabel] - Libellé quand le mot de passe est visible.
- */
-function setupPasswordToggle(
-  inputId,
-  buttonId,
-  showLabel = "Afficher le mot de passe",
-  hideLabel = "Masquer le mot de passe"
-) {
-  const passwordInput = document.getElementById(inputId);
-  const toggleButton = document.getElementById(buttonId);
+/** Bascule la visibilité avec les libellés du bouton. */
+function setupPasswordToggle(buttonId) {
+  const button = document.getElementById(buttonId);
 
-  if (!passwordInput || !toggleButton) {
+  if (!button) {
     return;
   }
 
-  toggleButton.addEventListener("click", function () {
-    const shouldReveal = passwordInput.type === "password";
-    passwordInput.type = shouldReveal ? "text" : "password";
-    toggleButton.textContent = shouldReveal ? hideLabel : showLabel;
+  const input = document.getElementById(button.getAttribute("aria-controls"));
+  const showLabel = button.textContent.trim();
+  const hideLabel = button.dataset.hideLabel;
+
+  if (!input || !showLabel || !hideLabel) {
+    return;
+  }
+
+  button.addEventListener("click", function () {
+    const shouldReveal = input.type === "password";
+    input.type = shouldReveal ? "text" : "password";
+    button.textContent = shouldReveal ? hideLabel : showLabel;
   });
 }
 
-setupPasswordToggle("login-password", "toggle-login-password");
-setupPasswordToggle("register-password", "toggle-register-password");
-setupPasswordToggle(
-  "register-password-confirm",
-  "toggle-register-password-confirm",
-  "Afficher la confirmation du mot de passe",
-  "Masquer la confirmation du mot de passe"
-);
+setupPasswordToggle("toggle-login-password");
+setupPasswordToggle("toggle-register-password");
+setupPasswordToggle("toggle-register-password-confirm");
 
 // Règles du nom de connexion, définies dans les attributs HTML du champ.
 function setupUsernameValidation(inputId, feedbackId) {

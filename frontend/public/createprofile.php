@@ -78,7 +78,7 @@ if (!in_array($role, ['etudiant', 'parrain'], true)) {
                         aria-describedby="register-password-strength" required />
                     <p id="register-password-strength"></p>
                     <button type="button" id="toggle-register-password" class="button button--secondary"
-                        aria-controls="register-password">
+                        aria-controls="register-password" data-hide-label="Masquer le mot de passe">
                         Afficher le mot de passe
                     </button>
                 </div>
@@ -89,7 +89,8 @@ if (!in_array($role, ['etudiant', 'parrain'], true)) {
                         autocomplete="new-password" aria-describedby="register-password-feedback" required />
                     <p id="register-password-feedback"></p>
                     <button type="button" id="toggle-register-password-confirm" class="button button--secondary"
-                        aria-controls="register-password-confirm">
+                        aria-controls="register-password-confirm"
+                        data-hide-label="Masquer la confirmation du mot de passe">
                         Afficher la confirmation du mot de passe
                     </button>
                 </div>

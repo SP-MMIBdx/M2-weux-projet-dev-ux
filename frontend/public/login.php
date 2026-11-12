@@ -69,6 +69,7 @@
                 id="toggle-login-password"
                 class="button button--secondary"
                 aria-controls="login-password"
+                data-hide-label="Masquer le mot de passe"
               >
                 Afficher le mot de passe
               </button>
