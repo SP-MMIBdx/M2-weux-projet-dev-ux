@@ -98,6 +98,8 @@ Les trois pages de formulaire utilisent la même silhouette décorative et un pi
 
 Le CSS commun conserve la présentation mobile-first et la palette provisoire : fond crème, cartes saumon, header/footer jaune atténué, boutons secondaires jaunes et actions vertes. JavaScript gère révélation des mots de passe, confirmations, conseils, compteurs et sélections groupées ; son chargeur de fragments est supprimé. Aucun compte ou donnée enregistré.
 
+Seules la connexion, l’inscription, la configuration du profil et la FAQ chargent `main.js`. L’accueil, le profil et les deux flux sont rendus par PHP sans script applicatif à ce stade.
+
 À l’inscription, le [module local de robustesse](frontend/public/assets/js/password-strength.mjs) utilise [zxcvbn-ts](frontend/public/assets/js/vendor/zxcvbn-ts/README.md) pour afficher une note de 0 à 4 et, si disponible, un conseil en français. Les fichiers de la bibliothèque sont chargés uniquement sur cette page et l’estimation reste dans le navigateur. Steve a confirmé le fonctionnement ; ce retour reste distinct de la confirmation du mot de passe et de la future validation PHP.
 
 `backend/includes/header.php` et `footer.php` sont inclus par les huit pages via des chemins fixes fondés sur `__DIR__`. Un seul footer conserve les deux variantes actuelles : liens Accueil/FAQ partout, Démarches désactivé et profil sur les deux flux et le profil. Ces trois pages définissent `$showDemoNavigation = true` ; ce choix de présentation ne simule pas une session et n’accorde aucun accès. SQL, PDO et authentification restent à implémenter après accord sur le modèle de données.
@@ -113,7 +115,10 @@ flowchart TD
     Pages["Huit pages PHP"] --> Header["backend/includes/header.php"]
     Pages --> Footer["backend/includes/footer.php"]
     Pages --> CSS["style.css"]
-    Pages --> JS["main.js : interactions client"]
+    Pages --> Interactives["Quatre pages interactives"]
+    Interactives --> JS["main.js : interactions client"]
+    Interactives --> Inscription["Inscription seulement"]
+    Inscription --> Strength["password-strength.mjs + zxcvbn-ts"]
     Footer --> Public["Accueil et FAQ"]
     Footer --> Demo["Option de maquette : Démarches désactivé et profil"]
 ```

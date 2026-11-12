@@ -63,6 +63,5 @@ $showDemoNavigation = true;
 <footer class="site-footer">
       <?php require __DIR__ . '/../../backend/includes/footer.php'; ?>
     </footer>
-    <script src="assets/js/main.js"></script>
   </body>
 </html>

@@ -2,7 +2,7 @@
 
 ## Priorités actuelles
 
-1. Reprendre `main.js` selon le retour enseignant du 12/11. Commencer par expliquer les interactions existantes, puis réduire les répétitions en conservant le comportement. Vérifier les commandes natives des champs de mot de passe et examiner les bibliothèques d’estimation de la force avant d’étendre la logique maison.
+1. Passe JavaScript du 12/11 terminée : interactions refactorisées par petits incréments, JSDoc en français, estimation locale via zxcvbn-ts et chargement des scripts limité aux pages qui les utilisent. Le retour textuel de robustesse reste suffisant pour l’instant.
 2. Relire le HTML et le CSS après ce premier incrément JavaScript, en tenant compte des identifiants et attributs utilisés par le script.
 3. Reprendre la conception de la base de données lorsque Steve relancera ce chantier. Le nom d’utilisateur est déjà prévu comme unique et enregistré en minuscules. La suite doit préciser le modèle et les règles de compte encore ouvertes avant la création des tables et le premier essai PDO.
 
@@ -140,7 +140,9 @@ Au 29/10/2026, après migration des inclusions, la structure de travail est la s
 │       │   │   └── icons/
 │       │   │       └── navigation.svg
 │       │   └── js/
-│       │       └── main.js
+│       │       ├── main.js
+│       │       ├── password-strength.mjs
+│       │       └── vendor/zxcvbn-ts/
 │       ├── aide.php
 │       ├── createprofile.php
 │       ├── fluxetudiant.php
@@ -164,12 +166,17 @@ flowchart TD
     Pages["Huit pages PHP"] --> Header["backend/includes/header.php"]
     Pages --> Footer["backend/includes/footer.php"]
     Pages --> CSS["style.css"]
-    Pages --> JS["main.js : interactions client"]
+    Pages --> Interactives["Quatre pages interactives"]
+    Interactives --> JS["main.js : interactions client"]
+    Interactives --> Inscription["Inscription seulement"]
+    Inscription --> Strength["password-strength.mjs + zxcvbn-ts"]
     Footer --> Public["Accueil et FAQ"]
     Footer --> Demo["Option de maquette : Démarches désactivé et profil"]
 ```
 
 CSS et JavaScript restent dans leurs dossiers assets. Les chemins des liens et SVG sont des URL relatives à la page demandée, tandis que les chemins require sont des chemins disque ; aucun déplacement des assets. Le schéma décrit ces dépendances, sans authentification.
+
+`main.js` est chargé par la connexion, l’inscription, la configuration du profil et la FAQ. L’accueil, le profil et les deux flux n’en ont pas besoin ; ils pourront charger un script lorsque leurs propres interactions seront ajoutées.
 
 Le dossier `prototypes/`, utilisé au début du projet, a été retiré des branches `main` et `dev`.
 
