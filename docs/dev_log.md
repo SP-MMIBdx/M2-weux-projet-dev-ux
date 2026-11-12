@@ -19,13 +19,13 @@ Lorsque l'IA intervient de manière importante dans une phase, son rôle est pr�
 
 L’IA est également utilisée pour générer et rédiger les synthèses de ce journal à partir de la lecture du code, de la documentation et des différences Git du dépôt local, dans les limites des permissions d’accès accordées aux dossiers du projet. Les synthèses sont proposées pour ajout manuel ou écrites directement dans le fichier à la demande de Steve. Elles s’appuient aussi sur les échanges de la séance et distinguent les vérifications effectuées par l’IA des tests navigateur rapportés par Steve. Leur relecture et leur validation avant commit restent sous la responsabilité de l’équipe.
 
-### Organisation Git actuelle
+### Organisation Git au début du projet
 
-Pendant la construction de la première base frontend, Steve travaille directement sur `main`.
+Pendant la construction de la première base frontend, Steve travaillait directement sur `main`.
 
-Alexandre et Ange travaillent sur `dev`, principalement dans leurs dossiers de prototypes respectifs.
+Alexandre et Ange travaillaient sur `dev`, principalement dans leurs dossiers de prototypes respectifs.
 
-Lorsque la structure principale de l'application sera suffisamment stable, le développement sera regroupé autour de `dev` avec un travail isolé par membre avant intégration.
+Le regroupement du développement sur `dev`, avec un travail isolé par membre avant intégration, était alors envisagé. La répartition actuelle des branches est décrite dans le [plan de développement](plan_dev.md).
 
 ### 13/10/2026 — Réorganisation du scaffold frontend
 

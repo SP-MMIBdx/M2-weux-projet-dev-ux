@@ -176,7 +176,7 @@ flowchart TD
 
 CSS et JavaScript restent dans leurs dossiers assets. Les chemins des liens et SVG sont des URL relatives à la page demandée, tandis que les chemins require sont des chemins disque ; aucun déplacement des assets. Le schéma décrit ces dépendances, sans authentification.
 
-La branche `dev` contient également les prototypes d’Alexandre et Ange dans `prototypes/`.
+Le dossier `prototypes/`, utilisé au début du projet, a été retiré des branches `main` et `dev`.
 
 Les fragments privés sont utilisés sur les huit pages. Connexion PDO, schéma et modèle public de configuration restent préparatoires ; configuration locale exclue de Git. Aucune connexion SQL, authentification ou persistance fonctionnelle.
 
@@ -443,7 +443,6 @@ Contenu :
 - branches `main` et `dev` ;
 - documentation technique ;
 - wireframes ;
-- dossiers de prototypes ;
 - README initial ;
 - journal de développement.
 
@@ -488,8 +487,6 @@ Pour chaque page :
 5. rendre l'interface responsive ;
 6. ajouter les interactions JavaScript nécessaires ;
 7. identifier les éléments qui deviendront dynamiques avec PHP.
-
-Les prototypes d'Alexandre et Ange pourront être utilisés comme base ou référence lorsque leur travail est pertinent pour l'application principale.
 
 ---
 
