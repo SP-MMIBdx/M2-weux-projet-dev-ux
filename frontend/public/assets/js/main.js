@@ -1,6 +1,12 @@
 // JavaScript principal de l'application
 
-// Affichage indépendant des champs de mot de passe
+/**
+ * Installe la bascule de visibilité d’un champ de mot de passe.
+ * @param {string} inputId - Identifiant du champ.
+ * @param {string} buttonId - Identifiant du bouton.
+ * @param {string} [showLabel] - Libellé quand le mot de passe est masqué.
+ * @param {string} [hideLabel] - Libellé quand le mot de passe est visible.
+ */
 function setupPasswordToggle(
   inputId,
   buttonId,
@@ -15,13 +21,9 @@ function setupPasswordToggle(
   }
 
   toggleButton.addEventListener("click", function () {
-    if (passwordInput.type === "password") {
-      passwordInput.type = "text";
-      toggleButton.textContent = hideLabel;
-    } else {
-      passwordInput.type = "password";
-      toggleButton.textContent = showLabel;
-    }
+    const shouldReveal = passwordInput.type === "password";
+    passwordInput.type = shouldReveal ? "text" : "password";
+    toggleButton.textContent = shouldReveal ? hideLabel : showLabel;
   });
 }
 

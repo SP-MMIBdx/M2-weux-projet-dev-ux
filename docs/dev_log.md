@@ -1243,3 +1243,9 @@ Notes de Steve prises lors du retour enseignant, synthétisées sans ajout de re
 - Pour évaluer la force du mot de passe, examiner une bibliothèque JavaScript existante plutôt que développer la comparaison avec une liste de motifs prévisibles. Le choix de la bibliothèque reste à faire.
 - Simplifier `main.js` en réduisant les répétitions et en ajoutant des commentaires qui expliquent les interactions. Privilégier les fonctionnalités natives et les bibliothèques existantes lorsqu’elles couvrent le besoin.
 - Consignes associées transmises par Steve : [instructions de l’enseignant pour l’étape JavaScript sur Azraël](https://azrael.sha.univ-poitiers.fr/~ydelmas/26-27-m2-programmation/projet-yannis/etape-5-js/instructions-enseignant.txt). Les conventions et l’ordre de travail sont repris dans le [plan de développement](plan_dev.md). La saisie et le test des premiers exemples restent à Steve. Ajout documentaire réalisé par l’IA, sans modification du code ni essai navigateur.
+
+### 12/11/2026 — Simplification de la bascule de visibilité du mot de passe
+
+- Après accord de Steve, l’IA réduit le callback de `setupPasswordToggle` à une décision (`shouldReveal`) qui détermine le type du champ et le libellé du bouton. JSDoc en français ajouté ; noms, sélecteurs et trois libellés fonctionnels conservés. Aucune dépendance ajoutée.
+- Avant modification, les trois boutons ont été vérifiés au clavier dans le navigateur intégré visible par l’IA. La version proposée a été simulée pour les trois associations, avec vérification de leur indépendance et du garde-fou en l’absence d’éléments. Après application, syntaxe JavaScript et différences Git contrôlées par l’IA. Steve confirme le fonctionnement de la version modifiée dans le navigateur ; aucun nouvel essai navigateur réalisé par l’IA après l’application.
+- Steve souhaite conserver des commits courts après chaque incrément validé. Message proposé par l’IA ; aucun staging ni commit effectué.
