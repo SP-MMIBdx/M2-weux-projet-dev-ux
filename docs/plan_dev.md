@@ -2,9 +2,11 @@
 
 ## Priorités actuelles
 
-1. Passe JavaScript du 12/11 terminée : interactions refactorisées par petits incréments, JSDoc en français, estimation locale via zxcvbn-ts et chargement des scripts limité aux pages qui les utilisent. Le retour textuel de robustesse reste suffisant pour l’instant.
-2. Relire le HTML et le CSS après ce premier incrément JavaScript, en tenant compte des identifiants et attributs utilisés par le script.
-3. Reprendre la conception de la base de données lorsque Steve relancera ce chantier. Le nom d’utilisateur est déjà prévu comme unique et enregistré en minuscules. La suite doit préciser le modèle et les règles de compte encore ouvertes avant la création des tables et le premier essai PDO.
+1. À partir du questionnaire d’équipe, définir les champs requis du profil et les tags propres à chaque rôle. Préciser le lien entre compte et profil et les règles de compte encore ouvertes. Le nom d’utilisateur est prévu comme unique et enregistré en minuscules.
+2. Préparer le modèle MySQL et le premier essai PDO, puis valider, enregistrer et relire un profil par PHP. Prévoir l’identification du compte et le contrôle du propriétaire avant d’activer la sauvegarde pour un utilisateur connecté.
+3. Reprendre l’édition sur place une fois la sauvegarde de profil opérationnelle. Raccorder les actions AJAX des demandes lorsque PHP pourra les autoriser et enregistrer leurs changements d’état. La notification d’acceptation reste dans le lot 2.
+
+La passe JavaScript du 12/11 est terminée. Les suites de la revue HTML/CSS et la mise en forme du retour de robustesse restent reportées.
 
 ## 1. Objectif général
 
@@ -438,7 +440,7 @@ La synthèse des suggestions de Yannis Delmas est conservée dans `docs/dev_log.
 
 **Décision actualisée le 29/10 :** après un premier exemple manuel et plusieurs répétitions, Steve autorise l’IA à terminer inclusions et liens, avec vérification de chaque page avant suppression HTML. Le serveur PHP existant est conservé ; le chargement client des fragments est désormais retiré.
 
-### Retour enseignant du 12/11/2026 — prochaine passe JavaScript
+### Retour enseignant du 12/11/2026 — passe JavaScript terminée
 
 1. Relire `main.js` et relever les identifiants, attributs `data-*` et états HTML qu’il utilise. Réduire le volume du script en supprimant les répétitions utiles à factoriser, ajouter les commentaires et le JSDoc nécessaires, puis vérifier les interactions existantes.
 2. Vérifier ce que fournit le champ HTML `type="password"` dans les navigateurs visés. Le masquage est natif. La commande de révélation dépend du navigateur. Conserver une bascule JavaScript commune si elle reste nécessaire pour offrir une commande cohérente et utilisable au clavier.
@@ -446,7 +448,7 @@ La synthèse des suggestions de Yannis Delmas est conservée dans `docs/dev_log.
 
 **État de cet incrément :** `password-strength.mjs` affiche le score et un conseil de zxcvbn-ts, chargé localement à l’inscription seulement. Liste et règles maison retirées de `main.js` ; confirmation indépendante conservée. Fonctionnement navigateur confirmé par Steve. Le retour textuel suffit pour l’instant : reporter la mise en forme du message à la prochaine passe CSS, sans modifier l’estimation.
 
-Faire la revue des redondances HTML/CSS après ce premier incrément JavaScript, en tenant compte des sélecteurs utilisés par le script. L’édition du profil sur place et les demandes AJAX restent prévues aux phases 7 et 9.
+La revue HTML/CSS a été réalisée en lecture seule. Ses suites sont reportées et consignées dans le [journal de développement](dev_log.md). L’édition du profil sur place et les demandes AJAX restent prévues aux phases 7 et 9.
 
 
 ---
@@ -629,7 +631,9 @@ Fonctionnalités :
 
 Les pages statiques construites précédemment commenceront alors à afficher des données provenant réellement de la base de données.
 
-**Édition sur place (retour Y. Delmas du 09/11) :** prévoir sur `profil.php` les vues de lecture et d’édition, avec formulaire et actions Modifier, Enregistrer et Annuler. JavaScript bascule entre les vues sur la même page. PHP vérifie que l’utilisateur peut modifier ce profil, valide les champs et enregistre les changements. Tester l’annulation, la sauvegarde et l’affichage des erreurs sans perdre la saisie.
+**Premier incrément :** partir du formulaire de `profileconfiguration.php` pour préciser les champs et tags, puis vérifier qu’un profil valide peut être enregistré par PHP et relu dans `profil.php`. La sauvegarde pour un utilisateur connecté doit être rattachée à son compte et contrôlée côté serveur.
+
+**Édition sur place (retour Y. Delmas du 09/11) :** réutiliser les champs de création dans `profil.php` et prévoir les actions Modifier, Enregistrer et Annuler. JavaScript bascule entre les vues sur la même page. Annuler restaure les dernières valeurs enregistrées. PHP vérifie le propriétaire, valide les champs et enregistre les changements. En cas d’échec, conserver la saisie et afficher l’erreur.
 
 ---
 
@@ -683,7 +687,7 @@ Fonctionnalités envisagées :
 - affichage du statut ;
 - déblocage des informations de contact après acceptation.
 
-**Mise à jour des cartes sans rechargement (retour Y. Delmas du 09/11) :** préparer les boutons et une zone de retour dans chaque carte. JavaScript envoie l’action en AJAX (`fetch`), puis actualise la carte concernée avec l’état renvoyé par PHP : en attente côté étudiant après l’envoi, acceptée ou refusée côté parrain après sa décision. PHP contrôle la session, le rôle, l’accès à la demande et la transition d’état avant de l’enregistrer. Tester aussi un échec serveur : garder le dernier état confirmé et afficher un message.
+**Mise à jour des cartes sans rechargement (retour Y. Delmas du 09/11) :** définir les formats de requête et de réponse avec les routes PHP avant de raccorder les boutons. PHP contrôle la session, le rôle, l’accès à la demande et la transition d’état avant de l’enregistrer. JavaScript envoie l’action avec `fetch`, désactive la commande pendant l’envoi et actualise uniquement la carte concernée après confirmation. Côté étudiant, conserver les informations du parrain et afficher « Ta demande est en attente ». Côté parrain, afficher l’état accepté ou refusé. En cas d’échec, garder le dernier état confirmé, afficher un message accessible et permettre un nouvel essai.
 
 **Notification d’acceptation (lot 2) :** PHP fournit les notifications autorisées pour l’étudiant connecté ; l’interface affiche un lien vers le profil du parrain. L’accès par le pied de page et le mode de rafraîchissement restent à décider. La mise à jour immédiate de la carte de l’auteur de l’action ne suppose pas une notification en temps réel chez l’autre utilisateur.
 

@@ -10,7 +10,7 @@
 
 ## Stack
 
-- Actuellement : HTML, CSS, JavaScript natif et premières inclusions PHP.
+- Actuellement : PHP pour le rendu, HTML/CSS et JavaScript natif pour les interactions. zxcvbn-ts est chargé localement à l’inscription.
 - Prévu pour les données : SQL / MySQL via PDO.
 
 ## Lancement local
@@ -81,7 +81,9 @@ Le serveur fournit les fichiers ; le navigateur exécute JavaScript. Aucun build
 
 ## État du projet
 
-Au 29/10/2026, les huit écrans sont des pages PHP dans `frontend/public/`, avec header/footer privés partagés. Les anciennes pages et fragments HTML sont supprimés après vérification progressive. Le contenu reste une maquette sans persistance ; les interactions JavaScript et la présélection PHP du rôle à l’inscription sont conservées.
+Au 13/11/2026, `main` contient huit écrans PHP dans `frontend/public/`, avec un en-tête et un pied de page partagés. Les profils et demandes affichés sont fictifs. La création de compte, la connexion et l’enregistrement du profil restent à implémenter.
+
+**Prochain chantier.** Définir les champs requis et les tags propres à chaque rôle, puis préparer la validation, l’enregistrement et l’affichage d’un premier profil avec PHP et MySQL. Le [plan de développement](docs/plan_dev.md#priorités-actuelles) indique les prérequis des prochaines interactions JavaScript.
 
 - Flux parrain : structure sémantique, carte de demande illustrative, carte d’attente des actualités, tags, boutons désactivés et en-tête/pied de page partagés et stylisés.
 - Connexion : formulaire stylisé, panneaux de surface provisoire, silhouette de profil et liens vers la création de compte selon le rôle choisi.
