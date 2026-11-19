@@ -100,9 +100,9 @@ L'objectif est de travailler directement avec les technologies fondamentales du 
 ## 4. Organisation Git
 
 - `main` contient la version PHP du projet.
-- `dev` conserve pour l’instant le jalon frontend HTML du 29/10/2026, avant les inclusions PHP.
+- `dev` intègre la version PHP depuis la fusion du 19/11/2026 (PR #6).
 
-Le décalage entre les deux branches est volontaire. Le [README](../README.md#lancement-local) indique comment lancer chacune. Le workflow d’intégration reste à discuter avec le groupe.
+Les deux branches ont le même contenu après cette fusion. Le checkpoint HTML reste accessible au commit `c453c1c`. Le [README](../README.md#lancement-local) indique comment lancer les versions actuelles et consulter ce checkpoint. Le workflow des prochaines intégrations reste à discuter avec le groupe.
 
 ---
 

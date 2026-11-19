@@ -17,14 +17,14 @@
 
 ### Choisir la version du projet
 
-Au checkpoint du 29/10/2026, les branches ont volontairement deux états différents :
+Depuis la fusion du 19/11/2026, les deux branches contiennent la version PHP :
 
 | Branche | Version | Lancement |
 | --- | --- | --- |
 | `main` | Huit pages PHP avec inclusions partagées | Serveur PHP local nécessaire |
-| `dev` | Checkpoint frontend avant PHP, huit pages HTML | Serveur HTTP statique ou PHP ; pas d’exécution PHP requise |
+| `dev` | Version PHP intégrée depuis `main` | Serveur PHP local nécessaire |
 
-`dev` est conservée à ce checkpoint par Steve. Ne pas y fusionner `main` uniquement pour lancer le projet. Le fonctionnement du footer du checkpoint statique peut être perturbé par l’injection Live Server ; le serveur PHP local peut aussi servir les fichiers HTML sans les modifier.
+Le checkpoint HTML du 29/10 reste consultable au commit `c453c1c`. Les deux branches utilisent désormais les mêmes commandes de lancement. Le workflow des prochaines intégrations reste à convenir avec le groupe.
 
 ### Premier lancement de la version PHP pour un membre du groupe
 
@@ -68,12 +68,13 @@ Pour récupérer une mise à jour dans une copie existante : vérifier `git stat
 Une seconde copie est possible dans un autre dossier :
 
 ```text
-git clone --branch dev https://github.com/SP-MMIBdx/M2-weux-projet-dev-ux.git bino-static
+git clone https://github.com/SP-MMIBdx/M2-weux-projet-dev-ux.git bino-static
 cd bino-static
+git switch --detach c453c1c
 php -S 127.0.0.1:8001 -t frontend/public
 ```
 
-Ouvrir `http://127.0.0.1:8001/index.html`. PHP ne fait ici que servir les fichiers statiques ; un serveur HTTP statique sans injection perturbant les fragments convient aussi. Les instructions de ce README concernent `main` : le README de la copie `dev` peut conserver les indications historiques du checkpoint.
+Ouvrir `http://127.0.0.1:8001/index.html`. Cette copie détachée permet de consulter l’ancien checkpoint HTML. PHP y sert les fichiers statiques. Les branches actuelles utilisent des pages PHP.
 
 Le serveur PHP exécute désormais les huit pages. Live Server et les URL `file://` ne permettent pas cette exécution. Le changement de prévisualisation du 28/10, puis la suppression du chargement JavaScript des fragments le 29/10, sont détaillés dans le journal. Aucun changement d’environnement ni build requis.
 
@@ -81,7 +82,7 @@ Le serveur fournit les fichiers ; le navigateur exécute JavaScript. Aucun build
 
 ## État du projet
 
-Au 13/11/2026, `main` contient huit écrans PHP dans `frontend/public/`, avec un en-tête et un pied de page partagés. Les profils et demandes affichés sont fictifs. La création de compte, la connexion et l’enregistrement du profil restent à implémenter.
+Au 19/11/2026, `main` et `dev` contiennent huit écrans PHP dans `frontend/public/`, avec un en-tête et un pied de page partagés. Les profils et demandes affichés sont fictifs. La création de compte, la connexion et l’enregistrement du profil restent à implémenter. L’adresse publique sur Azraël reste à renseigner dans la documentation technique après déploiement et vérification.
 
 **Prochain chantier.** Définir les champs requis et les tags propres à chaque rôle, puis préparer la validation, l’enregistrement et l’affichage d’un premier profil avec PHP et MySQL. Le [plan de développement](docs/plan_dev.md#priorités-actuelles) indique les prérequis des prochaines interactions JavaScript.
 

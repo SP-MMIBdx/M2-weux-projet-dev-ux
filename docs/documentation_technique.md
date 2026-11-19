@@ -4,7 +4,7 @@
 
 - **Titre de travail :** Binô (provisoire)
 - **Membres du groupe :** Alexandre, Ange, Steve
-- **Date de mise à jour du document :** 13/11/2026
+- **Date de mise à jour du document :** 19/11/2026
 - **Adresse :** https://github.com/SP-MMIBdx/M2-weux-projet-dev-ux
 
 ### Pitch
@@ -15,7 +15,7 @@ Une application de parrainage destinée aux étudiants étrangers arrivant en Fr
 
 Ce document décrit le périmètre fonctionnel visé, les scénarios d’utilisation et les lots prévus ; il ne constitue pas un inventaire des fonctionnalités déjà implémentées.
 
-Au 13/11, la maquette PHP présente les parcours avec des données fictives. La création de compte et l’enregistrement de profils restent à implémenter. Le premier chantier serveur porte sur la validation, l’enregistrement et la relecture d’un profil, avant l’édition sur place et les actions AJAX de parrainage.
+Au 19/11, les huit pages PHP présentent les parcours avec des données fictives. Les interactions JavaScript des formulaires sont implémentées. La création de compte et l’enregistrement de profils restent à réaliser. Le premier chantier serveur porte sur la validation, l’enregistrement et la relecture d’un profil, avant l’édition sur place et les actions AJAX de parrainage.
 
 - [README](../README.md) : présentation du dépôt, état synthétique et lancement local.
 - [Plan de développement](plan_dev.md) : méthode de travail, étapes, avancement et décisions à revoir.
@@ -25,6 +25,15 @@ Au 13/11, la maquette PHP présente les parcours avec des données fictives. La 
 ---
 
 ## 2. Scénarios d'utilisation
+
+### Contexte d’usage et personas provisoires
+
+Binô accompagne l’arrivée dans une ville universitaire et la recherche d’aide au quotidien, depuis un navigateur sur téléphone ou ordinateur. Les deux personnages ci-dessous représentent les rôles principaux à partir des scénarios du projet. Ils restent des hypothèses de conception à confronter aux utilisateurs.
+
+| Persona | Situation | Objectif et besoins |
+| --- | --- | --- |
+| Lucia, 19 ans | Étudiante colombienne en L1 à Poitiers, nouvellement arrivée | Trouver un parrain dans sa ville, rencontrer des étudiants et obtenir de l’aide pour les démarches et les études. Consulter les profils et choisir à qui envoyer une demande. |
+| Vincent, 23 ans | Étudiant étranger en M1, déjà installé dans la ville | Proposer son aide selon ses centres d’intérêt et ses domaines de compétence. Examiner les demandes reçues et choisir celles qu’il accepte. |
 
 ### Scénario 1 — Lucia cherche un parrain
 
@@ -230,3 +239,44 @@ Elles présentent notamment :
 - la création du profil étudiant ou parrain ;
 - le flux de propositions de parrains ;
 - le flux des demandes de parrainage.
+
+## 6. Version consultable et codes sources
+
+- **Version sur Azraël :** adresse à renseigner après déploiement et vérification. La publication de la première version reste à effectuer.
+- **Sources actuelles :** [dépôt GitHub](https://github.com/SP-MMIBdx/M2-weux-projet-dev-ux). La version PHP de `main` est intégrée à `dev` depuis la fusion du 19/11/2026 (PR #6).
+- **Checkpoint statique :** [version HTML du 29/10/2026](https://github.com/SP-MMIBdx/M2-weux-projet-dev-ux/tree/c453c1c). Dans cette version, `fetch()` chargeait les fragments HTML d’en-tête et de pied de page. Dans les huit pages actuelles, PHP réalise ces inclusions côté serveur et présélectionne le rôle demandé à l’inscription. Le serveur transmet ensuite le HTML au navigateur, qui exécute les interactions JavaScript.
+
+## 7. Programmation côté client
+
+### Choix et bibliothèque utilisée
+
+Les interactions utilisent JavaScript natif en syntaxe ES2017. `main.js` est chargé uniquement sur la connexion, l’inscription, la configuration du profil et la FAQ. Les animations et états visuels sont définis en CSS.
+
+L’inscription utilise **zxcvbn-ts** pour estimer localement la force du mot de passe et afficher un score de 0 à 4 avec un conseil en français. Les fichiers distribués sont le cœur `@zxcvbn-ts/core` **4.2.0**, les données communes `@zxcvbn-ts/language-common` **4.1.3** et les traductions de `@zxcvbn-ts/language-fr` **4.1.2**. Le dictionnaire français complet est omis pour limiter le poids. La confirmation des deux saisies reste indépendante de cette estimation. L’intégration est décrite dans la [notice locale de la bibliothèque](../frontend/public/assets/js/vendor/zxcvbn-ts/README.md).
+
+Les scripts de la bibliothèque sont servis localement. Le module applicatif `password-strength.mjs` importe les traductions et calcule l’estimation dans le navigateur. Aucun mot de passe n’est envoyé à un service d’estimation. La validation et le stockage du futur compte restent à construire côté serveur.
+
+### Événements écoutés et comportements implémentés
+
+| Événement | Contrôles concernés | Comportement |
+| --- | --- | --- |
+| `click` | Trois boutons de révélation des mots de passe | Basculer le champ entre `password` et `text` et actualiser le libellé fourni par le gabarit. |
+| `input` | Identifiant de connexion ou d’inscription | Afficher le retour associé aux contraintes natives de format et de longueur. |
+| `input` | E-mail, mot de passe et champs de confirmation | Comparer les deux valeurs et afficher leur correspondance. |
+| `input` | Mot de passe d’inscription | Actualiser le score et le conseil zxcvbn-ts. |
+| `input` | Description du profil et message de contact | Actualiser le compteur lié à la limite native de 500 unités UTF-16. |
+| `change` | Groupes de cases intérêts et besoins | Actualiser le nombre de choix et l’état des boutons du groupe. |
+| `click` | Tout sélectionner / Tout désélectionner | Modifier les cases du groupe et actualiser le compteur en conservant le focus sans demander de défilement. |
+
+Les formulaires restent désactivés à la soumission. Les données affichées sont fictives. Les essais ciblés de ces interactions sont consignés dans le [journal](dev_log.md), notamment à la clôture de la passe du 12/11. La revue HTML/CSS a laissé des vérifications de lecteur d’écran et de rendu ouvertes.
+
+### Actions JavaScript à reprendre après la création réelle des profils
+
+| Fonctionnalité prévue | Prérequis et résultat attendu |
+| --- | --- |
+| Édition sur place du profil | Réutiliser les champs de création et les valeurs enregistrées. PHP contrôle le propriétaire et valide la sauvegarde. Annuler restaure les dernières valeurs enregistrées et un échec conserve le brouillon. |
+| Envoi AJAX d’une demande | Définir la route PHP et les formats de requête/réponse. Après confirmation de l’enregistrement, afficher « Ta demande est en attente » dans la carte concernée en conservant les informations du parrain. |
+| Acceptation ou refus en AJAX | PHP autorise et enregistre la décision. JavaScript actualise uniquement la carte concernée sans rechargement. |
+| Notification d’acceptation, lot 2 | Utiliser les données autorisées fournies par PHP et proposer un lien vers le profil du parrain. Emplacement et rafraîchissement restent à décider. |
+
+Les requêtes AJAX métier ne sont pas encore implémentées dans la version PHP actuelle. Elles utiliseront `fetch()` avec `async` et `await`, avec une commande désactivée pendant l’envoi, un retour accessible en cas d’erreur et conservation du dernier état confirmé. Le contrôle des rôles, des limites et des transitions reste côté PHP.

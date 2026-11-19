@@ -1309,3 +1309,10 @@ Notes de Steve prises lors du retour enseignant, synthétisées sans ajout de re
 
 - À la demande de Steve, l’IA prépare une fiche Markdown personnelle hors dépôt à partir de `main.js` et `password-strength.mjs` sur `main` (`104be2f`). Elle explique les liens avec les gabarits PHP, les événements, les contraintes natives, la bibliothèque locale et les limites de ces interactions. Les fichiers tiers ne sont pas annotés.
 - Les six extraits numérotés correspondent aux sources et les 158 lignes non vides de ces extraits sont expliquées. Syntaxe JavaScript et espaces Git contrôlés. Aucun code applicatif modifié, aucun nouvel essai navigateur, staging ou commit effectué. La reprise des interactions reste liée aux prérequis PHP/SQL de l’entrée précédente.
+
+### 19/11/2026 — Mise à jour du dossier de l’étape 2 et intégration PHP sur dev
+
+- Fusion de main dans dev confirmée dans les références locales (PR #6, commit 639ba0f). Les arbres des deux branches sont identiques avant cette mise à jour documentaire. Le README et le plan décrivent désormais les deux branches PHP et l’accès au checkpoint HTML par le commit c453c1c.
+- Documentation technique complétée selon la checklist du rendu avec le contexte d’usage, deux personas provisoires, les événements JavaScript, les composants et versions de zxcvbn-ts, le passage des fragments AJAX aux inclusions PHP et le lien vers les sources. Les scénarios, les lots et le PDF de wireframes existants sont conservés.
+- Les tâches JavaScript dépendant des comptes et profils persistants sont recensées avec leurs prérequis PHP. L’adresse publique sur Azraël reste à fournir après déploiement et vérification. Aucune publication ni validation du rendu sur Azraël réalisée pendant cette passe.
+- Mise à jour documentaire par l’IA à la demande de Steve. Contrôle des liens locaux, des sections et des espaces Git. Aucun code applicatif modifié, staging et commit laissés à Steve.
