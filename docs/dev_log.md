@@ -1304,3 +1304,8 @@ Notes de Steve prises lors du retour enseignant, synthétisées sans ajout de re
 - Steve confirme la reprise du chantier MySQL/PHP à partir du questionnaire d’équipe. Le premier parcours à préparer couvre les champs requis, les tags selon le rôle, la validation PHP, l’enregistrement et la relecture d’un profil. L’activation de la sauvegarde pour un utilisateur connecté dépend de l’identification du compte et du contrôle du propriétaire.
 - L’édition sur place et les actions AJAX des demandes reprendront avec leurs traitements serveur. La notification d’acceptation et l’éventuel bouton de pied de page restent des sujets ultérieurs. La passe JavaScript du 12/11 est terminée. La mise en forme du retour de robustesse et les suites de la revue HTML/CSS restent reportées.
 - README et plan mis à jour par l’IA à la demande de Steve. `schema.sql` et `db.php` sont encore préparatoires. Aucun code applicatif ni schéma SQL modifié.
+
+### 13/11/2026 — Fiche de révision JavaScript ligne par ligne
+
+- À la demande de Steve, l’IA prépare une fiche Markdown personnelle hors dépôt à partir de `main.js` et `password-strength.mjs` sur `main` (`104be2f`). Elle explique les liens avec les gabarits PHP, les événements, les contraintes natives, la bibliothèque locale et les limites de ces interactions. Les fichiers tiers ne sont pas annotés.
+- Les six extraits numérotés correspondent aux sources et les 158 lignes non vides de ces extraits sont expliquées. Syntaxe JavaScript et espaces Git contrôlés. Aucun code applicatif modifié, aucun nouvel essai navigateur, staging ou commit effectué. La reprise des interactions reste liée aux prérequis PHP/SQL de l’entrée précédente.
