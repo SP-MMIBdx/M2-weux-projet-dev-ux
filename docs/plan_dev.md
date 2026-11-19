@@ -34,7 +34,7 @@ flowchart TD
     N1["HTML / CSS / JavaScript"]
     N2["PHP"]
     N3["SQL"]
-    N4["MySQL / MariaDB"]
+    N4["MySQL"]
     N0 --> N1
     N1 --> N2
     N2 --> N3
@@ -184,7 +184,7 @@ Le dossier `prototypes/`, utilisé au début du projet, a été retiré des bran
 
 Les fragments privés sont utilisés sur les huit pages. Connexion PDO, schéma et modèle public de configuration restent préparatoires ; configuration locale exclue de Git. Aucune connexion SQL, authentification ou persistance fonctionnelle.
 
-**Exclusions et lancement local — 29/10 :** configuration `*.local.php`, éventuels `.env` (modèles .example exceptés), journaux `backend/logs/`, exports privés `backend/sql/private/` et fichiers SQLite locaux exclus. Ces dossiers ne sont pas créés par cette convention. Code PDO, schéma SQL et modèles sans secrets restent versionnables. Gitignore ne remplace pas les contrôles HTTP ni la vérification des fichiers déjà suivis. Le README distingue racine du dépôt, exécutable PHP dans Wampserver et racine publique ; aucune copie du projet sous Wampserver nécessaire pour le serveur intégré. Travail sur les données différé à la demande de Steve.
+Le [README](../README.md) décrit les exclusions Git, la racine publique et les commandes de lancement. Le travail sur les données suit les priorités en tête du présent plan.
 
 ---
 
@@ -220,8 +220,8 @@ Les schémas de processus utilisent des blocs Mermaid ; les arborescences resten
 
 Référence pédagogique : Yannis Delmas, *Méthode de développement d’applications*, septembre 2026, fournie par Steve. Les pratiques suivantes traduisent ses principes pour ce projet ; elles ne constituent pas une attestation de conformité ni une validation par l’enseignant.
 
-- Avant une modification, relire le code concerné, expliquer son fonctionnement, puis définir un objectif limité et des critères observables à partir du wireframe et des scénarios.
-- Conserver le rôle de formateur de l’IA : proposer de petites étapes, expliquer les choix et les compromis, puis laisser Steve mettre en œuvre le code applicatif sauf demande explicite contraire. Une note à relire ne remplace pas la compréhension ; revenir sur les mécanismes incertains avant de les étendre.
+- Avant une modification, relire et expliquer le code concerné, puis définir un objectif limité et des critères observables. Pour une modification importante, présenter un plan entre `<plan>` et `</plan>` avant de proposer du code. Clarifier les points ambigus et conserver les noms et libellés existants sauf changement justifié.
+- Conserver le rôle de formateur de l’IA : expliquer l’utilité du fichier, ses appelants et ses dépendances, puis les premiers exemples ligne par ligne par petits blocs. Steve les saisit et vérifie le résultat avant de poursuivre, sauf demande explicite contraire. Expliquer les compromis et revenir sur les mécanismes incertains avant de les étendre.
 - Garder la stack simple, la mise en page mobile-first et le HTML sémantique. Utiliser les principes WCAG/RGAA comme références de vérification, sans déclarer une conformité à partir de quelques attributs ARIA.
 - Après chaque étape, distinguer relecture du code, contrôles automatiques et essais navigateur. Indiquer ce qui a été vérifié, par qui, et ce qui reste à tester. L’accord de l’IA n’est pas une recette fonctionnelle ou utilisateur.
 - Préférence de Steve du 29/10 : annoncer explicitement le début et la fin des essais navigateur, afficher le navigateur intégré pour qu’il puisse suivre dans le panneau Browser. Distinguer ces essais des lectures de source/simulations sans interface visible ; conserver l’onglet si Steve le demande. Utiliser Chrome lorsqu’il le demande explicitement.
@@ -231,7 +231,6 @@ Pour chaque page ou comportement, préparer une courte liste de critères : cont
 
 **Conventions du cours pour les prochains incréments**
 
-- Avant toute modification importante, décrire le fonctionnement du code existant, puis proposer un plan entre `<plan>` et `</plan>` avant de présenter du code. Clarifier les points ambigus, expliquer les compromis et conserver les noms et libellés existants sauf si le changement le justifie. Steve saisit et teste les premiers exemples par petits blocs expliqués, conformément à la méthode ci-dessus.
 - En JavaScript ES8 et en PHP 8, écrire des fonctions courtes à responsabilité unique et documenter les fonctions en JSDoc ou PHPDoc selon le langage. Charger le JavaScript comme module lorsque c’est pertinent, ou différer le chargement d’un script classique avec `defer` si nécessaire. Pour les actions AJAX, utiliser `fetch()` avec `async` et `await`.
 - En HTML et CSS, privilégier les éléments sémantiques et les états natifs, avec ARIA lorsque nécessaire. Utiliser des classes liées aux composants, rôles, comportements ou états, ainsi que des variables et l’imbrication CSS lorsqu’elles facilitent la lecture. Vérifier la compatibilité des fonctionnalités CSS dont le rendu ou l’interaction dépend.
 
@@ -260,175 +259,57 @@ Références : [OWASP — requêtes paramétrées](https://cheatsheetseries.owas
 
 ## 7. Documentation du développement
 
-Plusieurs documents seront maintenus.
+| Document | Contenu à maintenir |
+| --- | --- |
+| [README](../README.md) | Présentation, lancement local, état synthétique et exclusions Git. |
+| [Documentation technique](documentation_technique.md) | Produit, scénarios, lots, maquettes et choix de programmation côté client pour le rendu. |
+| Plan de développement | Priorités, méthode de travail, étapes techniques et décisions ouvertes. |
+| [Journal](dev_log.md) | Historique daté des changements, auteurs, vérifications et limites. |
+| [Checklist sécurité](security_privacy.md) | Contrôles transversaux à appliquer aux fonctionnalités présentes. |
 
-### Documentation technique
-
-Décrit le produit, les fonctionnalités, les scénarios utilisateurs et le périmètre fonctionnel.
-
-### Plan de développement
-
-Le fichier `docs/plan_dev.md` présente la feuille de route technique, les phases prévues, les choix de stack et l'état d'avancement global.
-
-### Journal de développement
-
-Le fichier :
-
-```text
-docs/dev_log.md
-```
-
-retrace l'évolution technique du projet.
-
-Pour chaque phase, il pourra contenir :
-
-- l'objectif ;
-- les fichiers créés ;
-- les technologies utilisées ;
-- les commandes exécutées ;
-- les concepts appris ;
-- les problèmes rencontrés ;
-- les solutions retenues ;
-- les tests effectués ;
-- les décisions techniques ;
-- l'état du projet en fin de phase.
-
-### README
-
-Le fichier `README.md` restera plus synthétique.
-
-Il évoluera au fur et à mesure du développement et présentera notamment :
-
-- le rôle du projet ;
-- l'équipe ;
-- la stack ;
-- la structure principale ;
-- les instructions de lancement ;
-- l'état actuel du développement.
-
-Il ne doit pas remplacer le journal de développement ni la documentation technique.
+Mettre le journal à jour à chaque étape, puis le README et le plan en fin de journée. Modifier le périmètre fonctionnel lorsque les décisions produit évoluent. L’équipe relit et valide les documents rédigés avec l’IA.
 
 ### Supports pédagogiques personnels (hors dépôt)
 
-Les explications approfondies sur les points ayant nécessité des clarifications et une synthèse quotidienne d’apprentissage continuent d’être préparées avec Steve. Ces supports Markdown sont remis séparément pour conservation personnelle hors dépôt, sans génération planifiée automatiquement. Aucun dossier local personnel n’est imposé ni référencé dans la documentation du projet.
+À la demande de Steve, préparer une fiche Markdown de fin de séance à partir du code effectivement étudié, avec explications ligne par ligne, liens entre fichiers, concepts, erreurs corrigées, vérifications et questions de révision. Pour PHP, couvrir notamment les chemins disque/URL, les inclusions, la portée des variables et les traitements étudiés. Pour JavaScript, couvrir le DOM, les événements, callbacks, paramètres, conditions et états des contrôles.
 
-Pour la phase JavaScript, Steve saisit les premiers mécanismes après explication ligne par ligne ; l’IA intervient directement sur demande pour les corrections ou répétitions. La fiche de fin de journée détaille les liens HTML/JavaScript/CSS, paramètres et arguments, événements et callbacks, conditions et état du DOM, portée des variables, vérifications et questions de révision. Elle porte sur le code effectivement étudié, hors dépôt.
-
-Rythme retenu : journal mis à jour à chaque étape ; README et plan actualisés en fin de journée. Le périmètre fonctionnel est modifié uniquement si les décisions produit évoluent.
-
-Précision de Steve du 26/10/2026 pour PHP/SQL : avant chaque création ou modification, expliquer brièvement pourquoi ce fichier est nécessaire, qui l’appelle et à quels autres fichiers il se relie. Présenter le premier code par petits blocs avec explication de chaque ligne, puis laisser Steve le saisir et vérifier le résultat avant de poursuivre. Ces explications alimentent le bilan pédagogique quotidien hors dépôt ; ce bilan ne remplace pas l’accompagnement pendant l’exercice.
-
-Rappel de Steve du 29/10 : à sa demande en fin de journée, fournir une fiche personnelle Markdown PHP hors dépôt, avec explication ligne par ligne du code effectivement étudié, concepts clés, liens entre fichiers, erreurs corrigées et vérifications réelles. Inclure notamment head/header, wrapper/fragment, PHP côté serveur, require, __DIR__, chemins disque/URL, interactions conservées, GET et validation stricte. Ne pas présenter une étape proposée mais non saisie comme réalisée.
-
-Pour limiter les doublons, le dépôt conserve la description du produit dans la documentation technique, l’état et les décisions de travail dans le plan, et l’historique factuel dans le journal. Les explications détaillées restent dans les supports personnels. Les synthèses quotidiennes portent surtout sur le code nouveau ou modifié, ses interactions et les notions à réviser ; elles ne recopient pas toute l’application chaque jour.
-
-L’IA peut préparer et rédiger ces documents à partir des éléments fournis et des fichiers autorisés ; Steve et l’équipe en assurent la relecture, l’exactitude et la validation. La quantité de texte ne constitue pas une preuve de qualité ou de compréhension.
+Ces fiches sont conservées hors dépôt. Elles complètent l’accompagnement pendant l’exercice décrit en section 6. Leur génération se fait sur demande, à partir des changements réels de la séance.
 
 ---
+
 
 # 8. Phases de développement
 
 ## État d'avancement actuel
 
-### Phase 0 — Repository et documentation
-- [x] Repository recréé proprement
-- [x] Workflow `main` / `dev` établi
-- [x] Documentation technique
-- [x] Wireframes
-- [x] README
-- [x] Journal de développement
-- [x] Plan de développement
-
-### Phase 1 — Scaffold frontend statique
-
-- [x] Scaffold réorganisé dans `frontend/public/`
-- [x] Sept pages principales identifiées et fichiers HTML préliminaires créés
-- [x] Structure CSS / JavaScript / images créée
-- [x] Fragments header/footer créés dans `includes/`
-- [x] Chemins relatifs CSS/JavaScript vérifiés
-- [x] Première structure HTML du flux parrain et carte illustrative
-- [x] Base CSS commune : typographie, variables, carte, tags, boutons et header/footer
-- [x] Chargement JavaScript réutilisable des fragments avec contenu de secours
-- [x] Structure HTML de connexion et champs étiquetés, soumission désactivée
-- [x] Première structure HTML sémantique des sept pages
-- [ ] Valider les propositions accueil/profil, sans wireframe dédié
-- [x] Styles réutilisables des formulaires et choix d’inscription depuis la connexion
-- [x] Formulaire statique de création de compte avec champs de confirmation
-- [x] Informations personnelles du profil : nom, pays, parcours et description
-- [x] Panneaux de formulaire et silhouette décorative partagés
-- [x] Centres d’intérêt et besoins statiques : cases natives présentées en mini-cartes
-- [ ] Adapter les domaines d’aide et leur formulation au rôle parrain
-- [x] Confirmer le rendu mobile et la navigation clavier des mini-cartes (confirmation de Steve)
-- [x] Présélection PHP du rôle depuis les liens : liste autorisée stricte et attribut selected conditionnel ; six cas CLI et quatre cas navigateur vérifiés le 29/10, aucune attribution de permission
-- [x] Retour JavaScript sur la correspondance des mots de passe (simulations IA réussies, fonctionnement navigateur confirmé par Steve)
-- [x] Comparaison client des e-mails par réutilisation de la fonction de confirmation (27/10 ; simulations IA réussies, fonctionnement navigateur confirmé par Steve)
-- [x] Compteur de description et limite native de 500 caractères choisie par Steve (27/10 ; simulations IA réussies, fonctionnement navigateur confirmé par Steve)
-- [x] Compteurs et actions « Tout sélectionner » / « Tout désélectionner » indépendantes par groupe intérêts/besoins (27/10 ; simulations IA réussies, sélection/effacement des deux groupes vérifiés dans le navigateur par l’IA le 29/10)
-- [ ] Validation serveur des formulaires
-- [x] Header partagé sur huit pages et footers intégrés selon le découpage provisoire
-- [x] Page Aide / FAQ et formulaire de contact statique, envoi désactivé (28/10)
-- [ ] Valider la navigation et le footer selon connexion/rôle
-- [x] Navigation statique de démo : chemins existants et parcours principaux vérifiés le 29/10 ; navigation authentifiée à implémenter en PHP
-- [x] Huit pages sans débordement horizontal à 320, 375, 768 et 1280px dans le navigateur intégré (29/10) ; appareils réels à vérifier
-- [ ] Autres interactions client à définir seulement selon un besoin ; traitements métier prévus côté PHP
-- [x] Afficher/masquer indépendamment les mots de passe de connexion et d’inscription avec une fonction réutilisable
-- [x] Conseil textuel sur la longueur du mot de passe et quelques motifs prévisibles, sans CSS (simulations IA réussies ; fonctionnement navigateur confirmé par Steve)
-- [ ] Vérifications navigateur complètes, clavier et cas d’échec du chargement
-
-Structure actuelle : voir la section 5, « Structure actuelle du dépôt ».
-
-**État actuel au 29/10/2026 :** les huit pages disposent d’une première structure statique. Les deux flux montrent des données fictives avec actions désactivées ; accueil et profil restent des propositions sans écran dédié dans V1. Le profil affiché n’est pas relié au formulaire. La configuration comprend informations personnelles, description limitée à 500 unités UTF-16 avec compteur, six intérêts et sept besoins provisoires. Les besoins sont encore formulés pour l’étudiant accompagné.
-
-Le JavaScript propose révélation indépendante des mots de passe, comparaison des confirmations e-mail/mot de passe, conseil pédagogique de mot de passe et compteurs/actions de sélection par groupe. Les soumissions restent désactivées : aucun compte, session, enregistrement ni contrôle d’accès. La présélection du rôle est implémentée en PHP ; la validation serveur des soumissions reste à construire ; le filtrage des profils est réservé à PHP/SQL. Décision du 28/10 : nom de connexion distinct du nom affiché public ; identifiant limité à 24 caractères, lettres A–Z, chiffres, underscore et tiret, sans espace. Contraintes HTML et feedback JavaScript partagé présents à l’inscription et à la connexion, contrôle PHP et unicité à implémenter ; nom affiché autorisant espaces/accents.
-
-La présentation utilise la palette provisoire : fond crème, cartes saumon pâle, header/footer jaune atténué, boutons secondaires jaune vif et actions vertes, une hiérarchie de titres fluide, `--space` pour les espacements et `--shadow-raised` pour le relief des cartes/boutons. Le footer reste dans le flux normal : icône Accueil et lien Aide / FAQ sur huit pages, icône Mon profil sur les deux flux et le profil seulement. Les variantes publiques restent locales et sans lien profil ; cette répartition par page n’est pas un contrôle de session. Sprite local `navigation.svg`, classe `.icon` et variable `--color-icon` réutilisés. Intégration progressive reprise le 28/10 ; Aide / FAQ dispose de cinq réponses et d’un formulaire de contact de démonstration (nom, e-mail, message limité à 500 unités UTF-16 avec compteur) avec envoi désactivé ; aucune sélection de catégorie ajoutée. Démarches est présent comme bouton à icône désactivé sur les deux flux et le profil ; son contenu et le burger restent à construire. Contrôles footer à icônes seules, nommés par aria-label, dimensions communes de 2.75rem. Navigation persistante toujours différée.
-
-**Vérifications au 29/10 :** confirmations et révélations de mots de passe, username, compteurs/limites de 500 et deux groupes de sélection vérifiés dans le navigateur intégré par l’IA ; parcours clavier ciblés sur connexion et configuration. Steve a confirmé les comportements des étapes précédentes. Huit pages contrôlées à quatre largeurs ; erreurs du chargeur simulées en Node avec fallback conservé. Appareils physiques, autres moteurs, préférence reduced-motion réellement activée et revue d’accessibilité exhaustive restent ouverts. Les essais et leurs auteurs sont détaillés dans le journal.
-
-**Backend :** les huit pages utilisent les inclusions privées. Liens PHP basculés, anciennes copies HTML, fallbacks et chargeur retirés après vérifications. GET rôle validé strictement et selected conditionnel à l’inscription. Le footer unique distingue public et démonstration par une variable de présentation fixée dans les deux flux et le profil, sans session. Aucun SQL, PDO ou enregistrement actif.
-
-La suite immédiate est indiquée dans les [priorités actuelles](#priorités-actuelles). Les premiers exercices manuels de persistance et d’authentification reprendront avec les critères de sécurité de la section 6.
-
-**Décisions reportées :** direction artistique finale, navigation selon connexion/rôle, destinations démarches/mentions légales, placement du footer en bas des pages courtes. Le footer reste dans le flux normal. L’absence de lien vers un profil sur la connexion est une décision d’interface, pas un contrôle d’accès : les protections réelles seront implémentées côté PHP.
-
-**Navigation — décision de Steve du 27/10/2026 :** conserver la navigation principale dans le footer pour le moment, conformément à l’orientation du wireframe. Le header garde l’identité du projet et le lien d’accueil. Destinations exactes et variantes publique/étudiant/parrain restent à définir ; leur sélection sera gérée par PHP lors de l’implémentation des sessions et rôles. Cette décision ne rend pas le footer fixe et n’ajoute pas de contrôle d’accès côté client.
-
-**Piste de navigation discutée le 28/10 :** contrôle profil avec icône générique vers la connexion pour un visiteur, avatar vers le profil pour un utilisateur connecté et avatar par défaut si aucune photo. À préciser et implémenter côté PHP à partir de la session lors de l’authentification ; aucun comportement conditionnel ni chargement de photo actuellement. Le burger reste en attente d’un contenu utile.
-
-- [ ] Revenir sur l’idée d’une navigation persistante en bas du viewport mobile. Discussion mise en attente par Steve le 27/10 ; aucun choix de positionnement engagé. Le footer reste dans le flux normal en attendant cette revue.
-
-- [x] Style et centrage des contrôles footer : boutons communs et icônes seules, cibles de 44 × 44px à la taille de base. Tests IA à 375px, environ 393px et 1280px ; Steve confirme le résultat (28/10). Revue clavier globale toujours ouverte.
-
-### Jalon de transition frontend → PHP — 29/10/2026
-
-Périmètre atteint : une base statique cohérente pour intégrer le serveur, avec données fictives et soumissions désactivées. Ce n’est pas la fin des tests ni une application prête à être publiée.
-
-| Contrôle | Résultat et limite |
+| Phase | État |
 | --- | --- |
-| Huit pages, assets et fragments | Structure, labels, identifiants, chemins locaux et références SVG vérifiés ; fallbacks identiques aux fragments. |
-| Mise en page | 32 contrôles page/largeur : 320, 375, 768, 1280px, sans débordement horizontal dans le navigateur intégré. |
-| Formulaires | Notes au début, champs requis/facultatifs explicites ; limites et feedback client fonctionnels, aucun enregistrement. |
-| Clavier et navigation | Tab/Espace/Entrée testés sur les contrôles ciblés, liens de démo parcourus ; revue exhaustive et appareils réels encore ouverts. |
-| Chargeur | Succès, HTTP 404, rejet réseau, échec de lecture et conteneur absent simulés avec le code réel ; fallback préservé en cas d’erreur. |
+| 0 — Dépôt et documentation | Dépôt, branches, documents et wireframes en place. |
+| 1–2 — Frontend et UX/UI | Huit écrans et interactions de formulaire construits. Direction artistique et propositions accueil/profil à valider avec le groupe. |
+| 3 — PHP | Inclusions privées et liens migrés sur les huit pages, rôle GET présélectionné par liste autorisée. |
+| JavaScript du 12/11 | Refactorisation et JSDoc terminés, estimation locale zxcvbn-ts et chargement limité aux pages concernées. |
+| 4–7 — Données, comptes et profils | Schéma et connexion PDO préparatoires. Aucun compte, session, contrôle d’accès ou enregistrement actif. |
+| 8–9 — Mise en relation et demandes | Cartes fictives, actions désactivées. Dépendances serveur à réaliser. |
+| 10–11 — Recette et déploiement | Vérifications ciblées réalisées. URL Azraël et recette complète encore ouvertes. |
 
-Les notes de configuration décrivent volontairement le profil étudiant accompagné et les champs facultatifs de cette maquette, sans acter les futures obligations métier. Cas d’erreur serveur, contrôle de session, rôle du footer, accès aux coordonnées et persistance appartiennent aux prochains incréments PHP.
+Les huit pages, les événements client et les fonctionnalités attendues sont décrits dans la [documentation technique](documentation_technique.md). Les priorités en tête du présent plan déterminent l’ordre de reprise.
 
-Pistes de pages à discuter après ce jalon, sans engagement ni fichier créé :
+### Vérifications réalisées et limites
 
-| Page possible | Intérêt |
-| --- | --- |
-| Détail d’un parrain | Consulter un profil complet avant d’envoyer une demande ; réutiliser la présentation de profil existante. |
-| Mes demandes / mon parrainage | Distinguer demandes en attente, refusées et acceptées ; contact accessible seulement après acceptation. |
-| Démarches et ressources | Donner un contenu au contrôle footer actuel ; contenu éditorial à définir avec le groupe. |
-| Récupération d’accès | Compléter le futur parcours d’authentification ; à concevoir avec le backend. |
+- Le 29/10, les huit pages ont été contrôlées à 320, 375, 768 et 1280px dans le navigateur intégré, avec navigation et clavier ciblés. Les simulations du chargeur HTML appartiennent au checkpoint antérieur à sa suppression.
+- La migration PHP a été vérifiée par lint, rendu, chemins locaux, variantes de footer et navigation. Le 12/11, les deux scripts applicatifs ont passé le contrôle ES2017 et des interactions ciblées ont été testées dans le navigateur visible.
+- La revue HTML/CSS suivante a été réalisée en lecture seule. Ses essais navigateur ont expiré. Annonces au lecteur d’écran, recette clavier et responsive complète, autres moteurs, appareils réels et réglage reduced-motion restent à vérifier selon le périmètre repris.
+- Les résultats détaillés, leurs auteurs et les limites de chaque passe restent dans le [journal](dev_log.md).
 
-Menu burger toujours différé faute de raccourcis définis ; mentions légales déjà réservées dans le footer, contenu à préparer séparément. Aucun écran additionnel requis avant de commencer les inclusions PHP.
+### Décisions d’interface et points ouverts
 
-### Phase 2 — Intégration UX/UI depuis Figma
-Commencée partiellement en parallèle de la phase 1 : première intégration depuis le wireframe V1 sur les deux flux, la connexion, la création de compte et la configuration du profil ; accueil et profil proposés sans écran dédié. Les sept pages initiales ont du contenu ; une page Aide / FAQ a été ajoutée le 28/10. Direction artistique, proportions et détails du wireframe restent à valider. Les actualités restent une réservation visuelle dans une carte sur chacun des deux flux, sans contenu ni chargement dynamique.
+- Conserver pour l’instant la navigation principale dans le footer, dans le flux normal. Le header porte l’identité et le lien d’accueil. La variable de démonstration du footer sera revue lors des sessions et autorisations PHP.
+- Définir les variantes visiteur/étudiant/parrain, les destinations Démarches et mentions légales, et l’éventuel accès Notifications. Le burger attend un contenu utile.
+- Revoir plus tard la position du footer sur les pages courtes et l’idée d’une navigation persistante sur mobile. Les contrôles actuels sont des icônes nommées, avec des cibles de 44 × 44px à la taille de base.
+- Une piste reste à examiner pour le contrôle profil : icône vers la connexion pour le visiteur, avatar vers le profil pour un compte connecté, image par défaut sans photo.
+- Adapter le formulaire et les domaines d’aide au rôle parrain. Les six intérêts et sept besoins de la maquette restent provisoires.
+- Les pages possibles Détail d’un parrain, Mes demandes, Démarches et Récupération d’accès restent à concevoir selon le besoin. Aucun écran supplémentaire n’est imposé par cette liste.
 
-### Phase 3+ — PHP / SQL / authentification / données dynamiques
-Inclusions et liens PHP migrés sur les huit pages, présélection du rôle fonctionnelle ; PDO, SQL et authentification non commencés. Détails des étapes et contrôles dans le journal du 29/10.
 
 ### Retour enseignant du 14/10/2026 — à revisiter
 
@@ -453,80 +334,18 @@ La revue HTML/CSS a été réalisée en lecture seule. Ses suites sont reportée
 
 ---
 
-## Phase 0 — Repository et documentation
+## Phases 0 à 3 — Dépôt, frontend et introduction de PHP
 
-Objectif : disposer d'une base de travail propre avant le développement.
+Le dépôt et ses documents ont été créés, puis les écrans intégrés progressivement depuis les wireframes. Le checkpoint HTML du 29/10 reste accessible au commit `c453c1c`.
 
-Contenu :
+Les huit pages actuelles utilisent des inclusions privées avec `require` et `__DIR__`. Chaque page conserve son document HTML et ses contrôles. Le footer public est la variante par défaut. Profil et flux activent la navigation de démonstration avec `$showDemoNavigation`. Le rôle GET de l’inscription initialise le sélecteur après contrôle strict. Les liens utilisent `.php`, sans redirection des anciennes URL `.html`.
 
-- création du dépôt ;
-- branches `main` et `dev` ;
-- documentation technique ;
-- wireframes ;
-- README initial ;
-- journal de développement.
-
-À cette étape, aucun développement applicatif important n'est encore réalisé.
-
----
-
-## Phase 1 — Scaffold frontend statique
-
-Objectif : construire la structure initiale de l'application sans PHP ni base de données.
-
-Technologies :
-
-- HTML ;
-- CSS ;
-- JavaScript.
-
-Travail prévu :
-
-- définir les pages principales ;
-- créer les fichiers HTML ;
-- créer la feuille de style principale ;
-- créer le fichier JavaScript principal ;
-- établir la navigation entre les pages ;
-- définir les éléments visuels communs ;
-- préparer les dossiers d'images et autres ressources.
-
-Structure et état d’avancement actuels : voir la section 5 et la rubrique « État d’avancement actuel » de la section 8.
-
----
-
-## Phase 2 — Intégration UX/UI depuis Figma
-
-Objectif : transformer progressivement les wireframes en interfaces web fonctionnelles.
-
-Pour chaque page :
-
-1. analyser l'objectif de la page ;
-2. identifier les informations affichées ;
-3. définir la structure HTML ;
-4. appliquer le CSS ;
-5. rendre l'interface responsive ;
-6. ajouter les interactions JavaScript nécessaires ;
-7. identifier les éléments qui deviendront dynamiques avec PHP.
-
----
-
-## Phase 3 — Introduction de PHP
-
-**État au 29/10/2026 :** rendu partagé migré sur les huit pages : accueil, FAQ, connexion, inscription, configuration, profil et deux flux. Les premiers exemples ont été saisis par Steve ; l’IA termine la répétition à sa demande explicite. Aucun écran, framework, base ou authentification ajouté.
-
-- Chaque page conserve head, contenu, classes et IDs des interactions client, et inclut le même header/footer privé. Chemins fixes avec require et __DIR__, sans données utilisateur dans les chemins.
-- Footer public par défaut. Profil et deux flux définissent `$showDemoNavigation = true` ; le footer teste `if ($showDemoNavigation ?? false):` puis ferme avec `endif;`. La condition conserve les liens de démonstration existants, sans vérifier l’identité ou les permissions. Plus tard, les sessions et contrôles serveur remplaceront cette sélection de présentation.
-- L’inscription accepte uniquement les rôles GET étudiant/parrain et produit un seul attribut selected. Valeur absente, vide, inconnue ou tableau => placeholder. Aucune création de compte ni attribution de permission.
-- Les liens actifs utilisent maintenant .php. L’accueil fonctionne sur / et /index.php. Les anciennes URL .html ne sont pas maintenues par des redirections à cette étape.
-- Après chaque page : syntaxe et exécution PHP, comparaison de sortie avec le HTML d’origine (hors liens/IDs de chargement/formatage), puis navigateur visible et navigation ciblée avant suppression de l’ancienne copie. Après migration complète : suppression du chargeur JS, de ses appels et des deux fragments HTML publics ; aucun autre comportement JS modifié.
-
-**Vérifications de fin :** huit pages et / répondent HTTP 200 ; exécution des huit pages, wrappers uniques, IDs, chemins locaux, références SVG, variantes de footer et soumissions désactivées contrôlés. Navigateur intégré : FAQ et Home, /, profil/configuration, flux étudiant/profil et flux parrain/profil ; régression ciblée de révélation, confirmations, rôle, compteur et sélections. Une navigation automatisée vers le flux parrain a rencontré un état de navigateur périmé ; ouverture directe et parcours profil ont ensuite été vérifiés. Aucun résultat non observé déduit de cette tentative. Revue responsive complète, appareils réels et audit accessibilité non répétés dans cette passe.
-
-**Notions pour la fiche personnelle hors dépôt, sur demande EOD :** différence head/header et wrapper/fragment, chemins disque/URL, portée des variables dans les inclusions, booléen de présentation, syntaxe alternative if/endif, défaut ??, source HTML générée et distinction syntaxe/exécution/HTTP/navigateur. Le journal détaille auteurs et vérifications réelles ; staging et commits restent à Steve.
+La migration a retiré les copies HTML, les fragments publics et le chargeur JavaScript après comparaison du rendu et vérifications ciblées. Le déroulement et les résultats sont conservés dans les entrées du 29/10 du [journal](dev_log.md). Le rendu et les interactions actuels sont décrits dans la [documentation technique](documentation_technique.md).
 
 Références : [PHP — require](https://www.php.net/manual/en/function.require.php), [PHP — __DIR__](https://www.php.net/manual/en/language.constants.magic.php).
 
 ---
+
 
 ## Phase 4 — Conception de la base de données
 
@@ -739,35 +558,40 @@ Travail prévu :
 
 ---
 
-# 9. Méthode d'apprentissage
+# 9. Apprentissage et utilisation de l’IA
 
-Le projet sera également utilisé comme exercice d'apprentissage du développement web classique.
+Pour chaque mécanisme, Steve doit pouvoir expliquer l’objectif, le langage et le fichier concernés, la circulation des données et la façon de vérifier le résultat. La méthode de saisie accompagnée, les critères de validation et les conventions restent en section 6.
 
-Pour chaque nouveau mécanisme important, le développement devra permettre de comprendre :
+L’IA accompagne la spécification, l’explication, le débogage, les vérifications et la documentation. Les répétitions peuvent être automatisées après compréhension d’un premier exemple. Les mécanismes à étudier progressivement comprennent un formulaire PHP, une connexion PDO, les requêtes `SELECT`, `INSERT` et `UPDATE`, une session d’authentification et une relation entre tables.
+
+Chaque phase doit laisser un résultat compris, vérifié et documenté avant l’étape suivante.
+
+
+### Repères pour chaque nouveau mécanisme
 
 ```mermaid
 flowchart TD
     N0["Ce que l'on veut faire"]
     N1["Quel langage intervient"]
     N2["Quel fichier intervient"]
-    N3["Comment les données circulent"]
-    N4["Comment vérifier le résultat"]
+    N3["Comment les donn├⌐es circulent"]
+    N4["Comment v├⌐rifier le r├⌐sultat"]
     N0 --> N1
     N1 --> N2
     N2 --> N3
     N3 --> N4
 ```
 
-Par exemple, pour une connexion :
+### Parcours de connexion prévu
 
 ```mermaid
 flowchart TD
     N0["Formulaire HTML"]
-    N1["requête POST"]
+    N1["requ├¬te POST"]
     N2["PHP"]
-    N3["requête SQL"]
-    N4["base de données"]
-    N5["résultat"]
+    N3["requ├¬te SQL"]
+    N4["base de donn├⌐es"]
+    N5["r├⌐sultat"]
     N6["session PHP"]
     N7["page suivante"]
     N0 --> N1
@@ -779,43 +603,7 @@ flowchart TD
     N6 --> N7
 ```
 
-L'objectif est de ne pas uniquement obtenir du code fonctionnel, mais également de pouvoir expliquer son fonctionnement.
-
----
-
-# 10. Utilisation de l'intelligence artificielle
-
-L'IA peut être utilisée pour :
-
-- préparer les étapes ;
-- expliquer les concepts ;
-- proposer du code ;
-- corriger des erreurs ;
-- analyser les bugs ;
-- préparer des tests ;
-- générer de la documentation ;
-- accélérer les tâches répétitives.
-
-Cependant, pendant les premières implémentations importantes, l'objectif sera de conserver une forte implication manuelle.
-
-Avant d'automatiser des tâches similaires avec des agents, il est préférable d'avoir réalisé et compris au moins une fois les mécanismes fondamentaux tels que :
-
-- une page HTML complète ;
-- un formulaire PHP ;
-- une connexion PDO ;
-- une requête `SELECT` ;
-- une requête `INSERT` ;
-- une requête `UPDATE` ;
-- une authentification avec session ;
-- une relation entre plusieurs tables SQL.
-
-Les agents pourront ensuite être utilisés pour accélérer les tâches répétitives tout en conservant une architecture comprise par l'équipe.
-
----
-
-# 11. Principe général
-
-La priorité du projet est :
+### Cycle d’apprentissage
 
 ```mermaid
 flowchart TD
@@ -823,15 +611,9 @@ flowchart TD
     N1["Construire"]
     N2["Tester"]
     N3["Documenter"]
-    N4["Améliorer"]
+    N4["Am├⌐liorer"]
     N0 --> N1
     N1 --> N2
     N2 --> N3
     N3 --> N4
 ```
-
-L'application sera donc construite progressivement, sans chercher à créer dès le départ une architecture complète ou trop abstraite.
-
-Chaque phase doit laisser le projet dans un état compréhensible, testable et documenté avant de passer à la suivante.
-
-

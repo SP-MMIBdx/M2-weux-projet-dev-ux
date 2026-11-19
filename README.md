@@ -86,51 +86,23 @@ Au 19/11/2026, `main` et `dev` contiennent huit écrans PHP dans `frontend/publi
 
 **Prochain chantier.** Définir les champs requis et les tags propres à chaque rôle, puis préparer la validation, l’enregistrement et l’affichage d’un premier profil avec PHP et MySQL. Le [plan de développement](docs/plan_dev.md#priorités-actuelles) indique les prérequis des prochaines interactions JavaScript.
 
-- Flux parrain : structure sémantique, carte de demande illustrative, carte d’attente des actualités, tags, boutons désactivés et en-tête/pied de page partagés et stylisés.
-- Connexion : formulaire stylisé, panneaux de surface provisoire, silhouette de profil et liens vers la création de compte selon le rôle choisi.
-- Création de compte : sélection du rôle, identifiant, e-mail et mot de passe avec champs de confirmation, regroupés en panneaux. Identifiant de connexion limité à 24 caractères (A–Z, chiffres, _ et -) avec retour JavaScript partagé avec la connexion, distinct du nom affiché public.
-- Configuration du profil : nom affiché, pays, parcours et description avec compteur et limite native de 500 caractères confirmée dans le navigateur par Steve, plus six centres d’intérêt et sept besoins sélectionnables sous forme de mini-cartes. Chaque groupe possède un compteur et les actions « Tout sélectionner » / « Tout désélectionner », disposées dans une ligne flexible et vérifiées dans le navigateur le 29/10. Choix provisoires, sans enregistrement.
-- Flux étudiant : trois profils fictifs, tags, avatars, actions désactivées et actualités à venir dans une carte.
-- Accueil : présentation du service, étapes du parcours prévu et liens vers les formulaires et les deux espaces de démonstration.
-- Aide / FAQ : cinq réponses issues du périmètre fonctionnel et formulaire de contact de démonstration (nom, e-mail, message limité à 500 unités UTF-16 avec compteur), avec envoi désactivé.
-- Profil : exemple statique de Lucia, présentation, intérêts, besoins et lien vers la configuration non préremplie. Accueil et profil restent des propositions à valider, sans écran dédié dans le wireframe V1.
+| Écrans | État |
+| --- | --- |
+| Accueil et FAQ | Présentation, parcours de démonstration, cinq réponses et formulaire de contact désactivé. |
+| Connexion et inscription | Champs avec contrôles client, confirmations et révélation des mots de passe. Rôle présélectionné par PHP. |
+| Configuration du profil | Nom affiché, pays, parcours, description limitée à 500 unités UTF-16, six intérêts et sept besoins provisoires avec sélection groupée. |
+| Profil et deux flux | Profil fictif de Lucia, trois propositions de parrains et une demande illustrative. Actions métier désactivées. |
 
-Les cartes des deux flux et la présentation du profil réutilisent `.profile-heading` pour regrouper avatar circulaire, nom, rôle et études. Les informations restent fictives.
+Le CSS commun est mobile-first, avec palette provisoire, variables et composants réutilisés. Logo et mascottes SVG sont locaux. Les animations respectent la préférence de réduction des mouvements.
 
-Les trois pages de formulaire utilisent la même silhouette décorative et un pied de page public simplifié. Leurs soumissions restent désactivées : aucune connexion, création de compte ou sauvegarde de profil n’est disponible. Les confirmations e-mail/mot de passe restent en JavaScript ; PHP présélectionne le rôle à partir d’une liste autorisée stricte, sans accorder de permission. La validation serveur des soumissions reste à implémenter.
-
-Le CSS commun conserve la présentation mobile-first et la palette provisoire : fond crème, cartes saumon, header/footer jaune atténué, boutons secondaires jaunes et actions vertes. JavaScript gère révélation des mots de passe, confirmations, conseils, compteurs et sélections groupées ; son chargeur de fragments est supprimé. Aucun compte ou donnée enregistré.
-
-Seules la connexion, l’inscription, la configuration du profil et la FAQ chargent `main.js`. L’accueil, le profil et les deux flux sont rendus par PHP sans script applicatif à ce stade.
-
-À l’inscription, le [module local de robustesse](frontend/public/assets/js/password-strength.mjs) utilise [zxcvbn-ts](frontend/public/assets/js/vendor/zxcvbn-ts/README.md) pour afficher une note de 0 à 4 et, si disponible, un conseil en français. Les fichiers de la bibliothèque sont chargés uniquement sur cette page et l’estimation reste dans le navigateur. Steve a confirmé le fonctionnement ; ce retour reste distinct de la confirmation du mot de passe et de la future validation PHP.
-
-`backend/includes/header.php` et `footer.php` sont inclus par les huit pages via des chemins fixes fondés sur `__DIR__`. Un seul footer conserve les deux variantes actuelles : liens Accueil/FAQ partout, Démarches désactivé et profil sur les deux flux et le profil. Ces trois pages définissent `$showDemoNavigation = true` ; ce choix de présentation ne simule pas une session et n’accorde aucun accès. SQL, PDO et authentification restent à implémenter après accord sur le modèle de données.
+`main.js` est chargé sur la connexion, l’inscription, la configuration et la FAQ. L’inscription utilise aussi le [module local de robustesse](frontend/public/assets/js/password-strength.mjs) et zxcvbn-ts. Les événements, versions et tâches JavaScript restantes sont détaillés dans la [documentation technique](docs/documentation_technique.md#7-programmation-côté-client).
 
 ## Organisation du frontend
 
-Le header associe un duo de personnages SVG original (`assets/images/logo.svg`) au texte « Binô », centré sous le logo au sein d’un bloc aligné à gauche, en saumon avec un contour noir de 3px, comme les H1. Le jaune représente le parrain, le saumon l’étudiant ; deux SVG autonomes (`mascot-parrain.svg`, `mascot-etudiant.svg`) accompagnent les titres des flux correspondants sur leur droite, avec une hauteur fluide de 6 à 16rem et retour centré sous le titre si nécessaire. Le duo reste réservé au header. Couleurs issues des variables existantes. Au chargement, le logo du header joue une légère pulsation de 450ms, distincte du salut avec inclinaison des mascottes de flux (700ms). Chaque effet joue une fois, uniquement sans préférence de réduction des mouvements. Dans ce même mode, les cartes de profils des flux apparaissent par un fondu de 400ms et le logo du header et les boutons actifs réagissent au survol avec une souris ; aucun mouvement continu.
+Les pages et assets publics sont dans `frontend/public/`. Les fragments partagés sont dans `backend/includes/`, hors racine HTTP, et inclus via des chemins fixes avec `__DIR__`. Le footer affiche les variantes publique et de démonstration selon la page. La navigation authentifiée sera définie avec les sessions PHP.
 
-Les huit pages PHP restent à la racine de `frontend/public/`, avec les assets existants. Les deux fragments PHP sont dans `backend/includes/`, hors racine publique. Aucun fragment HTML public ni contenu de secours dupliqué ne reste utilisé.
+L’arborescence est dans le [plan](docs/plan_dev.md#5-structure-actuelle-du-dépôt). Le [journal](docs/dev_log.md) conserve les essais et l’historique de la migration HTML vers PHP.
 
-```mermaid
-flowchart TD
-    Pages["Huit pages PHP"] --> Header["backend/includes/header.php"]
-    Pages --> Footer["backend/includes/footer.php"]
-    Pages --> CSS["style.css"]
-    Pages --> Interactives["Quatre pages interactives"]
-    Interactives --> JS["main.js : interactions client"]
-    Interactives --> Inscription["Inscription seulement"]
-    Inscription --> Strength["password-strength.mjs + zxcvbn-ts"]
-    Footer --> Public["Accueil et FAQ"]
-    Footer --> Demo["Option de maquette : Démarches désactivé et profil"]
-```
-
-Les formulaires, les deux flux et le profil partagent l’image `assets/images/avatar-default.svg`. Le schéma représente les dépendances de fichiers, pas le parcours utilisateur.
-
-PHP assemble le header et le footer avant de transmettre le HTML au navigateur. JavaScript ne les remplace plus. La navigation de démonstration reste accessible et fictive, avec actions métier désactivées ; navigation authentifiée, contenu Démarches, menu et navigation persistante restent à définir.
-
-**Jalon frontend du 29/10/2026.** Le [journal de développement](docs/dev_log.md) retrace les essais du jalon HTML à quatre largeurs, les simulations d’échec de l’ancien chargeur et la migration des huit pages vers les inclusions PHP. Le [plan de développement](docs/plan_dev.md) recense les vérifications encore ouvertes, l’adaptation du formulaire au rôle parrain et la navigation selon le rôle. Le filtrage des profils est prévu côté serveur.
 
 ## Fichiers privés et exclusions Git
 

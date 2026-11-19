@@ -1316,3 +1316,9 @@ Notes de Steve prises lors du retour enseignant, synthétisées sans ajout de re
 - Documentation technique complétée selon la checklist du rendu avec le contexte d’usage, deux personas provisoires, les événements JavaScript, les composants et versions de zxcvbn-ts, le passage des fragments AJAX aux inclusions PHP et le lien vers les sources. Les scénarios, les lots et le PDF de wireframes existants sont conservés.
 - Les tâches JavaScript dépendant des comptes et profils persistants sont recensées avec leurs prérequis PHP. L’adresse publique sur Azraël reste à fournir après déploiement et vérification. Aucune publication ni validation du rendu sur Azraël réalisée pendant cette passe.
 - Mise à jour documentaire par l’IA à la demande de Steve. Contrôle des liens locaux, des sections et des espaces Git. Aucun code applicatif modifié, staging et commit laissés à Steve.
+
+### 19/11/2026 — Réduction des répétitions documentaires
+
+- Le plan regroupe les anciens bilans de phases et leurs vérifications en un état synthétique, avec renvoi au journal pour le détail historique. Les règles de saisie accompagnée et de préparation des fiches personnelles sont regroupées.
+- Le README conserve le lancement, les exclusions Git et un aperçu des écrans. Les événements JavaScript restent détaillés dans la documentation technique et l’arborescence dans le plan.
+- Le dossier de rendu, les décisions métier, les critères de sécurité et les entrées historiques du journal sont conservés. Liens locaux, ancres Markdown et espaces Git contrôlés. Mise à jour par l’IA à la demande de Steve, sans modification applicative.
