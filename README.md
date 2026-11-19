@@ -2,6 +2,8 @@
 
 **Binô** est le nom provisoire, en attente de validation du groupe. Application web de parrainage destinée à faciliter l'intégration des étudiants étrangers grâce à une mise en relation avec des étudiants parrains.
 
+La version actuelle est une maquette PHP de huit écrans avec interactions de formulaire et données fictives. La création de compte et l’enregistrement de profils sont les prochains développements. Voir l’[état du projet](#état-du-projet) et le [lancement local](#lancement-local).
+
 ## Équipe
 
 - Alexandre
@@ -39,7 +41,7 @@ php -v
 php -S 127.0.0.1:8000 -t frontend/public
 ```
 
-Les deux dernières commandes fonctionnent dans PowerShell, Terminal macOS et les shells Linux si `php` est dans le PATH. Si la commande est inconnue, PHP doit être installé ou son chemin déclaré ; utiliser sinon le chemin complet de l’exécutable déjà installé. Exemple PowerShell propre à la machine de Steve, à adapter :
+Les deux dernières commandes fonctionnent dans PowerShell, Terminal macOS et les shells Linux si `php` est dans le PATH. Si la commande est inconnue, PHP doit être installé ou son chemin déclaré. L’exemple Windows ci-dessous utilise le chemin complet de l’exécutable sur la machine de Steve.
 
 Le projet n’a pas besoin d’être placé dans `C:\wamp64\www`. Sur la machine de Steve, les chemins ont trois rôles distincts :
 

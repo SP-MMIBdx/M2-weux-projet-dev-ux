@@ -102,13 +102,13 @@ L'objectif est de travailler directement avec les technologies fondamentales du 
 - `main` contient la version PHP du projet.
 - `dev` intègre la version PHP depuis la fusion du 19/11/2026 (PR #6).
 
-Les deux branches ont le même contenu après cette fusion. Le checkpoint HTML reste accessible au commit `c453c1c`. Le [README](../README.md#lancement-local) indique comment lancer les versions actuelles et consulter ce checkpoint. Le workflow des prochaines intégrations reste à discuter avec le groupe.
+La fusion a aligné le contenu des deux branches. Leurs commits peuvent ensuite évoluer séparément. Le checkpoint HTML reste accessible au commit `c453c1c`. Le [README](../README.md#lancement-local) indique comment lancer les versions actuelles et consulter ce checkpoint. Le workflow des prochaines intégrations reste à discuter avec le groupe.
 
 ---
 
 ## 5. Structure actuelle du dépôt
 
-Au 29/10/2026, après migration des inclusions, la structure de travail est la suivante :
+Structure au 19/11/2026, après migration PHP et refactorisation JavaScript :
 
 ```text
 /
@@ -154,6 +154,7 @@ Au 29/10/2026, après migration des inclusions, la structure de travail est la s
 │       ├── profil.php
 │       └── profileconfiguration.php
 ├── .gitignore
+├── AGENTS.md
 └── README.md
 ```
 
@@ -460,15 +461,7 @@ Les pages statiques construites précédemment commenceront alors à afficher de
 
 Objectif : proposer des parrains adaptés aux étudiants étrangers.
 
-Le matching restera initialement simple et explicable.
-
-Il pourra s'appuyer sur :
-
-- centres d'intérêt communs ;
-- besoins ;
-- langues ;
-- domaine d'études ;
-- disponibilité.
+Le matching restera initialement simple et explicable. Les propositions sont limitées à la même ville. Le classement utilise la correspondance entre besoins et aide proposée, les intérêts et les langues. Les règles métier et les décisions encore ouvertes sont décrites dans la [documentation technique](documentation_technique.md#32-trouver-un-parrain-adapté).
 
 Les résultats seront obtenus grâce à des requêtes SQL et à une logique PHP claire.
 
@@ -536,12 +529,11 @@ Cette phase permettra également de corriger les problèmes détectés au fil du
 
 ## Phase 11 — Finalisation et déploiement
 
-### Hébergement à revoir — point du 26/10/2026
+### Hébergement sur Azraël
 
-- Selon Steve, l’enseignant demande un hébergement sur Azrael, serveur de l’école. Obtenir les consignes avant de fixer la procédure : version PHP, disponibilité MySQL/MariaDB et accès, transfert des fichiers, HTTPS, racine publique et possibilité de conserver le backend hors de cette racine.
-- Steve envisage un hébergement précoce pour partager les essais. Proposition à examiner : déployer d’abord la maquette statique dans un espace de test Azrael, puis introduire progressivement PHP avec des données fictives et une base de développement séparée. Ce contrôle d’environnement peut intervenir avant la finalisation.
-- Vercel reste une option temporaire pour la maquette statique si l’accès Azrael tarde ; aucun choix effectué. Son runtime PHP communautaire et son fonctionnement en fonctions demanderaient une adaptation à évaluer pour le backend. Références consultées : [déploiements Vercel](https://vercel.com/docs/deployments/overview), [runtimes Vercel](https://vercel.com/docs/functions/runtimes).
-- Discussion mise en attente à la demande de Steve : aucun compte créé, déploiement, configuration d’hébergement ou installation effectué. Conserver le workflow local actuel et reprendre ce point lorsque les informations Azrael seront disponibles.
+La version à publier est la maquette PHP actuelle. Confirmer les accès du groupe, les versions PHP/MySQL et l’organisation de la racine publique afin de conserver les fichiers privés hors de celle-ci. Après transfert, vérifier les pages, assets et interactions, puis renseigner l’URL vérifiée dans la [documentation technique](documentation_technique.md#6-version-consultable-et-codes-sources).
+
+Le déploiement reste à effectuer. Les pistes discutées le 26/10 et la décision de conserver la version PHP sont retracées dans le [journal](dev_log.md).
 
 Objectif : préparer une version finale démontrable.
 
@@ -574,8 +566,8 @@ flowchart TD
     N0["Ce que l'on veut faire"]
     N1["Quel langage intervient"]
     N2["Quel fichier intervient"]
-    N3["Comment les donn├⌐es circulent"]
-    N4["Comment v├⌐rifier le r├⌐sultat"]
+    N3["Comment les données circulent"]
+    N4["Comment vérifier le résultat"]
     N0 --> N1
     N1 --> N2
     N2 --> N3
@@ -587,11 +579,11 @@ flowchart TD
 ```mermaid
 flowchart TD
     N0["Formulaire HTML"]
-    N1["requ├¬te POST"]
+    N1["requête POST"]
     N2["PHP"]
-    N3["requ├¬te SQL"]
-    N4["base de donn├⌐es"]
-    N5["r├⌐sultat"]
+    N3["requête SQL"]
+    N4["base de données"]
+    N5["résultat"]
     N6["session PHP"]
     N7["page suivante"]
     N0 --> N1
@@ -611,7 +603,7 @@ flowchart TD
     N1["Construire"]
     N2["Tester"]
     N3["Documenter"]
-    N4["Am├⌐liorer"]
+    N4["Améliorer"]
     N0 --> N1
     N1 --> N2
     N2 --> N3

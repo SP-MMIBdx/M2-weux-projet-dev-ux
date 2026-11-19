@@ -1322,3 +1322,9 @@ Notes de Steve prises lors du retour enseignant, synthétisées sans ajout de re
 - Le plan regroupe les anciens bilans de phases et leurs vérifications en un état synthétique, avec renvoi au journal pour le détail historique. Les règles de saisie accompagnée et de préparation des fiches personnelles sont regroupées.
 - Le README conserve le lancement, les exclusions Git et un aperçu des écrans. Les événements JavaScript restent détaillés dans la documentation technique et l’arborescence dans le plan.
 - Le dossier de rendu, les décisions métier, les critères de sécurité et les entrées historiques du journal sont conservés. Liens locaux, ancres Markdown et espaces Git contrôlés. Mise à jour par l’IA à la demande de Steve, sans modification applicative.
+
+### 19/11/2026 — Relecture finale pour les agents et les lecteurs du dépôt
+
+- AGENTS.md pointe directement vers les priorités et la méthode de travail accompagné. Le README indique dès l’ouverture le statut de maquette et le prochain chantier.
+- Le plan précise l’état des branches après la fusion, complète l’arborescence et renvoie aux règles de matching du document technique. La section hébergement décrit désormais la publication de la version PHP sur Azraël.
+- Les accents endommagés lors de la restauration des trois schémas pédagogiques ont été corrigés. Les huit blocs Mermaid du plan sont conservés. Relecture fondée sur les consignes de Delmas fournies par Steve, contrôle des liens locaux, ancres et espaces Git. Aucun code applicatif modifié.
