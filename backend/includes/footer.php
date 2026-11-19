@@ -1,3 +1,37 @@
-<?php
-// Futur pied de page partagé, inclus côté serveur.
-// À construire lors de la migration PHP ; le fragment HTML actuel reste utilisé.
+<div class="site-footer__inner">
+    <nav aria-label="Navigation de pied de page">
+        <ul class="footer-links">
+            <li>
+                <a class="button button--secondary" href="index.php" aria-label="Accueil">
+                    <svg class="icon" aria-hidden="true" focusable="false" width="24" height="24">
+                        <use href="assets/images/icons/navigation.svg#home"></use>
+                    </svg>
+                </a>
+            </li>
+            <li>
+                <a class="button button--secondary" href="aide.php" aria-label="Aide / FAQ">
+                    <svg class="icon" aria-hidden="true" focusable="false" width="24" height="24">
+                        <use href="assets/images/icons/navigation.svg#help"></use>
+                    </svg>
+                </a>
+            </li>
+            <?php if ($showDemoNavigation ?? false): ?>
+            <li>
+                <button type="button" class="button button--secondary" aria-label="Démarches — à venir" disabled>
+                    <svg class="icon" aria-hidden="true" focusable="false" width="24" height="24">
+                        <use href="assets/images/icons/navigation.svg#documents"></use>
+                    </svg>
+                </button>
+            </li>
+            <li>
+                <a class="button button--secondary" href="profil.php" aria-label="Mon profil">
+                    <svg class="icon" aria-hidden="true" focusable="false" width="24" height="24">
+                        <use href="assets/images/icons/navigation.svg#profile"></use>
+                    </svg>
+                </a>
+            </li>
+            <?php endif; ?>
+        </ul>
+    </nav>
+    <p>Mentions légales — à venir</p>
+</div>

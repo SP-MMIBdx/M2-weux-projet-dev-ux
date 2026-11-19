@@ -10,16 +10,9 @@
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   <body>
-    <header class="site-header" id="site-header">
-      <div class="site-header__inner">
-        <a class="site-brand" href="index.html">
-          <svg viewBox="0 0 128 96" aria-hidden="true" focusable="false" width="96" height="72">
-            <use href="assets/images/logo.svg#student-connection"></use>
-          </svg>
-          <span>Binô</span>
-        </a>
-      </div>
-    </header>
+<header class="site-header">
+  <?php require __DIR__ . '/../../backend/includes/header.php'; ?>
+</header>
 
     <main class="auth-page">
       <h1>Bienvenue sur notre plateforme</h1>
@@ -76,6 +69,7 @@
                 id="toggle-login-password"
                 class="button button--secondary"
                 aria-controls="login-password"
+                data-hide-label="Masquer le mot de passe"
               >
                 Afficher le mot de passe
               </button>
@@ -90,13 +84,13 @@
         <h2 id="inscription-title">Pas encore de compte ?</h2>
         <p>Rejoins la plateforme comme étudiant ou parrain.</p>
         <div class="registration-options">
-          <a class="button" href="createprofile.html?role=etudiant">
+          <a class="button" href="createprofile.php?role=etudiant">
             Créer un compte étudiant
           </a>
 
           <a
             class="button button--secondary"
-            href="createprofile.html?role=parrain"
+            href="createprofile.php?role=parrain"
           >
             Créer un compte parrain
           </a>
@@ -104,29 +98,9 @@
       </section>
     </main>
 
-    <footer class="site-footer">
-      <div class="site-footer__inner">
-        <nav aria-label="Navigation de pied de page">
-          <ul class="footer-links">
-            <li>
-              <a class="button button--secondary" href="index.html" aria-label="Accueil">
-                <svg class="icon" aria-hidden="true" focusable="false" width="24" height="24">
-                  <use href="assets/images/icons/navigation.svg#home"></use>
-                </svg>
-              </a>
-            </li>
-            <li>
-              <a class="button button--secondary" href="aide.html" aria-label="Aide / FAQ">
-                <svg class="icon" aria-hidden="true" focusable="false" width="24" height="24">
-                  <use href="assets/images/icons/navigation.svg#help"></use>
-                </svg>
-              </a>
-            </li>
-          </ul>
-        </nav>
-        <p>Mentions légales — à venir</p>
-      </div>
-    </footer>
+<footer class="site-footer">
+  <?php require __DIR__ . '/../../backend/includes/footer.php'; ?>
+</footer>
 
     <script src="assets/js/main.js"></script>
   </body>

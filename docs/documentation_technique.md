@@ -1,10 +1,10 @@
-# Documentation technique — [Titre du projet à définir]
+# Documentation technique — Binô
 
 ## 1. Description synthétique
 
-- **Titre du projet :** À définir
+- **Titre de travail :** Binô (provisoire)
 - **Membres du groupe :** Alexandre, Ange, Steve
-- **Date de mise à jour du document :** 14/10/2026
+- **Date de mise à jour du document :** 13/11/2026
 - **Adresse :** https://github.com/SP-MMIBdx/M2-weux-projet-dev-ux
 
 ### Pitch
@@ -14,6 +14,8 @@ Une application de parrainage destinée aux étudiants étrangers arrivant en Fr
 ### Rôle du document et références
 
 Ce document décrit le périmètre fonctionnel visé, les scénarios d’utilisation et les lots prévus ; il ne constitue pas un inventaire des fonctionnalités déjà implémentées.
+
+Au 13/11, la maquette PHP présente les parcours avec des données fictives. La création de compte et l’enregistrement de profils restent à implémenter. Le premier chantier serveur porte sur la validation, l’enregistrement et la relecture d’un profil, avant l’édition sur place et les actions AJAX de parrainage.
 
 - [README](../README.md) : présentation du dépôt, état synthétique et lancement local.
 - [Plan de développement](plan_dev.md) : méthode de travail, étapes, avancement et décisions à revoir.
@@ -34,6 +36,8 @@ Crée son compte
 ↓  
 Choisit « Étudiant étranger »  
 ↓  
+Vérifie son adresse e-mail<br>
+↓<br>
 Complète son profil  
 ↓  
 Sélectionne ses centres d'intérêt et ses besoins  
@@ -60,11 +64,13 @@ Vincent crée son compte
 ↓  
 Choisit « Parrain »  
 ↓  
+Vérifie son adresse e-mail<br>
+↓<br>
 Complète son profil  
 ↓  
 Indique ses centres d'intérêt et les domaines dans lesquels il souhaite aider  
 ↓  
-Son profil devient disponible  
+Son profil devient disponible après validation de son rôle, une fois les champs requis renseignés<br>
 ↓  
 Lucia lui envoie une demande  
 ↓  
@@ -82,10 +88,13 @@ La mise en relation est établie
 
 L'étudiant étranger crée un profil afin de présenter sa situation, ses centres d'intérêt et ses besoins.
 
+**Compte et rôle.** Les deux rôles utilisent le même modèle de compte, avec un rôle à la fois. Le nom de connexion est unique et enregistré en minuscules. L’adresse e-mail d’inscription est unique, privée et doit être vérifiée. Le rôle de parrain et les changements de rôle sont soumis à validation. La procédure et les actions accessibles pendant l’attente restent à définir. Le scénario de Vincent présente le parcours cible sans fixer l’ordre entre la saisie du profil et la validation du rôle.
+
 **Informations possibles :**
 
-- Nom et prénom
+- Nom affiché, distinct du nom de connexion
 - Pays d'origine
+- Ville de résidence ou d’études (référence à préciser pour la mise en relation)
 - Photo de profil facultative
 - Université et formation
 - Parcours / niveau d'études
@@ -98,21 +107,25 @@ L'étudiant étranger crée un profil afin de présenter sa situation, ses centr
 
 Le parrain présente également son parcours, ses centres d'intérêt, ses disponibilités et les domaines dans lesquels il souhaite accompagner un étudiant.
 
+Pour apparaître dans les propositions, le parrain doit avoir un rôle validé, un nom affiché, un parcours et au moins un domaine d’aide renseigné. Il peut masquer son profil. La liste complète des champs obligatoires par rôle et le catalogue des tags restent à préciser avant la création du schéma.
+
+**Édition sur place (prévue) :** depuis son propre profil, l’utilisateur peut passer du mode lecture au mode édition, puis enregistrer ou annuler, sans ouvrir une page de paramètres séparée.
+
 ### 3.2 Trouver un parrain adapté
 
 L'étudiant consulte une sélection de parrains correspondant à son profil.
 
-La mise en relation s'appuie notamment sur :
-
-- les centres d'intérêt ;
-- les besoins exprimés ;
-- les études / formations ;
-- les langues parlées ;
-- éventuellement les disponibilités et d'autres critères pertinents.
+Les propositions sont limitées aux parrains de la même ville. Le classement tient compte de la correspondance entre besoins et aide proposée, des intérêts communs et des langues parlées. L’ordre exact des critères et le caractère obligatoire d’une langue commune restent à préciser. Si les résultats sont peu nombreux, d’autres parrains disponibles de la même ville peuvent être proposés, sous réserve des critères obligatoires retenus.
 
 ### 3.3 Demande de mise en relation
 
 L'étudiant peut sélectionner un ou plusieurs profils de parrains et envoyer une demande de parrainage.
+
+Une seule demande peut être en attente pour un même duo. L’étudiant peut retirer une demande en attente et en envoyer une nouvelle après retrait. Un refus empêche une nouvelle demande au même parrain dans le MVP.
+
+Le questionnaire fixe un maximum de trois parrains actifs par étudiant. Il retient aussi un plafond de trois demandes côté étudiant et de cinq côté parrain. Le périmètre exact de ces deux plafonds et le traitement des demandes lorsque la capacité est atteinte restent à confirmer.
+
+**Retour prévu :** après confirmation de l’envoi par le serveur, la carte du parrain affiche « Ta demande est en attente » sans rechargement de la page, en conservant les informations du profil déjà visibles.
 
 Le parrain ne peut pas contacter directement les étudiants.
 
@@ -128,7 +141,11 @@ Il peut :
 - refuser une demande ;
 - consulter les informations pertinentes du profil avant de prendre sa décision.
 
-Une fois la demande acceptée, les deux utilisateurs peuvent accéder au moyen de communication prévu par l'application.
+Après acceptation, chaque participant peut consulter l’adresse de contact que l’autre a choisie de partager. Cet accès est réservé aux deux participants pendant le parrainage actif. Chacun peut y mettre fin et indiquer un motif facultatif.
+
+**Retour prévu côté parrain :** après confirmation d’une acceptation ou d’un refus par le serveur, la carte concernée affiche le nouvel état sans rechargement. Côté étudiant, une notification d’acceptation avec un lien vers le profil du parrain est envisagée dans le lot 2. Un accès « Notifications » dans le pied de page de l’espace connecté est une piste ; son emplacement et le moment d’affichage restent à définir.
+
+**Gestion du compte.** La désactivation masque le profil et coupe l’accès aux coordonnées. La suppression définitive retire les informations du compte de la base. Le sort des enregistrements partagés, notamment les demandes et les signalements, reste à préciser. Les comptes étudiants et parrains peuvent faire l’objet d’un signalement. Le parcours de signalement et sa priorité de livraison restent à définir.
 
 ### 3.5 Faciliter l'intégration au-delà du parrainage
 
@@ -162,20 +179,20 @@ Les profils et les centres d'intérêt permettent de favoriser les mises en rela
 
 ### Lot 1 — MVP
 
-- Création de compte / connexion
-- Choix du type de profil : étudiant étranger ou parrain
+- Création de compte, vérification de l’adresse e-mail et connexion
+- Choix du rôle étudiant ou parrain et validation du rôle parrain selon une procédure à définir
 - Création et modification du profil
 - Ajout d'une photo facultative
 - Ajout d'une description
 - Informations personnelles pertinentes : formation, établissement, parcours, langues, etc.
-- Sélection de tags correspondant aux centres d'intérêt et aux besoins
+- Sélection de tags pour les centres d’intérêt et les besoins ou domaines d’aide selon le rôle
 - Consultation des profils de parrains proposés
 - Système de mise en relation basé sur les informations et tags des profils
 - Possibilité pour l'étudiant étranger de sélectionner un ou plusieurs parrains
 - Envoi d'une demande de parrainage
 - Réception et gestion des demandes côté parrain
-- Acceptation ou refus d'une demande
-- Transmission des coordonnées / ouverture du contact uniquement après acceptation
+- Acceptation ou refus d’une demande, retrait d’une demande en attente et fin d’un parrainage actif
+- Partage des adresses de contact choisies pendant un parrainage actif
 
 ### Lot 2 — Fonctionnalités complémentaires
 
@@ -196,8 +213,8 @@ Les profils et les centres d'intérêt permettent de favoriser les mises en rela
 - Gestion du flux d'actualité
 - Gestion des événements et ressources proposés dans l'application
 - Système de vérification du statut étudiant
-- Vérification du statut des parrains
-- Signalement et modération des utilisateurs
+- Outils d’administration pour la vérification du statut des parrains
+- Traitement des signalements et modération des utilisateurs
 - Gestion des demandes ou problèmes liés aux mises en relation
 - Tableau de bord administrateur pour suivre l'activité de l'application
 

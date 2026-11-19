@@ -19,13 +19,13 @@ Lorsque l'IA intervient de manière importante dans une phase, son rôle est pr�
 
 L’IA est également utilisée pour générer et rédiger les synthèses de ce journal à partir de la lecture du code, de la documentation et des différences Git du dépôt local, dans les limites des permissions d’accès accordées aux dossiers du projet. Les synthèses sont proposées pour ajout manuel ou écrites directement dans le fichier à la demande de Steve. Elles s’appuient aussi sur les échanges de la séance et distinguent les vérifications effectuées par l’IA des tests navigateur rapportés par Steve. Leur relecture et leur validation avant commit restent sous la responsabilité de l’équipe.
 
-### Organisation Git actuelle
+### Organisation Git au début du projet
 
-Pendant la construction de la première base frontend, Steve travaille directement sur `main`.
+Pendant la construction de la première base frontend, Steve travaillait directement sur `main`.
 
-Alexandre et Ange travaillent sur `dev`, principalement dans leurs dossiers de prototypes respectifs.
+Alexandre et Ange travaillaient sur `dev`, principalement dans leurs dossiers de prototypes respectifs.
 
-Lorsque la structure principale de l'application sera suffisamment stable, le développement sera regroupé autour de `dev` avec un travail isolé par membre avant intégration.
+Le regroupement du développement sur `dev`, avec un travail isolé par membre avant intégration, était alors envisagé. La répartition actuelle des branches est décrite dans le [plan de développement](plan_dev.md).
 
 ### 13/10/2026 — Réorganisation du scaffold frontend
 
@@ -1059,3 +1059,253 @@ Notes de Steve prises lors du retour enseignant, synthétisées sans ajout de re
 - Simulation Node du chargeur réel : succès, HTTP 404, rejet réseau, lecture de réponse en échec et cible absente ; fallback conservé dans les cas d’erreur, aucun fetch sans conteneur. Erreurs simulées, pas de panne réelle imposée au serveur. Préférence reduced-motion vérifiée en source lors des étapes précédentes, pas émulation du réglage système dans cette revue.
 - Jalon retenu : base frontend statique prête pour migration progressive des inclusions PHP. État réel maintenu : pas de session, base, authentification ou sauvegarde ; présélection du rôle, adaptation parrain et navigation protégée encore ouvertes. Placeholders backend relus et toujours commentés, configuration privée non consultée. README/plan mis à jour sans modifier la documentation technique de périmètre.
 - À la demande de Steve, pistes conceptuelles seulement ajoutées au plan : détail d’un parrain, suivi des demandes/parrainage, démarches/ressources et récupération d’accès. Aucun écran supplémentaire créé ni scope produit acté. HTML, documentation et présente synthèse rédigés par l’IA ; espaces Git contrôlés. Aucun staging ou commit effectué.
+
+### 29/10/2026 — Préférence de suivi navigateur et relais PHP
+
+- Steve souhaite pouvoir regarder les essais dans le navigateur intégré : préférence enregistrée dans la méthode du plan (annoncer, afficher les essais, distinguer source/simulations, garder l’onglet sur demande). Aucun changement de configuration de l’application ou d’automatisation effectué.
+- Préparation à sa demande d’un prompt de relais vers son échange backend existant, sans envoi à un autre agent. Ordre proposé : relire le contexte, une inclusion PHP pilote sans base, étendre après contrôle, puis définir le modèle SQL avant PDO/authentification. Serveur PHP local déjà disponible ; WAMP/MySQL à démarrer seulement quand requis, tests du premier PHP exécutable à ne pas différer jusqu’à une grosse intégration.
+- Notes et prompt rédigés par l’IA, espaces Git contrôlés ; aucun code applicatif, serveur, base, staging ou commit modifié.
+
+### 29/10/2026 — Premier fragment de header préparé manuellement pour PHP
+
+- Après explication ligne par ligne par l’IA, Steve remplace lui-même les commentaires de `backend/includes/header.php` par le contenu HTML du header Binô existant. Classes, lien d’accueil et référence au logo conservés ; aucun code PHP nécessaire dans ce fragment de présentation.
+- Vérifications IA : contenu identique au fragment public actuel et contrôle `php -n -l backend/includes/header.php` réussi ; contrôle Git des espaces réussi. Aucun appel depuis une page à ce stade, aucun essai HTTP ou navigateur pendant cette étape : le rendu par inclusion reste à vérifier dès la saisie du premier appel PHP.
+- Présente entrée rédigée par l’IA. Aucun fichier applicatif modifié par l’IA, staging ou commit effectué. Prochaine étape expliquée : préparer la version PHP pilote de l’inscription sans basculer les liens existants, remplacer son seul header de secours par une inclusion fixe et retirer son ID de ciblage JavaScript ; footer et interactions conservés.
+
+### 29/10/2026 — Premier appel d’inclusion : exécution et correction à saisir
+
+- Steve crée manuellement `frontend/public/createprofile.php` et saisit l’inclusion du header. Contrôle IA : `php -n -l` réussi et exécution CLI produisant le contenu du fragment, sans connexion SQL ni session.
+- Relecture : le nouveau bloc header remplace par erreur le bloc `<head>` (métadonnées, titre et lien CSS absents), tandis que le header original et son ID de chargement JavaScript restent dans le body. Deux headers produits ; syntaxe PHP valide ne signifie donc pas structure HTML correcte. Correction expliquée à Steve, sans modification applicative par l’IA.
+- Essais navigateur annoncés puis différés après ce constat source, jusqu’à correction de cette petite étape. Aucun essai HTTP ou navigateur effectué ni validation visuelle revendiquée. Présente note rédigée par l’IA ; contrôle Git des espaces effectué, staging et commits laissés à Steve.
+
+### 29/10/2026 — Inclusion du header pilote corrigée et vérifiée
+
+- Steve corrige manuellement `createprofile.php` : head restauré, header unique dans le body avec inclusion fixe et sans ID `site-header`. Vérifications IA : syntaxe PHP valide, exécution CLI réussie, un head et un header ; sortie identique à la page HTML après retrait du seul ID de chargement et normalisation des espaces entre balises.
+- Début et fin des contrôles navigateur annoncés ; pilote ouvert visiblement dans le navigateur intégré sur `http://127.0.0.1:8000/createprofile.php`. Header/logo et styles affichés, lien de marque testé vers l’accueil. Sur le pilote, valeurs fictives saisies : conseil de longueur et confirmation des mots de passe visibles, bouton de révélation passant à « Masquer le mot de passe », soumission toujours désactivée. Retour sur le pilote avec champs réinitialisés et onglet conservé pour Steve.
+- Contrôle ciblé du premier incrément, sans nouvelle recette exhaustive des confirmations e-mail/username, du responsive ou du clavier. Footer encore local ; liens entrants toujours vers la version HTML. Aucun SQL ni authentification. Code saisi/corrigé par Steve, contrôles et présente entrée réalisés par l’IA ; espaces Git vérifiés, aucun staging ou commit effectué.
+
+### 29/10/2026 — Inclusion du footer : structure unique retenue et correction à saisir
+
+- Steve choisit de conserver un seul couple `backend/includes/header.php` / `footer.php`, sans nouveau fichier de variante publique. Le footer PHP contient pour l’instant la navigation publique du pilote ; les conditions de session seront étudiées lors de l’authentification. Les autres pages et leurs fragments HTML restent inchangés.
+- Steve saisit l’inclusion dans `createprofile.php` et copie le footer dans le fragment. Contrôles IA : syntaxe des deux fichiers valide, exécution CLI réalisée ; deux éléments footer produits car le fragment contient aussi le wrapper déjà présent dans la page. Sortie différente de l’original pour cette raison ; correction expliquée à Steve : conserver le wrapper dans la page et uniquement son contenu dans le fragment.
+- Vérification navigateur annoncée puis différée jusqu’à correction, aucun essai visuel effectué à cette étape. Note rédigée par l’IA, espaces Git contrôlés ; aucun code applicatif modifié par l’IA, staging ou commit effectué.
+
+### 29/10/2026 — Footer pilote corrigé et contrôlé
+
+- À la demande explicite de Steve, l’IA retire uniquement les balises footer ouvrante/fermante du fragment `backend/includes/footer.php`. Le wrapper reste dans la page ; son contenu est inclus. Aucun changement de style, navigation, JavaScript, SQL ou authentification.
+- Vérifications IA : syntaxe PHP du fragment et du pilote valide ; exécution CLI avec exactement un header et un footer. Sortie identique à la version HTML après retrait du seul ID de chargement header et normalisation des espaces entre balises. Espaces Git contrôlés.
+- Essais annoncés et réalisés dans le navigateur intégré visible : rendu du footer public et des deux icônes, clic FAQ vers `aide.html`, retour au pilote et clic du lien Accueil du footer vers `index.html`, puis retour au pilote. Soumission affichée désactivée. Onglet conservé à la position du footer ; pas de nouvelle recette responsive/clavier ou de toutes les interactions du formulaire pendant ce contrôle ciblé.
+- Plan actualisé avec le choix d’un couple unique de fragments PHP et l’état du pilote. Liens entrants encore inchangés : bascule manuelle proposée ensuite à Steve, paramètres de rôle à conserver. Correction du fragment et documentation réalisées par l’IA, premier appel saisi par Steve ; aucun staging ni commit effectué.
+
+### 29/10/2026 — Liens d’inscription basculés vers PHP
+
+- Steve modifie manuellement les quatre href dans `index.html`, `aide.html` et `login.html` vers `createprofile.php`, avec conservation de `?role=etudiant` et `?role=parrain` sur les deux liens de connexion. Relecture IA : différences limitées à ces quatre destinations ; aucune référence à `createprofile.html` restante dans les sources HTML/PHP du frontend.
+- Essais annoncés et réalisés dans le navigateur intégré visible : clic inscription depuis accueil puis FAQ, retour connexion depuis le pilote, clic inscription étudiant puis parrain. Les quatre parcours aboutissent à la page PHP attendue ; paramètres conservés dans les URL. Choix du rôle encore vide et soumission désactivée, conformément à l’absence de traitement GET. Onglet pilote conservé avec URL rôle parrain.
+- Contrôle Git des espaces réussi. Code modifié par Steve ; vérifications et présente entrée rédigées par l’IA. Aucun nouveau traitement PHP, SQL, staging ou commit effectué. Ancienne copie HTML conservée pour l’instant ; prochaine étape possible : retrait de cette copie après validation de la bascule, puis exercice de présélection PHP.
+
+### 29/10/2026 — Retrait manuel de l’ancienne inscription HTML
+
+- Steve supprime `frontend/public/createprofile.html` après validation de la bascule. Vérifications IA : fichier absent, suppression visible dans Git, aucune référence à cette ancienne URL dans `frontend/public/` ou `backend/`. Le frontend conserve huit écrans : sept pages HTML et l’inscription PHP.
+- Aucun nouvel essai navigateur effectué pour ce retrait ; les quatre parcours vers PHP avaient été vérifiés à l’étape précédente. Présélection GET encore non implémentée ; premier bloc de lecture et de validation proposé à saisir par Steve avant de modifier les options du select.
+- Présente entrée rédigée par l’IA, contrôle Git des espaces réussi ; aucun fichier applicatif modifié par l’IA, staging ou commit effectué.
+
+### 29/10/2026 — Préparation du commit des premières inclusions PHP
+
+- À la demande de Steve, arrêt avant l’exercice GET pour préparer un checkpoint : inscription migrée vers PHP, fragments privés header/footer, quatre liens entrants basculés et ancienne page HTML supprimée. Relecture du début de `createprofile.php` : aucun bloc de lecture du rôle ajouté, présélection toujours non implémentée ; formulaires désactivés, sans SQL ni authentification.
+- README et état courant du plan synchronisés par l’IA : sept pages HTML et une PHP, arborescence, dépendances, exécution serveur et prochaine étape. Anciennes entrées datées du journal conservées comme historique. Contributions : saisie initiale et corrections manuelles de Steve, retrait du wrapper footer par l’IA à sa demande, contrôles et documentation par l’IA.
+- Contrôles de ce checkpoint : syntaxe des trois fichiers PHP valide et espaces Git vérifiés. Les essais navigateur et comparaisons de sortie sont ceux détaillés dans les entrées précédentes ; aucun nouvel essai navigateur effectué pour cette préparation documentaire. Nouveau fichier `createprofile.php` encore non suivi et suppression HTML visibles dans Git ; tous deux à inclure dans le même commit. Message proposé, staging et commit exclusivement laissés à Steve.
+
+### 29/10/2026 — Commit confirmé et lecture GET saisie manuellement
+
+- Commit de Steve confirmé : `f497b14`, migration de l’inscription vers PHP avec header/footer partagés, liens entrants et documentation ; Git reconnaît le passage HTML vers PHP. Depuis ce commit, Steve ajoute manuellement le bloc GET proposé : lecture avec valeur par défaut vide et liste autorisée étudiant/parrain comparée strictement. Ce nouveau bloc n’est pas encore commité et ne modifie pas les options du select.
+- Vérifications IA : syntaxe PHP valide et exécution CLI du fichier réel pour six entrées GET contrôlées (absente, étudiant, parrain, inconnue, tableau, vide). Variable finale conforme dans chaque cas ; sortie capturée sans soumission. Rechargement annoncé puis effectué dans le navigateur intégré visible avec rôle parrain : page rendue, choix encore vide comme attendu et création de compte désactivée. Contrôle navigateur terminé ; onglet conservé. Pas de nouvelle recette globale.
+- Préférence de fiche quotidienne PHP ligne par ligne, à produire uniquement sur demande de Steve hors dépôt, précisée dans le plan ; notions et corrections de séance à reprendre. Tests et documentation réalisés par l’IA, code saisi par Steve ; espaces Git contrôlés, aucun staging ni commit par l’IA.
+
+### 29/10/2026 — Présélection PHP du rôle vérifiée
+
+- Steve saisit les trois attributs selected conditionnels dans les options de l’inscription. Lecture GET et liste autorisée déjà en place : une seule option marquée selon la valeur validée, placeholder si valeur vide/non reconnue. Mise en forme du fichier également modifiée par Steve ; aucune activation de soumission ni permission attribuée.
+- Contrôles IA : syntaxe PHP valide, exécution du fichier réel pour six cas GET (absent, étudiant, parrain, inconnu, tableau, vide), exactement une option selected avec la valeur attendue dans chaque sortie. Différence relue et espaces Git contrôlés.
+- Essais annoncés puis effectués dans le navigateur intégré visible : parrain et étudiant présélectionnés, rôle inconnu et paramètre absent laissant le placeholder ; bouton Créer mon compte toujours désactivé. Contrôles terminés, onglet conservé sans paramètre. Aucune nouvelle recette exhaustive des interactions, du responsive ou du clavier.
+- Notions pour la fiche personnelle EOD : superglobale GET, opérateur ??, liste autorisée/in_array strict, comparaison ===, echo court <?=, opérateur ternaire et attribut HTML booléen selected ; PHP choisit le HTML initial, le navigateur affiche le select. Code saisi par Steve, contrôles et documentation réalisés par l’IA, aucun staging ni commit effectué.
+
+### 29/10/2026 — Inclusions étendues manuellement au pilote connexion
+
+- Steve prépare `login.php` à partir de `login.html`, avec les mêmes inclusions privées header/footer et sans leurs IDs de ciblage JavaScript. Version HTML et liens entrants conservés pendant la comparaison ; aucun traitement d’authentification ni bloc GET ajouté à la connexion.
+- Contrôles IA : syntaxe PHP valide, exécution CLI produisant un header et un footer sans cibles du chargeur. Sortie identique à la version HTML après retrait du seul ID header et normalisation des espaces entre balises ; espaces Git vérifiés.
+- Essais annoncés et effectués dans le navigateur intégré visible : page stylisée, soumission désactivée, saisie fictive et deux activations Espace sur le bouton de révélation avec alternance des libellés afficher/masquer. Premier clic automatisé sans changement observé, résultat de révélation validé par activation clavier uniquement. Les deux liens d’inscription atteignent la page PHP avec rôle étudiant puis parrain effectivement présélectionné. Retour au pilote connexion avec champs réinitialisés et onglet conservé. Pas de nouvelle recette responsive ni de test des identifiants réels.
+- Code saisi par Steve ; tests et présente note réalisés par l’IA, aucun changement applicatif par l’IA, staging ou commit effectué. Prochaine étape manuelle : basculer les deux liens entrants dans accueil et inscription de `login.html` vers `login.php`, puis vérifier les parcours avant suppression de la copie HTML.
+
+### 29/10/2026 — Bascule des liens de connexion vérifiée
+
+- Steve remplace les deux liens entrants de connexion dans `index.html` et `createprofile.php` par `login.php`. Relecture IA : destinations correctes, aucune référence à `login.html` restante dans les sources frontend/backend ; syntaxe de connexion et inscription PHP valide, espaces Git contrôlés. Ancienne copie HTML non supprimée à cette étape.
+- Essais annoncés et effectués dans le navigateur intégré visible : clic Se connecter depuis accueil vers `login.php`, clic inscription étudiant vers `createprofile.php?role=etudiant` avec présélection correcte, puis activation Entrée du lien de retour vers `login.php`. Clic automatisé initial du retour sans navigation observée ; parcours validé par activation clavier. Soumissions toujours désactivées, aucun envoi ni authentification.
+- Contrôles navigateur terminés et onglet connexion conservé. Vérification ciblée des liens, sans nouvelle recette globale du responsive ou des formulaires. Modifications applicatives par Steve, vérifications et présente note par l’IA ; aucun staging ni commit effectué.
+
+### 29/10/2026 — Retrait de l’ancienne connexion HTML et prochaine page
+
+- Suppression de `login.html` par Steve confirmée : fichier absent, suppression visible dans Git et aucune référence applicative restante. Connexion et inscription sont désormais les deux écrans PHP ; contenu de démonstration et formulaires désactivés conservés. Aucun nouveau test navigateur pour cette suppression, parcours contrôlés à l’étape précédente.
+- Prochaine répétition proposée à saisir par Steve : configuration du profil avec les mêmes inclusions privées publiques, sans GET, session ou persistance. Garder IDs, compteurs et groupes de cases pour préserver JavaScript ; tester avant bascule du seul lien entrant depuis le profil. Note rédigée par l’IA, espaces Git contrôlés, aucun code applicatif modifié ni staging/commit effectué par l’IA.
+
+### 29/10/2026 — Préparation du checkpoint connexion et présélection
+
+- Steve demande un commit avant de poursuivre la configuration du profil. Périmètre en attente confirmé : lecture/validation GET et selected conditionnel de l’inscription, connexion PHP et liens entrants, suppression de `login.html`, mise en forme des deux fragments partagés. Aucun `profileconfiguration.php` créé.
+- README et plan actualisés par l’IA pour les six pages HTML et deux PHP, diagrammes, navigation et statut de la présélection ; journal complété sans supprimer les vérifications antérieures. Différences des fragments relues : indentation et fin de fichier uniquement, contenu conservé. Aucun code applicatif modifié par l’IA pendant cette préparation.
+- Contrôle des espaces et syntaxe PHP de connexion, inscription et des deux fragments réussis. Essais navigateur et cas GET sont ceux des entrées précédentes, sans nouvelle recette exécutée ici. Message de commit proposé ; nouveau `login.php` et suppression HTML à inclure ensemble. Aucun staging ni commit effectué par l’IA.
+
+### 29/10/2026 — Pilote configuration du profil vérifié avant bascule
+
+- Steve crée manuellement `profileconfiguration.php` avec les mêmes inclusions header/footer. Relecture IA : syntaxe PHP valide, exécution CLI produisant un header et un footer sans IDs du chargeur ; sortie équivalente au HTML après normalisation du formatage et retrait du seul ID header. Compteurs, groupes et soumission désactivée conservés.
+- Essais annoncés et réalisés dans le navigateur intégré visible : description « Bonjour » donnant 7 / 500, sélection des six intérêts puis des sept besoins, désélection indépendante des intérêts en conservant les besoins, puis désélection des besoins. États des boutons et compteurs conformes, soumission désactivée ; rechargement et retour à zéro confirmés, onglet conservé. Pas de nouvelle recette des limites à 500, du responsive ou de tous les liens.
+- Un lien entrant reste à migrer : `profil.html` cible encore `profileconfiguration.html`. Consigne à Steve : remplacer ce href par `profileconfiguration.php` et vérifier le parcours avant de supprimer l’ancienne copie. Code saisi par Steve ; tests et présente note par l’IA, espaces Git contrôlés ; aucun code applicatif, staging ou commit effectué par l’IA à cette étape.
+
+### 29/10/2026 — Lien profil vers configuration PHP validé
+
+- Steve bascule le seul href de configuration dans `profil.html` vers `profileconfiguration.php`. Relecture IA : différence limitée à cette destination, aucune référence à l’ancienne URL HTML dans les sources frontend/backend ; syntaxe PHP et espaces Git valides.
+- Essai annoncé et réalisé dans le navigateur intégré visible : ouverture du profil, activation Entrée du lien « Configurer mon profil », arrivée sur la configuration PHP avec formulaire et compteur initial présents, soumission désactivée. Contrôle terminé et onglet conservé. Tests des groupes et du compteur déjà détaillés à l’étape précédente, non répétés ici.
+- Suppression de l’ancienne copie HTML désormais possible après cette validation, non effectuée par l’IA. Code modifié par Steve, tests et présente note par l’IA ; aucun staging ni commit effectué.
+
+### 29/10/2026 — Ancienne configuration retirée, FAQ proposée ensuite
+
+- Suppression manuelle de `profileconfiguration.html` confirmée : fichier absent, suppression visible dans Git et aucune référence applicative restante. Les parcours vers PHP et interactions avaient été vérifiés aux étapes précédentes ; aucun nouvel essai navigateur pour ce retrait.
+- Prochaine répétition proposée à Steve : `aide.php` avec inclusions publiques existantes, compteur contact et envoi désactivé conservés. Vérifier la page avant de modifier les destinations FAQ dans les deux fragments, les pages HTML et leurs fallbacks ; un changement du footer PHP se propage aux trois pages déjà migrées. Aucune bascule FAQ effectuée à ce stade.
+- Note rédigée par l’IA, espaces Git contrôlés ; aucune modification applicative, installation, staging ou commit par l’IA.
+
+### 29/10/2026 — Pilote FAQ testé et préparation du checkpoint
+
+- Steve crée manuellement `aide.php` avec les inclusions publiques existantes ; aucun lien FAQ basculé. Contrôles IA : syntaxe PHP valide, un header/un footer sans IDs du chargeur, sortie équivalente à `aide.html` après normalisation du formatage et retrait du seul ID header. Premier comparateur signalant uniquement un espace de fin de paragraphe ; contenu relu puis équivalence confirmée avec normalisation adaptée.
+- Essais annoncés et réalisés dans le navigateur intégré visible : cinq réponses FAQ présentes, saisie « Bonjour » donnant 7 / 500, envoi désactivé, activation Entrée du lien inscription vers `createprofile.php`, puis du lien Accueil du footer vers `index.html`. Retour au pilote FAQ avec compteur réinitialisé, onglet conservé. Aucun essai de soumission, de limite 500, de responsive global ni nouvelle recette du lien FAQ encore vers HTML.
+- Checkpoint demandé par Steve avant poursuite : configuration PHP avec lien profil et suppression de l’ancienne copie, plus FAQ PHP pilote conservant sa version HTML et ses anciennes destinations. README et plan actualisés par l’IA ; vérification des espaces et syntaxe des quatre pages PHP et deux fragments. Résultats navigateur de configuration et de ses liens consignés aux entrées précédentes, non répétés ici.
+- Code saisi par Steve, contrôles et documentation par l’IA. Aucun staging ni commit effectué ; message proposé pour ce périmètre, bascule FAQ à réaliser dans l’étape suivante.
+
+### 29/10/2026 — Migration complète des inclusions et liens, par incréments vérifiés
+
+- À la demande explicite de Steve, l’IA termine les répétitions après les premiers exemples manuels. Git propre au départ, un commit local d’avance sur la référence `origin/main`. Aucune installation, modification de serveur, base ou authentification ; staging et commits toujours laissés à Steve.
+- FAQ : bascule des liens dans pages, fragments et footer PHP, comparaison du rendu au HTML et activation du lien FAQ depuis la configuration vers `aide.php` dans le navigateur visible ; puis suppression de `aide.html`.
+- Accueil : création de `index.php` avec les deux inclusions fixes, comparaison avant/après bascule des liens. Navigation FAQ → accueil PHP, contrôle visuel du header et du contenu puis ouverture de `/` réussis ; suppression de `index.html` après ces contrôles. Les liens directs anciens .html ne sont pas redirigés ; navigation actuelle entièrement basculée.
+- Footer unique : ajout d’une condition `if ($showDemoNavigation ?? false): ... endif;` autour des deux contrôles de démonstration existants. Profil et deux flux définissent `$showDemoNavigation = true` avec commentaire explicite : variante de présentation de maquette, sans authentification ni autorisation. Les cinq autres pages gardent Accueil et FAQ uniquement. Aucun paramètre navigateur ne détermine cette variable.
+- Profil : création/exécution de `profil.php`, comparaison au HTML, liens basculés, contenu et footer vérifiés visuellement puis activation du lien configuration. Footer public de la configuration conservé ; suppression de `profil.html` après validation.
+- Flux étudiant : création/exécution et comparaison avant/après bascule, navigation accueil → flux étudiant → profil vérifiée dans le navigateur intégré ; trois profils, mascotte et actions désactivées conservés. Suppression de l’ancienne copie après contrôles.
+- Flux parrain : création/exécution et comparaison avant/après bascule, page rendue avec Lucia, mascotte, actions désactivées et footer de démonstration. Une tentative d’activation depuis accueil a rencontré un élément périmé dans l’outil ; ouverture directe du flux et parcours vers le profil ensuite validés, sans déduire un résultat du clic non envoyé. Suppression de l’ancienne copie après ces vérifications.
+- Après migration des huit pages et absence de dépendances aux cibles du chargeur : suppression de `loadPartial` et de ses deux appels dans `main.js`, ainsi que des deux fragments HTML publics. Contenu de secours dupliqué retiré lors de chaque conversion. Autres fonctions JavaScript, CSS et assets inchangés. Pas de routeur ou framework ajouté.
+- Contrôles finaux IA : syntaxe/exécution des huit pages ; un header/un footer chacune ; IDs uniques ; destinations et assets locaux existants ; symboles SVG valides ; aucune ancienne URL HTML ni cible du chargeur ; variantes de footer conformes et toutes soumissions désactivées. Syntaxe JavaScript valide. Requêtes HTTP locales en lecture seule autorisées : huit pages et `/` en 200 sans PHP brut, avertissement ou erreur fatale dans la réponse.
+- Régression dans le navigateur intégré visible après retrait du chargeur : révélation du mot de passe de connexion par Espace, lien parrain et présélection, e-mails différents signalés, mots de passe identiques confirmés, conseil de longueur ; configuration « Bonjour » à 7 / 500, sélections de six intérêts et sept besoins indépendantes. Données fictives sans soumission. Les tests de limites, appareils réels et recette responsive/accessibilité exhaustive ne sont pas répétés. Les comparaisons CLI ne remplacent pas les essais navigateur décrits séparément.
+- README et plan réconciliés avec l’état final ; anciennes étapes conservées dans le journal. Matière pour fiche EOD personnelle : portée des variables dans une inclusion, booléen de présentation, syntaxe alternative if/endif, distinction navigation/autorisations et PHP/JavaScript ; fiche à produire hors dépôt uniquement sur demande de Steve. Code de répétition, suppression des copies testées, contrôles et documentation effectués par l’IA avec son autorisation. Aucun staging ni commit effectué.
+- Complément final navigateur : compteur FAQ confirmé à 7 / 500 après retrait du chargeur ; nouvelle activation depuis `/` vers le flux parrain réussie avec URL PHP et contenu attendus. Cela complète la tentative initiale interrompue par l’état périmé de l’outil. Retour à l’accueil et onglet conservé ; début et fin des contrôles annoncés. Espaces Git et cohérence des deux diagrammes documentaires contrôlés en fin de passe.
+
+### 29/10/2026 — Checkpoint frontend intégré à dev
+
+- Steve confirme la fusion de la PR #5, de `frontend-checkpoint` vers `dev` : validation partagée des identifiants (`f6a5079`) et checkpoint frontend avant PHP (`c453c1c`). Les migrations PHP ultérieures restent sur `main`, hors de cette PR.
+- Branche temporaire `frontend-checkpoint` supprimée par Steve après fusion. Une future PR de `main` vers `dev` permettra d’intégrer la suite PHP. Note rédigée par l’IA à partir des informations GitHub et confirmations de Steve ; aucune modification applicative ni opération Git effectuée par l’IA.
+
+### 29/10/2026 — Consignes de lancement pour le groupe et séparation des branches
+
+- Steve précise que `dev` reste délibérément au checkpoint avant PHP. Contrôle IA des références locales : `main` à `f79d36b` (migration PHP complète), `dev` à `956a8f1` (fusion du checkpoint) ; arbre de `dev` avec huit pages HTML et fragments publics. Pas de fetch ni nouvelle vérification du serveur GitHub pendant cette lecture ; aucune branche modifiée.
+- README complété par l’IA : choix main/PHP ou dev/statique, clone et lancement portable depuis la racine avec PHP CLI, exemple de chemin Windows, adresse locale propre à chaque membre, ports, arrêt, absence de dépendances/base/configuration requises et mise à jour prudente d’une copie existante. Seconde copie optionnelle pour consulter dev sans toucher au travail PHP. Plan précisant le décalage intentionnel ; aucune fusion demandée ni effectuée.
+- Prochaine étape proposée : discuter le modèle minimal et les règles encore ouvertes avant création des tables ou connexion PDO, en commençant par la casse/unicité du username et les champs requis. Aucun modèle considéré comme approuvé par cette proposition.
+- Vérifications : cohérence des chemins/branches avec le dépôt et contrôle des espaces Git. Les commandes de clone/mise à jour ne sont pas exécutées ; le serveur Windows avait été testé aux étapes précédentes. Aucun essai sur les machines du groupe, macOS ou Linux revendiqué. Documentation écrite par l’IA, aucune modification applicative, installation, staging ou commit effectué.
+
+### 29/10/2026 — Exclusions privées et clarification des chemins de lancement
+
+- Steve demande confirmation des exclusions courantes et mise à jour documentaire, en différant les données. L’IA élargit la règle de configuration locale à `backend/config/*.local.php`, ajoute `.env`/`.env.*` avec exceptions pour modèles .example, emplacements réservés `backend/logs/` et `backend/sql/private/`, et extensions SQLite locales. Aucun dossier, fichier de données, secret ou mécanisme de chargement .env créé ; schéma SQL, code PHP et modèle de configuration restent versionnables.
+- Vérification réelle par `git check-ignore --no-index` sur quatorze chemins de contrôle sans création des fichiers : neuf exclusions et cinq fichiers partagés/modèles conformes. Aucun fichier suivi ne correspond aux conventions privées vérifiées. Ce contrôle de chemins ne constitue pas une analyse du contenu de tout l’historique ni une preuve d’absence de secrets dans tout fichier suivi. Aucune opération sur l’index.
+- README et plan précisent que gitignore ne protège pas les URL ni les fichiers déjà suivis. Les exports privés doivent rester dans l’emplacement désigné ; pas d’exclusion globale .sql qui masquerait le schéma partagé. Racine publique `frontend/public/` distincte des fichiers privés backend.
+- Chemins locaux vérifiés : dépôt dans le dossier Git sur D:, exécutable PHP dans Wampserver sur C:, racine HTTP définie par -t. README expliquant qu’aucune copie dans wamp64/www ni configuration Apache n’est nécessaire au serveur intégré. Consignes portables du groupe conservées ; aucun changement de serveur ou de branche.
+- Règles et documentation écrites par l’IA à la demande de Steve ; espaces Git contrôlés, aucune implémentation de données, recette navigateur supplémentaire, installation, staging ou commit effectué.
+
+### 29/10/2026 — Deux guides personnels de lancement hors dépôt
+
+- À la demande de Steve, l’IA prépare deux fichiers Markdown séparés hors dépôt : démarrage sur sa machine avec l’exécutable PHP déjà installé, et accompagnement du groupe disposant d’un clone existant. Étapes courtes, rôle des chemins, branche main/dev, port, arrêt et dépannage précisés ; aucun nouveau clone requis pour le groupe.
+- Blocs de code vérifiés et consignes cohérentes avec le lancement précédemment testé ; aucune commande de clone/mise à jour ou installation exécutée, aucun essai sur les machines du groupe revendiqué. Guides personnels non ajoutés au dépôt, présente entrée rédigée par l’IA ; aucun staging ni commit effectué.
+
+### 29/10/2026 — Fiche personnelle PHP de fin de séance
+
+- À la demande de Steve avant arrêt de la séance, fiche Markdown détaillée rédigée par l’IA hors dépôt : exécution serveur, Wampserver/PHP intégré, chemins disque/URL, head/header, wrappers/fragments, require et __DIR__, variables/portée, GET et validation stricte, echo court/ternaire/selected, condition de footer, migration des liens et retrait du chargeur. Corrections réelles, tests et limites, exclusions Git, lancement du groupe et questions corrigées inclus ; données/authentification clairement non implémentées.
+- Sources actuelles relues ; bloc GET comparé au code, huit extraits pédagogiques PHP contrôlés en syntaxe et clôture des blocs Markdown vérifiée. Ces contrôles de la fiche ne sont pas de nouveaux tests fonctionnels navigateur. Aucun fichier applicatif modifié, staging ou commit effectué ; fiche personnelle non ajoutée au dépôt. Travail arrêté pour aujourd’hui à la demande de Steve.
+
+### 05/11/2026 — Checklist partagée de sécurité et de confidentialité
+
+- À la demande de Steve, adaptation dans `docs/security_privacy.md` de sa checklist fournie hors dépôt. Document destiné à l’équipe et ses outils, avec statuts explicites « vérifié / problème trouvé / non applicable / non testé », application selon les fonctions présentes et aucune déclaration de conformité. Formulations orientées vers un agent superviseur remplacées par un compte rendu à l’équipe dans le journal.
+- Liste transversale couvrant données/accès, validation, PDO, encodage, uploads, secrets, dépendances, cookies, information utilisateur et déploiement. Références OWASP/CNIL du document source conservées comme ressources à consulter aux étapes concernées ; aucun audit juridique ni revue actuelle de leurs contenus revendiqué. Authentification, base et uploads toujours non implémentés, sans cases déclarées vérifiées par anticipation.
+- Lien ajouté au README et à la rubrique sécurité du plan ; arborescence mise à jour. Jalons de protection par étape conservés dans le plan pour éviter de recopier la checklist. Document source personnel conservé sans modification ; pas de nouveau fichier d’instructions agent ajouté à la racine.
+- Adaptation et documentation rédigées par l’IA avec autorisation de Steve. Vérification des liens Markdown locaux, structure des blocs et espaces Git ; aucune modification applicative, recette de sécurité ou essai navigateur effectué. Arbre propre sur main au départ ; message de commit préparé pour Steve, aucun staging/commit effectué par l’IA.
+
+### 12/11/2026 — Retours de Y. Delmas du 09/11 : parrainage et profil
+
+- Notes transmises par Steve intégrées à la documentation technique et aux phases 7 et 9 du plan : mise à jour en AJAX de la carte après l’envoi, l’acceptation ou le refus d’une demande ; édition depuis `profil.php` sans passage par un écran de paramètres.
+- Côté étudiant, après confirmation de l’envoi, conserver les informations du parrain visibles sur la même page et afficher un message d’attente dans sa carte. Côté parrain, actualiser la carte concernée après acceptation ou refus. Les deux interactions se font sans rechargement de la page.
+- Notification d’acceptation avec lien vers le profil du parrain envisagée dans le lot 2. L’accès via le pied de page connecté et le rafraîchissement restent des pistes à arbitrer. Aucun fonctionnement en temps réel acté.
+- Répartition précisée : composants HTML pour les boutons, formulaires et messages ; JavaScript pour l’interaction et l’actualisation locale ; PHP/SQL pour les autorisations, la validation et les données. Propositions non implémentées.
+- Rédaction par l’IA à partir des notes de Steve ; différences et espaces Git vérifiés. Aucun code modifié, aucun essai navigateur, staging ou commit effectué.
+
+### 12/11/2026 — Retours de Y. Delmas du 12/11 : JavaScript et mots de passe
+
+- Revoir ce que le HTML et le navigateur fournissent pour masquer et révéler un mot de passe, puis vérifier le besoin d’une bascule commune entre les états visible et masqué.
+- Pour évaluer la force du mot de passe, examiner une bibliothèque JavaScript existante plutôt que développer la comparaison avec une liste de motifs prévisibles. Le choix de la bibliothèque reste à faire.
+- Simplifier `main.js` en réduisant les répétitions et en ajoutant des commentaires qui expliquent les interactions. Privilégier les fonctionnalités natives et les bibliothèques existantes lorsqu’elles couvrent le besoin.
+- Consignes associées transmises par Steve : [instructions de l’enseignant pour l’étape JavaScript sur Azraël](https://azrael.sha.univ-poitiers.fr/~ydelmas/26-27-m2-programmation/projet-yannis/etape-5-js/instructions-enseignant.txt). Les conventions et l’ordre de travail sont repris dans le [plan de développement](plan_dev.md). La saisie et le test des premiers exemples restent à Steve. Ajout documentaire réalisé par l’IA, sans modification du code ni essai navigateur.
+
+### 12/11/2026 — Simplification de la bascule de visibilité du mot de passe
+
+- Après accord de Steve, l’IA réduit le callback de `setupPasswordToggle` à une décision (`shouldReveal`) qui détermine le type du champ et le libellé du bouton. JSDoc en français ajouté ; noms, sélecteurs et trois libellés fonctionnels conservés. Aucune dépendance ajoutée.
+- Avant modification, les trois boutons ont été vérifiés au clavier dans le navigateur intégré visible par l’IA. La version proposée a été simulée pour les trois associations, avec vérification de leur indépendance et du garde-fou en l’absence d’éléments. Après application, syntaxe JavaScript et différences Git contrôlées par l’IA. Steve confirme le fonctionnement de la version modifiée dans le navigateur ; aucun nouvel essai navigateur réalisé par l’IA après l’application.
+- Steve souhaite conserver des commits courts après chaque incrément validé. Message proposé par l’IA ; aucun staging ni commit effectué.
+
+### 12/11/2026 — Simplification du retour de confirmation
+
+- À la demande de Steve, l’IA réduit `setupFieldConfirmation` à un choix de message puis une seule écriture du retour. Comparaison exacte, écoute des deux champs et effacement du message si la confirmation est vide conservés pour l’e-mail et le mot de passe.
+- La simulation de la proposition a donné les mêmes résultats que l’ancienne version sur les deux paires. Steve confirme le bon fonctionnement dans le navigateur après application. Il relève que la documentation détaillée agrandit le fichier : l’IA conserve un JSDoc court qui explique la règle du champ vide, sans répéter les noms de paramètres. Ce dernier changement ne touche que le commentaire. Syntaxe et différences Git vérifiées ; aucun nouvel essai navigateur, staging ou commit par l’IA.
+
+### 12/11/2026 — Libellés des boutons de révélation dans les gabarits
+
+- À la demande de Steve, après clarification du retour enseignant, les trois boutons gardent leurs libellés visibles en français dans `login.php` et `createprofile.php`. Le texte initial fournit le libellé « Afficher » ; `data-hide-label` fournit le libellé « Masquer », avec la formulation propre à la confirmation. `setupPasswordToggle(buttonId)` utilise `aria-controls` pour retrouver le champ et ne contient plus de libellé en dur.
+- Code écrit par l’IA ; lint PHP et syntaxe JavaScript réussis. Simulations à partir des deux pages rendues par PHP : trois cibles et libellés vérifiés, champs indépendants, valeurs conservées, garde-fou en l’absence d’éléments. `main.js` passe de 6 717 à 6 298 octets avec les mêmes fins de ligne. Steve confirme le fonctionnement dans le navigateur ; aucun nouvel essai navigateur réalisé par l’IA. Différences Git contrôlées, aucun staging ni commit effectué.
+- Incrément suivant : remplacer l’heuristique de robustesse et sa liste codée en dur par une bibliothèque locale, chargée seulement à l’inscription. Le CSS gardera la maîtrise de l’indicateur ; la confirmation des deux champs reste indépendante.
+
+### 12/11/2026 — Préparation des fichiers locaux de zxcvbn-ts
+
+- À la demande de Steve, l’IA prépare la variante légère retenue : cœur `4.2.0`, données et motifs communs `4.1.3`, traductions françaises seules `4.1.2`. Le dictionnaire français complet est écarté pour réduire le poids, au prix d’une moins bonne détection de certaines suites de mots français. Archives npm téléchargées sans installation dans le dépôt ni exécution de scripts de cycle de vie.
+- Fichiers navigateur copiés sans modification sous `frontend/public/assets/js/vendor/zxcvbn-ts/`, avec versions, provenance et licences. Taille mesurée : 539 777 octets bruts, 248 020 en gzip séparé ; variante avec dictionnaire français complet : 1 172 048 octets bruts, 541 665 en gzip séparé. Aucun chargement par un gabarit pour l’instant, aucun changement de comportement.
+- Vérifications IA : fichiers comparés aux archives d’origine et exécution locale avec des exemples fictifs, sans réseau, dans Node ; retour français et distinction de scores contrôlés. Aucun essai navigateur, staging ni commit effectué. Prochaine étape : brancher l’estimation sur l’inscription uniquement et retirer la liste et les règles maison, sans toucher à la confirmation des champs.
+- Contrôle HTTP local complémentaire avant commit : le serveur PHP de développement a servi les trois fichiers avec un statut 200, le type `application/javascript` et un contenu identique aux fichiers du dépôt, y compris pour `translations-fr.mjs`. Serveur temporaire arrêté après le contrôle ; aucun essai navigateur à cette étape.
+
+### 12/11/2026 — Estimation locale de la robustesse à l’inscription
+
+- À la demande de Steve, l’IA crée `password-strength.mjs` avec une seule fonction d’actualisation. Les deux scripts locaux de la bibliothèque sont chargés uniquement dans `createprofile.php` ; le module importe les traductions françaises. Le champ de mot de passe alimente le calcul local et le paragraphe existant affiche le score de 0 à 4 et un conseil si disponible, sans appel réseau pour le calcul. Effacer le champ efface le retour.
+- L’heuristique et la liste maison sont retirées de `main.js`, qui passe de 6 298 à 5 103 octets à fins de ligne identiques. La confirmation, la révélation et les contraintes du formulaire restent indépendantes. L’estimation n’est pas une règle de validation serveur. Aucun CSS ajouté dans cet incrément.
+- Vérifications IA : syntaxe PHP/JS, ordre des balises dans le rendu PHP, chargement réservé à l’inscription et simulation avec les fichiers locaux pour scores distincts, conseil français, effacement, confirmation et révélation. Steve confirme le fonctionnement dans le navigateur ; aucun essai navigateur réalisé par l’IA dans cet incrément. README, plan et notice locale actualisés ; aucun staging ni commit effectué.
+
+### 12/11/2026 — Initialisation simplifiée des groupes de sélection
+
+- À la demande de Steve, l’IA transmet directement chaque fieldset trouvé à `setupTagSelection` par une seule recherche DOM. Sur les autres pages, la liste vide n’appelle pas la fonction. Le compteur, les boutons et le déplacement du focus sans défilement sont inchangés. HTML garde les cases natives ; JavaScript garde les actions immédiates par groupe.
+- Le retour de robustesse textuel est conservé ; mise en forme reportée à la passe CSS dans le plan. L’indentation déjà modifiée dans le module de robustesse est laissée intacte.
+- Syntaxe JavaScript, différences Git et simulation Node contrôlées par l’IA : groupes indépendants, compteur, états des boutons, focus et page sans groupe. Essai navigateur à effectuer par Steve. Aucun staging ni commit effectué.
+
+### 12/11/2026 — Relecture des commentaires JavaScript applicatifs
+
+- Steve confirme le bon fonctionnement des sélections groupées dans le navigateur après simplification. À sa demande, l’IA relit ensuite `main.js` et `password-strength.mjs`, les deux fichiers JavaScript applicatifs hors bibliothèque. JSDoc en français sur les fonctions nommées et commentaires ciblés sur les contraintes natives, l’effacement d’erreur, la mise à jour groupée et l’ordre de chargement du module. Aucun fichier de bibliothèque retouché.
+- Relecture fondée sur les conventions du plan ; le document enseignant lié n’a pas pu être ouvert. Syntaxe des deux fichiers contrôlée et code hors commentaires comparé à `HEAD` : aucun changement exécutable. Pas de nouvel essai navigateur pour cette passe de commentaires ; aucun staging ni commit effectué par l’IA.
+
+### 12/11/2026 — Chargement JavaScript limité et clôture de la passe
+
+- À la demande de Steve, l’IA retire la balise de chargement de `main.js` dans `index.php`, `profil.php`, `fluxetudiant.php` et `fluxparrain.php`, qui n’ont aucun contrôle ciblé par ce fichier. Connexion, inscription, configuration et FAQ conservent le script ; zxcvbn-ts reste réservé à l’inscription. Aucun changement au code JavaScript, au CSS ou aux fichiers de bibliothèque.
+- Contrôles IA : lint et rendu des huit pages PHP, présence du header/footer, chargement des scripts conforme et différences PHP limitées à ces quatre retraits. Syntaxe ES2017 contrôlée pour les deux fichiers applicatifs, avec JSDoc sur leurs onze fonctions nommées. Liens Markdown locaux, blocs et espaces Git vérifiés.
+- Essais dans le navigateur intégré visible : accueil et deux liens vers les flux, flux parrain → profil → configuration, absence de script sur les quatre écrans et présence sur les quatre autres. Compteurs de description et de contact, sélection/désélection indépendante au clavier, erreur de nom de connexion puis correction, révélation au clavier, score de robustesse et effacement du retour, correspondance du mot de passe et différence d’e-mail vérifiés. Une première ouverture sur le port alternatif et une activation clavier du lien parrain n’ont pas abouti ; parcours confirmé ensuite sur le port habituel par clic. Données fictives, aucun formulaire soumis, pas de recette exhaustive. Serveurs temporaires arrêtés.
+- Relecture des consignes Markdown du dépôt : conventions de syntaxe, rôles PHP/HTML/JS/CSS, français des commentaires, documentation et limites de sécurité cohérents avec l’état actuel. L’original des consignes enseignant n’a pas pu être vérifié ; référence aux conventions consignées dans le plan. Pas de factorisation supplémentaire recommandée pour les interactions présentes. Mise en forme du retour de robustesse, édition sur place et demandes AJAX restent à traiter dans des incréments distincts.
+- Modifications, contrôles et documentation par l’IA à la demande de Steve ; staging et commit laissés à Steve.
+
+### 12/11/2026 — Revue HTML/CSS après la passe JavaScript
+
+- Revue en lecture seule sur `main` à `8540faa`. L’agent HTML/CSS a contrôlé le rendu PHP des huit pages, les repères de structure, les chemins locaux, les références d’identifiants, le chargement des scripts, les boutons de révélation, les soumissions désactivées, l’état initial des cases à cocher et quatre cas de présélection du rôle.
+- À la demande de Steve, les pistes de correction sont reportées : annonces des retours de validation à vérifier d’abord avec un lecteur d’écran, séparation des sélecteurs d’état pressé pour les navigateurs qui ne prennent pas en charge `:has()`, et regroupement facultatif des contours de focus. Les structures de cartes sont conservées. Leurs dépendances CSS de voisinage et d’imbrication seront à prendre en compte lors de l’incrément AJAX.
+- Le navigateur intégré n’a pas répondu à temps lors de cette revue. Les essais aux petites et grandes largeurs, le parcours Tab et le focus visible, les changements d’état des cases, les mouvements réduits et les annonces du lecteur d’écran restent à vérifier pour cette passe. Les résultats des essais JavaScript précédents sont consignés dans l’entrée ci-dessus. Aucun changement applicatif ni formulaire soumis.
+
+### 13/11/2026 — Priorité au modèle de données et à la création de profil
+
+- Steve confirme la reprise du chantier MySQL/PHP à partir du questionnaire d’équipe. Le premier parcours à préparer couvre les champs requis, les tags selon le rôle, la validation PHP, l’enregistrement et la relecture d’un profil. L’activation de la sauvegarde pour un utilisateur connecté dépend de l’identification du compte et du contrôle du propriétaire.
+- L’édition sur place et les actions AJAX des demandes reprendront avec leurs traitements serveur. La notification d’acceptation et l’éventuel bouton de pied de page restent des sujets ultérieurs. La passe JavaScript du 12/11 est terminée. La mise en forme du retour de robustesse et les suites de la revue HTML/CSS restent reportées.
+- README et plan mis à jour par l’IA à la demande de Steve. `schema.sql` et `db.php` sont encore préparatoires. Aucun code applicatif ni schéma SQL modifié.
+
+### 13/11/2026 — Fiche de révision JavaScript ligne par ligne
+
+- À la demande de Steve, l’IA prépare une fiche Markdown personnelle hors dépôt à partir de `main.js` et `password-strength.mjs` sur `main` (`104be2f`). Elle explique les liens avec les gabarits PHP, les événements, les contraintes natives, la bibliothèque locale et les limites de ces interactions. Les fichiers tiers ne sont pas annotés.
+- Les six extraits numérotés correspondent aux sources et les 158 lignes non vides de ces extraits sont expliquées. Syntaxe JavaScript et espaces Git contrôlés. Aucun code applicatif modifié, aucun nouvel essai navigateur, staging ou commit effectué. La reprise des interactions reste liée aux prérequis PHP/SQL de l’entrée précédente.

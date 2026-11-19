@@ -1,0 +1,164 @@
+<!-- Configuration du profil -->
+
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Compléter mon profil — Binô</title>
+
+    <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body>
+    <header class="site-header">
+        <?php require __DIR__ . '/../../backend/includes/header.php'; ?>
+    </header>
+    <main class="auth-page">
+        <h1>Complète ton profil</h1>
+
+        <img class="auth-avatar" src="assets/images/avatar-default.svg" alt="" width="64" height="64" />
+
+        <form class="auth-form" method="post" aria-describedby="profile-note">
+            <p id="profile-note">
+                Maquette de profil étudiant accompagné : tous les champs sont facultatifs dans cette version. Les
+                informations ne sont pas encore enregistrées.
+            </p>
+
+            <div class="form-panel">
+                <div class="form-field">
+                    <label for="profile-name">Nom affiché</label>
+                    <input type="text" id="profile-name" name="display_name" aria-describedby="profile-name-help" />
+                    <p id="profile-name-help">
+                        Le nom visible sur ton profil. Il peut être différent de ton nom d’utilisateur et contenir des
+                        espaces ou des accents.
+                    </p>
+                </div>
+            </div>
+
+            <div class="form-panel">
+                <div class="form-field">
+                    <label for="profile-country">Pays d’origine</label>
+                    <input type="text" id="profile-country" name="country" />
+                </div>
+
+                <div class="form-field">
+                    <label for="profile-studies">Ton parcours d’études</label>
+                    <input type="text" id="profile-studies" name="studies" aria-describedby="profile-studies-help" />
+                    <p id="profile-studies-help">
+                        Par exemple : L1 de lettres à l’université de Poitiers.
+                    </p>
+                </div>
+            </div>
+
+            <div class="form-panel">
+                <div class="form-field">
+                    <label for="profile-description">Présente-toi en quelques mots (500 caractères maximum)</label>
+                    <textarea id="profile-description" name="description" rows="4" maxlength="500"
+                        aria-describedby="profile-description-count"></textarea>
+                    <p id="profile-description-count">0 / 500 caractères</p>
+                </div>
+            </div>
+
+            <fieldset id="profile-interests">
+                <legend>Tes centres d’intérêt</legend>
+                <p>Tu peux sélectionner plusieurs réponses.</p>
+                <div class="tag-options">
+                    <label>
+                        <input type="checkbox" name="interests[]" value="sport" />
+                        Sport
+                    </label>
+                    <label>
+                        <input type="checkbox" name="interests[]" value="jeux-video" />
+                        Jeux vidéo
+                    </label>
+                    <label>
+                        <input type="checkbox" name="interests[]" value="sorties" />
+                        Sorties
+                    </label>
+                    <label>
+                        <input type="checkbox" name="interests[]" value="culture" />
+                        Culture
+                    </label>
+                    <label>
+                        <input type="checkbox" name="interests[]" value="musique" />
+                        Musique
+                    </label>
+                    <label>
+                        <input type="checkbox" name="interests[]" value="etudes" />
+                        Études
+                    </label>
+                </div>
+                <p data-selection-count role="status">0 option sélectionnée</p>
+                <div class="request-actions">
+                    <button type="button" class="button button--secondary" data-select-all>
+                        Tout sélectionner
+                    </button>
+                    <button type="button" class="button button--secondary" data-clear-selection disabled>
+                        Tout désélectionner
+                    </button>
+                </div>
+            </fieldset>
+
+            <fieldset id="profile-needs">
+                <legend>Tes besoins d’accompagnement</legend>
+                <p>
+                    Dans quels domaines souhaites-tu être accompagné ? Plusieurs
+                    réponses sont possibles.
+                </p>
+                <div class="tag-options">
+                    <label>
+                        <input type="checkbox" name="needs[]" value="vie-sociale" />
+                        Vie sociale et rencontres
+                    </label>
+                    <label>
+                        <input type="checkbox" name="needs[]" value="etudes" />
+                        Études et fonctionnement de l’université
+                    </label>
+                    <label>
+                        <input type="checkbox" name="needs[]" value="demarches" />
+                        Démarches administratives
+                    </label>
+                    <label>
+                        <input type="checkbox" name="needs[]" value="transports" />
+                        Transports
+                    </label>
+                    <label>
+                        <input type="checkbox" name="needs[]" value="sorties-culturelles" />
+                        Sorties et activités culturelles
+                    </label>
+                    <label>
+                        <input type="checkbox" name="needs[]" value="bons-plans" />
+                        Bons plans étudiants
+                    </label>
+                    <label>
+                        <input type="checkbox" name="needs[]" value="aides" />
+                        Aides disponibles pour les étudiants
+                    </label>
+                </div>
+                <p data-selection-count role="status">0 option sélectionnée</p>
+                <div class="request-actions">
+                    <button type="button" class="button button--secondary" data-select-all>
+                        Tout sélectionner
+                    </button>
+                    <button type="button" class="button button--secondary" data-clear-selection disabled>
+                        Tout désélectionner
+                    </button>
+                </div>
+            </fieldset>
+
+            <button type="submit" class="button" disabled>
+                Terminer mon profil
+            </button>
+        </form>
+    </main>
+
+    <footer class="site-footer">
+        <?php require __DIR__ . '/../../backend/includes/footer.php'; ?>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

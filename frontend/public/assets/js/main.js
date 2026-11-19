@@ -1,65 +1,33 @@
 // JavaScript principal de l'application
 
-// Chargement des fragments HTML communs
-async function loadPartial(containerId, filePath) {
-  const container = document.getElementById(containerId);
+/** Relie le bouton à son champ via aria-controls et reprend les libellés du gabarit. */
+function setupPasswordToggle(buttonId) {
+  const button = document.getElementById(buttonId);
 
-  if (!container) {
+  if (!button) {
     return;
   }
 
-  try {
-    const response = await fetch(filePath);
+  const input = document.getElementById(button.getAttribute("aria-controls"));
+  const showLabel = button.textContent.trim();
+  const hideLabel = button.dataset.hideLabel;
 
-    if (!response.ok) {
-      throw new Error(`Erreur HTTP : ${response.status}`);
-    }
-
-    const html = await response.text();
-    container.innerHTML = html;
-  } catch (error) {
-    console.error(`Impossible de charger le fragment : ${filePath}`, error);
-  }
-}
-
-loadPartial("site-header", "includes/header.html");
-loadPartial("site-footer", "includes/footer.html");
-
-// Affichage indépendant des champs de mot de passe
-function setupPasswordToggle(
-  inputId,
-  buttonId,
-  showLabel = "Afficher le mot de passe",
-  hideLabel = "Masquer le mot de passe"
-) {
-  const passwordInput = document.getElementById(inputId);
-  const toggleButton = document.getElementById(buttonId);
-
-  if (!passwordInput || !toggleButton) {
+  if (!input || !showLabel || !hideLabel) {
     return;
   }
 
-  toggleButton.addEventListener("click", function () {
-    if (passwordInput.type === "password") {
-      passwordInput.type = "text";
-      toggleButton.textContent = hideLabel;
-    } else {
-      passwordInput.type = "password";
-      toggleButton.textContent = showLabel;
-    }
+  button.addEventListener("click", function () {
+    const shouldReveal = input.type === "password";
+    input.type = shouldReveal ? "text" : "password";
+    button.textContent = shouldReveal ? hideLabel : showLabel;
   });
 }
 
-setupPasswordToggle("login-password", "toggle-login-password");
-setupPasswordToggle("register-password", "toggle-register-password");
-setupPasswordToggle(
-  "register-password-confirm",
-  "toggle-register-password-confirm",
-  "Afficher la confirmation du mot de passe",
-  "Masquer la confirmation du mot de passe"
-);
+setupPasswordToggle("toggle-login-password");
+setupPasswordToggle("toggle-register-password");
+setupPasswordToggle("toggle-register-password-confirm");
 
-// Règles du nom de connexion, définies dans les attributs HTML du champ.
+/** Affiche les erreurs de longueur ou de format selon les contraintes HTML du champ. */
 function setupUsernameValidation(inputId, feedbackId) {
   const input = document.getElementById(inputId);
   const feedback = document.getElementById(feedbackId);
@@ -68,6 +36,7 @@ function setupUsernameValidation(inputId, feedbackId) {
     return;
   }
 
+  /** Synchronise le message visible et l’état de validité du champ. */
   function updateFeedback() {
     let message = "";
 
@@ -77,6 +46,7 @@ function setupUsernameValidation(inputId, feedbackId) {
       message = "Utilise uniquement des lettres A–Z, des chiffres, _ ou -, sans espace.";
     }
 
+    // Une chaîne vide efface l’erreur personnalisée après correction.
     input.setCustomValidity(message);
     feedback.textContent = message;
 
@@ -94,7 +64,7 @@ function setupUsernameValidation(inputId, feedbackId) {
 setupUsernameValidation("register-username", "register-username-feedback");
 setupUsernameValidation("login-username", "login-username-feedback");
 
-// Retour immédiat sur deux champs à comparer
+/** Compare les valeurs exactes de deux champs et actualise le retour à chaque saisie. */
 function setupFieldConfirmation(inputId, confirmationId, feedbackId, matchMessage, mismatchMessage) {
   const input = document.getElementById(inputId);
   const confirmationInput = document.getElementById(confirmationId);
@@ -104,14 +74,11 @@ function setupFieldConfirmation(inputId, confirmationId, feedbackId, matchMessag
     return;
   }
 
+  /** N’affiche aucun message tant que la confirmation est vide. */
   function updateFeedback() {
-    if (confirmationInput.value === "") {
-      feedback.textContent = "";
-    } else if (input.value === confirmationInput.value) {
-      feedback.textContent = matchMessage;
-    } else {
-      feedback.textContent = mismatchMessage;
-    }
+    const confirmationValue = confirmationInput.value;
+    const message = input.value === confirmationValue ? matchMessage : mismatchMessage;
+    feedback.textContent = confirmationValue === "" ? "" : message;
   }
 
   input.addEventListener("input", updateFeedback);
@@ -135,47 +102,7 @@ setupFieldConfirmation(
   "Les adresses e-mail ne correspondent pas."
 );
 
-// Repères pédagogiques : ce contrôle simple n’est pas un score de sécurité.
-function getPasswordGuidance(password) {
-  if (password === "") {
-    return "";
-  }
-
-  const commonPatterns = ["123456", "abcdef", "azerty", "qwerty", "password", "motdepasse"];
-  const hasCommonPattern = commonPatterns.some(function (pattern) {
-    return password.toLowerCase().includes(pattern);
-  });
-
-  if (hasCommonPattern || /^(.)\1+$/u.test(password)) {
-    return "Motif prévisible : évite les suites courantes et les caractères répétés.";
-  }
-
-  if (Array.from(password).length < 15) {
-    return "Mot de passe court : vise au moins 15 caractères.";
-  }
-
-  return "Longueur suffisante pour ce repère. Privilégie une phrase de passe unique.";
-}
-
-function setupPasswordGuidance() {
-  const passwordInput = document.getElementById("register-password");
-  const feedback = document.getElementById("register-password-strength");
-
-  if (!passwordInput || !feedback) {
-    return;
-  }
-
-  function updateGuidance() {
-    feedback.textContent = getPasswordGuidance(passwordInput.value);
-  }
-
-  passwordInput.addEventListener("input", updateGuidance);
-  updateGuidance();
-}
-
-setupPasswordGuidance();
-
-// Compteur aligné sur la limite native du champ
+/** Compte les unités UTF-16, comme la limite native maxlength du champ. */
 function setupCharacterCounter(inputId, counterId) {
   const input = document.getElementById(inputId);
   const counter = document.getElementById(counterId);
@@ -184,6 +111,7 @@ function setupCharacterCounter(inputId, counterId) {
     return;
   }
 
+  /** Affiche la longueur actuelle et la limite lue dans le champ. */
   function updateCount() {
     const count = input.value.length;
     counter.textContent = `${count} / ${input.maxLength} caractères`;
@@ -196,14 +124,8 @@ function setupCharacterCounter(inputId, counterId) {
 setupCharacterCounter("profile-description", "profile-description-count");
 setupCharacterCounter("contact-message", "contact-message-count");
 
-// Compteur et sélection groupée indépendants pour chaque groupe de cases
-function setupTagSelection(groupId) {
-  const group = document.getElementById(groupId);
-
-  if (!group) {
-    return;
-  }
-
+/** Installe le compteur et les actions groupées sur un fieldset. */
+function setupTagSelection(group) {
   const checkboxes = group.querySelectorAll('input[type="checkbox"]');
   const counter = group.querySelector("[data-selection-count]");
   const selectButton = group.querySelector("[data-select-all]");
@@ -213,6 +135,7 @@ function setupTagSelection(groupId) {
     return;
   }
 
+  /** Recalcule le statut et l’état des boutons à partir des cases cochées. */
   function updateSelection() {
     const count = group.querySelectorAll('input[type="checkbox"]:checked').length;
     const label = count > 1 ? "options sélectionnées" : "option sélectionnée";
@@ -221,11 +144,13 @@ function setupTagSelection(groupId) {
     clearButton.disabled = count === 0;
   }
 
+  /** Applique le même état à toutes les cases et replace le focus sans défilement. */
   function setSelection(checked) {
     checkboxes.forEach(function (checkbox) {
       checkbox.checked = checked;
     });
     checkboxes[0].focus({ preventScroll: true });
+    // Modifier checked par script ne déclenche pas l’événement change.
     updateSelection();
   }
 
@@ -240,5 +165,4 @@ function setupTagSelection(groupId) {
   updateSelection();
 }
 
-setupTagSelection("profile-interests");
-setupTagSelection("profile-needs");
+document.querySelectorAll("#profile-interests, #profile-needs").forEach(setupTagSelection);
