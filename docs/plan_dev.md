@@ -2,8 +2,8 @@
 
 ## Priorités actuelles
 
-1. À partir du questionnaire d’équipe, définir les champs requis du profil et les tags propres à chaque rôle. Préciser le lien entre compte et profil et les règles de compte encore ouvertes. Le nom d’utilisateur est prévu comme unique et enregistré en minuscules.
-2. Préparer le modèle MySQL et le premier essai PDO, puis valider, enregistrer et relire un profil par PHP. Prévoir l’identification du compte et le contrôle du propriétaire avant d’activer la sauvegarde pour un utilisateur connecté.
+1. Traduire les décisions du 24/11 en dictionnaire de données et diagramme du premier parcours. Champs, catalogues et accès sont centralisés en [section 3.1 de la documentation technique](documentation_technique.md#31-créer-son-profil) ; ne pas rouvrir les choix validés.
+2. Vérifier le moteur/version local avant exécution SQL, puis avancer par petits blocs avec Steve : schéma, PDO, inscription, vérification e-mail, authentification, sauvegarde et relecture du profil connecté. Les questions Azraël seront confirmées avant les choix propres à cet hébergement ; l'envoi des e-mails sera défini lors de sa construction. Elles ne bloquent pas le dictionnaire ni le diagramme. L'inscription ne sera pas complète avant vérification effective de l'e-mail.
 3. Reprendre l’édition sur place une fois la sauvegarde de profil opérationnelle. Raccorder les actions AJAX des demandes lorsque PHP pourra les autoriser et enregistrer leurs changements d’état. La notification d’acceptation reste dans le lot 2.
 
 La passe JavaScript du 12/11 est terminée. Les suites de la revue HTML/CSS et la mise en forme du retour de robustesse restent reportées.
@@ -358,19 +358,11 @@ Technologies :
 - SQL ;
 - PHP PDO.
 
-Le modèle de données devra notamment représenter :
+**Structure du premier parcours.** `users` regroupe le compte, le profil unique et le rôle courant. Prévoir catalogues de villes, langues, intérêts et accompagnement, liaisons multiples à `users.id` et jetons de vérification liés au compte. Champs, complétude, accès et changement de rôle suivent la [spécification validée](documentation_technique.md#31-créer-son-profil).
 
-- les utilisateurs ;
-- les profils ;
-- les étudiants étrangers ;
-- les parrains ;
-- les centres d'intérêt ;
-- les besoins ;
-- les langues ;
-- les demandes de parrainage ;
-- les relations entre utilisateurs.
+Préparer le dictionnaire (types, longueurs, nullabilité, valeurs par défaut, unicité, clés étrangères et suppressions associées) et un diagramme relationnel. Jetons expirables, à usage unique et stockés sous forme de hash. Proposer les choix techniques encore ouverts, notamment catalogue initial des langues et politique de mot de passe PHP, avant implémentation. Conserver les valeurs de formulaire existantes ; expliquer tout mapping vers SQL, sans renommage implicite.
 
-Le modèle sera conçu avant d'implémenter les requêtes applicatives.
+Demandes, relations de parrainage, signalements et notifications suivront dans leurs incréments ; ne pas créer leurs tables par anticipation. Steve saisit et teste le SQL dans phpMyAdmin par petits blocs, puis vérifie PDO avec requêtes préparées et configuration privée.
 
 ---
 
@@ -415,6 +407,7 @@ Objectif : permettre aux utilisateurs de créer un compte et de se connecter.
 Fonctionnalités envisagées :
 
 - inscription ;
+- vérification de l’adresse e-mail ;
 - connexion ;
 - déconnexion ;
 - sessions PHP ;
@@ -451,7 +444,7 @@ Fonctionnalités :
 
 Les pages statiques construites précédemment commenceront alors à afficher des données provenant réellement de la base de données.
 
-**Premier incrément :** partir du formulaire de `profileconfiguration.php` pour préciser les champs et tags, puis vérifier qu’un profil valide peut être enregistré par PHP et relu dans `profil.php`. La sauvegarde pour un utilisateur connecté doit être rattachée à son compte et contrôlée côté serveur.
+**Premier incrément.** Partir du formulaire de `profileconfiguration.php`. Après authentification, PHP identifie la ligne `users` à modifier à partir de la session, contrôle l’accès et le jeton CSRF, puis valide les champs et les sélections. Enregistrer ensemble les champs et les sélections, puis vérifier que `profil.php` relit le profil du compte connecté et encode les valeurs affichées.
 
 **Édition sur place (retour Y. Delmas du 09/11) :** réutiliser les champs de création dans `profil.php` et prévoir les actions Modifier, Enregistrer et Annuler. JavaScript bascule entre les vues sur la même page. Annuler restaure les dernières valeurs enregistrées. PHP vérifie le propriétaire, valide les champs et enregistre les changements. En cas d’échec, conserver la saisie et afficher l’erreur.
 

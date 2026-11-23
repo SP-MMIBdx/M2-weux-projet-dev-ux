@@ -1361,3 +1361,15 @@ Suites recommandées par l'agent, non implémentées :
 - Entrée limitée à la condition de démonstration existante : profil et deux flux. Classes, dimensions, état désactivé et variables de couleur existants réutilisés, sans ajout CSS ni nouvelle palette. Panneau, notifications serveur, liens vers les profils et contrôles d’accès restent futurs ; plan et documentation technique précisés par l’IA. Nettoyage HTML/CSS précédemment reporté laissé de côté.
 - Steve confirme l’affichage et l’indisponibilité dans son navigateur, puis l’absence de débordement à 320 et 375 px et le parcours Tab : le bouton Notifications désactivé est ignoré, les liens actifs restent accessibles. Contrôles IA distincts : XML du sprite valide avec symbole unique, rendu PHP des huit pages réussi, entrée présente uniquement dans les trois variantes attendues avec nom français et attribut disabled ; espaces Git vérifiés. Aucun nouvel essai navigateur par l’IA ni essai lecteur d’écran.
 - Code saisi par Steve, documentation et vérifications de source par l’IA ; notes locales préexistantes conservées. Aucun staging ni commit effectué par l’IA.
+
+### 23/11/2026 — Modèle de compte et de profil retenu
+
+- Steve confirme un compte, un profil et un rôle courant par identifiant de connexion. L’inscription crée une ligne dans `users` et la configuration complète cette même ligne. Un passage d’étudiant à parrain validé conserve le compte et le profil.
+- Plan et documentation technique mis à jour par l’IA. Le prochain travail porte sur les règles de complétude, la ville, les langues, les tags et l’accès des parrains en attente, ainsi que sur les versions des serveurs de base de données. Aucun schéma ni code modifié. Staging et commits laissés à Steve.
+
+### 24/11/2026 - Spécification initiale des comptes et profils validée
+
+- Steve valide le questionnaire et le blocage du changement étudiant vers parrain tant qu'un parrainage actif ou une demande en attente subsiste. Une ligne `users` conserve le compte, le profil unique et le rôle courant. Aucun SQL ni traitement PHP implémenté pendant cette passe.
+- La section 3.1 du document technique centralise champs, complétude, catalogues évolutifs, accès avant vérification/approbation et changement de rôle. Matching limité à la ville universitaire et à une langue commune ; villes initiales Poitiers, Bordeaux, Paris. Contact distinct, avatar par défaut et validation manuelle initiale des parrains retenus. Suppression des liens de langues/tags et des jetons avec le compte ; règles des demandes et signalements à définir dans leurs incréments.
+- Plan recentré sur dictionnaire, diagramme et saisie SQL accompagnée, avec renvoi vers la spécification pour éviter les listes répétées. Historique, scénarios et Mermaid conservés. Version locale à vérifier avant exécution SQL ; Azraël et envoi des e-mails à confirmer au moment pertinent, sans lever l'exigence de vérification.
+- Documentation mise à jour par l'IA à la demande de Steve, modifications locales préexistantes conservées. Aucun essai navigateur/base, staging ou commit effectué.

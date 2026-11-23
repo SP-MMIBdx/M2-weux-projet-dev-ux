@@ -4,7 +4,7 @@
 
 - **Titre de travail :** Binô (provisoire)
 - **Membres du groupe :** Alexandre, Ange, Steve
-- **Date de mise à jour du document :** 19/11/2026
+- **Date de mise à jour du document :** 24/11/2026
 - **Adresse :** https://github.com/SP-MMIBdx/M2-weux-projet-dev-ux
 
 ### Pitch
@@ -15,7 +15,7 @@ Une application de parrainage destinée aux étudiants étrangers arrivant en Fr
 
 Ce document décrit le périmètre fonctionnel visé, les scénarios d’utilisation et les lots prévus ; il ne constitue pas un inventaire des fonctionnalités déjà implémentées.
 
-Au 19/11, les huit pages PHP présentent les parcours avec des données fictives. Les interactions JavaScript des formulaires sont implémentées. La création de compte et l’enregistrement de profils restent à réaliser. Le premier chantier serveur porte sur la validation, l’enregistrement et la relecture d’un profil, avant l’édition sur place et les actions AJAX de parrainage.
+Au 24/11, les huit pages PHP présentent les parcours avec des données fictives. Les interactions JavaScript des formulaires sont implémentées. La création de compte et l’enregistrement de profils restent à réaliser. Le premier chantier serveur porte sur la validation, l’enregistrement et la relecture d’un profil, avant l’édition sur place et les actions AJAX de parrainage.
 
 - [README](../README.md) : présentation du dépôt, état synthétique et lancement local.
 - [Plan de développement](plan_dev.md) : méthode de travail, étapes, avancement et décisions à revoir.
@@ -95,36 +95,39 @@ La mise en relation est établie
 
 ### 3.1 Créer son profil
 
-L'étudiant étranger crée un profil afin de présenter sa situation, ses centres d'intérêt et ses besoins.
+**Décisions de Steve du 24/11/2026 — à implémenter.** Un identifiant de connexion correspond à un compte, un profil et un rôle courant. L'inscription crée une ligne dans `users` ; la configuration complète cette même ligne. Aucun compte ne contrôle plusieurs profils. Les catalogues de langues, intérêts et accompagnement et leurs liaisons multiples sont rattachés à `users.id`, comme les jetons de vérification. Les types et noms techniques seront précisés dans le dictionnaire de données.
 
-**Compte et rôle.** Les deux rôles utilisent le même modèle de compte, avec un rôle à la fois. Le nom de connexion est unique et enregistré en minuscules. L’adresse e-mail d’inscription est unique, privée et doit être vérifiée. Le rôle de parrain et les changements de rôle sont soumis à validation. La procédure et les actions accessibles pendant l’attente restent à définir. Le scénario de Vincent présente le parcours cible sans fixer l’ordre entre la saisie du profil et la validation du rôle.
+**Inscription et accès.** L'inscription demande uniquement rôle, nom d'utilisateur, e-mail et mot de passe, avec confirmations côté formulaire. PHP convertit les lettres ASCII du nom d'utilisateur en minuscules avant contrôle d'unicité et sauvegarde. L'e-mail d'inscription est unique et privé. Avant sa vérification, seuls vérification/renvoi et déconnexion sont accessibles dans l'espace de compte ; la configuration du profil attend. Les confirmations ne sont pas stockées et seul un hash du mot de passe est conservé.
 
-**Informations possibles :**
+| Champ ou sélection | Règle cible |
+| --- | --- |
+| Nom d'utilisateur | Unique, obligatoire à l'inscription ; 24 caractères maximum, lettres ASCII, chiffres, `_` et `-`, sans espace. |
+| Nom affiché | Distinct du nom de connexion ; obligatoire pour un profil complet, 1 à 60 caractères après suppression des espaces de début/fin. Espaces et accents autorisés. |
+| Ville universitaire | Une seule ville, celle de l'université ; obligatoire pour un profil complet. Catalogue initial : Poitiers, Bordeaux, Paris. |
+| Parcours d'études | Obligatoire pour un profil complet ; texte libre, 150 caractères maximum. Pas de champs établissement/diplôme séparés dans le premier incrément. |
+| Langues | Au moins une pour un profil complet, dans un catalogue, sans niveau. Liste initiale à proposer avant insertion des données de référence. |
+| Accompagnement | Au moins une catégorie pour un profil complet : besoins pour l'étudiant, aide proposée pour le parrain. Catalogue commun ci-dessous. |
+| Pays d'origine | Facultatif. |
+| Description | Facultative, 500 points de code Unicode maximum. Compteur et limite navigateur actuels en unités UTF-16 : alignement avec PHP à réaliser. |
+| Intérêts | Facultatifs, plusieurs choix dans le catalogue ci-dessous. |
+| E-mail de contact | Distinct de l'e-mail d'inscription ; facultatif à la configuration mais obligatoire avant envoi ou acceptation d'une demande. Partagé pendant le parrainage actif seulement. |
+| Photo | Avatar par défaut au premier incrément ; upload facultatif reporté. |
 
-- Nom affiché, distinct du nom de connexion
-- Pays d'origine
-- Ville de résidence ou d’études (référence à préciser pour la mise en relation)
-- Photo de profil facultative
-- Université et formation
-- Parcours / niveau d'études
-- Langues parlées
-- Description personnelle
-- Centres d'intérêt
-- Types d'aide recherchés
+**Catalogues évolutifs.** Six intérêts : sport, jeux vidéo, sorties, culture, musique et études. Sept catégories communes d'accompagnement : vie sociale et rencontres ; études et fonctionnement de l'université ; démarches administratives ; transports ; sorties et activités culturelles ; bons plans étudiants ; aides disponibles pour les étudiants. Ajouts et renommages possibles sans modification de structure ; préserver les sélections existantes lors d'une évolution et traiter explicitement le retrait d'une valeur utilisée.
 
-**Côté parrain :**
+**Complétude et visibilité.** Les champs de profil non remplis peuvent rester `NULL` et les sélections vides après inscription. Un profil incomplet reste hors matching. Les profils complets et éligibles sont consultables uniquement par des utilisateurs connectés dont l'e-mail est vérifié, dans les parcours de parrainage autorisés ; aucun annuaire public. Le parrain peut masquer son profil. Les coordonnées suivent la section 3.4.
 
-Le parrain présente également son parcours, ses centres d'intérêt, ses disponibilités et les domaines dans lesquels il souhaite accompagner un étudiant.
+**Validation du parrain.** Après vérification de son e-mail, un parrain en attente peut compléter/modifier son profil mais ne figure pas dans les propositions et ne reçoit aucune demande. Steve valide manuellement les parrains au début, avec une procédure documentée à préparer. Critères de preuve encore ouverts. Des outils pourront assister ces contrôles après définition des critères ; aucune approbation algorithmique décidée. Les disponibilités détaillées restent une évolution.
 
-Pour apparaître dans les propositions, le parrain doit avoir un rôle validé, un nom affiché, un parcours et au moins un domaine d’aide renseigné. Il peut masquer son profil. La liste complète des champs obligatoires par rôle et le catalogue des tags restent à préciser avant la création du schéma.
+**Changement de rôle.** Le passage étudiant vers parrain nécessite validation, aucun parrainage actif et aucune demande en attente. PHP bloque le changement tant que ces éléments ne sont pas clos. Le compte, son ID et son profil sont conservés ; les anciens besoins ne deviennent pas automatiquement des offres d'aide. Message prévu : « Pour devenir parrain, tu dois d'abord mettre fin à tes parrainages en cours et retirer tes demandes en attente. Tu pourras ensuite demander le changement de rôle. Ton compte et ton profil seront conservés. » Le détail de la procédure de validation reste ouvert.
 
-**Édition sur place (prévue) :** depuis son propre profil, l’utilisateur peut passer du mode lecture au mode édition, puis enregistrer ou annuler, sans ouvrir une page de paramètres séparée.
+**Édition sur place (prévue).** Modifier, enregistrer ou annuler depuis son propre profil, sur la même page, après l'enregistrement et la relecture d'un premier profil par PHP.
 
 ### 3.2 Trouver un parrain adapté
 
 L'étudiant consulte une sélection de parrains correspondant à son profil.
 
-Les propositions sont limitées aux parrains de la même ville. Le classement tient compte de la correspondance entre besoins et aide proposée, des intérêts communs et des langues parlées. L’ordre exact des critères et le caractère obligatoire d’une langue commune restent à préciser. Si les résultats sont peu nombreux, d’autres parrains disponibles de la même ville peuvent être proposés, sous réserve des critères obligatoires retenus.
+Les propositions sont limitées aux parrains éligibles de la même ville universitaire, avec au moins une langue commune. Ces deux critères restent obligatoires même avec peu de résultats. Le classement tient compte des besoins et de l'aide proposée, des intérêts et des langues ; pondération à préciser dans l'incrément de matching.
 
 ### 3.3 Demande de mise en relation
 
@@ -150,11 +153,11 @@ Il peut :
 - refuser une demande ;
 - consulter les informations pertinentes du profil avant de prendre sa décision.
 
-Après acceptation, chaque participant peut consulter l’adresse de contact que l’autre a choisie de partager. Cet accès est réservé aux deux participants pendant le parrainage actif. Chacun peut y mettre fin et indiquer un motif facultatif.
+Après acceptation, chaque participant peut consulter l'e-mail de contact distinct renseigné par l'autre ; l'e-mail d'inscription reste privé. Cet accès est réservé aux deux participants pendant le parrainage actif. Chacun peut y mettre fin avec un motif facultatif.
 
 **Retour prévu côté parrain :** après confirmation d’une acceptation ou d’un refus par le serveur, la carte concernée affiche le nouvel état sans rechargement. Côté étudiant, une notification d’acceptation avec un lien vers le profil du parrain est envisagée dans le lot 2. Depuis le 23/11, le footer de démonstration contient une cloche « Notifications — à venir », désactivée et sans compteur. Cette entrée prépare un futur panneau contenant les notifications autorisées fournies par PHP et des liens vers les profils ; ni le panneau ni le système de notifications ne sont implémentés. Les règles d’affichage connecté et le rafraîchissement restent à définir.
 
-**Gestion du compte.** La désactivation masque le profil et coupe l’accès aux coordonnées. La suppression définitive retire les informations du compte de la base. Le sort des enregistrements partagés, notamment les demandes et les signalements, reste à préciser. Les comptes étudiants et parrains peuvent faire l’objet d’un signalement. Le parcours de signalement et sa priorité de livraison restent à définir.
+**Gestion du compte.** La désactivation masque le profil et coupe l’accès aux coordonnées. La suppression définitive retire les informations du compte de la base. Les liens de langues/tags et les jetons de vérification sont supprimés avec le compte. Le sort des futurs enregistrements partagés, notamment demandes et signalements, sera précisé dans leurs incréments. Les comptes étudiants et parrains peuvent faire l’objet d’un signalement. Le parcours de signalement et sa priorité de livraison restent à définir.
 
 ### 3.5 Faciliter l'intégration au-delà du parrainage
 
@@ -189,9 +192,9 @@ Les profils et les centres d'intérêt permettent de favoriser les mises en rela
 ### Lot 1 — MVP
 
 - Création de compte, vérification de l’adresse e-mail et connexion
-- Choix du rôle étudiant ou parrain et validation du rôle parrain selon une procédure à définir
+- Choix du rôle étudiant ou parrain et validation manuelle initiale par Steve, selon des critères à définir
 - Création et modification du profil
-- Ajout d'une photo facultative
+- Avatar par défaut au premier incrément ; upload facultatif ultérieur
 - Ajout d'une description
 - Informations personnelles pertinentes : formation, établissement, parcours, langues, etc.
 - Sélection de tags pour les centres d’intérêt et les besoins ou domaines d’aide selon le rôle
