@@ -305,7 +305,7 @@ Les huit pages, les événements client et les fonctionnalités attendues sont d
 ### Décisions d’interface et points ouverts
 
 - Conserver pour l’instant la navigation principale dans le footer, dans le flux normal. Le header porte l’identité et le lien d’accueil. La variable de démonstration du footer sera revue lors des sessions et autorisations PHP.
-- Définir les variantes visiteur/étudiant/parrain, les destinations Démarches et mentions légales, et l’éventuel accès Notifications. Le burger attend un contenu utile.
+- Définir les variantes visiteur/étudiant/parrain et les destinations Démarches et mentions légales. Une entrée Notifications à cloche, désactivée et sans compteur, est présente dans le footer de démonstration depuis le 23/11 ; le panneau et les données restent à implémenter. Le burger attend un contenu utile.
 - Revoir plus tard la position du footer sur les pages courtes et l’idée d’une navigation persistante sur mobile. Les contrôles actuels sont des icônes nommées, avec des cibles de 44 × 44px à la taille de base.
 - Une piste reste à examiner pour le contrôle profil : icône vers la connexion pour le visiteur, avatar vers le profil pour un compte connecté, image par défaut sans photo.
 - Adapter le formulaire et les domaines d’aide au rôle parrain. Les six intérêts et sept besoins de la maquette restent provisoires.
@@ -501,7 +501,7 @@ Fonctionnalités envisagées :
 
 **Mise à jour des cartes sans rechargement (retour Y. Delmas du 09/11) :** définir les formats de requête et de réponse avec les routes PHP avant de raccorder les boutons. PHP contrôle la session, le rôle, l’accès à la demande et la transition d’état avant de l’enregistrer. JavaScript envoie l’action avec `fetch`, désactive la commande pendant l’envoi et actualise uniquement la carte concernée après confirmation. Côté étudiant, conserver les informations du parrain et afficher « Ta demande est en attente ». Côté parrain, afficher l’état accepté ou refusé. En cas d’échec, garder le dernier état confirmé, afficher un message accessible et permettre un nouvel essai.
 
-**Notification d’acceptation (lot 2) :** PHP fournit les notifications autorisées pour l’étudiant connecté ; l’interface affiche un lien vers le profil du parrain. L’accès par le pied de page et le mode de rafraîchissement restent à décider. La mise à jour immédiate de la carte de l’auteur de l’action ne suppose pas une notification en temps réel chez l’autre utilisateur.
+**Notification d’acceptation (lot 2, fonctionnement futur) :** l’entrée désactivée du footer de démonstration prépare l’ouverture d’un panneau contenant les notifications autorisées fournies par PHP et des liens vers les profils. Aucun panneau, compteur de non-lus, chargement ou stockage de notifications n’est implémenté. Le mode de rafraîchissement et les règles d’affichage connecté restent à définir. La mise à jour immédiate de la carte de l’auteur de l’action ne suppose pas une notification en temps réel chez l’autre utilisateur.
 
 ---
 

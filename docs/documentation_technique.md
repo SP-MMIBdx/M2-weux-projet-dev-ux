@@ -152,7 +152,7 @@ Il peut :
 
 Après acceptation, chaque participant peut consulter l’adresse de contact que l’autre a choisie de partager. Cet accès est réservé aux deux participants pendant le parrainage actif. Chacun peut y mettre fin et indiquer un motif facultatif.
 
-**Retour prévu côté parrain :** après confirmation d’une acceptation ou d’un refus par le serveur, la carte concernée affiche le nouvel état sans rechargement. Côté étudiant, une notification d’acceptation avec un lien vers le profil du parrain est envisagée dans le lot 2. Un accès « Notifications » dans le pied de page de l’espace connecté est une piste ; son emplacement et le moment d’affichage restent à définir.
+**Retour prévu côté parrain :** après confirmation d’une acceptation ou d’un refus par le serveur, la carte concernée affiche le nouvel état sans rechargement. Côté étudiant, une notification d’acceptation avec un lien vers le profil du parrain est envisagée dans le lot 2. Depuis le 23/11, le footer de démonstration contient une cloche « Notifications — à venir », désactivée et sans compteur. Cette entrée prépare un futur panneau contenant les notifications autorisées fournies par PHP et des liens vers les profils ; ni le panneau ni le système de notifications ne sont implémentés. Les règles d’affichage connecté et le rafraîchissement restent à définir.
 
 **Gestion du compte.** La désactivation masque le profil et coupe l’accès aux coordonnées. La suppression définitive retire les informations du compte de la base. Le sort des enregistrements partagés, notamment les demandes et les signalements, reste à préciser. Les comptes étudiants et parrains peuvent faire l’objet d’un signalement. Le parcours de signalement et sa priorité de livraison restent à définir.
 
@@ -277,6 +277,6 @@ Les formulaires restent désactivés à la soumission. Les données affichées s
 | Édition sur place du profil | Réutiliser les champs de création et les valeurs enregistrées. PHP contrôle le propriétaire et valide la sauvegarde. Annuler restaure les dernières valeurs enregistrées et un échec conserve le brouillon. |
 | Envoi AJAX d’une demande | Définir la route PHP et les formats de requête/réponse. Après confirmation de l’enregistrement, afficher « Ta demande est en attente » dans la carte concernée en conservant les informations du parrain. |
 | Acceptation ou refus en AJAX | PHP autorise et enregistre la décision. JavaScript actualise uniquement la carte concernée sans rechargement. |
-| Notification d’acceptation, lot 2 | Utiliser les données autorisées fournies par PHP et proposer un lien vers le profil du parrain. Emplacement et rafraîchissement restent à décider. |
+| Notification d’acceptation, lot 2 | Entrée à cloche désactivée déjà présente dans le footer de démonstration. Prévoir le panneau, les données autorisées fournies par PHP et un lien vers le profil du parrain ; affichage connecté et rafraîchissement à définir. |
 
 Les requêtes AJAX métier ne sont pas encore implémentées dans la version PHP actuelle. Elles utiliseront `fetch()` avec `async` et `await`, avec une commande désactivée pendant l’envoi, un retour accessible en cas d’erreur et conservation du dernier état confirmé. Le contrôle des rôles, des limites et des transitions reste côté PHP.

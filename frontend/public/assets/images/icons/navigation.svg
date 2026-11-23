@@ -19,4 +19,8 @@
     <circle cx="12" cy="9" r="3" />
     <path d="M5 19C6 13 18 13 19 19" />
   </symbol>
+    <symbol id="notifications" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 8A6 6 0 0 0 6 8C6 15 3 15 3 17H21C21 15 18 15 18 8Z" />
+    <path d="M10 21H14M12 2V1" />
+  </symbol>
 </svg>

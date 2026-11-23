@@ -23,6 +23,13 @@
                     </svg>
                 </button>
             </li>
+                        <li>
+                <button type="button" class="button button--secondary" aria-label="Notifications — à venir" disabled>
+                    <svg class="icon" aria-hidden="true" focusable="false" width="24" height="24">
+                        <use href="assets/images/icons/navigation.svg#notifications"></use>
+                    </svg>
+                </button>
+            </li>
             <li>
                 <a class="button button--secondary" href="profil.php" aria-label="Mon profil">
                     <svg class="icon" aria-hidden="true" focusable="false" width="24" height="24">
